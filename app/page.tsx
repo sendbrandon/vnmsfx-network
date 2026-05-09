@@ -1,65 +1,62 @@
-import Image from "next/image";
-
-type Work = {
-  slug: string;
-  category: string;
-  meta: string;
-  title: string;
-  body: string;
-  cta: string;
-  poster: string;
-};
+import { WorkGrid, type Work } from "./components/WorkGrid";
 
 const FEATURED: Work = {
   slug: "prairie-pussy",
   category: "Film · 41 sec · 2026",
-  meta: "MAY 09, 2026",
+  meta: "NEW THIS WEEK",
   title: "Prairie Pussy 1847",
   body: "Prestige period drama played absolutely straight against an OnlyFans confession. She just wanted to be seen.",
-  cta: "Watch the cut",
+  cta: "Press play",
   poster: "/work/prairie-pussy.jpg",
+  video: "/videos/prairie-pussy.mp4",
 };
 
 const WORKS: Work[] = [
   {
     slug: "twelve-dollar-sandwich",
-    category: "Felt Puppet · Drop #022",
-    meta: "MAY 09, 2026",
+    category: "Felt Puppet · 20 sec",
+    meta: "DROP #022",
     title: "Twelve Dollar Sandwich",
     body: "A puppet has a documentary-real diner panic about inflation, a kidney, and needing a Hyundai by Friday.",
     cta: "Watch",
     poster: "/work/twelve-dollar-sandwich.jpg",
+    video: "/videos/twelve-dollar-sandwich.mp4",
   },
   {
     slug: "barbarian-mental-health",
-    category: "Series · Arc 04 · Recurring",
-    meta: "MAY 06, 2026",
+    category: "Series · Arc 04",
+    meta: "RECURRING",
     title: "Barbarian Mental Health",
-    body: "A Pleistocene barbarian processes therapy-speak, boundaries, and case-file logic through a brutal ancient worldview.",
+    body: "He survived the Ice Age. He cannot survive boundaries.",
     cta: "Open case file",
     poster: "/work/barbarian-mental-health.jpg",
+    video: "/videos/barbarian-mental-health.mp4",
   },
   {
     slug: "room-47",
-    category: "Children's Format · New York",
-    meta: "MAY 06, 2026",
+    category: "Series · Pilot",
+    meta: "NEW",
     title: "Room 47",
     body: "Today's number is 47. Also the number of people Dad's department lost. A children's counting show.",
     cta: "Watch",
     poster: "/work/room-47.jpg",
+    video: "/videos/room-47.mp4",
   },
 ];
 
 const TICKER =
-  "→ → → → → → → → →  Get the Friday dispatch · No spam, no decks, no AI hype  → → → → → → → → → → → → → →";
+  "→ → → → → → → → →  One email per drop · No spam, no decks, no AI hype  → → → → → → → → → → → → → →";
+
+const SUBSCRIBE_MAILTO =
+  "mailto:brandon@pushto6.com?subject=Subscribe%20me%20to%20VNMSFX&body=Add%20me%20to%20the%20list%20for%20new%20drops.";
 
 export default function Page() {
   return (
     <main className="font-sans bg-lavender text-black overflow-x-hidden">
       <TopNav />
       <Hero />
-      <BookingBar />
-      <WorkSection featured={FEATURED} works={WORKS} />
+      <SubscribeBar />
+      <NowPlayingSection />
       <PressSection />
       <Footer />
     </main>
@@ -74,7 +71,7 @@ function TopNav() {
         <span>VNMSFX®&nbsp;&nbsp;/&nbsp;&nbsp;NYC, EST 2024</span>
       </div>
       <div className="hidden md:block">
-        STUDIO · NETWORK · ARTIFACTS · DISPATCH · CONTACT
+        WATCH · SERIES · NEW · DISPATCH · CONTACT
       </div>
     </nav>
   );
@@ -86,13 +83,13 @@ function Hero() {
       <div className="flex items-start gap-8">
         <aside className="w-48 shrink-0 pt-6">
           <div className="text-[10px] font-extrabold tracking-[0.14em] uppercase leading-[1.4]">
-            MANIFESTO
+            NOW PLAYING
             <br />
-            SLATE 26—27
+            VOL. 26—27
           </div>
           <div className="w-8 h-[1.5px] mt-3.5 bg-black" />
           <p className="text-[11px] mt-3.5 leading-[1.45]">
-            A nine-point note from the studio on what we make and who it's for.
+            Four new drops from the network. Press play. Subscribe so you don&rsquo;t miss the next one.
           </p>
         </aside>
         <div className="flex-1">
@@ -102,35 +99,31 @@ function Hero() {
         </div>
       </div>
       <div className="flex items-end justify-between gap-8 flex-wrap">
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            aria-label="Read the full manifesto"
-            className="w-16 h-16 rounded-full bg-black flex items-center justify-center"
-          >
+        <a href="#now-playing" className="flex items-center gap-4 group">
+          <span className="w-16 h-16 rounded-full bg-black flex items-center justify-center group-hover:bg-[#1a1a1a] transition-colors">
             <span
               aria-hidden
               className="block w-0 h-0"
               style={{
                 borderTop: "11px solid transparent",
                 borderBottom: "11px solid transparent",
-                borderLeft: "17px solid #ffffff",
+                borderLeft: "17px solid #C2FF3F",
                 marginLeft: 5,
               }}
             />
-          </button>
+          </span>
           <div className="w-60">
             <div className="text-xs font-extrabold tracking-[0.08em] uppercase">
-              READ THE FULL NOTE
+              Watch the latest drops
             </div>
             <div className="font-serif italic text-[13px] mt-1">
-              — Brandon Adams, Founder
+              4 new this week — scroll to play
             </div>
           </div>
-        </div>
+        </a>
         <div className="flex items-end gap-6">
-          <p className="font-serif italic text-[18px] leading-[1.4] text-right max-w-[260px] pb-3">
-            A New York network for AI work that doesn&rsquo;t look like AI work.
+          <p className="font-serif italic text-[18px] leading-[1.4] text-right max-w-[300px] pb-3">
+            Dangerously good AI videos. Made in New York. New drops every Thursday.
           </p>
           <div className="font-display text-[56px] leading-[0.9] tracking-[-0.03em]">
             VNMSFX
@@ -141,18 +134,18 @@ function Hero() {
   );
 }
 
-function BookingBar() {
+function SubscribeBar() {
   return (
     <section className="w-full h-28 bg-lime border-y-2 border-black px-14 flex items-center gap-10">
       <div className="flex-1 font-display text-[28px] leading-[1] tracking-[-0.01em] uppercase">
-        ↳ Now booking slate 26—27 · Films, artifacts, retainers
+        ↳ New drop every Thursday · One email when it hits
       </div>
       <a
-        href="mailto:brandon@pushto6.com?subject=VNMSFX%20Network%20Inquiry"
+        href={SUBSCRIBE_MAILTO}
         className="flex items-center gap-3.5 shrink-0 group"
       >
         <span className="text-xs font-extrabold tracking-[0.08em] uppercase">
-          Start a project
+          Subscribe
         </span>
         <span className="w-14 h-14 bg-black flex items-center justify-center text-lime text-[22px] group-hover:bg-[#1a1a1a] transition-colors">
           →
@@ -162,116 +155,27 @@ function BookingBar() {
   );
 }
 
-function WorkSection({
-  featured,
-  works,
-}: {
-  featured: Work;
-  works: Work[];
-}) {
+function NowPlayingSection() {
   return (
-    <section className="bg-cream px-14 pt-20 pb-24 flex flex-col gap-10">
+    <section id="now-playing" className="bg-cream px-14 pt-20 pb-24 flex flex-col gap-10 scroll-mt-14">
       <header className="flex items-end justify-between border-b-2 border-black pb-6 gap-6 flex-wrap">
         <h2 className="font-display text-[88px] leading-[0.92] tracking-[-0.03em] uppercase">
-          The Work
+          Now Playing
         </h2>
         <div className="flex items-center gap-6">
           <div className="text-[11px] font-bold tracking-[0.1em] uppercase">
-            Film · Series · Artifacts · Network
+            Film · Series · Drops · Recurring
           </div>
           <a
-            href="#all"
+            href={SUBSCRIBE_MAILTO}
             className="text-[13px] font-extrabold tracking-[0.04em] uppercase hover:underline"
           >
-            ↗ All projects
+            ↗ Full feed
           </a>
         </div>
       </header>
 
-      <div className="flex gap-6 flex-col lg:flex-row">
-        {/* Featured card */}
-        <article className="flex-[1.4] flex flex-col gap-5">
-          <a
-            href={`#${featured.slug}`}
-            className="block relative w-full h-[560px] overflow-hidden group"
-          >
-            <Image
-              src={featured.poster}
-              alt={featured.title}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover group-hover:scale-[1.015] transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/55 pointer-events-none" />
-            <div className="absolute inset-0 p-7 flex flex-col justify-between text-cream">
-              <div className="flex items-start justify-between">
-                <div className="text-[11px] font-bold tracking-[0.1em] uppercase">
-                  ● {featured.category}
-                </div>
-                <div className="text-[11px] font-bold tracking-[0.1em] uppercase">
-                  {featured.meta}
-                </div>
-              </div>
-              <div>
-                <h3 className="font-display text-[88px] leading-[0.86] tracking-[-0.04em] uppercase">
-                  {featured.title}
-                </h3>
-                <div className="flex items-center mt-4 gap-3">
-                  <span className="w-10 h-10 bg-lime flex items-center justify-center text-black text-lg">
-                    →
-                  </span>
-                  <span className="text-[13px] font-extrabold tracking-[0.06em] uppercase">
-                    {featured.cta}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <p className="text-base leading-[1.5] max-w-[520px]">
-            {featured.body}
-          </p>
-        </article>
-
-        {/* Stacked cards */}
-        <div className="flex-1 flex flex-col gap-4">
-          {works.map((w, i) => (
-            <a
-              key={w.slug}
-              href={`#${w.slug}`}
-              className={`flex gap-4 group items-center ${
-                i < works.length - 1
-                  ? "pb-4 border-b-[1.5px] border-black"
-                  : ""
-              }`}
-            >
-              <div className="relative w-32 h-32 shrink-0 overflow-hidden">
-                <Image
-                  src={w.poster}
-                  alt={w.title}
-                  fill
-                  sizes="128px"
-                  className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
-                />
-              </div>
-              <div className="flex-1 flex flex-col gap-1.5">
-                <div className="text-[10px] font-bold tracking-[0.1em] uppercase">
-                  ● {w.category}
-                </div>
-                <div className="font-display text-[24px] leading-[0.95] tracking-[-0.02em] uppercase">
-                  {w.title}
-                </div>
-                <p className="text-[13px] leading-[1.4] line-clamp-2">
-                  {w.body}
-                </p>
-              </div>
-              <span className="w-9 h-9 bg-lime flex items-center justify-center text-black text-base shrink-0 group-hover:bg-[#a8e632] transition-colors">
-                →
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
+      <WorkGrid featured={FEATURED} works={WORKS} />
     </section>
   );
 }
@@ -321,7 +225,7 @@ function Footer() {
       <div className="flex border-y-[1.5px] border-black">
         <div className="flex-1 py-8 px-14 border-r-[1.5px] border-black text-center">
           <div className="font-display text-base tracking-[0.04em] uppercase">
-            Booking
+            Inbox
           </div>
           <a
             href="mailto:brandon@pushto6.com"
@@ -332,10 +236,10 @@ function Footer() {
         </div>
         <div className="flex-1 py-8 px-14 text-center">
           <div className="font-display text-base tracking-[0.04em] uppercase">
-            Studio
+            Press
           </div>
           <a
-            href="mailto:brandon@pushto6.com"
+            href="mailto:brandon@pushto6.com?subject=Press%20inquiry"
             className="block mt-2 text-base hover:underline"
           >
             brandon@pushto6.com
