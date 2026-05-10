@@ -15,6 +15,11 @@ const TRACKS: Track[] = [
     src: "/audio/forty-seven.mp3",
   },
   {
+    slug: "olive-garden-waltz",
+    title: "Olive Garden Waltz",
+    src: "/audio/olive-garden-waltz.mp3",
+  },
+  {
     slug: "felt-puppet-at-the-barbecue",
     title: "Felt Puppet at the Barbecue",
     src: "/audio/felt-puppet-at-the-barbecue.mp3",

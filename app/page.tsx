@@ -3,13 +3,13 @@ import { NowPlayingBoard, type Work } from "./components/NowPlayingBoard";
 
 const WORKS: Work[] = [
   {
-    slug: "prairie-pussy",
-    category: "Film · 41 sec · 2026",
+    slug: "checkpoint-chisme",
+    category: "Felt Puppet · 15 sec · 2026",
     meta: "NEW THIS WEEK",
-    title: "Prairie Pussy 1847",
-    body: "Prestige period drama played absolutely straight against an OnlyFans confession. She just wanted to be seen.",
-    poster: "/work/prairie-pussy.jpg",
-    video: "/videos/prairie-pussy.mp4",
+    title: "Checkpoint Chisme",
+    body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
+    poster: "/work/checkpoint-chisme.jpg",
+    video: "/videos/checkpoint-chisme.mp4",
   },
   {
     slug: "twelve-dollar-sandwich",
