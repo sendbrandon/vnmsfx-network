@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Inter } from "next/font/google";
+import { AudioPlayer } from "./components/AudioPlayer";
 import "./globals.css";
 
 const archivoBlack = Archivo_Black({
@@ -18,11 +19,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "VNMSFX — The funniest network in New York.",
   description:
-    "VNMSFX is a New York network making AI work that doesn't look like AI work. We make the internet feel like the internet again.",
+    "Dangerously good AI videos from New York. We make the internet feel like the internet again. New drops every Thursday.",
   openGraph: {
     title: "VNMSFX — The funniest network in New York.",
     description:
-      "We make the internet feel like the internet again. AI satire, characters, and dark-button comedy from New York.",
+      "Dangerously good AI videos from New York. We make the internet feel like the internet again.",
     type: "website",
   },
 };
@@ -34,7 +35,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${archivoBlack.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <AudioPlayer />
+      </body>
     </html>
   );
 }
