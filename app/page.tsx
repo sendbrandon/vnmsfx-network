@@ -301,6 +301,47 @@ function Footer() {
           <span className="text-[12px] md:text-[13px]">— Highsnobiety</span>
         </div>
       </div>
+      <div className="flex flex-col md:flex-row border-t-[1.5px] border-black">
+        <a
+          href="https://x.com/vnmsfx"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 py-6 md:py-8 px-5 md:px-14 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-black text-center hover:bg-black hover:text-lime transition-colors group"
+        >
+          <div className="font-display text-[14px] md:text-base tracking-[0.04em] uppercase">
+            X / Twitter
+          </div>
+          <div className="mt-2 text-[14px] md:text-base group-hover:underline">
+            ↗ @vnmsfx
+          </div>
+        </a>
+        <a
+          href="https://www.youtube.com/@vnmsfx"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 py-6 md:py-8 px-5 md:px-14 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-black text-center hover:bg-black hover:text-lime transition-colors group"
+        >
+          <div className="font-display text-[14px] md:text-base tracking-[0.04em] uppercase">
+            YouTube
+          </div>
+          <div className="mt-2 text-[14px] md:text-base group-hover:underline">
+            ↗ @vnmsfx
+          </div>
+        </a>
+        <a
+          href="https://www.tiktok.com/@vnmsfxreels"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 py-6 md:py-8 px-5 md:px-14 text-center hover:bg-black hover:text-lime transition-colors group"
+        >
+          <div className="font-display text-[14px] md:text-base tracking-[0.04em] uppercase">
+            TikTok
+          </div>
+          <div className="mt-2 text-[14px] md:text-base group-hover:underline">
+            ↗ @vnmsfxreels
+          </div>
+        </a>
+      </div>
       <div className="flex flex-col md:flex-row border-y-[1.5px] border-black">
         <div className="flex-1 py-6 md:py-8 px-5 md:px-14 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-black text-center">
           <div className="font-display text-[14px] md:text-base tracking-[0.04em] uppercase">
