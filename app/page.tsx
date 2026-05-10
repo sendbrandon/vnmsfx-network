@@ -1,10 +1,37 @@
 import Image from "next/image";
-import { FeaturedShow } from "./components/FeaturedShow";
 import { NowPlayingBoard, type Work } from "./components/NowPlayingBoard";
 
 const LOGO_SRC = "/brand/vnmsfx-logo-black.png";
+const LOGO_SRC_WHITE = "/brand/vnmsfx-logo-white.png";
 const LOGO_W = 2522;
 const LOGO_H = 905;
+
+const HANK_AND_BEANS: Work = {
+  slug: "hank-and-beans",
+  category: "Series · 2 episodes",
+  meta: "S1",
+  title: "Hank & Beans",
+  body: "A lion and his chihuahua. Some weeks they grill. Some weeks they go to the office.",
+  poster: "/work/hank-and-beans/ep01.jpg",
+  video: "/videos/hank-and-beans/ep01.mp4",
+  aspect: 4 / 3,
+  episodes: [
+    {
+      episodeNumber: 1,
+      title: "The Cook-off",
+      body: "Two cooks. One kitchen. Zero ground rules. The pilot of Hank & Beans drops with a cook-off that should never have been allowed to happen.",
+      poster: "/work/hank-and-beans/ep01.jpg",
+      video: "/videos/hank-and-beans/ep01.mp4",
+    },
+    {
+      episodeNumber: 2,
+      title: "The Office",
+      body: "Hank took a corporate job. It's not going great. The phone's rotary, the cubicles are gray, and the legal pad is taking damage.",
+      poster: "/work/hank-and-beans/ep02.jpg",
+      video: "/videos/hank-and-beans/ep02.mp4",
+    },
+  ],
+};
 
 const CHECKPOINT_CHISME: Work = {
   slug: "checkpoint-chisme",
@@ -14,6 +41,7 @@ const CHECKPOINT_CHISME: Work = {
   body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
   poster: "/work/checkpoint-chisme/ep01.jpg",
   video: "/videos/checkpoint-chisme/ep01.mp4",
+  aspect: 4 / 3,
   episodes: [
     {
       episodeNumber: 1,
@@ -58,15 +86,7 @@ export default function Page() {
       <TopNav />
       <Hero />
       <SubscribeBar />
-      <FeaturedShow
-        show="Hank & Beans"
-        episodeMeta="S1 · EP01 · 14 SEC"
-        episodeTitle="The Cook-off"
-        body="Two cooks. One kitchen. Zero ground rules. The pilot of Hank & Beans drops with a cook-off that should never have been allowed to happen."
-        poster="/work/the-cook-off.jpg"
-        video="/videos/the-cook-off.mp4"
-        aspect={4 / 3}
-      />
+      <HankAndBeansSection />
       <CheckpointChismeSection />
       <Footer />
     </main>
@@ -181,6 +201,41 @@ function SubscribeBar() {
         </span>
         <span className="w-12 h-12 md:w-14 md:h-14 bg-black flex items-center justify-center text-lime text-[20px] md:text-[22px] group-hover:bg-[#1a1a1a] transition-colors shrink-0">
           →
+        </span>
+      </a>
+    </section>
+  );
+}
+
+function HankAndBeansSection() {
+  return (
+    <section
+      id="hank-and-beans"
+      className="bg-black text-cream border-y-2 border-black px-5 md:px-14 pt-12 md:pt-20 pb-14 md:pb-24 flex flex-col gap-8 md:gap-10 scroll-mt-14"
+    >
+      <header className="flex items-end justify-between border-b-2 border-cream/30 pb-5 md:pb-6 gap-4 md:gap-6">
+        <div className="flex flex-col gap-2">
+          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
+            <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
+            <span>Now Playing · {HANK_AND_BEANS.episodes?.length ?? 1} episodes</span>
+          </div>
+          <h2 className="font-display text-[clamp(54px,12vw,168px)] leading-[0.86] tracking-[-0.04em] uppercase">
+            Hank &amp; Beans
+          </h2>
+        </div>
+      </header>
+
+      <NowPlayingBoard work={HANK_AND_BEANS} />
+
+      <a
+        href="mailto:brandon@pushto6.com?subject=Subscribe%20me%20to%20Hank%20%26%20Beans&body=Notify%20me%20when%20the%20next%20episode%20drops."
+        className="flex items-center gap-3.5 group self-start border-t border-cream/30 pt-6 md:pt-8 mt-2 md:mt-4"
+      >
+        <span className="w-12 h-12 md:w-14 md:h-14 bg-lime flex items-center justify-center text-black text-[20px] md:text-[22px] group-hover:bg-[#a8e632] transition-colors">
+          →
+        </span>
+        <span className="text-[11px] md:text-xs font-extrabold tracking-[0.08em] uppercase">
+          Get notified for new episodes
         </span>
       </a>
     </section>

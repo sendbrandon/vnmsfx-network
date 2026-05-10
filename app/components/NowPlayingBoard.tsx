@@ -21,6 +21,10 @@ export type Work = {
   video: string;
   // When present, the show is multi-episode and displays an episode strip below the body.
   episodes?: Episode[];
+  // Player aspect ratio — defaults to 16/9. Use 4/3 for puppet shows.
+  aspect?: number;
+  // Episode strip thumbnail aspect — defaults to 4/3.
+  episodeAspect?: number;
 };
 
 type ActiveContent = {
@@ -75,11 +79,14 @@ export function NowPlayingBoard({ work }: { work: Work }) {
     setPlaying(true);
   };
 
+  const playerAspect = work.aspect ?? 16 / 9;
+  const epAspect = work.episodeAspect ?? 4 / 3;
+
   return (
     <div className="flex flex-col gap-6 md:gap-10">
       {/* Player slot */}
       <div className="flex flex-col gap-4 md:gap-6">
-        <div className="relative w-full bg-black overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
+        <div className="relative w-full bg-black overflow-hidden" style={{ aspectRatio: String(playerAspect) }}>
           {playing ? (
             <video
               key={`${work.slug}-${episodeIndex}`}
@@ -160,6 +167,7 @@ export function NowPlayingBoard({ work }: { work: Work }) {
             activeIndex={episodeIndex}
             onClick={handleEpisodeClick}
             playing={playing}
+            aspect={epAspect}
           />
         )}
       </div>
@@ -172,14 +180,16 @@ function EpisodeStrip({
   activeIndex,
   onClick,
   playing,
+  aspect,
 }: {
   episodes: Episode[];
   activeIndex: number;
   onClick: (idx: number) => void;
   playing: boolean;
+  aspect: number;
 }) {
   return (
-    <div className="flex flex-col gap-3 pt-3 md:pt-4 border-t-[1.5px] border-black/30">
+    <div className="flex flex-col gap-3 pt-3 md:pt-4 border-t-[1.5px] border-current/30">
       <div className="flex items-center justify-between">
         <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase">
           ▸ Episodes ({episodes.length})
@@ -204,9 +214,9 @@ function EpisodeStrip({
                 className={`relative w-full overflow-hidden border-2 transition-all ${
                   isActive
                     ? "border-lime shadow-[0_0_0_3px_#C2FF3F33]"
-                    : "border-transparent group-hover:border-black"
+                    : "border-transparent group-hover:border-current"
                 }`}
-                style={{ aspectRatio: "4 / 3" }}
+                style={{ aspectRatio: String(aspect) }}
               >
                 <Image
                   src={ep.poster}
@@ -224,7 +234,7 @@ function EpisodeStrip({
                     {isActive && playing ? <PauseBars /> : <PlayTriangle size={12} />}
                   </span>
                 </div>
-                <div className="absolute top-2 left-2 bg-black text-cream text-[9px] font-extrabold tracking-[0.14em] uppercase px-2 py-1">
+                <div className="absolute top-2 left-2 bg-black/85 text-cream text-[9px] font-extrabold tracking-[0.14em] uppercase px-2 py-1">
                   EP {String(ep.episodeNumber).padStart(2, "0")}
                 </div>
                 {isActive && (
