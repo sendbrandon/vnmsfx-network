@@ -8,7 +8,7 @@ const LOGO_H = 905;
 
 const CHECKPOINT_CHISME: Work = {
   slug: "checkpoint-chisme",
-  category: "Felt Puppet Series · 15 sec each",
+  category: "Felt Puppet Series · 4 episodes",
   meta: "NEW THIS WEEK",
   title: "Checkpoint Chisme",
   body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
@@ -35,6 +35,13 @@ const CHECKPOINT_CHISME: Work = {
       body: "The scanner. The printer. The face on the printout. Welcome to checkpoint chisme.",
       poster: "/work/checkpoint-chisme/ep03.jpg",
       video: "/videos/checkpoint-chisme/ep03.mp4",
+    },
+    {
+      episodeNumber: 4,
+      title: "The Aviators",
+      body: "He took off the sunglasses. That's how you knew it was serious. Also the Food 4 Less bag is back.",
+      poster: "/work/checkpoint-chisme/ep04.jpg",
+      video: "/videos/checkpoint-chisme/ep04.mp4",
     },
   ],
 };
@@ -189,7 +196,7 @@ function CheckpointChismeSection() {
       <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 md:gap-6">
         <div className="flex flex-col gap-2">
           <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70">
-            ● Now Playing · 3 episodes
+            ● Now Playing · 4 episodes
           </div>
           <h2 className="font-display text-[clamp(42px,9vw,88px)] leading-[0.92] tracking-[-0.03em] uppercase">
             Checkpoint Chisme
