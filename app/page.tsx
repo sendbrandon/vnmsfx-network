@@ -1,25 +1,22 @@
 import { FeaturedShow } from "./components/FeaturedShow";
-import { WorkGrid, type Work } from "./components/WorkGrid";
-
-const FEATURED: Work = {
-  slug: "prairie-pussy",
-  category: "Film · 41 sec · 2026",
-  meta: "NEW THIS WEEK",
-  title: "Prairie Pussy 1847",
-  body: "Prestige period drama played absolutely straight against an OnlyFans confession. She just wanted to be seen.",
-  cta: "Press play",
-  poster: "/work/prairie-pussy.jpg",
-  video: "/videos/prairie-pussy.mp4",
-};
+import { NowPlayingBoard, type Work } from "./components/NowPlayingBoard";
 
 const WORKS: Work[] = [
+  {
+    slug: "prairie-pussy",
+    category: "Film · 41 sec · 2026",
+    meta: "NEW THIS WEEK",
+    title: "Prairie Pussy 1847",
+    body: "Prestige period drama played absolutely straight against an OnlyFans confession. She just wanted to be seen.",
+    poster: "/work/prairie-pussy.jpg",
+    video: "/videos/prairie-pussy.mp4",
+  },
   {
     slug: "twelve-dollar-sandwich",
     category: "Felt Puppet · 20 sec",
     meta: "DROP #022",
     title: "Twelve Dollar Sandwich",
     body: "A puppet has a documentary-real diner panic about inflation, a kidney, and needing a Hyundai by Friday.",
-    cta: "Watch",
     poster: "/work/twelve-dollar-sandwich.jpg",
     video: "/videos/twelve-dollar-sandwich.mp4",
   },
@@ -29,7 +26,6 @@ const WORKS: Work[] = [
     meta: "RECURRING",
     title: "Barbarian Mental Health",
     body: "He survived the Ice Age. He cannot survive boundaries.",
-    cta: "Open case file",
     poster: "/work/barbarian-mental-health.jpg",
     video: "/videos/barbarian-mental-health.mp4",
   },
@@ -39,7 +35,6 @@ const WORKS: Work[] = [
     meta: "NEW",
     title: "Room 47",
     body: "Today's number is 47. Also the number of people Dad's department lost. A children's counting show.",
-    cta: "Watch",
     poster: "/work/room-47.jpg",
     video: "/videos/room-47.mp4",
   },
@@ -197,7 +192,7 @@ function NowPlayingSection() {
         </div>
       </header>
 
-      <WorkGrid featured={FEATURED} works={WORKS} />
+      <NowPlayingBoard works={WORKS} />
     </section>
   );
 }
