@@ -4,12 +4,35 @@ import { NowPlayingBoard, type Work } from "./components/NowPlayingBoard";
 const WORKS: Work[] = [
   {
     slug: "checkpoint-chisme",
-    category: "Felt Puppet · 15 sec · 2026",
+    category: "Felt Puppet Series · 15 sec each",
     meta: "NEW THIS WEEK",
     title: "Checkpoint Chisme",
-    body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
-    poster: "/work/checkpoint-chisme.jpg",
-    video: "/videos/checkpoint-chisme.mp4",
+    body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
+    poster: "/work/checkpoint-chisme/ep01.jpg",
+    video: "/videos/checkpoint-chisme/ep01.mp4",
+    episodes: [
+      {
+        episodeNumber: 1,
+        title: "The Grocery",
+        body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
+        poster: "/work/checkpoint-chisme/ep01.jpg",
+        video: "/videos/checkpoint-chisme/ep01.mp4",
+      },
+      {
+        episodeNumber: 2,
+        title: "The Interrogation",
+        body: "The desk lamp's on. The Food 4 Less bag is on the table. Some chisme cannot be contained.",
+        poster: "/work/checkpoint-chisme/ep02.jpg",
+        video: "/videos/checkpoint-chisme/ep02.mp4",
+      },
+      {
+        episodeNumber: 3,
+        title: "Immigration",
+        body: "The scanner. The printer. The face on the printout. Welcome to checkpoint chisme.",
+        poster: "/work/checkpoint-chisme/ep03.jpg",
+        video: "/videos/checkpoint-chisme/ep03.mp4",
+      },
+    ],
   },
   {
     slug: "twelve-dollar-sandwich",
