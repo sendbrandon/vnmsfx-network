@@ -1,67 +1,38 @@
 import { FeaturedShow } from "./components/FeaturedShow";
 import { NowPlayingBoard, type Work } from "./components/NowPlayingBoard";
 
-const WORKS: Work[] = [
-  {
-    slug: "checkpoint-chisme",
-    category: "Felt Puppet Series · 15 sec each",
-    meta: "NEW THIS WEEK",
-    title: "Checkpoint Chisme",
-    body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
-    poster: "/work/checkpoint-chisme/ep01.jpg",
-    video: "/videos/checkpoint-chisme/ep01.mp4",
-    episodes: [
-      {
-        episodeNumber: 1,
-        title: "The Grocery",
-        body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
-        poster: "/work/checkpoint-chisme/ep01.jpg",
-        video: "/videos/checkpoint-chisme/ep01.mp4",
-      },
-      {
-        episodeNumber: 2,
-        title: "The Interrogation",
-        body: "The desk lamp's on. The Food 4 Less bag is on the table. Some chisme cannot be contained.",
-        poster: "/work/checkpoint-chisme/ep02.jpg",
-        video: "/videos/checkpoint-chisme/ep02.mp4",
-      },
-      {
-        episodeNumber: 3,
-        title: "Immigration",
-        body: "The scanner. The printer. The face on the printout. Welcome to checkpoint chisme.",
-        poster: "/work/checkpoint-chisme/ep03.jpg",
-        video: "/videos/checkpoint-chisme/ep03.mp4",
-      },
-    ],
-  },
-  {
-    slug: "twelve-dollar-sandwich",
-    category: "Felt Puppet · 20 sec",
-    meta: "DROP #022",
-    title: "Twelve Dollar Sandwich",
-    body: "A puppet has a documentary-real diner panic about inflation, a kidney, and needing a Hyundai by Friday.",
-    poster: "/work/twelve-dollar-sandwich.jpg",
-    video: "/videos/twelve-dollar-sandwich.mp4",
-  },
-  {
-    slug: "barbarian-mental-health",
-    category: "Series · Arc 04",
-    meta: "RECURRING",
-    title: "Barbarian Mental Health",
-    body: "He survived the Ice Age. He cannot survive boundaries.",
-    poster: "/work/barbarian-mental-health.jpg",
-    video: "/videos/barbarian-mental-health.mp4",
-  },
-  {
-    slug: "room-47",
-    category: "Series · Pilot",
-    meta: "NEW",
-    title: "Room 47",
-    body: "Today's number is 47. Also the number of people Dad's department lost. A children's counting show.",
-    poster: "/work/room-47.jpg",
-    video: "/videos/room-47.mp4",
-  },
-];
+const CHECKPOINT_CHISME: Work = {
+  slug: "checkpoint-chisme",
+  category: "Felt Puppet Series · 15 sec each",
+  meta: "NEW THIS WEEK",
+  title: "Checkpoint Chisme",
+  body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
+  poster: "/work/checkpoint-chisme/ep01.jpg",
+  video: "/videos/checkpoint-chisme/ep01.mp4",
+  episodes: [
+    {
+      episodeNumber: 1,
+      title: "The Grocery",
+      body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
+      poster: "/work/checkpoint-chisme/ep01.jpg",
+      video: "/videos/checkpoint-chisme/ep01.mp4",
+    },
+    {
+      episodeNumber: 2,
+      title: "The Interrogation",
+      body: "The desk lamp's on. The Food 4 Less bag is on the table. Some chisme cannot be contained.",
+      poster: "/work/checkpoint-chisme/ep02.jpg",
+      video: "/videos/checkpoint-chisme/ep02.mp4",
+    },
+    {
+      episodeNumber: 3,
+      title: "Immigration",
+      body: "The scanner. The printer. The face on the printout. Welcome to checkpoint chisme.",
+      poster: "/work/checkpoint-chisme/ep03.jpg",
+      video: "/videos/checkpoint-chisme/ep03.mp4",
+    },
+  ],
+};
 
 const TICKER =
   "→ → → → → → → → →  One email per drop · No spam, no decks, no AI hype  → → → → → → → → → → → → → →";
@@ -84,8 +55,7 @@ export default function Page() {
         video="/videos/the-cook-off.mp4"
         aspect={4 / 3}
       />
-      <NowPlayingSection />
-      <PressSection />
+      <CheckpointChismeSection />
       <Footer />
     </main>
   );
@@ -102,7 +72,7 @@ function TopNav() {
         WATCH · SERIES · NEW · DISPATCH · CONTACT
       </div>
       <a
-        href="#now-playing"
+        href="#checkpoint-chisme"
         className="md:hidden font-extrabold tracking-[0.08em]"
       >
         WATCH ↓
@@ -123,10 +93,10 @@ function Hero() {
           </div>
           <div className="hidden md:block w-8 h-[1.5px] mt-3.5 bg-black" />
           <p className="hidden md:block text-[11px] mt-3.5 leading-[1.45]">
-            Four new drops from the network. Press play. Subscribe so you don&rsquo;t miss the next one.
+            New shows from the network. Press play. Subscribe so you don&rsquo;t miss the next one.
           </p>
           <p className="md:hidden text-[11px] leading-[1.45] flex-1">
-            Four new drops. Press play. Subscribe so you don&rsquo;t miss the next one.
+            New shows from the network. Press play. Subscribe so you don&rsquo;t miss the next one.
           </p>
         </aside>
         <div className="flex-1 min-w-0">
@@ -136,7 +106,7 @@ function Hero() {
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-        <a href="#now-playing" className="flex items-center gap-4 group shrink-0">
+        <a href="#hank-and-beans" className="flex items-center gap-4 group shrink-0">
           <span className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black flex items-center justify-center group-hover:bg-[#1a1a1a] transition-colors shrink-0">
             <span
               aria-hidden
@@ -154,7 +124,7 @@ function Hero() {
               Watch the latest drops
             </div>
             <div className="font-serif italic text-[12px] md:text-[13px] mt-1">
-              4 new this week — scroll to play
+              Scroll to play
             </div>
           </div>
         </a>
@@ -192,59 +162,24 @@ function SubscribeBar() {
   );
 }
 
-function NowPlayingSection() {
+function CheckpointChismeSection() {
   return (
     <section
-      id="now-playing"
+      id="checkpoint-chisme"
       className="bg-cream px-5 md:px-14 pt-12 md:pt-20 pb-16 md:pb-24 flex flex-col gap-8 md:gap-10 scroll-mt-14"
     >
-      <header className="flex flex-col md:flex-row md:items-end md:justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 md:gap-6">
-        <h2 className="font-display text-[clamp(42px,9vw,88px)] leading-[0.92] tracking-[-0.03em] uppercase">
-          Now Playing
-        </h2>
-        <div className="flex items-center justify-between md:justify-end gap-4 md:gap-6">
-          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase">
-            Film · Series · Drops · Recurring
+      <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 md:gap-6">
+        <div className="flex flex-col gap-2">
+          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70">
+            ● Now Playing · 3 episodes
           </div>
-          <a
-            href={SUBSCRIBE_MAILTO}
-            className="text-[12px] md:text-[13px] font-extrabold tracking-[0.04em] uppercase hover:underline shrink-0"
-          >
-            ↗ Full feed
-          </a>
+          <h2 className="font-display text-[clamp(42px,9vw,88px)] leading-[0.92] tracking-[-0.03em] uppercase">
+            Checkpoint Chisme
+          </h2>
         </div>
       </header>
 
-      <NowPlayingBoard works={WORKS} />
-    </section>
-  );
-}
-
-function PressSection() {
-  return (
-    <section className="bg-lavender border-t-2 border-black px-5 md:px-14 pt-12 md:pt-20 pb-10 md:pb-14 flex flex-col gap-8 md:gap-14">
-      <div className="flex items-center justify-between">
-        <div className="font-display text-[24px] md:text-[32px] leading-[1] tracking-[-0.01em] uppercase">
-          ● Press
-        </div>
-        <div className="flex gap-3">
-          <span className="block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-black" />
-          <span className="block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-black opacity-25" />
-          <span className="block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-black opacity-25" />
-          <span className="block w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-black opacity-25" />
-        </div>
-      </div>
-      <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-16">
-        <blockquote className="flex-1 font-display text-[clamp(38px,8.5vw,88px)] leading-[0.95] tracking-[-0.025em] uppercase">
-          &ldquo;The funniest network in New York right now.&rdquo;
-        </blockquote>
-        <div className="md:w-72 shrink-0 md:pb-3">
-          <div className="font-serif italic text-[18px] md:text-[22px]">— Highsnobiety</div>
-          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase mt-2">
-            FEB 14, 2026 · ISSUE 47
-          </div>
-        </div>
-      </div>
+      <NowPlayingBoard work={CHECKPOINT_CHISME} />
     </section>
   );
 }
@@ -260,6 +195,12 @@ function Footer() {
       <div className="pt-10 md:pt-14 pb-6 md:pb-8 px-5 md:px-14">
         <div className="font-display text-[clamp(72px,18vw,248px)] leading-[0.85] tracking-[-0.05em] text-center">
           VNMSFX
+        </div>
+      </div>
+      <div className="px-5 md:px-14 pb-6 md:pb-8 flex flex-col items-center gap-3">
+        <div className="font-serif italic text-center text-[14px] md:text-[16px] max-w-[480px] leading-[1.45]">
+          &ldquo;The funniest network in New York right now.&rdquo;{" "}
+          <span className="text-[12px] md:text-[13px]">— Highsnobiety</span>
         </div>
       </div>
       <div className="flex flex-col md:flex-row border-y-[1.5px] border-black">

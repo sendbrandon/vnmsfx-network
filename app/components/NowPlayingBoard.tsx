@@ -19,7 +19,7 @@ export type Work = {
   body: string;
   poster: string;
   video: string;
-  // When present, the show is multi-episode and the card opens to ep01 with an episode strip.
+  // When present, the show is multi-episode and displays an episode strip below the body.
   episodes?: Episode[];
 };
 
@@ -30,7 +30,7 @@ type ActiveContent = {
   video: string;
   category: string;
   meta: string;
-  episodeLabel?: string; // "EP 02 OF 3" when applicable
+  episodeLabel?: string;
 };
 
 function getActiveContent(work: Work, epIndex: number): ActiveContent {
@@ -56,33 +56,19 @@ function getActiveContent(work: Work, epIndex: number): ActiveContent {
   };
 }
 
-export function NowPlayingBoard({ works }: { works: Work[] }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+export function NowPlayingBoard({ work }: { work: Work }) {
   const [episodeIndex, setEpisodeIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playerRef = useRef<HTMLDivElement>(null);
 
-  const active = works[activeIndex];
-  const content = getActiveContent(active, episodeIndex);
+  const content = getActiveContent(work, episodeIndex);
 
-  // When the active video changes while we're in playing mode, autoPlay handles starting it.
+  // When the active episode changes while playing, autoPlay handles starting it.
   useEffect(() => {
     if (playing && videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
-  }, [activeIndex, episodeIndex, playing]);
-
-  const handleCardClick = (idx: number) => {
-    setActiveIndex(idx);
-    setEpisodeIndex(0); // always start from ep01 when switching shows
-    setPlaying(true);
-    if (typeof window !== "undefined" && window.innerWidth < 1024) {
-      requestAnimationFrame(() => {
-        playerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
-  };
+  }, [episodeIndex, playing]);
 
   const handleEpisodeClick = (epIdx: number) => {
     setEpisodeIndex(epIdx);
@@ -92,11 +78,11 @@ export function NowPlayingBoard({ works }: { works: Work[] }) {
   return (
     <div className="flex flex-col gap-6 md:gap-10">
       {/* Player slot */}
-      <div ref={playerRef} className="flex flex-col gap-4 md:gap-6 scroll-mt-14">
+      <div className="flex flex-col gap-4 md:gap-6">
         <div className="relative w-full bg-black overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
           {playing ? (
             <video
-              key={`${active.slug}-${episodeIndex}`}
+              key={`${work.slug}-${episodeIndex}`}
               ref={videoRef}
               src={content.video}
               poster={content.poster}
@@ -168,86 +154,14 @@ export function NowPlayingBoard({ works }: { works: Work[] }) {
         </div>
 
         {/* Episode strip — only renders for multi-episode shows */}
-        {active.episodes && active.episodes.length > 1 && (
+        {work.episodes && work.episodes.length > 1 && (
           <EpisodeStrip
-            episodes={active.episodes}
+            episodes={work.episodes}
             activeIndex={episodeIndex}
             onClick={handleEpisodeClick}
             playing={playing}
           />
         )}
-      </div>
-
-      {/* Show queue: 4 equal cards */}
-      <div className="border-t-[1.5px] border-black pt-6 md:pt-8">
-        <div className="flex items-center justify-between mb-4 md:mb-5">
-          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase">
-            ↓ The Queue
-          </div>
-          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase opacity-60">
-            {works.length} shows
-          </div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {works.map((w, i) => {
-            const isActive = i === activeIndex;
-            const epCount = w.episodes?.length ?? 1;
-            return (
-              <button
-                key={w.slug}
-                type="button"
-                onClick={() => handleCardClick(i)}
-                aria-pressed={isActive}
-                aria-label={`Play ${w.title}`}
-                className="flex flex-col gap-2.5 md:gap-3 text-left group cursor-pointer"
-              >
-                <div
-                  className={`relative w-full overflow-hidden border-2 transition-all ${
-                    isActive
-                      ? "border-lime shadow-[0_0_0_4px_#C2FF3F33]"
-                      : "border-transparent group-hover:border-black"
-                  }`}
-                  style={{ aspectRatio: "16 / 9" }}
-                >
-                  <Image
-                    src={w.poster}
-                    alt={w.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
-                    <span
-                      className={`w-12 h-12 rounded-full bg-lime flex items-center justify-center transition-opacity ${
-                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                      }`}
-                    >
-                      {isActive && playing ? <PauseBars /> : <PlayTriangle size={14} />}
-                    </span>
-                  </div>
-                  {isActive && (
-                    <div className="absolute top-2 left-2 bg-lime text-black text-[9px] font-extrabold tracking-[0.12em] uppercase px-2 py-1">
-                      ● {playing ? "Playing" : "Selected"}
-                    </div>
-                  )}
-                  {epCount > 1 && (
-                    <div className="absolute bottom-2 right-2 bg-black/80 text-cream text-[9px] font-extrabold tracking-[0.12em] uppercase px-2 py-1">
-                      {epCount} EPS
-                    </div>
-                  )}
-                </div>
-                <div className="flex flex-col gap-1">
-                  <div className="text-[9px] md:text-[10px] font-bold tracking-[0.12em] uppercase opacity-70">
-                    {w.category}
-                  </div>
-                  <div className="font-display text-[16px] md:text-[18px] leading-[1.05] tracking-[-0.02em] uppercase">
-                    {w.title}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
       </div>
     </div>
   );

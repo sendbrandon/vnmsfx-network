@@ -29,6 +29,16 @@ const TRACKS: Track[] = [
     title: "Fourteen Dollars",
     src: "/audio/fourteen-dollars.mp3",
   },
+  {
+    slug: "last-bus-to-trader-joes",
+    title: "Last Bus to Trader Joe's",
+    src: "/audio/last-bus-to-trader-joes.mp3",
+  },
+  {
+    slug: "beans",
+    title: "Beans",
+    src: "/audio/beans.mp3",
+  },
 ];
 
 function fmtTime(s: number) {
