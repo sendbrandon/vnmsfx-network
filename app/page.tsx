@@ -8,7 +8,7 @@ const LOGO_H = 905;
 
 const HANK_AND_BEANS: Work = {
   slug: "hank-and-beans",
-  category: "Series · 2 episodes",
+  category: "Series · 4 episodes",
   meta: "S1",
   title: "Hank & Beans",
   body: "A lion and his chihuahua. Some weeks they grill. Some weeks they go to the office.",
@@ -29,6 +29,20 @@ const HANK_AND_BEANS: Work = {
       body: "Hank took a corporate job. It's not going great. The phone's rotary, the cubicles are gray, and the legal pad is taking damage.",
       poster: "/work/hank-and-beans/ep02.jpg",
       video: "/videos/hank-and-beans/ep02.mp4",
+    },
+    {
+      episodeNumber: 3,
+      title: "The Cover Shoot",
+      body: "Day one of the shoot. Beans wore the hat. Hank brought the chest. The label hasn't called back yet.",
+      poster: "/work/hank-and-beans/ep03.jpg",
+      video: "/videos/hank-and-beans/ep03.mp4",
+    },
+    {
+      episodeNumber: 4,
+      title: "The Birthday",
+      body: "It was supposed to be a six-year-old's party. Beans had karate. Hank had the lightsaber. The cake did not make it past minute seven.",
+      poster: "/work/hank-and-beans/ep04.jpg",
+      video: "/videos/hank-and-beans/ep04.mp4",
     },
   ],
 };
