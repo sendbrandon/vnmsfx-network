@@ -1,5 +1,10 @@
+import Image from "next/image";
 import { FeaturedShow } from "./components/FeaturedShow";
 import { NowPlayingBoard, type Work } from "./components/NowPlayingBoard";
+
+const LOGO_SRC = "/brand/vnmsfx-logo-black.png";
+const LOGO_W = 2522;
+const LOGO_H = 905;
 
 const CHECKPOINT_CHISME: Work = {
   slug: "checkpoint-chisme",
@@ -66,7 +71,16 @@ function TopNav() {
     <nav className="w-full h-14 flex items-center justify-between px-5 md:px-14 border-b-[1.5px] border-black text-[10px] md:text-[11px] font-bold tracking-[0.08em] uppercase bg-lavender">
       <div className="flex items-center gap-2">
         <span className="block w-2.5 h-2.5 rounded-full bg-black shrink-0" />
-        <span className="truncate">VNMSFX®&nbsp;&nbsp;/&nbsp;&nbsp;NYC, EST 2024</span>
+        <Image
+          src={LOGO_SRC}
+          alt="VNMSFX"
+          width={LOGO_W}
+          height={LOGO_H}
+          priority
+          className="h-[16px] md:h-[18px] w-auto"
+        />
+        <span className="text-[8px] md:text-[9px] -translate-y-1.5">®</span>
+        <span className="hidden sm:inline opacity-70">&nbsp;&nbsp;/&nbsp;&nbsp;NYC, EST 2024</span>
       </div>
       <div className="hidden md:block">
         WATCH · SERIES · NEW · DISPATCH · CONTACT
@@ -132,9 +146,13 @@ function Hero() {
           <p className="font-serif italic text-[14px] md:text-[18px] leading-[1.4] text-left md:text-right max-w-[200px] md:max-w-[300px] pb-2 md:pb-3">
             Dangerously good AI videos. Made in New York. New drops every Thursday.
           </p>
-          <div className="font-display text-[clamp(36px,8vw,56px)] leading-[0.9] tracking-[-0.03em] shrink-0">
-            VNMSFX
-          </div>
+          <Image
+            src={LOGO_SRC}
+            alt="VNMSFX"
+            width={LOGO_W}
+            height={LOGO_H}
+            className="h-[clamp(32px,7vw,52px)] w-auto shrink-0"
+          />
         </div>
       </div>
     </section>
@@ -192,10 +210,14 @@ function Footer() {
           {TICKER}
         </div>
       </div>
-      <div className="pt-10 md:pt-14 pb-6 md:pb-8 px-5 md:px-14">
-        <div className="font-display text-[clamp(72px,18vw,248px)] leading-[0.85] tracking-[-0.05em] text-center">
-          VNMSFX
-        </div>
+      <div className="pt-10 md:pt-14 pb-6 md:pb-8 px-5 md:px-14 flex justify-center">
+        <Image
+          src={LOGO_SRC}
+          alt="VNMSFX"
+          width={LOGO_W}
+          height={LOGO_H}
+          className="h-[clamp(64px,16vw,200px)] w-auto"
+        />
       </div>
       <div className="px-5 md:px-14 pb-6 md:pb-8 flex flex-col items-center gap-3">
         <div className="font-serif italic text-center text-[14px] md:text-[16px] max-w-[480px] leading-[1.45]">
