@@ -1,3 +1,4 @@
+import { FeaturedShow } from "./components/FeaturedShow";
 import { WorkGrid, type Work } from "./components/WorkGrid";
 
 const FEATURED: Work = {
@@ -56,6 +57,15 @@ export default function Page() {
       <TopNav />
       <Hero />
       <SubscribeBar />
+      <FeaturedShow
+        show="Hank & Beans"
+        episodeMeta="S1 · EP01 · 14 SEC"
+        episodeTitle="The Cook-off"
+        body="Two cooks. One kitchen. Zero ground rules. The pilot of Hank & Beans drops with a cook-off that should never have been allowed to happen."
+        poster="/work/the-cook-off.jpg"
+        video="/videos/the-cook-off.mp4"
+        aspect={4 / 3}
+      />
       <NowPlayingSection />
       <PressSection />
       <Footer />
