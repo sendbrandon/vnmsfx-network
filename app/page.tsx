@@ -8,7 +8,7 @@ const LOGO_H = 905;
 
 const HANK_AND_BEANS: Work = {
   slug: "hank-and-beans",
-  category: "Series · 7 episodes",
+  category: "Series · 8 episodes",
   meta: "S1",
   title: "Hank & Beans",
   body: "A lion and his chihuahua. Some weeks they grill. Some weeks they go to the office.",
@@ -64,6 +64,13 @@ const HANK_AND_BEANS: Work = {
       body: "Hank dug up the time capsule. Hank also dug up Hank. The capsule was empty. Beans was not surprised.",
       poster: "/work/hank-and-beans/ep07.jpg",
       video: "/videos/hank-and-beans/ep07.mp4",
+    },
+    {
+      episodeNumber: 8,
+      title: "The Eulogy",
+      body: "Lion Hank gave the eulogy. Bearded Hank wept in the front pew. The deceased was a fern named Robert.",
+      poster: "/work/hank-and-beans/ep08.jpg",
+      video: "/videos/hank-and-beans/ep08.mp4",
     },
   ],
 };
