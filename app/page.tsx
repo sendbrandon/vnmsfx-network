@@ -77,7 +77,7 @@ const HANK_AND_BEANS: Work = {
 
 const CHECKPOINT_CHISME: Work = {
   slug: "checkpoint-chisme",
-  category: "Felt Puppet Series · 4 episodes",
+  category: "Felt Puppet Series · 5 episodes",
   meta: "NEW THIS WEEK",
   title: "Checkpoint Chisme",
   body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
@@ -112,6 +112,13 @@ const CHECKPOINT_CHISME: Work = {
       body: "He took off the sunglasses. That's how you knew it was serious. Also the Food 4 Less bag is back.",
       poster: "/work/checkpoint-chisme/ep04.jpg",
       video: "/videos/checkpoint-chisme/ep04.mp4",
+    },
+    {
+      episodeNumber: 5,
+      title: "The Taco Stand",
+      body: "TSA on lunch break. The chisme followed them to the taqueria. So did the pico de gallo.",
+      poster: "/work/checkpoint-chisme/ep05.jpg",
+      video: "/videos/checkpoint-chisme/ep05.mp4",
     },
   ],
 };
@@ -293,7 +300,7 @@ function CheckpointChismeSection() {
       <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 md:gap-6">
         <div className="flex flex-col gap-2">
           <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70">
-            ● Now Playing · 4 episodes
+            ● Now Playing · 5 episodes
           </div>
           <h2 className="font-display text-[clamp(42px,9vw,88px)] leading-[0.92] tracking-[-0.03em] uppercase">
             Checkpoint Chisme
