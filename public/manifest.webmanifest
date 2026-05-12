@@ -1,0 +1,26 @@
+{
+  "name": "VNMSFX — The funniest network in New York",
+  "short_name": "VNMSFX",
+  "description": "Dangerously good AI videos from New York. We make the internet feel like the internet again.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#CFA8FA",
+  "theme_color": "#CFA8FA",
+  "orientation": "portrait",
+  "lang": "en-US",
+  "categories": ["entertainment"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
