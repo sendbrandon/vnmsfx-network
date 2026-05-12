@@ -276,43 +276,11 @@ function Submission() {
         showSlug="hank_beans_roar"
         showTitle="Hank, Beans & Roar"
         subjectPrefix="Next Disaster"
+        ideaLabel="Where should Hank, Beans & Roar go next?"
+        ideaPlaceholder="A waterpark. A jury duty. Costco at 11pm. The dentist."
         ctaLabel="Send the disaster"
         trackEvent="submit_disaster_click"
         variant="dark"
-        fields={[
-          {
-            key: "where",
-            label: "Where should Hank, Beans & Roar go next?",
-            required: true,
-            placeholder: "A waterpark / A jury duty / Costco at 11pm…",
-          },
-          {
-            key: "beans",
-            label: "What should Beans notice first?",
-            placeholder: "The sign that says do not enter…",
-          },
-          {
-            key: "roar",
-            label: "What should Roar ruin?",
-            placeholder: "The complimentary breakfast…",
-          },
-          {
-            key: "hank",
-            label: "What should Hank misunderstand?",
-            placeholder: "Hank thinks the wifi is a snack…",
-          },
-          {
-            key: "name",
-            label: "Your name or handle",
-            placeholder: "@yourhandle",
-          },
-          {
-            key: "email",
-            label: "Email (optional)",
-            type: "email",
-            placeholder: "we won't spam you",
-          },
-        ]}
       />
     </section>
   );

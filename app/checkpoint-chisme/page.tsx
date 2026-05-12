@@ -46,7 +46,8 @@ export default function CheckpointChismePage() {
       <ShowNav />
       <Hero />
       <Player />
-      <WorldQA />
+      <MeetTheCast />
+      <TheWorld />
       <Submission />
       <BackToNetwork />
     </main>
@@ -84,7 +85,8 @@ function Hero() {
         <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
           <span className="block w-2.5 h-2.5 rounded-full bg-lime border border-black" />
           <span>
-            A VNMSFX Show · Felt Puppet · {CHECKPOINT_CHISME.episodes?.length} episodes
+            A VNMSFX Show · Felt Puppet · {CHECKPOINT_CHISME.episodes?.length}{" "}
+            episodes
           </span>
         </div>
         <h1 className="font-display text-[clamp(50px,11vw,148px)] leading-[0.86] tracking-[-0.04em] uppercase">
@@ -97,8 +99,8 @@ function Hero() {
       <div className="flex flex-col md:flex-row gap-6 md:gap-12">
         <p className="flex-1 text-[15px] md:text-[17px] leading-[1.55] max-w-[640px]">
           A felt puppet comedy series where every checkpoint becomes an
-          investigation, every passenger has a story, and every break room
-          has something to say.
+          investigation, every passenger has a story, and every break room has
+          something to say.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 self-start md:self-end">
           <TrackedLink
@@ -145,70 +147,58 @@ function Player() {
   );
 }
 
-function WorldQA() {
-  const qa = [
+function MeetTheCast() {
+  const cast: { name: string; tag: string; line: string; src: string }[] = [
     {
-      q: "What is Checkpoint Chisme?",
-      a: "A felt puppet comedy series set inside an airport security world where routine checks turn into gossip-fueled chaos.",
+      name: "THE AGENT",
+      tag: "Maximum security. Minimum chill.",
+      line: "Tactical vest, mustache, sunglasses. Treats every grocery bag like a national security event.",
+      src: "/cast/cc-agente.jpg",
     },
     {
-      q: "What kind of comedy is it?",
-      a: "Authority comedy, workplace comedy, airport absurdity, and neighborhood chisme all smashed together.",
+      name: "THE INSPECTOR",
+      tag: "Behind the counter. Always.",
+      line: "The one who actually checks the IDs. Also the one who actually has the chisme.",
+      src: "/cast/cc-inspector.jpg",
     },
     {
-      q: "Who is it for?",
-      a: "People who love puppet comedy, TSA/airport jokes, Latino humor, workplace drama, and characters who take tiny situations way too seriously.",
-    },
-    {
-      q: "What is the world?",
-      a: "A checkpoint universe where IDs talk back, passengers overshare, agents investigate everything, and no one leaves without becoming part of the story.",
+      name: "THE WITNESS",
+      tag: "Pink hair. Big opinions.",
+      line: "Heard something at Gate B. Has to tell somebody. Will tell everybody.",
+      src: "/cast/cc-witness.jpg",
     },
   ];
-
   return (
     <section className="bg-black text-cream border-y-2 border-black px-5 md:px-14 py-12 md:py-20 flex flex-col gap-8 md:gap-10">
       <header className="flex items-end justify-between border-b-2 border-cream/30 pb-5 md:pb-6 gap-4 flex-wrap">
         <h2 className="font-display text-[clamp(36px,7vw,72px)] leading-[0.95] tracking-[-0.03em] uppercase">
-          The world
+          Meet the cast
         </h2>
-        <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase opacity-70 max-w-[280px] text-right">
-          Where airport security becomes community theater.
+        <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase opacity-70">
+          Three puppets. One checkpoint.
         </div>
       </header>
-
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
-        {[
-          ["The agents", "are dramatic."],
-          ["The passengers", "are suspicious."],
-          ["The IDs", "have stories."],
-          ["The break room", "has opinions."],
-        ].map(([title, body]) => (
-          <div
-            key={title}
-            className="flex flex-col gap-2 border-2 border-cream/30 p-4"
-          >
-            <div className="font-display text-[15px] md:text-[18px] leading-[1.05] tracking-[-0.01em] uppercase">
-              {title}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {cast.map((c) => (
+          <div key={c.name} className="flex flex-col gap-3">
+            <div className="relative w-full aspect-[4/5] overflow-hidden border-2 border-cream/30">
+              <Image
+                src={c.src}
+                alt={c.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
+              />
             </div>
-            <div className="text-[13px] md:text-[14px] leading-[1.5] opacity-80">
-              {body}
+            <div className="font-display text-[24px] md:text-[32px] leading-[0.95] tracking-[-0.02em] uppercase">
+              {c.name}
             </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex flex-col gap-4 md:gap-5">
-        {qa.map((row) => (
-          <div
-            key={row.q}
-            className="flex flex-col md:flex-row md:items-start gap-2 md:gap-8"
-          >
-            <div className="md:w-[320px] font-display text-[18px] md:text-[22px] leading-[1.1] tracking-[-0.01em] uppercase">
-              {row.q}
+            <div className="text-[11px] md:text-[12px] font-bold tracking-[0.08em] uppercase opacity-90">
+              {c.tag}
             </div>
-            <div className="flex-1 text-[15px] md:text-[16px] leading-[1.55] opacity-90">
-              {row.a}
-            </div>
+            <p className="text-[13px] md:text-[14px] leading-[1.5] opacity-80">
+              {c.line}
+            </p>
           </div>
         ))}
       </div>
@@ -216,24 +206,82 @@ function WorldQA() {
   );
 }
 
+function TheWorld() {
+  return (
+    <section className="bg-cream text-black px-5 md:px-14 py-12 md:py-20 flex flex-col gap-8 md:gap-10">
+      <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 flex-wrap">
+        <h2 className="font-display text-[clamp(36px,7vw,72px)] leading-[0.95] tracking-[-0.03em] uppercase">
+          The world
+        </h2>
+        <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase opacity-70">
+          What you&rsquo;re watching
+        </div>
+      </header>
+
+      <div className="flex flex-col gap-2 max-w-[760px]">
+        <p className="font-serif italic text-[20px] md:text-[26px] leading-[1.25]">
+          Puppet airport. Real chisme.
+        </p>
+        <p className="text-[15px] md:text-[16px] leading-[1.55]">
+          Three felt-puppet TSA agents run the world&rsquo;s most dramatic
+          security checkpoint. Every passenger has a secret. Every ID has a
+          backstory. Every break room has an opinion. Nothing ever just gets
+          stamped &ldquo;approved.&rdquo;
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-[820px]">
+        <WorldCard
+          kicker="Where"
+          line="A made-up airport. Mostly the security counter, the break room, and the printer."
+        />
+        <WorldCard
+          kicker="What happens"
+          line="Someone walks up. The agents start gossiping. The chisme spirals. Nothing gets resolved."
+        />
+        <WorldCard
+          kicker="Who&rsquo;s there"
+          line="Three agents, an endless line of passengers, and chisme in every direction."
+        />
+        <WorldCard
+          kicker="Vibe"
+          line="Awkward Puppets meets your auntie at a family BBQ. Authority comedy with too much heart."
+        />
+      </div>
+    </section>
+  );
+}
+
+function WorldCard({ kicker, line }: { kicker: string; line: string }) {
+  return (
+    <div className="flex flex-col gap-2 border-2 border-black p-4 md:p-5">
+      <div
+        className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70"
+        dangerouslySetInnerHTML={{ __html: kicker }}
+      />
+      <div className="text-[14px] md:text-[15px] leading-[1.5]">{line}</div>
+    </div>
+  );
+}
+
 function Submission() {
   return (
     <section
       id="submit"
-      className="bg-cream text-black px-5 md:px-14 py-12 md:py-20 flex flex-col gap-8 md:gap-10 scroll-mt-14"
+      className="bg-black text-cream px-5 md:px-14 py-12 md:py-20 flex flex-col gap-8 md:gap-10 scroll-mt-14 border-t-2 border-black"
     >
-      <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 flex-wrap">
+      <header className="flex items-end justify-between border-b-2 border-cream/30 pb-5 md:pb-6 gap-4 flex-wrap">
         <div className="flex flex-col gap-2">
           <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
-            <span className="block w-2.5 h-2.5 rounded-full bg-lime border border-black" />
-            Audience writers' room
+            <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
+            Audience writers&rsquo; room
           </div>
           <h2 className="font-display text-[clamp(36px,7vw,72px)] leading-[0.95] tracking-[-0.03em] uppercase">
             Report some chisme
           </h2>
         </div>
         <div className="text-[12px] md:text-[13px] font-bold tracking-[0.08em] uppercase opacity-70 max-w-[280px] text-right">
-          Heard something at Gate B? Tell us. The agents will investigate.
+          Heard something at Gate B? Drop it.
         </div>
       </header>
 
@@ -241,44 +289,11 @@ function Submission() {
         showSlug="checkpoint_chisme"
         showTitle="Checkpoint Chisme"
         subjectPrefix="Chisme Report"
+        ideaLabel="What checkpoint situation should become an episode?"
+        ideaPlaceholder="A passenger with 17 plantains. A suspicious uncle at Gate B. An ID that doesn't match the face."
         ctaLabel="Send the chisme"
         trackEvent="report_chisme_click"
-        variant="light"
-        fields={[
-          {
-            key: "situation",
-            label: "What checkpoint situation should become an episode?",
-            required: true,
-            placeholder: "The traveler with seventeen plantains in carry-on…",
-          },
-          {
-            key: "who",
-            label: "Who is causing the chisme?",
-            placeholder: "A passenger / an agent / the supervisor…",
-          },
-          {
-            key: "what",
-            label:
-              "What suspicious item, ID, or passenger detail starts the drama?",
-            placeholder: "An expired ID with a different last name…",
-          },
-          {
-            key: "overreact",
-            label: "What should the agent completely overreact to?",
-            placeholder: "A bag of expired Halloween candy…",
-          },
-          {
-            key: "name",
-            label: "Your name or handle",
-            placeholder: "@yourhandle",
-          },
-          {
-            key: "email",
-            label: "Email (optional)",
-            type: "email",
-            placeholder: "we won't spam you",
-          },
-        ]}
+        variant="dark"
       />
     </section>
   );
@@ -292,10 +307,11 @@ function BackToNetwork() {
           ● The Network
         </div>
         <h3 className="font-display text-[clamp(28px,5vw,44px)] leading-[1.05] tracking-[-0.02em] uppercase mt-2">
-          Two shows. One network.
+          Also on VNMSFX
         </h3>
         <p className="text-[14px] md:text-[15px] leading-[1.5] mt-3 max-w-[640px]">
-          Checkpoint Chisme is one of two flagship VNMSFX shows. Also currently airing: <strong>Hank, Beans &amp; Roar</strong> — a clueless human, a stressed dog, and a lion who ruins everything.
+          <strong>Hank, Beans &amp; Roar</strong> — a clueless human, a
+          stressed dog, and a lion who ruins everything.
         </p>
       </div>
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -314,7 +330,7 @@ function BackToNetwork() {
           className="flex items-center gap-3 group bg-black text-lime px-5 py-4"
         >
           <span className="font-display text-[14px] md:text-[15px] uppercase tracking-[-0.01em]">
-            ← Back to VNMSFX
+            ← VNMSFX
           </span>
         </Link>
       </div>

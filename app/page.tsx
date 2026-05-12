@@ -17,11 +17,11 @@ const LOGO_H = 905;
 export const metadata: Metadata = {
   title: "VNMSFX — AI-Native Comedy Network",
   description:
-    "VNMSFX is an AI-native comedy network from New York making short-form shows, character series, puppet comedy, and internet-first video drops.",
+    "VNMSFX is an AI-native comedy network from New York making short-form shows, character series, and internet-first video drops.",
   openGraph: {
     title: "VNMSFX — AI-Native Comedy Network",
     description:
-      "VNMSFX is an AI-native comedy network from New York making short-form shows, character series, puppet comedy, and internet-first video drops.",
+      "VNMSFX is an AI-native comedy network from New York making short-form shows, character series, and internet-first video drops.",
     type: "website",
     url: "https://vnmsfx.com",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "VNMSFX — AI-Native Comedy Network",
     description:
-      "Dangerously good AI videos from New York. Watch Hank, Beans & Roar, Checkpoint Chisme, and new drops every Thursday.",
+      "Watch Hank, Beans & Roar and Checkpoint Chisme. New drops every Thursday.",
     images: ["/og-image.png"],
   },
   alternates: { canonical: "https://vnmsfx.com" },
@@ -45,7 +45,6 @@ export default function Page() {
       <TopNav />
       <Hero />
       <SubscribeBar />
-      <NetworkFraming />
       <HankBeansRoarSection />
       <CheckpointChismeSection />
       <Footer />
@@ -102,28 +101,20 @@ function Hero() {
           </div>
           <div className="hidden md:block w-8 h-[1.5px] mt-3.5 bg-black" />
           <p className="hidden md:block text-[11px] mt-3.5 leading-[1.45]">
-            Two active shows. New drops every Thursday. Made in New York.
+            Short-form shows. Character series. New drops every Thursday.
           </p>
           <p className="md:hidden text-[11px] leading-[1.45] flex-1">
-            Two active shows. New drops every Thursday. Made in NYC.
+            Short-form shows. New drops every Thursday.
           </p>
         </aside>
         <div className="flex-1 min-w-0">
           <h1 className="font-display text-[clamp(40px,11vw,120px)] leading-[0.92] tracking-[-0.035em] uppercase">
             &ldquo;WE MAKE THE INTERNET FEEL LIKE THE INTERNET AGAIN.&rdquo;
           </h1>
-          <p className="mt-6 md:mt-8 max-w-[760px] text-[15px] md:text-[18px] leading-[1.45] font-serif italic">
-            VNMSFX is an AI-native comedy network making short-form shows,
-            character series, and internet-first video drops. The funniest
-            network in New York. New drops every Thursday.
-          </p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-        <a
-          href="#hank-beans-roar"
-          className="flex items-center gap-4 group shrink-0"
-        >
+        <a href="#hank-beans-roar" className="flex items-center gap-4 group shrink-0">
           <span className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black flex items-center justify-center group-hover:bg-[#1a1a1a] transition-colors shrink-0">
             <span
               aria-hidden
@@ -138,17 +129,17 @@ function Hero() {
           </span>
           <div className="max-w-[260px]">
             <div className="text-[11px] md:text-xs font-extrabold tracking-[0.08em] uppercase">
-              Watch the two shows
+              Watch the latest drops
             </div>
             <div className="font-serif italic text-[12px] md:text-[13px] mt-1">
-              Hank, Beans &amp; Roar  ·  Checkpoint Chisme
+              Two shows, scrollable below
             </div>
           </div>
         </a>
         <div className="flex items-end gap-4 md:gap-6 self-stretch md:self-auto justify-between md:justify-end">
-          <p className="font-serif italic text-[14px] md:text-[18px] leading-[1.4] text-left md:text-right max-w-[220px] md:max-w-[320px] pb-2 md:pb-3">
-            Dangerously good AI videos. Made in New York. New drops every
-            Thursday.
+          <p className="font-serif italic text-[14px] md:text-[18px] leading-[1.4] text-left md:text-right max-w-[280px] md:max-w-[420px] pb-2 md:pb-3">
+            VNMSFX is an AI-native comedy network making short-form shows,
+            character series, and internet-first video drops.
           </p>
           <Image
             src={LOGO_SRC}
@@ -185,28 +176,58 @@ function SubscribeBar() {
   );
 }
 
-function NetworkFraming() {
+function ShowSectionHeader({
+  showHref,
+  episodes,
+  title,
+  hookLine,
+  bodyLine,
+  variant,
+}: {
+  showHref: string;
+  episodes: number;
+  title: string;
+  hookLine: string;
+  bodyLine: string;
+  variant: "dark" | "light";
+}) {
+  const isDark = variant === "dark";
   return (
-    <section className="bg-cream border-b-2 border-black px-5 md:px-14 py-10 md:py-14 flex flex-col md:flex-row gap-6 md:gap-12 items-start">
-      <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase shrink-0 md:w-48 md:pt-2">
-        <span className="block w-2.5 h-2.5 rounded-full bg-lime inline-block mr-2 align-middle" />
-        The Network
+    <header
+      className={`flex flex-col gap-5 md:gap-6 border-b-2 pb-5 md:pb-6 ${
+        isDark ? "border-cream/30" : "border-black"
+      }`}
+    >
+      <div className="flex items-end justify-between gap-4 flex-wrap">
+        <div className="flex flex-col gap-2">
+          <div
+            className={`text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase flex items-center gap-2 ${
+              isDark ? "opacity-70" : "opacity-70"
+            }`}
+          >
+            <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
+            <span>Now Playing · {episodes} episodes</span>
+          </div>
+          <h2 className="font-display text-[clamp(40px,9vw,120px)] leading-[0.86] tracking-[-0.04em] uppercase">
+            {title}
+          </h2>
+        </div>
+        <Link
+          href={showHref}
+          className="text-[12px] md:text-[13px] font-extrabold tracking-[0.08em] uppercase hover:underline shrink-0"
+        >
+          ↗ Show page
+        </Link>
       </div>
-      <div className="flex-1 flex flex-col gap-4 md:gap-5 max-w-[860px]">
-        <h2 className="font-display text-[clamp(28px,4.5vw,44px)] leading-[1.05] tracking-[-0.02em] uppercase">
-          Two shows. One network.
-        </h2>
-        <p className="text-[15px] md:text-[17px] leading-[1.55]">
-          <strong>Hank, Beans &amp; Roar</strong> turns survival adventures
-          into 15-second chaos. <strong>Checkpoint Chisme</strong> turns
-          airport security into gossip-fueled puppet bureaucracy.
+      <div className="flex flex-col gap-2 max-w-[760px]">
+        <p className="font-serif italic text-[18px] md:text-[22px] leading-[1.3]">
+          {hookLine}
         </p>
-        <p className="text-[15px] md:text-[17px] leading-[1.55]">
-          VNMSFX makes internet-first comedy worlds built for clips,
-          characters, and repeat viewing.
+        <p className="text-[14px] md:text-[15px] leading-[1.55] opacity-90">
+          {bodyLine}
         </p>
       </div>
-    </section>
+    </header>
   );
 }
 
@@ -216,111 +237,32 @@ function HankBeansRoarSection() {
       id="hank-beans-roar"
       className="bg-black text-cream border-b-2 border-black px-5 md:px-14 pt-12 md:pt-20 pb-14 md:pb-24 flex flex-col gap-8 md:gap-10 scroll-mt-14"
     >
-      <header className="flex items-end justify-between border-b-2 border-cream/30 pb-5 md:pb-6 gap-4 md:gap-6 flex-wrap">
-        <div className="flex flex-col gap-2">
-          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
-            <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
-            <span>
-              Now Playing · {HANK_BEANS_ROAR.episodes?.length} episodes
-            </span>
-          </div>
-          <h2 className="font-display text-[clamp(40px,9vw,120px)] leading-[0.86] tracking-[-0.04em] uppercase">
-            Hank, Beans &amp; Roar
-          </h2>
-        </div>
-        <Link
-          href="/hank-beans-roar"
-          className="text-[12px] md:text-[13px] font-extrabold tracking-[0.08em] uppercase hover:underline shrink-0"
-        >
-          ↗ Open show page
-        </Link>
-      </header>
-
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 md:gap-12">
-        <div className="flex flex-col gap-4">
-          <p className="text-[16px] md:text-[18px] leading-[1.45] font-serif italic">
-            Hank thinks he&rsquo;s in charge. Beans knows something is wrong.
-            Roar makes it worse.
-          </p>
-          <p className="text-[14px] md:text-[15px] leading-[1.55] opacity-90">
-            A short-form chaos series about a clueless human, a stressed-out
-            dog, and a lion who turns every normal situation into a disaster.
-          </p>
-          <MeetTheCast />
-        </div>
-        <div className="flex flex-col gap-5 md:gap-6">
-          <NowPlayingBoard work={HANK_BEANS_ROAR} />
-          <ShowCtaRow
-            primary={{
-              href: "/hank-beans-roar",
-              label: "Watch Hank, Beans & Roar",
-              event: "watch_hank_beans_click",
-              campaign: "hank_beans_roar",
-            }}
-            secondary={{
-              href: "/hank-beans-roar#submit",
-              label: "Submit the Next Disaster",
-              event: "submit_disaster_click",
-            }}
-          />
-          <SocialRow campaign="hank_beans_roar" variant="dark" />
-        </div>
+      <ShowSectionHeader
+        showHref="/hank-beans-roar"
+        episodes={HANK_BEANS_ROAR.episodes?.length ?? 0}
+        title="Hank, Beans & Roar"
+        hookLine="Hank thinks he's in charge. Beans knows something is wrong. Roar makes it worse."
+        bodyLine="A short-form chaos series about a clueless human, a stressed-out dog, and a lion who turns every normal situation into a disaster."
+        variant="dark"
+      />
+      <NowPlayingBoard work={HANK_BEANS_ROAR} />
+      <div className="flex flex-col gap-4 md:gap-6">
+        <ShowCtaRow
+          primary={{
+            href: "/hank-beans-roar",
+            label: "Watch Hank, Beans & Roar",
+            event: "watch_hank_beans_click",
+          }}
+          secondary={{
+            href: "/hank-beans-roar#submit",
+            label: "Submit the Next Disaster",
+            event: "submit_disaster_click",
+          }}
+          variant="dark"
+        />
+        <SocialRow campaign="hank_beans_roar" variant="dark" />
       </div>
     </section>
-  );
-}
-
-function MeetTheCast() {
-  const cast: { name: string; tag: string; line: string; src: string }[] = [
-    {
-      name: "HANK",
-      tag: "Confidently wrong. Somehow still alive.",
-      line: "The human who treats every warning sign like a suggestion.",
-      src: "/cast/hank.jpg",
-    },
-    {
-      name: "BEANS",
-      tag: "The only one paying attention.",
-      line: "A stressed-out dog with better survival instincts than the entire team.",
-      src: "/cast/beans.jpg",
-    },
-    {
-      name: "ROAR",
-      tag: "The problem with a mane.",
-      line: "A lion who believes every situation can be solved by escalating it.",
-      src: "/cast/roar.jpg",
-    },
-  ];
-  return (
-    <div className="flex flex-col gap-4 pt-4 border-t-[1.5px] border-cream/30">
-      <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70">
-        ▸ Meet the Cast
-      </div>
-      <div className="grid grid-cols-3 gap-3 md:gap-4">
-        {cast.map((c) => (
-          <div key={c.name} className="flex flex-col gap-2">
-            <div className="relative w-full overflow-hidden aspect-square">
-              <Image
-                src={c.src}
-                alt={c.name}
-                fill
-                sizes="(max-width: 768px) 33vw, 200px"
-                className="object-cover"
-              />
-            </div>
-            <div className="font-display text-[14px] md:text-[18px] leading-tight tracking-[-0.01em] uppercase">
-              {c.name}
-            </div>
-            <div className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.06em] opacity-80 leading-tight">
-              {c.tag}
-            </div>
-            <p className="text-[11px] md:text-[12px] leading-[1.4] opacity-70 hidden sm:block">
-              {c.line}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -330,121 +272,65 @@ function CheckpointChismeSection() {
       id="checkpoint-chisme"
       className="bg-cream px-5 md:px-14 pt-12 md:pt-20 pb-16 md:pb-24 flex flex-col gap-8 md:gap-10 scroll-mt-14"
     >
-      <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 md:gap-6 flex-wrap">
-        <div className="flex flex-col gap-2">
-          <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
-            <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
-            <span>
-              Now Playing · {CHECKPOINT_CHISME.episodes?.length} episodes
-            </span>
-          </div>
-          <h2 className="font-display text-[clamp(40px,9vw,120px)] leading-[0.86] tracking-[-0.04em] uppercase">
-            Checkpoint Chisme
-          </h2>
-        </div>
-        <Link
-          href="/checkpoint-chisme"
-          className="text-[12px] md:text-[13px] font-extrabold tracking-[0.08em] uppercase hover:underline shrink-0"
-        >
-          ↗ Open show page
-        </Link>
-      </header>
-
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 md:gap-12">
-        <div className="flex flex-col gap-4">
-          <p className="text-[16px] md:text-[18px] leading-[1.45] font-serif italic">
-            Airport security meets neighborhood gossip.
-          </p>
-          <p className="text-[14px] md:text-[15px] leading-[1.55]">
-            A felt puppet comedy series where every ID check, break room
-            conversation, and suspicious suitcase turns into a full-blown
-            chisme investigation.
-          </p>
-          <ChismeWorld />
-        </div>
-        <div className="flex flex-col gap-5 md:gap-6">
-          <NowPlayingBoard work={CHECKPOINT_CHISME} />
-          <ShowCtaRow
-            primary={{
-              href: "/checkpoint-chisme",
-              label: "Watch Checkpoint Chisme",
-              event: "watch_checkpoint_chisme_click",
-              campaign: "checkpoint_chisme",
-            }}
-            secondary={{
-              href: "/checkpoint-chisme#submit",
-              label: "Report Some Chisme",
-              event: "report_chisme_click",
-            }}
-          />
-          <SocialRow campaign="checkpoint_chisme" variant="light" />
-        </div>
+      <ShowSectionHeader
+        showHref="/checkpoint-chisme"
+        episodes={CHECKPOINT_CHISME.episodes?.length ?? 0}
+        title="Checkpoint Chisme"
+        hookLine="Airport security meets neighborhood gossip."
+        bodyLine="A felt puppet comedy series where every ID check, break room conversation, and suspicious suitcase turns into a full-blown chisme investigation."
+        variant="light"
+      />
+      <NowPlayingBoard work={CHECKPOINT_CHISME} />
+      <div className="flex flex-col gap-4 md:gap-6">
+        <ShowCtaRow
+          primary={{
+            href: "/checkpoint-chisme",
+            label: "Watch Checkpoint Chisme",
+            event: "watch_checkpoint_chisme_click",
+          }}
+          secondary={{
+            href: "/checkpoint-chisme#submit",
+            label: "Report Some Chisme",
+            event: "report_chisme_click",
+          }}
+          variant="light"
+        />
+        <SocialRow campaign="checkpoint_chisme" variant="light" />
       </div>
     </section>
-  );
-}
-
-function ChismeWorld() {
-  return (
-    <div className="flex flex-col gap-3 pt-4 border-t-[1.5px] border-black/30">
-      <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70">
-        ▸ The World
-      </div>
-      <div className="font-display text-[18px] md:text-[22px] leading-[1.1] tracking-[-0.01em] uppercase">
-        Where airport security becomes community theater.
-      </div>
-      <ul className="text-[13px] md:text-[14px] leading-[1.5] flex flex-col gap-1.5">
-        <li>
-          <span className="font-bold">The agents</span> are dramatic.
-        </li>
-        <li>
-          <span className="font-bold">The passengers</span> are suspicious.
-        </li>
-        <li>
-          <span className="font-bold">The IDs</span> have stories.
-        </li>
-        <li>
-          <span className="font-bold">The break room</span> has opinions.
-        </li>
-      </ul>
-      <p className="text-[13px] md:text-[14px] leading-[1.5] opacity-80">
-        Every episode turns a normal checkpoint moment into gossip,
-        interrogation, chaos, and puppet-level bureaucracy.
-      </p>
-    </div>
   );
 }
 
 function ShowCtaRow({
   primary,
   secondary,
+  variant,
 }: {
   primary: {
     href: string;
     label: string;
-    event:
-      | "watch_hank_beans_click"
-      | "watch_checkpoint_chisme_click";
-    campaign: "hank_beans_roar" | "checkpoint_chisme";
+    event: "watch_hank_beans_click" | "watch_checkpoint_chisme_click";
   };
   secondary: {
     href: string;
     label: string;
     event: "submit_disaster_click" | "report_chisme_click";
   };
+  variant: "dark" | "light";
 }) {
+  const isDark = variant === "dark";
   return (
-    <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-stretch sm:items-center">
+    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
       <TrackedLink
         href={primary.href}
         event={primary.event}
         eventProps={{ source: "homepage" }}
-        className="flex items-center gap-3 group bg-lime text-black px-4 py-3 md:px-5 md:py-4"
+        className="inline-flex items-center gap-3 bg-lime text-black px-4 py-3 group self-start"
       >
-        <span className="font-display text-[14px] md:text-[16px] tracking-[-0.01em] uppercase leading-none">
+        <span className="text-[12px] md:text-[13px] font-extrabold tracking-[0.08em] uppercase">
           ▶ {primary.label}
         </span>
-        <span className="text-[18px] group-hover:translate-x-1 transition-transform">
+        <span className="text-[14px] group-hover:translate-x-1 transition-transform">
           →
         </span>
       </TrackedLink>
@@ -452,12 +338,14 @@ function ShowCtaRow({
         href={secondary.href}
         event={secondary.event}
         eventProps={{ source: "homepage" }}
-        className="flex items-center gap-3 group border-2 border-current px-4 py-3 md:px-5 md:py-4"
+        className={`inline-flex items-center gap-3 px-4 py-3 group self-start border ${
+          isDark ? "border-cream/60" : "border-black/60"
+        }`}
       >
-        <span className="font-display text-[13px] md:text-[15px] tracking-[-0.01em] uppercase leading-none">
+        <span className="text-[12px] md:text-[13px] font-extrabold tracking-[0.08em] uppercase">
           {secondary.label}
         </span>
-        <span className="text-[16px] group-hover:translate-x-1 transition-transform opacity-80">
+        <span className="text-[14px] group-hover:translate-x-1 transition-transform opacity-80">
           ↗
         </span>
       </TrackedLink>
