@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { NowPlayingBoard } from "../components/NowPlayingBoard";
+import { PageViewTracker } from "../components/PageViewTracker";
 import { SocialRow } from "../components/SocialRow";
 import { SubmissionForm } from "../components/SubmissionForm";
 import { TrackedLink } from "../components/TrackedLink";
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
 export default function HankBeansRoarPage() {
   return (
     <main className="font-sans bg-black text-cream overflow-x-hidden">
+      <PageViewTracker show="hank_beans_roar" />
       <ShowNav />
       <Hero />
       <Player />

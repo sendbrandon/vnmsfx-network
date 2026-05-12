@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { NowPlayingBoard } from "../components/NowPlayingBoard";
+import { PageViewTracker } from "../components/PageViewTracker";
 import { SocialRow } from "../components/SocialRow";
 import { SubmissionForm } from "../components/SubmissionForm";
 import { TrackedLink } from "../components/TrackedLink";
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
 export default function CheckpointChismePage() {
   return (
     <main className="font-sans bg-cream text-black overflow-x-hidden">
+      <PageViewTracker show="checkpoint_chisme" />
       <ShowNav />
       <Hero />
       <Player />
