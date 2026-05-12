@@ -98,7 +98,7 @@ const HANK_AND_BEANS: Work = {
 
 const CHECKPOINT_CHISME: Work = {
   slug: "checkpoint-chisme",
-  category: "Felt Puppet Series · 5 episodes",
+  category: "Felt Puppet Series · 10 episodes",
   meta: "NEW THIS WEEK",
   title: "Checkpoint Chisme",
   body: "Felt-puppet TSA agents. Suspicious groceries. Infinite chisme.",
@@ -108,38 +108,73 @@ const CHECKPOINT_CHISME: Work = {
   episodes: [
     {
       episodeNumber: 1,
-      title: "The Grocery",
-      body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
+      title: "The Papers",
+      body: "TSA agent reviewing the IDs. The IDs reviewed the TSA agent right back.",
       poster: "/work/checkpoint-chisme/ep01.jpg",
       video: "/videos/checkpoint-chisme/ep01.mp4",
     },
     {
       episodeNumber: 2,
-      title: "The Interrogation",
-      body: "The desk lamp's on. The Food 4 Less bag is on the table. Some chisme cannot be contained.",
+      title: "The Drive-Thru",
+      body: "He pulled up to the window. They did not have what he ordered. He had words.",
       poster: "/work/checkpoint-chisme/ep02.jpg",
       video: "/videos/checkpoint-chisme/ep02.mp4",
     },
     {
       episodeNumber: 3,
-      title: "Immigration",
-      body: "The scanner. The printer. The face on the printout. Welcome to checkpoint chisme.",
+      title: "The Break Room",
+      body: "Two agents. One round table. Fourteen minutes of chisme over reheated chicken.",
       poster: "/work/checkpoint-chisme/ep03.jpg",
       video: "/videos/checkpoint-chisme/ep03.mp4",
     },
     {
       episodeNumber: 4,
-      title: "The Aviators",
-      body: "He took off the sunglasses. That's how you knew it was serious. Also the Food 4 Less bag is back.",
+      title: "The Lunch Hour",
+      body: "He wasn't hungry. He was waiting. The fork was a decision.",
       poster: "/work/checkpoint-chisme/ep04.jpg",
       video: "/videos/checkpoint-chisme/ep04.mp4",
     },
     {
       episodeNumber: 5,
-      title: "The Taco Stand",
-      body: "TSA on lunch break. The chisme followed them to the taqueria. So did the pico de gallo.",
+      title: "The Suite",
+      body: "TSA off-duty. Tactical vest still on. The hotel suite was not booked under his name.",
       poster: "/work/checkpoint-chisme/ep05.jpg",
       video: "/videos/checkpoint-chisme/ep05.mp4",
+    },
+    {
+      episodeNumber: 6,
+      title: "The Grocery",
+      body: "Three felt-puppet TSA agents. One suspicious grocery bag. Infinite chisme.",
+      poster: "/work/checkpoint-chisme/ep06.jpg",
+      video: "/videos/checkpoint-chisme/ep06.mp4",
+    },
+    {
+      episodeNumber: 7,
+      title: "The Interrogation",
+      body: "The desk lamp's on. The Food 4 Less bag is on the table. Some chisme cannot be contained.",
+      poster: "/work/checkpoint-chisme/ep07.jpg",
+      video: "/videos/checkpoint-chisme/ep07.mp4",
+    },
+    {
+      episodeNumber: 8,
+      title: "Immigration",
+      body: "The scanner. The printer. The face on the printout. Welcome to checkpoint chisme.",
+      poster: "/work/checkpoint-chisme/ep08.jpg",
+      video: "/videos/checkpoint-chisme/ep08.mp4",
+    },
+    {
+      episodeNumber: 9,
+      title: "The Aviators",
+      body: "He took off the sunglasses. That's how you knew it was serious. Also the Food 4 Less bag is back.",
+      poster: "/work/checkpoint-chisme/ep09.jpg",
+      video: "/videos/checkpoint-chisme/ep09.mp4",
+    },
+    {
+      episodeNumber: 10,
+      title: "The Taco Stand",
+      body: "TSA on lunch break. The chisme followed them to the taqueria. So did the pico de gallo.",
+      poster: "/work/checkpoint-chisme/ep10.jpg",
+      video: "/videos/checkpoint-chisme/ep10.mp4",
     },
   ],
 };
@@ -321,7 +356,7 @@ function CheckpointChismeSection() {
       <header className="flex items-end justify-between border-b-2 border-black pb-5 md:pb-6 gap-4 md:gap-6">
         <div className="flex flex-col gap-2">
           <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70">
-            ● Now Playing · 5 episodes
+            ● Now Playing · 10 episodes
           </div>
           <h2 className="font-display text-[clamp(42px,9vw,88px)] leading-[0.92] tracking-[-0.03em] uppercase">
             Checkpoint Chisme
