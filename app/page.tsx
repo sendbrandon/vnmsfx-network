@@ -129,8 +129,8 @@ const CHECKPOINT_CHISME: Work = {
     },
     {
       episodeNumber: 4,
-      title: "The Lunch Hour",
-      body: "He wasn't hungry. He was waiting. The fork was a decision.",
+      title: "The Break Room, Part 2",
+      body: "Same table, same trays, same chisme. The fourteen minutes were not enough.",
       poster: "/work/checkpoint-chisme/ep04.jpg",
       video: "/videos/checkpoint-chisme/ep04.mp4",
     },
