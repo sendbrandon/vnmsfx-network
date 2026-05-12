@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { AudioPlayer } from "./components/AudioPlayer";
 import "./globals.css";
 
@@ -18,9 +19,9 @@ const inter = Inter({
 
 const SITE_URL = "https://vnmsfx.com";
 const SITE_NAME = "VNMSFX";
-const TITLE = "VNMSFX — The funniest network in New York";
+const TITLE = "VNMSFX — AI-Native Comedy Network";
 const DESCRIPTION =
-  "Dangerously good AI videos from New York. Watch Hank & Beans, Checkpoint Chisme, and new drops every Thursday. We make the internet feel like the internet again.";
+  "VNMSFX is an AI-native comedy network from New York making short-form shows, character series, puppet comedy, and internet-first video drops.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -32,9 +33,11 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     "VNMSFX",
+    "AI comedy network",
     "AI video",
     "AI shorts",
-    "Hank & Beans",
+    "Hank Beans Roar",
+    "Hank, Beans & Roar",
     "Checkpoint Chisme",
     "comedy network",
     "New York comedy",
@@ -46,12 +49,7 @@ export const metadata: Metadata = {
   creator: "Brandon Adams",
   publisher: "VNMSFX LLC",
   category: "entertainment",
-  classification: "Entertainment / Video Network",
-
-  alternates: {
-    canonical: SITE_URL,
-  },
-
+  alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -64,12 +62,11 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "VNMSFX — The funniest network in New York. We make the internet feel like the internet again.",
+        alt: "VNMSFX — AI-Native Comedy Network",
         type: "image/png",
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
     site: "@vnmsfx",
@@ -78,7 +75,6 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: ["/og-image.png"],
   },
-
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -89,9 +85,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     shortcut: ["/favicon.ico"],
   },
-
   manifest: "/manifest.webmanifest",
-
   robots: {
     index: true,
     follow: true,
@@ -103,12 +97,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  formatDetection: { email: false, address: false, telephone: false },
 };
 
 export const viewport: Viewport = {
@@ -127,23 +116,37 @@ const JSON_LD = {
   "@type": "Organization",
   name: SITE_NAME,
   legalName: "VNMSFX LLC",
+  alternateName: "VNMSFX Network",
   url: SITE_URL,
   logo: `${SITE_URL}/brand/vnmsfx-logo-black.png`,
   description: DESCRIPTION,
-  founder: {
-    "@type": "Person",
-    name: "Brandon Adams",
-  },
+  founder: { "@type": "Person", name: "Brandon Adams" },
   foundingDate: "2024",
-  foundingLocation: {
-    "@type": "Place",
-    name: "New York, NY, USA",
-  },
+  foundingLocation: { "@type": "Place", name: "New York, NY, USA" },
   email: "brandon@pushto6.com",
   sameAs: [
     "https://x.com/vnmsfx",
     "https://www.youtube.com/@vnmsfx",
     "https://www.tiktok.com/@vnmsfxreels",
+  ],
+  // The two flagship shows as creative works under the network
+  "subjectOf": [
+    {
+      "@type": "TVSeries",
+      name: "Hank, Beans & Roar",
+      url: `${SITE_URL}/hank-beans-roar`,
+      genre: ["Comedy", "Short-form", "AI"],
+      description:
+        "A short-form chaos series about a clueless human, a stressed-out dog, and a lion who turns every normal situation into a disaster.",
+    },
+    {
+      "@type": "TVSeries",
+      name: "Checkpoint Chisme",
+      url: `${SITE_URL}/checkpoint-chisme`,
+      genre: ["Comedy", "Puppet", "Workplace", "AI"],
+      description:
+        "A felt puppet comedy series where airport security, gossip, IDs, passengers, and bureaucracy collide.",
+    },
   ],
 };
 
@@ -163,6 +166,7 @@ export default function RootLayout({
       <body>
         {children}
         <AudioPlayer />
+        <Analytics />
       </body>
     </html>
   );
