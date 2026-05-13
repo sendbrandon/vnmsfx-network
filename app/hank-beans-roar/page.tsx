@@ -7,6 +7,7 @@ import { SocialRow } from "../components/SocialRow";
 import { SubmissionForm } from "../components/SubmissionForm";
 import { TrackedLink } from "../components/TrackedLink";
 import { HANK_BEANS_ROAR } from "../lib/shows";
+import { buildShowSchema } from "../lib/schema";
 
 const LOGO = "/brand/vnmsfx-logo-black.png";
 
@@ -40,8 +41,13 @@ export const metadata: Metadata = {
 };
 
 export default function HankBeansRoarPage() {
+  const schema = buildShowSchema(HANK_BEANS_ROAR);
   return (
     <main className="font-sans bg-black text-cream overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <PageViewTracker show="hank_beans_roar" />
       <ShowNav />
       <Hero />

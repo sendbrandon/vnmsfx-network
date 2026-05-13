@@ -2,8 +2,8 @@ import type { Work } from "../components/NowPlayingBoard";
 
 export const HANK_BEANS_ROAR: Work = {
   slug: "hank-beans-roar",
-  category: "Series · 11 episodes",
-  meta: "S1",
+  category: "Series · 18 episodes",
+  meta: "NEW EPISODES",
   title: "Hank, Beans & Roar",
   body:
     "Hank thinks he's in charge. Beans knows something is wrong. Roar makes it worse. A short-form chaos series about a clueless human, a stressed-out dog, and a lion who turns every normal situation into a disaster.",
@@ -99,13 +99,69 @@ export const HANK_BEANS_ROAR: Work = {
       poster: "/work/hank-and-beans/ep11.jpg",
       video: "/videos/hank-and-beans/ep11.mp4",
     },
+    {
+      episodeNumber: 12,
+      title: "The Plunge",
+      body:
+        "Hank skipped the cold plunge. Beans skipped the cold plunge. Roar got in with a raw chicken.",
+      poster: "/work/hank-and-beans/ep12.jpg",
+      video: "/videos/hank-and-beans/ep12.mp4",
+    },
+    {
+      episodeNumber: 13,
+      title: "The Group",
+      body:
+        "Hank refused to talk. Beans took the chair. Roar runs the support group out of the backyard.",
+      poster: "/work/hank-and-beans/ep13.jpg",
+      video: "/videos/hank-and-beans/ep13.mp4",
+    },
+    {
+      episodeNumber: 14,
+      title: "The Statement",
+      body:
+        "Hank made the sandwich. Beans gave the documentary statement. Roar wiped a tear for the community.",
+      poster: "/work/hank-and-beans/ep14.jpg",
+      video: "/videos/hank-and-beans/ep14.mp4",
+    },
+    {
+      episodeNumber: 15,
+      title: "The Mugger",
+      body:
+        "Hank shielded Beans. Beans kept the hat on. Roar waited for the mask to fall off.",
+      poster: "/work/hank-and-beans/ep15.jpg",
+      video: "/videos/hank-and-beans/ep15.mp4",
+    },
+    {
+      episodeNumber: 16,
+      title: "The Pilot",
+      body:
+        "Hank is not in the cockpit. Beans is not in the cockpit. Roar took the stick.",
+      poster: "/work/hank-and-beans/ep16.jpg",
+      video: "/videos/hank-and-beans/ep16.mp4",
+    },
+    {
+      episodeNumber: 17,
+      title: "The Subway",
+      body:
+        "Hank boarded at 14th. Beans stayed home. Roar followed him onto the express.",
+      poster: "/work/hank-and-beans/ep17.jpg",
+      video: "/videos/hank-and-beans/ep17.mp4",
+    },
+    {
+      episodeNumber: 18,
+      title: "The Aisle",
+      body:
+        "Hank pushed the cart. Beans rode in the cart. Roar negotiated with the robot in produce.",
+      poster: "/work/hank-and-beans/ep18.jpg",
+      video: "/videos/hank-and-beans/ep18.mp4",
+    },
   ],
 };
 
 export const CHECKPOINT_CHISME: Work = {
   slug: "checkpoint-chisme",
-  category: "Felt Puppet Series · 10 episodes",
-  meta: "NEW THIS WEEK",
+  category: "Felt Puppet Series · 18 episodes",
+  meta: "NEW EPISODES",
   title: "Checkpoint Chisme",
   body:
     "Airport security meets neighborhood gossip. A felt puppet comedy series where every ID check, break room conversation, and suspicious suitcase turns into a full-blown chisme investigation.",
@@ -191,6 +247,70 @@ export const CHECKPOINT_CHISME: Work = {
         "A routine food stop turns into a full security investigation, with extra salsa.",
       poster: "/work/checkpoint-chisme/ep10.jpg",
       video: "/videos/checkpoint-chisme/ep10.mp4",
+    },
+    {
+      episodeNumber: 11,
+      title: "The Pizza",
+      body:
+        "One puppet wants a taco. The other offers pizza like it's leniency. Nobody eats.",
+      poster: "/work/checkpoint-chisme/ep11.jpg",
+      video: "/videos/checkpoint-chisme/ep11.mp4",
+    },
+    {
+      episodeNumber: 12,
+      title: "The Parking",
+      body:
+        "The agent says he parks like he immigrates. The driver says the truck takes three spots like America takes land.",
+      poster: "/work/checkpoint-chisme/ep12.jpg",
+      video: "/videos/checkpoint-chisme/ep12.mp4",
+    },
+    {
+      episodeNumber: 13,
+      title: "The Jumpman",
+      body:
+        "The tactical kit checks out. The Jumpman silhouette has a limp. The case closes by the toe.",
+      poster: "/work/checkpoint-chisme/ep13.jpg",
+      video: "/videos/checkpoint-chisme/ep13.mp4",
+    },
+    {
+      episodeNumber: 14,
+      title: "The Directive",
+      body:
+        "The memo came from upstairs. Upstairs is God. The wall is the project.",
+      poster: "/work/checkpoint-chisme/ep14.jpg",
+      video: "/videos/checkpoint-chisme/ep14.mp4",
+    },
+    {
+      episodeNumber: 15,
+      title: "The Excuse",
+      body:
+        "The suspect went prone at the taco truck. The defense was a medical condition. The truck did not stop serving.",
+      poster: "/work/checkpoint-chisme/ep15.jpg",
+      video: "/videos/checkpoint-chisme/ep15.mp4",
+    },
+    {
+      episodeNumber: 16,
+      title: "The Wake",
+      body:
+        "A chihuahua in a cowboy hat takes the open water. The federal jet-ski breaks against the wake.",
+      poster: "/work/checkpoint-chisme/ep16.jpg",
+      video: "/videos/checkpoint-chisme/ep16.mp4",
+    },
+    {
+      episodeNumber: 17,
+      title: "The Supervisor",
+      body:
+        "The agent on duty had a second agent on his shoulder. Six inches tall, same bearing.",
+      poster: "/work/checkpoint-chisme/ep17.jpg",
+      video: "/videos/checkpoint-chisme/ep17.mp4",
+    },
+    {
+      episodeNumber: 18,
+      title: "The Witness",
+      body:
+        "The witness has a mustache. The witness has one syllable. The case proceeds without him.",
+      poster: "/work/checkpoint-chisme/ep18.jpg",
+      video: "/videos/checkpoint-chisme/ep18.mp4",
     },
   ],
 };

@@ -7,6 +7,7 @@ import { SocialRow } from "../components/SocialRow";
 import { SubmissionForm } from "../components/SubmissionForm";
 import { TrackedLink } from "../components/TrackedLink";
 import { CHECKPOINT_CHISME } from "../lib/shows";
+import { buildShowSchema } from "../lib/schema";
 
 const LOGO = "/brand/vnmsfx-logo-black.png";
 
@@ -40,8 +41,13 @@ export const metadata: Metadata = {
 };
 
 export default function CheckpointChismePage() {
+  const schema = buildShowSchema(CHECKPOINT_CHISME);
   return (
     <main className="font-sans bg-cream text-black overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <PageViewTracker show="checkpoint_chisme" />
       <ShowNav />
       <Hero />
