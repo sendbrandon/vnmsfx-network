@@ -21,129 +21,129 @@ export const HANK_BEANS_ROAR: Work = {
     },
     {
       episodeNumber: 2,
-      title: "The Cook-off",
+      title: "The Pilot",
       body:
-        "Hank thinks it's dinner. Beans knows it's a fire hazard. Roar thinks the stove is an enemy.",
+        "Hank is not in the cockpit. Beans is not in the cockpit. Roar took the stick.",
       poster: "/work/hank-and-beans/ep02.jpg",
       video: "/videos/hank-and-beans/ep02.mp4",
     },
     {
       episodeNumber: 3,
-      title: "The Summit",
+      title: "The Cook-off",
       body:
-        "Hank wants the view. Beans wants to leave. Roar wants to roar into the canyon.",
+        "Hank thinks it's dinner. Beans knows it's a fire hazard. Roar thinks the stove is an enemy.",
       poster: "/work/hank-and-beans/ep03.jpg",
       video: "/videos/hank-and-beans/ep03.mp4",
     },
     {
       episodeNumber: 4,
-      title: "The Cave",
+      title: "The Summit",
       body:
-        "Hank calls it a shortcut. Beans calls it a trap. Roar calls it home.",
+        "Hank wants the view. Beans wants to leave. Roar wants to roar into the canyon.",
       poster: "/work/hank-and-beans/ep04.jpg",
       video: "/videos/hank-and-beans/ep04.mp4",
     },
     {
       episodeNumber: 5,
-      title: "The Drop-Off",
+      title: "The Cave",
       body:
-        "Hank picked the destination. Beans packed the survival kit. Roar greeted the pilot like an old friend.",
+        "Hank calls it a shortcut. Beans calls it a trap. Roar calls it home.",
       poster: "/work/hank-and-beans/ep05.jpg",
       video: "/videos/hank-and-beans/ep05.mp4",
     },
     {
       episodeNumber: 6,
-      title: "The Office",
+      title: "The Drop-Off",
       body:
-        "Hank thinks the phone is a friend. Beans knows the meeting is a trap. Roar thinks the printer is a threat.",
+        "Hank picked the destination. Beans packed the survival kit. Roar greeted the pilot like an old friend.",
       poster: "/work/hank-and-beans/ep06.jpg",
       video: "/videos/hank-and-beans/ep06.mp4",
     },
     {
       episodeNumber: 7,
-      title: "The Cover Shoot",
+      title: "The Office",
       body:
-        "Hank wants the headshot. Beans is wearing the hat. Roar refuses to sit still for anyone.",
+        "Hank thinks the phone is a friend. Beans knows the meeting is a trap. Roar thinks the printer is a threat.",
       poster: "/work/hank-and-beans/ep07.jpg",
       video: "/videos/hank-and-beans/ep07.mp4",
     },
     {
       episodeNumber: 8,
-      title: "The Birthday",
+      title: "The Cover Shoot",
       body:
-        "Hank brought the cake. Beans brought karate. Roar brought a lightsaber to a six-year-old's party.",
+        "Hank wants the headshot. Beans is wearing the hat. Roar refuses to sit still for anyone.",
       poster: "/work/hank-and-beans/ep08.jpg",
       video: "/videos/hank-and-beans/ep08.mp4",
     },
     {
       episodeNumber: 9,
-      title: "The Yoga Class",
+      title: "The Birthday",
       body:
-        "Hank picked the cathedral. Beans held warrior two longer than anyone. Roar held a grudge.",
+        "Hank brought the cake. Beans brought karate. Roar brought a lightsaber to a six-year-old's party.",
       poster: "/work/hank-and-beans/ep09.jpg",
       video: "/videos/hank-and-beans/ep09.mp4",
     },
     {
       episodeNumber: 10,
-      title: "The Lemonade Stand",
+      title: "The Yoga Class",
       body:
-        "Hank counted the change. Beans handled the inventory. Roar drank the inventory.",
+        "Hank picked the cathedral. Beans held warrior two longer than anyone. Roar held a grudge.",
       poster: "/work/hank-and-beans/ep10.jpg",
       video: "/videos/hank-and-beans/ep10.mp4",
     },
     {
       episodeNumber: 11,
-      title: "The Time Capsule",
+      title: "The Lemonade Stand",
       body:
-        "Hank buried it. Beans found it. Roar buried Roar.",
+        "Hank counted the change. Beans handled the inventory. Roar drank the inventory.",
       poster: "/work/hank-and-beans/ep11.jpg",
       video: "/videos/hank-and-beans/ep11.mp4",
     },
     {
       episodeNumber: 12,
-      title: "The Eulogy",
+      title: "The Time Capsule",
       body:
-        "Hank wrote the speech. Beans took the front pew. Roar took the pulpit. The deceased was a fern named Robert.",
+        "Hank buried it. Beans found it. Roar buried Roar.",
       poster: "/work/hank-and-beans/ep12.jpg",
       video: "/videos/hank-and-beans/ep12.mp4",
     },
     {
       episodeNumber: 13,
-      title: "The Plunge",
+      title: "The Eulogy",
       body:
-        "Hank skipped the cold plunge. Beans skipped the cold plunge. Roar got in with a raw chicken.",
+        "Hank wrote the speech. Beans took the front pew. Roar took the pulpit. The deceased was a fern named Robert.",
       poster: "/work/hank-and-beans/ep13.jpg",
       video: "/videos/hank-and-beans/ep13.mp4",
     },
     {
       episodeNumber: 14,
-      title: "The Group",
+      title: "The Plunge",
       body:
-        "Hank refused to talk. Beans took the chair. Roar runs the support group out of the backyard.",
+        "Hank skipped the cold plunge. Beans skipped the cold plunge. Roar got in with a raw chicken.",
       poster: "/work/hank-and-beans/ep14.jpg",
       video: "/videos/hank-and-beans/ep14.mp4",
     },
     {
       episodeNumber: 15,
-      title: "The Statement",
+      title: "The Group",
       body:
-        "Hank made the sandwich. Beans gave the documentary statement. Roar wiped a tear for the community.",
+        "Hank refused to talk. Beans took the chair. Roar runs the support group out of the backyard.",
       poster: "/work/hank-and-beans/ep15.jpg",
       video: "/videos/hank-and-beans/ep15.mp4",
     },
     {
       episodeNumber: 16,
-      title: "The Mugger",
+      title: "The Statement",
       body:
-        "Hank shielded Beans. Beans kept the hat on. Roar waited for the mask to fall off.",
+        "Hank made the sandwich. Beans gave the documentary statement. Roar wiped a tear for the community.",
       poster: "/work/hank-and-beans/ep16.jpg",
       video: "/videos/hank-and-beans/ep16.mp4",
     },
     {
       episodeNumber: 17,
-      title: "The Pilot",
+      title: "The Mugger",
       body:
-        "Hank is not in the cockpit. Beans is not in the cockpit. Roar took the stick.",
+        "Hank shielded Beans. Beans kept the hat on. Roar waited for the mask to fall off.",
       poster: "/work/hank-and-beans/ep17.jpg",
       video: "/videos/hank-and-beans/ep17.mp4",
     },

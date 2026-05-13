@@ -109,7 +109,7 @@ function Hero() {
         </aside>
         <div className="flex-1 min-w-0">
           <h1 className="font-display text-[clamp(40px,11vw,120px)] leading-[0.92] tracking-[-0.035em] uppercase">
-            &ldquo;WE MAKE THE INTERNET FEEL LIKE THE INTERNET AGAIN.&rdquo;
+            WE MAKE THE INTERNET FEEL LIKE THE INTERNET AGAIN.
           </h1>
         </div>
       </div>
