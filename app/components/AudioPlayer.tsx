@@ -62,8 +62,15 @@ export function AudioPlayer() {
   // Auto-pause our audio when ANY video on the page starts playing
   useEffect(() => {
     const onAnyPlay = (e: Event) => {
-      const target = e.target as HTMLElement | null;
+      const target = e.target as HTMLVideoElement | null;
       if (!target) return;
+      if (
+        target.tagName === "VIDEO" &&
+        target.dataset.backgroundVideo === "true" &&
+        target.muted
+      ) {
+        return;
+      }
       if (target.tagName === "VIDEO" && audioRef.current && !audioRef.current.paused) {
         audioRef.current.pause();
         wantPlayRef.current = false;
@@ -80,6 +87,7 @@ export function AudioPlayer() {
     if (isPlaying) {
       // Pause every video before we start
       document.querySelectorAll("video").forEach((v) => {
+        if (v.dataset.backgroundVideo === "true" && v.muted) return;
         if (!v.paused) v.pause();
       });
       audio.play().catch(() => setIsPlaying(false));

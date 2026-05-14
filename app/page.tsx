@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ComingSoonShow } from "./components/ComingSoonShow";
 import { NowPlayingBoard } from "./components/NowPlayingBoard";
 import { SocialRow } from "./components/SocialRow";
 import { TrackedLink } from "./components/TrackedLink";
@@ -44,6 +45,7 @@ export default function Page() {
     <main className="font-sans bg-lavender text-black overflow-x-hidden">
       <TopNav />
       <Hero />
+      <ComingSoonShow />
       <SubscribeBar />
       <HankBeansRoarSection />
       <CheckpointChismeSection />
