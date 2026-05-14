@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 
+const TIKTOK_URL = "https://www.tiktok.com/@vnmsfxreels";
+
 type ShareActionsProps = {
   url: string;
   title: string;
@@ -22,16 +24,26 @@ export function ShareActions({
     const encodedUrl = encodeURIComponent(url);
     const encodedTitle = encodeURIComponent(title);
     const encodedShareText = encodeURIComponent(shareText);
-    const encodedSmsBody = encodeURIComponent(`${shareText} ${url}`);
 
     return {
       x: `https://twitter.com/intent/tweet?text=${encodedShareText}&url=${encodedUrl}`,
       reddit: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
-      sms: `sms:?&body=${encodedSmsBody}`,
+      tiktok: TIKTOK_URL,
     };
   }, [shareText, title, url]);
 
-  async function copyLink() {
+  async function handleShare() {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text: shareText, url });
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+      }
+    }
+
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -52,10 +64,10 @@ export function ShareActions({
     >
       <button
         type="button"
-        onClick={copyLink}
+        onClick={handleShare}
         className={`${buttonClass} bg-lime text-black border-black`}
       >
-        {copied ? "Copied" : compact ? "Copy" : "Copy link"}
+        {copied ? "Copied" : "Share"}
       </button>
       <a
         href={links.x}
@@ -76,11 +88,13 @@ export function ShareActions({
         Reddit
       </a>
       <a
-        href={links.sms}
+        href={links.tiktok}
+        target="_blank"
+        rel="noreferrer"
         className={buttonClass}
-        aria-label={`Share ${title} by text message`}
+        aria-label="Open VNMSFX on TikTok"
       >
-        SMS
+        TikTok
       </a>
     </div>
   );
