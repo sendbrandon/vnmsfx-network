@@ -90,6 +90,7 @@ function getEpisodeShareTitle(work: Work, epIndex: number) {
 export function NowPlayingBoard({ work }: { work: Work }) {
   const [episodeIndex, setEpisodeIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const playerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const content = getActiveContent(work, episodeIndex);
@@ -134,6 +135,12 @@ export function NowPlayingBoard({ work }: { work: Work }) {
   const handleEpisodeClick = (epIdx: number) => {
     setEpisodeIndex(epIdx);
     setPlaying(true);
+    requestAnimationFrame(() => {
+      playerRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
   };
 
   const playerAspect = work.aspect ?? 16 / 9;
@@ -143,7 +150,11 @@ export function NowPlayingBoard({ work }: { work: Work }) {
     <div className="flex flex-col gap-6 md:gap-10">
       {/* Player slot */}
       <div className="flex flex-col gap-4 md:gap-6">
-        <div className="relative w-full bg-black overflow-hidden" style={{ aspectRatio: String(playerAspect) }}>
+        <div
+          ref={playerRef}
+          className="relative w-full bg-black overflow-hidden scroll-mt-20"
+          style={{ aspectRatio: String(playerAspect) }}
+        >
           {playing ? (
             <video
               key={`${work.slug}-${episodeIndex}`}
