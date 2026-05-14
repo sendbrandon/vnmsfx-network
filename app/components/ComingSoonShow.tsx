@@ -1,27 +1,38 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { ShareActions } from "./ShareActions";
+
+const SITE_URL = "https://vnmsfx.com";
 
 const TRAILERS = [
   {
+    slug: "delivered-on-god",
     badge: "Trailer 01",
     eyebrow: "Coming soon · New VNMSFX show",
     titleLines: ["Delivered.", "On God."],
+    shareTitle: "Delivered. On God.",
     src: "/videos/delivered-on-god/trailer.mp4",
     poster: "/work/delivered-on-god/poster.jpg",
     ariaLabel: "Delivered. On God coming soon trailer",
     body: "Boris, Chrome, and Roza take one cursed courier job and discover the package has better survival instincts than the crew.",
   },
   {
+    slug: "one-paper-no-brakes",
     badge: "Trailer 02",
     eyebrow: "Coming soon · New VNMSFX show",
     titleLines: ["One Paper,", "No Brakes."],
+    shareTitle: "One Paper, No Brakes.",
     src: "/videos/paperwork-apocalypse/trailer.mp4",
     poster: "/work/paperwork-apocalypse/poster.jpg",
     ariaLabel: "One Paper, No Brakes coming soon trailer",
     body: "A prestige action-comedy about one sacred document, several catastrophic motorcycle choices, and a fuzzy courier who has absolutely not signed the waiver.",
   },
 ] as const;
+
+function getTrailerShareUrl(slug: string) {
+  return `${SITE_URL}/#trailer-${slug}`;
+}
 
 export function ComingSoonShow() {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
@@ -60,6 +71,7 @@ export function ComingSoonShow() {
 
   return (
     <section
+      id="coming-soon"
       aria-labelledby="coming-soon-title"
       className="bg-black text-cream border-y-2 border-black px-5 md:px-14 py-10 md:py-16"
     >
@@ -89,6 +101,7 @@ export function ComingSoonShow() {
             return (
               <article
                 key={trailer.src}
+                id={`trailer-${trailer.slug}`}
                 className="shrink-0 snap-center w-[88vw] sm:w-[82vw] lg:w-[72vw] xl:w-[62vw] max-w-[1120px] overflow-hidden border-2 border-cream bg-cream text-black shadow-[8px_8px_0_#C2FF3F]"
               >
                 <div className="relative aspect-video bg-black border-b-2 border-cream">
@@ -137,9 +150,16 @@ export function ComingSoonShow() {
                       ))}
                     </h3>
                   </div>
-                  <p className="font-serif italic text-[17px] md:text-[22px] leading-[1.22]">
-                    {trailer.body}
-                  </p>
+                  <div className="flex flex-col gap-4">
+                    <p className="font-serif italic text-[17px] md:text-[22px] leading-[1.22]">
+                      {trailer.body}
+                    </p>
+                    <ShareActions
+                      url={getTrailerShareUrl(trailer.slug)}
+                      title={trailer.shareTitle}
+                      text={`${trailer.shareTitle} coming soon from VNMSFX`}
+                    />
+                  </div>
                 </div>
               </article>
             );
