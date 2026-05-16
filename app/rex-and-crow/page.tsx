@@ -128,7 +128,7 @@ function Hero() {
             className="flex items-center gap-3 group border-2 border-cream/60 px-5 py-4"
           >
             <span className="font-display text-[14px] md:text-[15px] uppercase tracking-[-0.01em]">
-              Submit a 2026 Bullshit
+              Send the Next Bullshit
             </span>
             <span className="text-[16px] group-hover:translate-x-1 transition-transform opacity-80">
               ↗
@@ -267,7 +267,7 @@ function Submission() {
             Audience writers&rsquo; room
           </div>
           <h2 className="font-display text-[clamp(36px,7vw,72px)] leading-[0.95] tracking-[-0.03em] uppercase">
-            Submit a 2026 bullshit
+            Send the next bullshit
           </h2>
         </div>
         <div className="text-[12px] md:text-[13px] font-bold tracking-[0.08em] uppercase opacity-70 max-w-[300px] text-right">
@@ -278,10 +278,10 @@ function Submission() {
       <SubmissionForm
         showSlug="rex_and_crow"
         showTitle="Rex & Crow"
-        subjectPrefix="2026 Bullshit"
+        subjectPrefix="Bullshit"
         ideaLabel="What modern thing should hit Rex & Crow next?"
         ideaPlaceholder="A meditation retreat. A wedding registry. A Soho House dinner. Their landlord's new app."
-        ctaLabel="Send the bullshit"
+        ctaLabel="Send it"
         trackEvent="submit_rex_and_crow_click"
         variant="dark"
       />

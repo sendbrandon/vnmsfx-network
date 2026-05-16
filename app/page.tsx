@@ -298,7 +298,7 @@ function RexAndCrowSection() {
           }}
           secondary={{
             href: "/rex-and-crow#submit",
-            label: "Submit a 2026 Bullshit",
+            label: "Send the Next Bullshit",
             event: "submit_rex_and_crow_click",
           }}
           variant="dark"
