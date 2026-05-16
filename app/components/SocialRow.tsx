@@ -2,7 +2,11 @@
 
 import { track } from "@vercel/analytics";
 
-type Campaign = "hank_beans_roar" | "checkpoint_chisme" | "homepage";
+type Campaign =
+  | "hank_beans_roar"
+  | "checkpoint_chisme"
+  | "rex_and_crow"
+  | "homepage";
 
 function utm(href: string, campaign: Campaign) {
   const u = new URL(href);

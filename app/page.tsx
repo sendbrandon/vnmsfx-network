@@ -8,6 +8,7 @@ import { TrackedLink } from "./components/TrackedLink";
 import {
   HANK_BEANS_ROAR,
   CHECKPOINT_CHISME,
+  REX_AND_CROW,
   SUBSCRIBE_MAILTO,
 } from "./lib/shows";
 
@@ -49,6 +50,7 @@ export default function Page() {
       <SubscribeBar />
       <HankBeansRoarSection />
       <CheckpointChismeSection />
+      <RexAndCrowSection />
       <Footer />
     </main>
   );
@@ -79,6 +81,10 @@ function TopNav() {
         <span className="opacity-30">·</span>
         <Link href="/checkpoint-chisme" className="hover:underline">
           Checkpoint Chisme
+        </Link>
+        <span className="opacity-30">·</span>
+        <Link href="/rex-and-crow" className="hover:underline">
+          Rex & Crow
         </Link>
       </div>
       <a
@@ -268,6 +274,41 @@ function HankBeansRoarSection() {
   );
 }
 
+function RexAndCrowSection() {
+  return (
+    <section
+      id="rex-and-crow"
+      className="bg-black text-cream border-y-2 border-black px-5 md:px-14 pt-12 md:pt-20 pb-14 md:pb-24 flex flex-col gap-8 md:gap-10 scroll-mt-14"
+    >
+      <ShowSectionHeader
+        showHref="/rex-and-crow"
+        episodes={REX_AND_CROW.episodes?.length ?? 0}
+        title="Rex & Crow"
+        hookLine="They never broke up. Reality kept happening."
+        bodyLine="A glam-rock optimist. A goth-rock cynic. The same NYC apartment since 1989. A felt-puppet two-hander about modern bullshit hitting two roommates who never updated their wardrobe, their worldview, or their rent agreement."
+        variant="dark"
+      />
+      <NowPlayingBoard work={REX_AND_CROW} />
+      <div className="flex flex-col gap-4 md:gap-6">
+        <ShowCtaRow
+          primary={{
+            href: "/rex-and-crow",
+            label: "Watch Rex & Crow",
+            event: "watch_rex_and_crow_click",
+          }}
+          secondary={{
+            href: "/rex-and-crow#submit",
+            label: "Submit a 2026 Bullshit",
+            event: "submit_rex_and_crow_click",
+          }}
+          variant="dark"
+        />
+        <SocialRow campaign="rex_and_crow" variant="dark" />
+      </div>
+    </section>
+  );
+}
+
 function CheckpointChismeSection() {
   return (
     <section
@@ -311,12 +352,18 @@ function ShowCtaRow({
   primary: {
     href: string;
     label: string;
-    event: "watch_hank_beans_click" | "watch_checkpoint_chisme_click";
+    event:
+      | "watch_hank_beans_click"
+      | "watch_checkpoint_chisme_click"
+      | "watch_rex_and_crow_click";
   };
   secondary: {
     href: string;
     label: string;
-    event: "submit_disaster_click" | "report_chisme_click";
+    event:
+      | "submit_disaster_click"
+      | "report_chisme_click"
+      | "submit_rex_and_crow_click";
   };
   variant: "dark" | "light";
 }) {

@@ -6,9 +6,11 @@ import { track } from "@vercel/analytics";
 type EventName =
   | "watch_hank_beans_click"
   | "watch_checkpoint_chisme_click"
+  | "watch_rex_and_crow_click"
   | "subscribe_click"
   | "submit_disaster_click"
   | "report_chisme_click"
+  | "submit_rex_and_crow_click"
   | "social_tiktok_click"
   | "social_x_click"
   | "social_youtube_click"

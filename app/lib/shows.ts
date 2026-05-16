@@ -172,7 +172,7 @@ export const CHECKPOINT_CHISME: Work = {
   meta: "NEW EPISODES",
   title: "Checkpoint Chisme",
   body:
-    "Airport security meets neighborhood gossip. A felt puppet comedy series where every ID check, break room conversation, and suspicious suitcase turns into a full-blown chisme investigation.",
+    "A two-character felt-puppet comedy. Officer Pike runs every encounter like it's a federal case. Don Rafa was just trying to get tacos. The chisme is in the details — the red Jordans, the wrong ID, the printer that won't stop, the badge that won't read the lanyard.",
   poster: "/work/checkpoint-chisme/ep01.jpg",
   video: "/videos/checkpoint-chisme/ep01.mp4",
   aspect: 4 / 3,
@@ -311,6 +311,44 @@ export const CHECKPOINT_CHISME: Work = {
         "The witness has a mustache. The witness has one syllable. The case proceeds without him.",
       poster: "/work/checkpoint-chisme/ep17.jpg",
       video: "/videos/checkpoint-chisme/ep17.mp4",
+    },
+  ],
+};
+
+export const REX_AND_CROW: Work = {
+  slug: "rex-and-crow",
+  category: "Series · 3 episodes",
+  meta: "NEW EPISODES",
+  title: "Rex & Crow",
+  body:
+    "A glam-rock optimist. A goth-rock cynic. The same NYC apartment since 1989. Every episode is the modern world showing up uninvited — and finding two roommates who never updated their wardrobe, their worldview, or their rent agreement.",
+  poster: "/work/rex-and-crow/ep01.jpg",
+  video: "/videos/rex-and-crow/ep01.mp4",
+  aspect: 4 / 3,
+  episodes: [
+    {
+      episodeNumber: 1,
+      title: "The Tow",
+      body:
+        "Rex panicked at the curb. Crow accepted the tow. Once the hook touched, the curb owned the vehicle.",
+      poster: "/work/rex-and-crow/ep01.jpg",
+      video: "/videos/rex-and-crow/ep01.mp4",
+    },
+    {
+      episodeNumber: 2,
+      title: "The Intervention",
+      body:
+        "Rex held the intervention. Crow held that he's finally winning. The blinds stayed shut.",
+      poster: "/work/rex-and-crow/ep02.jpg",
+      video: "/videos/rex-and-crow/ep02.mp4",
+    },
+    {
+      episodeNumber: 3,
+      title: "The Assistant",
+      body:
+        "Rex met the new AI. Crow asked what the fuck was happening. The assistant learned English from Univision.",
+      poster: "/work/rex-and-crow/ep03.jpg",
+      video: "/videos/rex-and-crow/ep03.mp4",
     },
   ],
 };

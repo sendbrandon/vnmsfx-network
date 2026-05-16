@@ -13,13 +13,16 @@ export function SubmissionForm({
   trackEvent,
   variant = "light",
 }: {
-  showSlug: "hank_beans_roar" | "checkpoint_chisme";
+  showSlug: "hank_beans_roar" | "checkpoint_chisme" | "rex_and_crow";
   showTitle: string;
   subjectPrefix: string;
   ideaLabel: string;
   ideaPlaceholder: string;
   ctaLabel: string;
-  trackEvent: "submit_disaster_click" | "report_chisme_click";
+  trackEvent:
+    | "submit_disaster_click"
+    | "report_chisme_click"
+    | "submit_rex_and_crow_click";
   variant?: "light" | "dark";
 }) {
   const [idea, setIdea] = useState("");

@@ -14,12 +14,12 @@ const LOGO = "/brand/vnmsfx-logo-black.png";
 export const metadata: Metadata = {
   title: "Checkpoint Chisme — VNMSFX",
   description:
-    "Checkpoint Chisme is a VNMSFX felt puppet comedy series where airport security, gossip, IDs, passengers, and bureaucracy collide.",
+    "Checkpoint Chisme is a VNMSFX two-character felt-puppet comedy. An insecure US officer treats a working-class Mexican dad like a federal case — in the wrong place, every time, and loses every time.",
   alternates: { canonical: "https://vnmsfx.com/checkpoint-chisme" },
   openGraph: {
     title: "Checkpoint Chisme — VNMSFX",
     description:
-      "Checkpoint Chisme is a VNMSFX felt puppet comedy series where airport security, gossip, IDs, passengers, and bureaucracy collide.",
+      "A two-character felt-puppet comedy. Officer Pike runs every encounter like a federal case. Don Rafa was just trying to get tacos.",
     type: "website",
     url: "https://vnmsfx.com/checkpoint-chisme",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/og-checkpoint-chisme.png",
         width: 1200,
         height: 630,
-        alt: "Checkpoint Chisme — Airport security. Maximum gossip.",
+        alt: "Checkpoint Chisme — Tactical force. Tuesday energy.",
       },
     ],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Checkpoint Chisme — VNMSFX",
     description:
-      "Airport security. Maximum gossip. A VNMSFX felt puppet comedy series.",
+      "Tactical force. Tuesday energy. A VNMSFX two-character felt-puppet comedy.",
     images: ["/og-checkpoint-chisme.png"],
   },
 };
@@ -99,14 +99,14 @@ function Hero() {
           Checkpoint Chisme
         </h1>
         <p className="font-serif italic text-[20px] md:text-[28px] leading-[1.2] max-w-[820px]">
-          Airport security. Maximum gossip.
+          Tactical force. Tuesday energy.
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-12">
         <p className="flex-1 text-[15px] md:text-[17px] leading-[1.55] max-w-[640px]">
-          A felt puppet comedy series where every checkpoint becomes an
-          investigation, every passenger has a story, and every break room has
-          something to say.
+          A two-character felt-puppet comedy. An insecure US officer treats a
+          working-class Mexican dad like a federal case &mdash; in the wrong
+          place, every time. The chisme is always in the details.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 self-start md:self-end">
           <TrackedLink
@@ -156,22 +156,16 @@ function Player() {
 function MeetTheCast() {
   const cast: { name: string; tag: string; line: string; src: string }[] = [
     {
-      name: "THE AGENT",
-      tag: "Maximum security. Minimum chill.",
-      line: "Tactical vest, mustache, sunglasses. Treats every grocery bag like a national security event.",
+      name: "OFFICER PIKE",
+      tag: "Federal force. Wrong sneakers.",
+      line: "Insecure US officer. Olive shirt, tactical vest, gold badge, AR-15. Bright red Air Jordans on duty. Treats every encounter like a federal case. Loses every time.",
       src: "/cast/cc-agente.jpg",
     },
     {
-      name: "THE INSPECTOR",
-      tag: "Behind the counter. Always.",
-      line: "The one who actually checks the IDs. Also the one who actually has the chisme.",
+      name: "DON RAFA",
+      tag: "Tool belt. One-word denial.",
+      line: "Working-class Mexican dad. Blue work shirt, black leather apron, tool belt, city-employee lanyard Pike never reads. Owns the taco truck Pike raids. Fixes the printer Pike just broke. Wins by doing nothing.",
       src: "/cast/cc-inspector.jpg",
-    },
-    {
-      name: "THE WITNESS",
-      tag: "Pink hair. Big opinions.",
-      line: "Heard something at Gate B. Has to tell somebody. Will tell everybody.",
-      src: "/cast/cc-witness.jpg",
     },
   ];
   return (
@@ -181,10 +175,10 @@ function MeetTheCast() {
           Meet the cast
         </h2>
         <div className="text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase opacity-70">
-          Three puppets. One checkpoint.
+          Two puppets. One never wins.
         </div>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-[1100px]">
         {cast.map((c) => (
           <div key={c.name} className="flex flex-col gap-3">
             <div className="relative w-full aspect-[4/5] overflow-hidden border-2 border-cream/30">
@@ -192,7 +186,7 @@ function MeetTheCast() {
                 src={c.src}
                 alt={c.name}
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -226,32 +220,33 @@ function TheWorld() {
 
       <div className="flex flex-col gap-2 max-w-[760px]">
         <p className="font-serif italic text-[20px] md:text-[26px] leading-[1.25]">
-          Puppet airport. Real chisme.
+          Felt-puppet enforcement. Real-world stakes.
         </p>
         <p className="text-[15px] md:text-[16px] leading-[1.55]">
-          Three felt-puppet TSA agents run the world&rsquo;s most dramatic
-          security checkpoint. Every passenger has a secret. Every ID has a
-          backstory. Every break room has an opinion. Nothing ever just gets
-          stamped &ldquo;approved.&rdquo;
+          Suburban California, late afternoon. Pike has followed Rafa into
+          every corner of his life &mdash; the parking lot, the taco truck, the
+          drive-thru, the immigration counter at 4pm. Every encounter is a
+          traffic stop. Every traffic stop ends the same way. The badge cracks
+          before Rafa does.
         </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-[820px]">
         <WorldCard
           kicker="Where"
-          line="A made-up airport. Mostly the security counter, the break room, and the printer."
+          line="Suburban California, dusk. Parking lots, taco trucks, drive-thrus, the immigration counter, the government hallway with the red Jordans."
         />
         <WorldCard
           kicker="What happens"
-          line="Someone walks up. The agents start gossiping. The chisme spirals. Nothing gets resolved."
+          line="Pike escalates. Rafa deadpans. Pike escalates harder. A small detail flips the power. Rafa walks away."
         />
         <WorldCard
           kicker="Who&rsquo;s there"
-          line="Three agents, an endless line of passengers, and chisme in every direction."
+          line="Two leads. Real-human bystanders. One printer that keeps malfunctioning. Pike&rsquo;s sneakers."
         />
         <WorldCard
           kicker="Vibe"
-          line="Awkward Puppets meets your auntie at a family BBQ. Authority comedy with too much heart."
+          line="Awkward Puppets meets a traffic stop you can&rsquo;t believe is happening. Authority comedy with the volume turned down on the right side."
         />
       </div>
     </section>
@@ -287,7 +282,7 @@ function Submission() {
           </h2>
         </div>
         <div className="text-[12px] md:text-[13px] font-bold tracking-[0.08em] uppercase opacity-70 max-w-[280px] text-right">
-          Heard something at Gate B? Drop it.
+          Heard something in the parking lot? Drop it.
         </div>
       </header>
 
@@ -295,8 +290,8 @@ function Submission() {
         showSlug="checkpoint_chisme"
         showTitle="Checkpoint Chisme"
         subjectPrefix="Chisme Report"
-        ideaLabel="What checkpoint situation should become an episode?"
-        ideaPlaceholder="A passenger with 17 plantains. A suspicious uncle at Gate B. An ID that doesn't match the face."
+        ideaLabel="Where should Pike walk in on Rafa next?"
+        ideaPlaceholder="A traffic stop at the car wash. A pat-down at the laundromat. A federal investigation of an enchilada."
         ctaLabel="Send the chisme"
         trackEvent="report_chisme_click"
         variant="dark"
