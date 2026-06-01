@@ -23,12 +23,20 @@ function isEmail(value: unknown): value is string {
   );
 }
 
+function normalizeMailchimpServerPrefix(value: string) {
+  return value
+    .trim()
+    .replace(/^https?:\/\//i, "")
+    .replace(/\.api\.mailchimp\.com\/?$/i, "")
+    .replace(/^-+/, "")
+    .replace(/\/.*$/, "");
+}
+
 function getMailchimpServerPrefix(apiKey: string) {
-  return (
-    process.env.MAILCHIMP_SERVER_PREFIX ||
-    apiKey.split("-").at(-1) ||
-    ""
-  ).trim();
+  const prefix =
+    process.env.MAILCHIMP_SERVER_PREFIX || apiKey.split("-").at(-1) || "";
+
+  return normalizeMailchimpServerPrefix(prefix);
 }
 
 function getSubscriberHash(email: string) {
