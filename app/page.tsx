@@ -173,15 +173,17 @@ function SubscribeBar() {
   return (
     <section className="w-full bg-lime border-y-2 border-black px-5 md:px-14 py-8 md:py-10 flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
       <div className="lg:w-[34%] font-display text-[clamp(26px,5vw,44px)] leading-[0.95] tracking-[-0.01em] uppercase">
-        Pick your show. Get the drop first.
+        Join the network. Get the drops first.
       </div>
       <div className="flex-1 w-full">
         <SubscribeForm
           source="homepage_subscribe_bar"
           variant="lime"
-          headline="One email. Your VNMSFX updates."
-          body="Choose GPTea, Hank/Beans/Roar, Checkpoint Chisme, Rex & Crow, or the whole network."
-          buttonLabel="Subscribe"
+          includeInterests={false}
+          defaultInterests={["everything"]}
+          headline="One email. The VNMSFX signal."
+          body="New episodes, network updates, and the occasional strange announcement. No spam, no decks, no AI hype."
+          buttonLabel="Join VNMSFX"
         />
       </div>
     </section>

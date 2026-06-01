@@ -111,7 +111,7 @@ export function SubscribeForm({
           Welcome to the network, Correspondent.
         </p>
         <p className="text-[14px] md:text-[15px] leading-[1.45]">
-          The next matching drop will hit your inbox.
+          The next VNMSFX drop will hit your inbox.
         </p>
       </div>
     );
