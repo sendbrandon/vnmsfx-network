@@ -353,5 +353,58 @@ export const REX_AND_CROW: Work = {
   ],
 };
 
-export const SUBSCRIBE_MAILTO =
-  "mailto:brandon@pushto6.com?subject=Subscribe%20me%20to%20VNMSFX&body=Add%20me%20to%20the%20list%20for%20new%20drops.";
+export const GPTEA: Work = {
+  slug: "gptea",
+  category: "Series · 5 episodes",
+  meta: "NEW SHOW",
+  title: "GPTea",
+  body:
+    "A vertical workplace cartoon about Doug, the hoodie guy who has already spiritually clocked out, and Marv, the other guy trying to process the AI apocalypse one meeting at a time.",
+  poster: "/work/gptea/ep-01-poster.jpg",
+  video: "/videos/gptea/ep-01-shelter-weapon.mp4",
+  aspect: 9 / 16,
+  episodeAspect: 9 / 16,
+  presentation: "vertical",
+  episodes: [
+    {
+      episodeNumber: 1,
+      title: "When Shelter Becomes a Weapon",
+      body:
+        "Marv finds the emergency supplies. Doug clocks the office apocalypse and somehow makes it sound like a calendar invite.",
+      poster: "/work/gptea/ep-01-poster.jpg",
+      video: "/videos/gptea/ep-01-shelter-weapon.mp4",
+    },
+    {
+      episodeNumber: 2,
+      title: "AI Takeover, Yeah, Saw the Email",
+      body:
+        "Doug wears the hoodie, holds the mug, and reacts to the end of human labor with terrifying inbox calm. Marv is still catching up.",
+      poster: "/work/gptea/ep-02-poster.jpg",
+      video: "/videos/gptea/ep-02-ai-takeover.mp4",
+    },
+    {
+      episodeNumber: 3,
+      title: "My AI Girlfriend Came Without a Warranty",
+      body:
+        "Marv tries to explain a relationship issue. Doug discovers the warranty department is not emotionally prepared.",
+      poster: "/work/gptea/ep-03-poster.jpg",
+      video: "/videos/gptea/ep-03-ai-girlfriend.mp4",
+    },
+    {
+      episodeNumber: 4,
+      title: "The Lizard People Are Real",
+      body:
+        "A cable-news nightmare arrives in the breakroom. Marv is alarmed. Doug mostly respects that someone finally said it on television.",
+      poster: "/work/gptea/ep-04-poster.jpg",
+      video: "/videos/gptea/ep-04-lizard-people.mp4",
+    },
+    {
+      episodeNumber: 5,
+      title: "The AI Data Center Is Drinking the Breakroom",
+      body:
+        "Doug brings the mug. Marv brings the concern. The office coffee supply enters the infrastructure economy.",
+      poster: "/work/gptea/ep-05-poster.jpg",
+      video: "/videos/gptea/ep-05-data-center.mp4",
+    },
+  ],
+};

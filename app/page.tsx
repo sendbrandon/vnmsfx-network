@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { CommunityModule } from "./components/CommunityModule";
 import { ComingSoonShow } from "./components/ComingSoonShow";
 import { NowPlayingBoard } from "./components/NowPlayingBoard";
+import { OpenPlanFeature } from "./components/OpenPlanFeature";
 import { SocialRow } from "./components/SocialRow";
+import { SubscribeForm } from "./components/SubscribeForm";
 import { TrackedLink } from "./components/TrackedLink";
 import {
   HANK_BEANS_ROAR,
   CHECKPOINT_CHISME,
   REX_AND_CROW,
-  SUBSCRIBE_MAILTO,
 } from "./lib/shows";
 
 const LOGO_SRC = "/brand/vnmsfx-logo-black.png";
@@ -46,8 +48,9 @@ export default function Page() {
     <main className="font-sans bg-lavender text-black overflow-x-hidden">
       <TopNav />
       <Hero />
-      <ComingSoonShow />
+      <OpenPlanFeature />
       <SubscribeBar />
+      <ComingSoonShow />
       <HankBeansRoarSection />
       <CheckpointChismeSection />
       <RexAndCrowSection />
@@ -79,6 +82,10 @@ function TopNav() {
           Hank, Beans & Roar
         </Link>
         <span className="opacity-30">·</span>
+        <Link href="/gptea" className="hover:underline">
+          GPTea
+        </Link>
+        <span className="opacity-30">·</span>
         <Link href="/checkpoint-chisme" className="hover:underline">
           Checkpoint Chisme
         </Link>
@@ -88,7 +95,7 @@ function TopNav() {
         </Link>
       </div>
       <a
-        href="#hank-beans-roar"
+        href="#gptea"
         className="md:hidden font-extrabold tracking-[0.08em]"
       >
         WATCH ↓
@@ -122,7 +129,7 @@ function Hero() {
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-        <a href="#hank-beans-roar" className="flex items-center gap-4 group shrink-0">
+        <a href="#gptea" className="flex items-center gap-4 group shrink-0">
           <span className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black flex items-center justify-center group-hover:bg-[#1a1a1a] transition-colors shrink-0">
             <span
               aria-hidden
@@ -140,7 +147,7 @@ function Hero() {
               Watch the latest drops
             </div>
             <div className="font-serif italic text-[12px] md:text-[13px] mt-1">
-              Two shows, scrollable below
+              Four shows, scrollable below
             </div>
           </div>
         </a>
@@ -164,22 +171,19 @@ function Hero() {
 
 function SubscribeBar() {
   return (
-    <section className="w-full bg-lime border-y-2 border-black px-5 md:px-14 py-6 md:py-0 md:h-28 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-10">
-      <div className="flex-1 font-display text-[clamp(20px,4.5vw,28px)] leading-[1.05] tracking-[-0.01em] uppercase">
-        ↳ New drop every Thursday · One email when it hits
+    <section className="w-full bg-lime border-y-2 border-black px-5 md:px-14 py-8 md:py-10 flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
+      <div className="lg:w-[34%] font-display text-[clamp(26px,5vw,44px)] leading-[0.95] tracking-[-0.01em] uppercase">
+        Pick your show. Get the drop first.
       </div>
-      <TrackedLink
-        href={SUBSCRIBE_MAILTO}
-        event="subscribe_click"
-        className="flex items-center gap-3.5 shrink-0 group self-stretch md:self-auto justify-between md:justify-end"
-      >
-        <span className="text-xs font-extrabold tracking-[0.08em] uppercase">
-          Subscribe
-        </span>
-        <span className="w-12 h-12 md:w-14 md:h-14 bg-black flex items-center justify-center text-lime text-[20px] md:text-[22px] group-hover:bg-[#1a1a1a] transition-colors shrink-0">
-          →
-        </span>
-      </TrackedLink>
+      <div className="flex-1 w-full">
+        <SubscribeForm
+          source="homepage_subscribe_bar"
+          variant="lime"
+          headline="One email. Your VNMSFX updates."
+          body="Choose GPTea, Hank/Beans/Roar, Checkpoint Chisme, Rex & Crow, or the whole network."
+          buttonLabel="Subscribe"
+        />
+      </div>
     </section>
   );
 }
@@ -424,6 +428,13 @@ function Footer() {
           &ldquo;The funniest network in New York right now.&rdquo;{" "}
           <span className="text-[12px] md:text-[13px]">— Highsnobiety</span>
         </div>
+      </div>
+      <div className="px-5 md:px-14 pb-8 md:pb-10">
+        <CommunityModule
+          scope="network"
+          variant="lime"
+          source="homepage_footer"
+        />
       </div>
       <div className="flex flex-col md:flex-row border-t-[1.5px] border-black">
         <TrackedLink

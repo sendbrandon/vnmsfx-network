@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { getDefaultHandleUrl, type InspiredBy } from "../lib/audience";
 import { ShareActions } from "./ShareActions";
 
 const SITE_URL = "https://vnmsfx.com";
@@ -12,6 +13,7 @@ export type Episode = {
   body: string;
   poster: string;
   video: string;
+  inspired_by?: InspiredBy;
 };
 
 export type Work = {
@@ -28,6 +30,7 @@ export type Work = {
   aspect?: number;
   // Episode strip thumbnail aspect — defaults to 4/3.
   episodeAspect?: number;
+  presentation?: "standard" | "vertical";
 };
 
 type ActiveContent = {
@@ -37,6 +40,7 @@ type ActiveContent = {
   video: string;
   category: string;
   meta: string;
+  inspired_by?: InspiredBy;
   episodeLabel?: string;
 };
 
@@ -48,6 +52,7 @@ function getActiveContent(work: Work, epIndex: number): ActiveContent {
       body: ep.body,
       poster: ep.poster,
       video: ep.video,
+      inspired_by: ep.inspired_by,
       category: work.category,
       meta: work.meta,
       episodeLabel: `EP ${String(ep.episodeNumber).padStart(2, "0")} OF ${work.episodes.length}`,
@@ -145,6 +150,7 @@ export function NowPlayingBoard({ work }: { work: Work }) {
 
   const playerAspect = work.aspect ?? 16 / 9;
   const epAspect = work.episodeAspect ?? 4 / 3;
+  const isVertical = work.presentation === "vertical" || playerAspect < 0.75;
 
   return (
     <div className="flex flex-col gap-6 md:gap-10">
@@ -152,7 +158,9 @@ export function NowPlayingBoard({ work }: { work: Work }) {
       <div className="flex flex-col gap-4 md:gap-6">
         <div
           ref={playerRef}
-          className="relative w-full bg-black overflow-hidden scroll-mt-20"
+          className={`relative w-full bg-black overflow-hidden scroll-mt-20 ${
+            isVertical ? "mx-auto max-w-[430px]" : ""
+          }`}
           style={{ aspectRatio: String(playerAspect) }}
         >
           {playing ? (
@@ -227,6 +235,9 @@ export function NowPlayingBoard({ work }: { work: Work }) {
             <p className="text-[15px] md:text-base leading-[1.5] max-w-[640px]">
               {content.body}
             </p>
+            {content.inspired_by && (
+              <InspiredByLine credit={content.inspired_by} />
+            )}
           </div>
           <ShareActions
             url={shareUrl}
@@ -243,6 +254,7 @@ export function NowPlayingBoard({ work }: { work: Work }) {
             onClick={handleEpisodeClick}
             playing={playing}
             aspect={epAspect}
+            isVertical={isVertical}
             workTitle={work.title}
             getShareUrl={(idx) => getEpisodeShareUrl(work, idx)}
           />
@@ -252,12 +264,35 @@ export function NowPlayingBoard({ work }: { work: Work }) {
   );
 }
 
+function InspiredByLine({ credit }: { credit: InspiredBy }) {
+  const handle = credit.handle.startsWith("@")
+    ? credit.handle
+    : `@${credit.handle}`;
+  const href = credit.url ?? getDefaultHandleUrl(handle);
+
+  return (
+    <p className="text-[12px] md:text-[13px] leading-[1.4] font-bold tracking-[0.04em] uppercase max-w-[640px]">
+      <span aria-hidden>📡 </span>
+      Inspired by a {credit.reportType} report from{" "}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-current/40 underline-offset-4 hover:decoration-current"
+      >
+        {handle}
+      </a>
+    </p>
+  );
+}
+
 function EpisodeStrip({
   episodes,
   activeIndex,
   onClick,
   playing,
   aspect,
+  isVertical,
   workTitle,
   getShareUrl,
 }: {
@@ -266,6 +301,7 @@ function EpisodeStrip({
   onClick: (idx: number) => void;
   playing: boolean;
   aspect: number;
+  isVertical: boolean;
   workTitle: string;
   getShareUrl: (idx: number) => string;
 }) {
@@ -290,7 +326,11 @@ function EpisodeStrip({
           return (
             <article
               key={ep.episodeNumber}
-              className="snap-start flex flex-col gap-2 shrink-0 w-[220px] sm:w-[240px] md:w-[260px]"
+              className={`snap-start flex flex-col gap-2 shrink-0 ${
+                isVertical
+                  ? "w-[136px] sm:w-[154px] md:w-[174px]"
+                  : "w-[220px] sm:w-[240px] md:w-[260px]"
+              }`}
             >
               <button
                 type="button"

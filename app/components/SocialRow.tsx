@@ -6,6 +6,7 @@ type Campaign =
   | "hank_beans_roar"
   | "checkpoint_chisme"
   | "rex_and_crow"
+  | "gptea"
   | "homepage";
 
 function utm(href: string, campaign: Campaign) {

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { AudioPlayer } from "./components/AudioPlayer";
 import "./globals.css";
 
 const archivoBlack = Archivo_Black({
@@ -39,6 +38,8 @@ export const metadata: Metadata = {
     "Hank Beans Roar",
     "Hank, Beans & Roar",
     "Checkpoint Chisme",
+    "GPTea",
+    "Rex & Crow",
     "comedy network",
     "New York comedy",
     "AI satire",
@@ -129,8 +130,16 @@ const JSON_LD = {
     "https://www.youtube.com/@vnmsfx",
     "https://www.tiktok.com/@vnmsfxreels",
   ],
-  // The two flagship shows as creative works under the network
+  // Flagship shows as creative works under the network
   "subjectOf": [
+    {
+      "@type": "TVSeries",
+      name: "GPTea",
+      url: `${SITE_URL}/gptea`,
+      genre: ["Comedy", "Short-form", "AI", "Workplace"],
+      description:
+        "A vertical workplace cartoon about Doug, the hoodie guy, and Marv, the other guy processing AI dread in the office.",
+    },
     {
       "@type": "TVSeries",
       name: "Hank, Beans & Roar",
@@ -146,6 +155,14 @@ const JSON_LD = {
       genre: ["Comedy", "Puppet", "Workplace", "AI"],
       description:
         "A felt puppet comedy series where airport security, gossip, IDs, passengers, and bureaucracy collide.",
+    },
+    {
+      "@type": "TVSeries",
+      name: "Rex & Crow",
+      url: `${SITE_URL}/rex-and-crow`,
+      genre: ["Comedy", "Puppet", "AI"],
+      description:
+        "A felt-puppet two-hander about a glam-rock optimist and a goth-rock cynic stuck in the same NYC apartment since 1989.",
     },
   ],
 };
@@ -165,7 +182,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <AudioPlayer />
         <Analytics />
       </body>
     </html>
