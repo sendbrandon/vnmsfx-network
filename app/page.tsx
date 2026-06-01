@@ -93,12 +93,16 @@ function TopNav() {
         <Link href="/rex-and-crow" className="hover:underline">
           Rex & Crow
         </Link>
+        <span className="opacity-30">·</span>
+        <Link href="/signal" className="hover:underline">
+          Signal
+        </Link>
       </div>
       <a
-        href="#gptea"
+        href="/signal"
         className="md:hidden font-extrabold tracking-[0.08em]"
       >
-        WATCH ↓
+        SIGNAL
       </a>
     </nav>
   );
