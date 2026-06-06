@@ -7,17 +7,17 @@ const SITE_URL = "https://vnmsfx.com";
 const LOGO_SRC = "/brand/vnmsfx-logo-black.png";
 const LOGO_W = 2522;
 const LOGO_H = 905;
-const HERO_IMAGE = "/work/gptea/ep-02-poster.jpg";
+const HERO_IMAGE = "/work/gptea/ep-05-poster.jpg";
 
 export const metadata: Metadata = {
   title: "Join the GPTea Signal",
   description:
-    "Join the GPTea Signal to get new drops first, vote on what ruins the office next, submit workplace weirdness, and earn Correspondent credit.",
+    "Join the GPTea Signal for drops first, viewer votes, and credited weirdness.",
   alternates: { canonical: `${SITE_URL}/signal` },
   openGraph: {
     title: "Join the GPTea Signal",
     description:
-      "Get GPTea drops first, vote on what ruins the office next, and send the AI/workplace weirdness that should become a bit.",
+      "Drops first. Viewer votes. Credited weirdness.",
     type: "website",
     url: `${SITE_URL}/signal`,
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: HERO_IMAGE,
         width: 720,
         height: 1280,
-        alt: "Doug from GPTea holding office coffee.",
+        alt: "Doug from GPTea drinking office coffee.",
       },
     ],
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Join the GPTea Signal",
     description:
-      "Get GPTea drops first, vote on what ruins the office next, and send the AI/workplace weirdness that should become a bit.",
+      "Drops first. Viewer votes. Credited weirdness.",
     images: [HERO_IMAGE],
   },
 };
@@ -41,19 +41,19 @@ export const metadata: Metadata = {
 const SIGNAL_POINTS = [
   {
     label: "Get The Drop First",
-    body: "New GPTea episodes, cuts, and network updates before they get buried in the scroll.",
+    body: "New GPTea drops before the feed gets them.",
   },
   {
     label: "Vote What Ruins The Office",
-    body: "Help pick the premise, prop, workplace disease, or AI problem that becomes the next breakroom incident.",
+    body: "Pick the premise, prop, or office problem.",
   },
   {
     label: "Send The Cursed Thing",
-    body: "Submit the AI, workplace, tech, finance, or internet nonsense that should become a bit.",
+    body: "Send AI, workplace, tech, or finance weirdness.",
   },
   {
     label: "Get Public Credit",
-    body: "If your comment, clip, or submission turns into an episode, we can credit the Correspondent who sent it in.",
+    body: "If it becomes a bit, we can credit you.",
   },
 ];
 
@@ -61,27 +61,27 @@ const REWARD_TIERS = [
   {
     count: "3",
     label: "Signal Roll",
-    body: "Get listed as a GPTea Correspondent when the public roll opens.",
+    body: "Get listed when the public Correspondent roll opens.",
   },
   {
     count: "10",
     label: "Early Room Access",
-    body: "Get early cuts, premise polls, and rough bits before the main feed sees them.",
+    body: "See rough cuts and premise polls early.",
   },
   {
     count: "25",
     label: "Priority Premise",
-    body: "Your submitted workplace or AI weirdness gets moved toward the top of the idea pile.",
+    body: "Your submitted weirdness moves up the idea pile.",
   },
   {
     count: "50",
     label: "Episode Credit",
-    body: "If your idea becomes an episode, you can get public credit as the Correspondent who sent it.",
+    body: "If your idea becomes an episode, you can get credited.",
   },
   {
     count: "100",
     label: "Canon Consideration",
-    body: "Background name, tiny cameo, or recurring office artifact consideration when it fits the show.",
+    body: "Name, cameo, or office artifact consideration.",
   },
 ];
 
@@ -141,8 +141,7 @@ function Hero() {
             Join the GPTea Signal.
           </h1>
           <p className="mt-5 max-w-[620px] text-[17px] leading-[1.35] text-cream/85 md:text-[22px]">
-            Get the drop first. Vote what ruins the office next. Send the
-            weird thing.
+            Drops first. Viewer votes. Credited weirdness.
           </p>
         </div>
 
@@ -153,7 +152,7 @@ function Hero() {
             includeInterests={false}
             defaultInterests={["gptea"]}
             headline="Get the next GPTea drop."
-            body="One email when there is a drop, vote, or Correspondent call."
+            body="One email when something is worth sending."
             buttonLabel="Join Signal"
           />
           <div className="mt-4 flex flex-wrap gap-3 text-[11px] font-extrabold uppercase tracking-[0.08em] text-cream/75">
@@ -171,7 +170,7 @@ function Hero() {
         <div className="relative aspect-[9/16] w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px]">
           <Image
             src={HERO_IMAGE}
-            alt="Doug from GPTea holding office coffee."
+            alt="Doug from GPTea drinking office coffee."
             fill
             priority
             sizes="(max-width: 1024px) 80vw, 420px"
@@ -226,10 +225,8 @@ function ReferralRewards() {
             Refer people. Get seen by the network.
           </h2>
           <p className="mt-5 text-[15px] leading-[1.55] text-cream/75 md:text-[17px]">
-            The first reward system is not fake internet points. It is public
-            credit, early access, premise power, and a clearer path from
-            watcher to Correspondent. Cash affiliate payouts come later when
-            paid memberships are live and trackable.
+            Public credit first. Early access and premise power next. Cash
+            affiliate payouts come later with paid memberships.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
@@ -258,8 +255,7 @@ function ReferralRewards() {
               Clipper Path
             </h3>
             <p className="mb-5 text-[14px] leading-[1.45]">
-              Repost clips under the public rules, point people to the Signal,
-              and build a visible track record before the paid affiliate layer.
+              Repost cleanly, point people to the Signal, build the trail.
             </p>
             <Link
               href="/clips"
@@ -283,7 +279,7 @@ function TransmissionQueue() {
             Correspondent queue
           </p>
           <h2 className="font-display text-[clamp(34px,6vw,78px)] uppercase leading-[0.9] tracking-[-0.03em]">
-            Send the thing Doug and Marv should not be trusted with.
+            Send the thing they should not be trusted with.
           </h2>
         </div>
         <div className="grid gap-3 md:grid-cols-3">
@@ -314,8 +310,7 @@ function FinalSignup() {
           This network gets weirder if you participate.
         </h2>
         <p className="max-w-[520px] text-[15px] font-bold uppercase leading-[1.45] tracking-[0.08em]">
-          Correspondents get the drop first, then help decide what the network
-          makes next.
+          Correspondents get the drop first and help steer the next one.
         </p>
       </div>
       <div className="px-5 py-10 md:px-14 md:py-16">
@@ -325,7 +320,7 @@ function FinalSignup() {
           includeInterests={false}
           defaultInterests={["gptea"]}
           headline="Join the GPTea Signal."
-          body="New GPTea drops, votes, submissions, and occasional evidence that the office is not okay."
+          body="Drops, votes, submissions, and office evidence."
           buttonLabel="Become a GPTea Correspondent"
         />
       </div>

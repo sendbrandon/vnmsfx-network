@@ -7,17 +7,17 @@ const SITE_URL = "https://vnmsfx.com";
 const LOGO_SRC = "/brand/vnmsfx-logo-black.png";
 const LOGO_W = 2522;
 const LOGO_H = 905;
-const HERO_IMAGE = "/work/gptea/ep-02-poster.jpg";
+const HERO_IMAGE = "/work/gptea/ep-03-poster.jpg";
 
 export const metadata: Metadata = {
   title: "Clip GPTea - VNMSFX",
   description:
-    "Public VNMSFX clipper rules for reposting GPTea clips, linking back, and earning Correspondent credit.",
+    "Public VNMSFX rules for reposting GPTea clips and pointing people back to the Signal.",
   alternates: { canonical: `${SITE_URL}/clips` },
   openGraph: {
     title: "Clip GPTea - VNMSFX",
     description:
-      "Yes, you can clip and repost GPTea if you follow the VNMSFX clipper rules and point people back to the Signal.",
+      "Clip GPTea, credit VNMSFX, keep the mark visible, and point people back to the Signal.",
     type: "website",
     url: `${SITE_URL}/clips`,
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: HERO_IMAGE,
         width: 720,
         height: 1280,
-        alt: "GPTea character Doug holding coffee in the office.",
+        alt: "A strange GPTea AI character close-up.",
       },
     ],
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Clip GPTea - VNMSFX",
     description:
-      "Repost GPTea clips, keep the VNMSFX signal intact, and point people back to vnmsfx.com/signal.",
+      "Repost GPTea clips, credit VNMSFX, and point people back to the Signal.",
     images: [HERO_IMAGE],
   },
 };
@@ -41,27 +41,27 @@ export const metadata: Metadata = {
 const CLIPPER_RULES = [
   {
     label: "Keep The Mark Visible",
-    body: "Do not crop out, blur, remove, or cover the VNMSFX/GPTea logo or watermark when it appears in the clip.",
+    body: "Do not crop, blur, remove, or cover VNMSFX/GPTea marks.",
   },
   {
     label: "Point Back To The Signal",
-    body: "In the caption, pinned comment, profile link, or description, send people to vnmsfx.com/signal.",
+    body: "Send people to vnmsfx.com/signal.",
   },
   {
     label: "Credit The Source",
-    body: "Use clear credit like GPTea by @vnmsfx or VNMSFX. Make it obvious this is our show and your repost/edit.",
+    body: "Make it obvious this is GPTea by VNMSFX.",
   },
   {
     label: "Do Not Fake Context",
-    body: "Do not edit dialogue, order, subtitles, or framing to make the show say something it did not say.",
+    body: "Do not edit the show into saying something it did not say.",
   },
   {
     label: "Do Not Sell The Clip",
-    body: "Do not put VNMSFX clips behind a paywall, sell full episodes, mint them, or imply you own the characters.",
+    body: "Do not sell, mint, paywall, or claim the characters.",
   },
   {
     label: "Keep It Out Of Gross Places",
-    body: "No hate content, porn, scams, fake endorsements, political ads, or spam farms using VNMSFX clips.",
+    body: "No hate, porn, scams, fake endorsements, or spam farms.",
   },
 ];
 
@@ -77,15 +77,15 @@ const CTA_LINES = [
 const REWARD_PATH = [
   {
     label: "Public credit",
-    body: "Clip, submit, or refer something that becomes useful and we can credit you publicly as a Correspondent.",
+    body: "Useful clips and submissions can earn Correspondent credit.",
   },
   {
     label: "Priority ideas",
-    body: "Clippers who send real viewers and good weirdness get moved toward the front of the premise pile.",
+    body: "Good weirdness moves toward the top of the premise pile.",
   },
   {
     label: "Affiliate layer",
-    body: "When paid memberships go live, trackable links can turn into commission. The public trail starts now.",
+    body: "When paid memberships go live, tracked links can earn.",
   },
 ];
 
@@ -144,8 +144,7 @@ function Hero() {
             Clip GPTea.
           </h1>
           <p className="mt-5 max-w-[620px] text-[17px] leading-[1.35] md:text-[22px]">
-            Repost the clips. Keep the mark visible. Credit VNMSFX. Point
-            people back to the Signal.
+            Repost it. Credit VNMSFX. Keep the mark visible.
           </p>
         </div>
         <div className="max-w-[760px]">
@@ -169,7 +168,7 @@ function Hero() {
         <div className="relative aspect-[9/16] w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px]">
           <Image
             src={HERO_IMAGE}
-            alt="Doug from GPTea holding a coffee mug."
+            alt="A strange GPTea AI character close-up."
             fill
             priority
             sizes="(max-width: 1024px) 80vw, 420px"
@@ -195,8 +194,7 @@ function Permission() {
       <div className="px-5 py-9 text-[17px] leading-[1.55] md:px-14 md:py-12 md:text-[22px]">
         <p>
           VNMSFX gives public permission to repost short clips, reactions,
-          compilations, caption edits, and commentary edits from GPTea and the
-          network as long as the rules below are followed.
+          compilations, caption edits, and commentary edits from GPTea.
         </p>
       </div>
     </section>
@@ -219,8 +217,7 @@ function Rules() {
           </h2>
         </div>
         <p className="max-w-[440px] text-[13px] font-bold uppercase leading-[1.45] tracking-[0.08em]">
-          We can ask for takedowns if a repost breaks these rules. Clean rules
-          make the whole thing easier to share.
+          Clean reposts help the network spread. Bad reposts get pulled.
         </p>
       </div>
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">

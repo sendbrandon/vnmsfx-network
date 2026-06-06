@@ -61,17 +61,19 @@ export default function Page() {
 
 function TopNav() {
   return (
-    <nav className="w-full h-14 flex items-center justify-between px-5 md:px-14 border-b-[1.5px] border-black text-[10px] md:text-[11px] font-bold tracking-[0.08em] uppercase bg-lavender">
+    <nav className="w-full h-14 flex items-center justify-between px-5 md:px-14 border-b-[1.5px] border-cream/25 text-[10px] md:text-[11px] font-bold tracking-[0.08em] uppercase bg-black text-cream">
       <div className="flex items-center gap-2">
-        <span className="block w-2.5 h-2.5 rounded-full bg-black shrink-0" />
-        <Image
-          src={LOGO_SRC}
-          alt="VNMSFX"
-          width={LOGO_W}
-          height={LOGO_H}
-          priority
-          className="h-[16px] md:h-[18px] w-auto"
-        />
+        <span className="block w-2.5 h-2.5 rounded-full bg-lime shrink-0" />
+        <span className="flex h-[22px] items-center bg-cream px-2">
+          <Image
+            src={LOGO_SRC}
+            alt="VNMSFX"
+            width={LOGO_W}
+            height={LOGO_H}
+            priority
+            className="h-[14px] w-auto"
+          />
+        </span>
         <span className="text-[8px] md:text-[9px] -translate-y-1.5">®</span>
         <span className="hidden sm:inline opacity-70">
           &nbsp;&nbsp;/&nbsp;&nbsp;NYC, EST 2024
@@ -114,7 +116,7 @@ function TopNav() {
 
 function Hero() {
   return (
-    <section className="min-h-[calc(100dvh-56px)] border-b-2 border-black px-5 md:px-14 pt-10 md:pt-24 pb-[calc(8rem+env(safe-area-inset-bottom))] md:min-h-[calc(100svh-56px)] md:pb-14 flex flex-col justify-between gap-10 md:gap-16">
+    <section className="min-h-[calc(100dvh-56px)] border-b-2 border-lime bg-black px-5 md:px-14 pt-10 md:pt-24 pb-[calc(8rem+env(safe-area-inset-bottom))] md:min-h-[calc(100svh-56px)] md:pb-14 flex flex-col justify-between gap-10 md:gap-16 text-cream">
       <div className="flex flex-col md:flex-row items-start gap-5 md:gap-8">
         <aside className="w-full md:w-48 shrink-0 md:pt-6 flex md:block items-start gap-3 md:gap-0">
           <div className="text-[10px] font-extrabold tracking-[0.14em] uppercase leading-[1.4] shrink-0">
@@ -122,7 +124,7 @@ function Hero() {
             <br />
             COMEDY NETWORK
           </div>
-          <div className="hidden md:block w-8 h-[1.5px] mt-3.5 bg-black" />
+          <div className="hidden md:block w-8 h-[1.5px] mt-3.5 bg-lime" />
           <p className="hidden md:block text-[11px] mt-3.5 leading-[1.45]">
             Start with GPTea. New drops every Thursday.
           </p>
@@ -138,14 +140,14 @@ function Hero() {
       </div>
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
         <a href="/gptea" className="flex items-center gap-4 group shrink-0">
-          <span className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black flex items-center justify-center group-hover:bg-[#1a1a1a] transition-colors shrink-0">
+          <span className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-lime flex items-center justify-center group-hover:bg-[#a8e632] transition-colors shrink-0">
             <span
               aria-hidden
               className="block w-0 h-0"
               style={{
                 borderTop: "10px solid transparent",
                 borderBottom: "10px solid transparent",
-                borderLeft: "15px solid #C2FF3F",
+                borderLeft: "15px solid #000",
                 marginLeft: 4,
               }}
             />
@@ -169,7 +171,7 @@ function Hero() {
             alt="VNMSFX"
             width={LOGO_W}
             height={LOGO_H}
-            className="h-[clamp(32px,7vw,52px)] w-auto shrink-0"
+            className="h-[clamp(32px,7vw,52px)] w-auto shrink-0 invert"
           />
         </div>
       </div>
