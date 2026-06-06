@@ -10,14 +10,14 @@ const LOGO_H = 905;
 const HERO_IMAGE = "/work/gptea/welcome-email-screengrab.jpg";
 
 export const metadata: Metadata = {
-  title: "Join the VNMSFX Signal",
+  title: "Join the GPTea Signal",
   description:
-    "Join the VNMSFX Signal for new drops, viewer votes, strange transmissions, and chances to feed the network.",
+    "Join the GPTea Signal to get new drops first, vote on what ruins the office next, submit workplace weirdness, and earn Correspondent credit.",
   alternates: { canonical: `${SITE_URL}/signal` },
   openGraph: {
-    title: "Join the VNMSFX Signal",
+    title: "Join the GPTea Signal",
     description:
-      "New drops, viewer votes, strange transmissions, and chances to feed the network.",
+      "Get GPTea drops first, vote on what ruins the office next, and send the AI/workplace weirdness that should become a bit.",
     type: "website",
     url: `${SITE_URL}/signal`,
     images: [
@@ -31,29 +31,57 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Join the VNMSFX Signal",
+    title: "Join the GPTea Signal",
     description:
-      "New drops, viewer votes, strange transmissions, and chances to feed the network.",
+      "Get GPTea drops first, vote on what ruins the office next, and send the AI/workplace weirdness that should become a bit.",
     images: [HERO_IMAGE],
   },
 };
 
 const SIGNAL_POINTS = [
   {
-    label: "Drops First",
-    body: "New episodes and network updates before they get buried in the scroll.",
+    label: "Get The Drop First",
+    body: "New GPTea episodes, cuts, and network updates before they get buried in the scroll.",
   },
   {
-    label: "Vote The Premise",
-    body: "Help decide which cursed idea gets fed to the machine next.",
+    label: "Vote What Ruins The Office",
+    body: "Help pick the premise, prop, workplace disease, or AI problem that becomes the next breakroom incident.",
   },
   {
-    label: "Send The Weird Thing",
-    body: "Submit the AI, workplace, city, or internet nonsense that should become a bit.",
+    label: "Send The Cursed Thing",
+    body: "Submit the AI, workplace, tech, finance, or internet nonsense that should become a bit.",
   },
   {
-    label: "Get Credited",
-    body: "If your comment turns into an episode, we can credit the Correspondent who sent it in.",
+    label: "Get Public Credit",
+    body: "If your comment, clip, or submission turns into an episode, we can credit the Correspondent who sent it in.",
+  },
+];
+
+const REWARD_TIERS = [
+  {
+    count: "3",
+    label: "Signal Roll",
+    body: "Get listed as a GPTea Correspondent when the public roll opens.",
+  },
+  {
+    count: "10",
+    label: "Early Room Access",
+    body: "Get early cuts, premise polls, and rough bits before the main feed sees them.",
+  },
+  {
+    count: "25",
+    label: "Priority Premise",
+    body: "Your submitted workplace or AI weirdness gets moved toward the top of the idea pile.",
+  },
+  {
+    count: "50",
+    label: "Episode Credit",
+    body: "If your idea becomes an episode, you can get public credit as the Correspondent who sent it.",
+  },
+  {
+    count: "100",
+    label: "Canon Consideration",
+    body: "Background name, tiny cameo, or recurring office artifact consideration when it fits the show.",
   },
 ];
 
@@ -63,6 +91,7 @@ export default function SignalPage() {
       <SignalNav />
       <Hero />
       <SignalLoop />
+      <ReferralRewards />
       <TransmissionQueue />
       <FinalSignup />
     </main>
@@ -89,6 +118,9 @@ function SignalNav() {
         <Link href="/#gptea" className="hover:text-lime">
           Watch
         </Link>
+        <Link href="/clips" className="hover:text-lime">
+          Clip
+        </Link>
         <Link href="/signal" className="text-lime">
           Signal
         </Link>
@@ -112,28 +144,37 @@ function Hero() {
       <div className="relative z-10 flex min-h-[calc(100svh-56px)] flex-col justify-between px-5 py-8 md:px-14 md:py-12">
         <div className="max-w-[980px]">
           <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-lime md:text-[12px]">
-            VNMSFX Correspondent Access
+            GPTea Correspondent Access
           </p>
           <h1 className="font-display text-[clamp(54px,12vw,150px)] uppercase leading-[0.86] tracking-[-0.04em]">
-            Join the VNMSFX Signal.
+            Join the GPTea Signal.
           </h1>
         </div>
 
         <div className="grid gap-8 pt-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.72fr)] lg:items-end">
           <p className="max-w-[740px] font-serif text-[22px] italic leading-[1.25] text-cream md:text-[30px]">
-            New drops, viewer votes, strange transmissions, and the chance to
-            feed the network something it should not know.
+            Vote on what ruins the office next. Send cursed AI and workplace
+            things. If it becomes a bit, get credited.
           </p>
           <div className="w-full border-t-2 border-lime pt-5">
             <SubscribeForm
               source="signal_hero"
               variant="dark"
               includeInterests={false}
-              defaultInterests={["everything"]}
-              headline="Become a Correspondent."
-              body="One email per drop. No spam, no decks, no AI hype."
+              defaultInterests={["gptea"]}
+              headline="Become a GPTea Correspondent."
+              body="One email when there is a real drop, vote, or weird thing worth sending."
               buttonLabel="Join the Signal"
             />
+            <div className="mt-4 flex flex-wrap gap-3 text-[11px] font-extrabold uppercase tracking-[0.08em] text-cream/75">
+              <Link href="/clips" className="hover:text-lime">
+                Clipper rules
+              </Link>
+              <span className="text-cream/35">/</span>
+              <Link href="/gptea" className="hover:text-lime">
+                Watch GPTea
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -149,7 +190,7 @@ function SignalLoop() {
           How the signal works
         </p>
         <h2 className="font-display text-[clamp(38px,7vw,92px)] uppercase leading-[0.9] tracking-[-0.035em]">
-          Watch. Vote. Send the weird thing.
+          Watch. Vote. Feed the breakroom.
         </h2>
       </div>
       <div className="grid md:grid-cols-2">
@@ -172,6 +213,66 @@ function SignalLoop() {
   );
 }
 
+function ReferralRewards() {
+  return (
+    <section className="border-b-2 border-black bg-black px-5 py-10 text-cream md:px-14 md:py-16">
+      <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+        <div className="max-w-[640px]">
+          <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.16em] text-lime">
+            Public rewards first
+          </p>
+          <h2 className="font-display text-[clamp(38px,7vw,96px)] uppercase leading-[0.88] tracking-[-0.035em]">
+            Refer people. Get seen by the network.
+          </h2>
+          <p className="mt-5 text-[15px] leading-[1.55] text-cream/75 md:text-[17px]">
+            The first reward system is not fake internet points. It is public
+            credit, early access, premise power, and a clearer path from
+            watcher to Correspondent. Cash affiliate payouts come later when
+            paid memberships are live and trackable.
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          {REWARD_TIERS.map((tier) => (
+            <article
+              key={tier.label}
+              className="min-h-[180px] border-2 border-cream/35 bg-cream p-5 text-black"
+            >
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <span className="font-display text-[42px] uppercase leading-none">
+                  {tier.count}
+                </span>
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.12em]">
+                  referrals
+                </span>
+              </div>
+              <h3 className="mb-3 text-[14px] font-extrabold uppercase tracking-[0.12em]">
+                {tier.label}
+              </h3>
+              <p className="text-[14px] leading-[1.45]">{tier.body}</p>
+            </article>
+          ))}
+          <article className="min-h-[180px] border-2 border-lime bg-lime p-5 text-black">
+            <div className="mb-6 h-3 w-3 rounded-full bg-black" />
+            <h3 className="mb-3 text-[14px] font-extrabold uppercase tracking-[0.12em]">
+              Clipper Path
+            </h3>
+            <p className="mb-5 text-[14px] leading-[1.45]">
+              Repost clips under the public rules, point people to the Signal,
+              and build a visible track record before the paid affiliate layer.
+            </p>
+            <Link
+              href="/clips"
+              className="text-[12px] font-extrabold uppercase tracking-[0.1em] underline"
+            >
+              Read clipper rules
+            </Link>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function TransmissionQueue() {
   return (
     <section className="border-b-2 border-lime bg-lavender px-5 py-10 text-black md:px-14 md:py-16">
@@ -181,11 +282,11 @@ function TransmissionQueue() {
             Correspondent queue
           </p>
           <h2 className="font-display text-[clamp(34px,6vw,78px)] uppercase leading-[0.9] tracking-[-0.03em]">
-            Feed us the thing that should become a bit.
+            Send the thing Doug and Marv should not be trusted with.
           </h2>
         </div>
         <div className="grid gap-3 md:grid-cols-3">
-          {["Cursed AI behavior", "Workplace nonsense", "Internet symptoms"].map(
+          {["Cursed AI behavior", "Workplace nonsense", "Tech and finance symptoms"].map(
             (item) => (
               <article
                 key={item}
@@ -213,7 +314,7 @@ function FinalSignup() {
         </h2>
         <p className="max-w-[520px] text-[15px] font-bold uppercase leading-[1.45] tracking-[0.08em]">
           Correspondents get the drop first, then help decide what the network
-          becomes next.
+          makes next.
         </p>
       </div>
       <div className="px-5 py-10 md:px-14 md:py-16">
@@ -221,10 +322,10 @@ function FinalSignup() {
           source="signal_bottom"
           variant="lime"
           includeInterests={false}
-          defaultInterests={["everything"]}
-          headline="Join the Signal."
-          body="New drops, votes, submissions, and occasional evidence that the network is alive."
-          buttonLabel="Become a Correspondent"
+          defaultInterests={["gptea"]}
+          headline="Join the GPTea Signal."
+          body="New GPTea drops, votes, submissions, and occasional evidence that the office is not okay."
+          buttonLabel="Become a GPTea Correspondent"
         />
       </div>
     </section>

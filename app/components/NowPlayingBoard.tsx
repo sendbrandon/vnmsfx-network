@@ -152,98 +152,126 @@ export function NowPlayingBoard({ work }: { work: Work }) {
   const epAspect = work.episodeAspect ?? 4 / 3;
   const isVertical = work.presentation === "vertical" || playerAspect < 0.75;
 
+  const playerSlot = (
+    <div
+      ref={playerRef}
+      className={`relative w-full bg-black overflow-hidden scroll-mt-20 ${
+        isVertical
+          ? "mx-auto max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[430px]"
+          : ""
+      }`}
+      style={{ aspectRatio: String(playerAspect) }}
+    >
+      {playing ? (
+        <video
+          key={`${work.slug}-${episodeIndex}`}
+          ref={videoRef}
+          src={content.video}
+          poster={content.poster}
+          controls
+          autoPlay
+          playsInline
+          onEnded={() => setPlaying(false)}
+          className="w-full h-full object-contain bg-black"
+        >
+          Your browser does not support HTML5 video.{" "}
+          <a href={content.video}>Download {content.title}</a>.
+        </video>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          aria-label={`Play ${content.title}`}
+          className="block absolute inset-0 group cursor-pointer"
+        >
+          <Image
+            src={content.poster}
+            alt={content.title}
+            fill
+            priority
+            sizes={
+              isVertical
+                ? "(max-width: 768px) 300px, 430px"
+                : "(max-width: 1024px) 100vw, 1100px"
+            }
+            className="object-cover group-hover:scale-[1.01] transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/0 pointer-events-none" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-lime flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+              <span
+                aria-hidden
+                className="block w-0 h-0"
+                style={{
+                  borderTop: "16px solid transparent",
+                  borderBottom: "16px solid transparent",
+                  borderLeft: "26px solid #000",
+                  marginLeft: 6,
+                }}
+              />
+            </span>
+          </div>
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <div className="flex flex-col gap-6 md:gap-10">
-      {/* Player slot */}
       <div className="flex flex-col gap-4 md:gap-6">
         <div
-          ref={playerRef}
-          className={`relative w-full bg-black overflow-hidden scroll-mt-20 ${
-            isVertical ? "mx-auto max-w-[430px]" : ""
-          }`}
-          style={{ aspectRatio: String(playerAspect) }}
+          className={
+            isVertical
+              ? "grid gap-4 md:gap-6 lg:grid-cols-[minmax(0,0.94fr)_minmax(300px,430px)] lg:items-stretch"
+              : "flex flex-col gap-4 md:gap-6"
+          }
         >
-          {playing ? (
-            <video
-              key={`${work.slug}-${episodeIndex}`}
-              ref={videoRef}
-              src={content.video}
-              poster={content.poster}
-              controls
-              autoPlay
-              playsInline
-              onEnded={() => setPlaying(false)}
-              className="w-full h-full object-contain bg-black"
-            >
-              Your browser does not support HTML5 video.{" "}
-              <a href={content.video}>Download {content.title}</a>.
-            </video>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              aria-label={`Play ${content.title}`}
-              className="block absolute inset-0 group cursor-pointer"
-            >
-              <Image
-                src={content.poster}
-                alt={content.title}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 1100px"
-                className="object-cover group-hover:scale-[1.01] transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/0 pointer-events-none" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-lime flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
-                  <span
-                    aria-hidden
-                    className="block w-0 h-0"
-                    style={{
-                      borderTop: "16px solid transparent",
-                      borderBottom: "16px solid transparent",
-                      borderLeft: "26px solid #000",
-                      marginLeft: 6,
-                    }}
-                  />
-                </span>
-              </div>
-            </button>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          {/* Active info */}
-          <div className="flex flex-col gap-3 md:gap-4">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase">
-              <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
-              <span>{playing ? "Now Playing" : "Up next"}</span>
-              <span className="opacity-60">·</span>
-              <span className="opacity-80">{content.category}</span>
-              {content.episodeLabel && (
-                <>
-                  <span className="opacity-60">·</span>
-                  <span className="opacity-80">{content.episodeLabel}</span>
-                </>
-              )}
-              <span className="opacity-60 hidden sm:inline">·</span>
-              <span className="opacity-60 hidden sm:inline">{content.meta}</span>
+          {isVertical ? (
+            <div className="order-2 flex min-h-[520px] items-center justify-center border-2 border-black bg-black p-4 sm:min-h-[600px] sm:p-6 md:p-8 lg:order-2 lg:min-h-[680px]">
+              {playerSlot}
             </div>
-            <h3 className="font-display text-[clamp(28px,5.5vw,52px)] leading-[0.95] tracking-[-0.02em] uppercase">
-              {content.title}
-            </h3>
-            <p className="text-[15px] md:text-base leading-[1.5] max-w-[640px]">
-              {content.body}
-            </p>
-            {content.inspired_by && (
-              <InspiredByLine credit={content.inspired_by} />
-            )}
+          ) : (
+            playerSlot
+          )}
+
+          <div
+            className={
+              isVertical
+                ? "order-1 flex flex-col justify-between gap-6 border-2 border-black p-5 md:p-7 lg:order-1"
+                : "flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
+            }
+          >
+            <div className="flex flex-col gap-3 md:gap-4">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase">
+                <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
+                <span>{playing ? "Now Playing" : "Up next"}</span>
+                <span className="opacity-60">·</span>
+                <span className="opacity-80">{content.category}</span>
+                {content.episodeLabel && (
+                  <>
+                    <span className="opacity-60">·</span>
+                    <span className="opacity-80">{content.episodeLabel}</span>
+                  </>
+                )}
+                <span className="opacity-60 hidden sm:inline">·</span>
+                <span className="opacity-60 hidden sm:inline">{content.meta}</span>
+              </div>
+              <h3 className="font-display text-[clamp(28px,5.5vw,52px)] leading-[0.95] tracking-[-0.02em] uppercase">
+                {content.title}
+              </h3>
+              <p className="text-[15px] md:text-base leading-[1.5] max-w-[640px]">
+                {content.body}
+              </p>
+              {content.inspired_by && (
+                <InspiredByLine credit={content.inspired_by} />
+              )}
+            </div>
+            <ShareActions
+              url={shareUrl}
+              title={shareTitle}
+              text={`Watch ${shareTitle} on VNMSFX`}
+            />
           </div>
-          <ShareActions
-            url={shareUrl}
-            title={shareTitle}
-            text={`Watch ${shareTitle} on VNMSFX`}
-          />
         </div>
 
         {/* Episode strip — only renders for multi-episode shows */}

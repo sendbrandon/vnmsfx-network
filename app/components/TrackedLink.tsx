@@ -8,6 +8,7 @@ type EventName =
   | "watch_checkpoint_chisme_click"
   | "watch_rex_and_crow_click"
   | "watch_gptea_click"
+  | "join_signal_click"
   | "subscribe_click"
   | "submit_disaster_click"
   | "report_chisme_click"

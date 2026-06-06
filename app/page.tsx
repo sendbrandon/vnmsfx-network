@@ -97,6 +97,10 @@ function TopNav() {
         <Link href="/signal" className="hover:underline">
           Signal
         </Link>
+        <span className="opacity-30">·</span>
+        <Link href="/clips" className="hover:underline">
+          Clips
+        </Link>
       </div>
       <a
         href="/signal"
@@ -110,7 +114,7 @@ function TopNav() {
 
 function Hero() {
   return (
-    <section className="px-5 md:px-14 pt-10 md:pt-24 pb-10 md:pb-14 flex flex-col gap-10 md:gap-16">
+    <section className="min-h-[calc(100dvh-56px)] border-b-2 border-black px-5 md:px-14 pt-10 md:pt-24 pb-[calc(8rem+env(safe-area-inset-bottom))] md:min-h-[calc(100svh-56px)] md:pb-14 flex flex-col justify-between gap-10 md:gap-16">
       <div className="flex flex-col md:flex-row items-start gap-5 md:gap-8">
         <aside className="w-full md:w-48 shrink-0 md:pt-6 flex md:block items-start gap-3 md:gap-0">
           <div className="text-[10px] font-extrabold tracking-[0.14em] uppercase leading-[1.4] shrink-0">

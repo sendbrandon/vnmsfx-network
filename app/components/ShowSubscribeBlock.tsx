@@ -21,9 +21,9 @@ const COPY: Record<
     buttonLabel: "Sign me up →",
   },
   gptea: {
-    headline: "Get GPTea in your inbox.",
-    body: "Subscribe to GPTea drops only.",
-    buttonLabel: "Sign me up →",
+    headline: "Join the GPTea Signal.",
+    body: "Get GPTea drops, votes, and Correspondent updates.",
+    buttonLabel: "Join the Signal →",
   },
 };
 

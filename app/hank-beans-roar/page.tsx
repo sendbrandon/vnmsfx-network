@@ -85,7 +85,7 @@ function ShowNav() {
 
 function Hero() {
   return (
-    <section className="px-5 md:px-14 pt-12 md:pt-24 pb-10 md:pb-16 flex flex-col gap-8 md:gap-12">
+    <section className="min-h-[calc(100svh-56px)] border-b-[1.5px] border-cream/30 px-5 md:px-14 pt-12 md:pt-24 pb-10 md:pb-16 flex flex-col justify-between gap-8 md:gap-12">
       <div className="flex flex-col gap-3 md:gap-4">
         <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
           <span className="block w-2.5 h-2.5 rounded-full bg-lime" />
@@ -145,7 +145,7 @@ function Player() {
   return (
     <section
       id="player"
-      className="px-5 md:px-14 pb-12 md:pb-20 flex flex-col gap-6 md:gap-10 scroll-mt-14"
+      className="px-5 md:px-14 pt-10 md:pt-16 pb-12 md:pb-20 flex flex-col gap-6 md:gap-10 scroll-mt-14"
     >
       <NowPlayingBoard work={HANK_BEANS_ROAR} />
       <SocialRow campaign="hank_beans_roar" variant="dark" />
