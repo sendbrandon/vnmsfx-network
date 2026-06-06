@@ -12,7 +12,9 @@ export function OpenPlanFeature() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3 text-[10px] md:text-[11px] font-extrabold uppercase tracking-[0.16em]">
             <span className="block h-2.5 w-2.5 bg-lime border border-black" />
-            <span>New Show · 5 vertical episodes live</span>
+            <span>
+              New Show · {GPTEA.episodes?.length ?? 12} episodes live
+            </span>
           </div>
           <h2
             id="gptea-title"

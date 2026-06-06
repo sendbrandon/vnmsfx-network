@@ -11,7 +11,7 @@ import { GPTEA } from "../lib/shows";
 import { buildShowSchema } from "../lib/schema";
 
 const LOGO = "/brand/vnmsfx-logo-black.png";
-const HERO_POSTER = "/work/gptea/ep-02-poster.jpg";
+const HERO_POSTER = "/work/gptea/ep-12-poster.jpg";
 
 export const metadata: Metadata = {
   title: "GPTea — VNMSFX",
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     url: "https://vnmsfx.com/gptea",
     images: [
       {
-        url: "/work/gptea/ep-02-poster.jpg",
+        url: HERO_POSTER,
         width: 720,
         height: 1280,
-        alt: "GPTea — Doug in the hoodie holding office coffee.",
+        alt: "GPTea — a vertical workplace episode poster.",
       },
     ],
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "GPTea — VNMSFX",
     description:
       "Office coffee, AI dread, and the hoodie guy who saw it coming.",
-    images: ["/work/gptea/ep-02-poster.jpg"],
+    images: [HERO_POSTER],
   },
 };
 
@@ -104,13 +104,12 @@ function Hero() {
             GPTea
           </h1>
           <p className="max-w-[660px] text-[17px] leading-[1.35] md:text-[22px]">
-            Office coffee, AI dread, and two coworkers trying to process the
-            future in vertical bursts.
+            Office coffee. AI dread. Two coworkers, zero comfort.
           </p>
         </div>
         <div className="flex flex-col gap-5">
           <p className="max-w-[520px] text-[12px] font-extrabold uppercase leading-[1.45] tracking-[0.1em] opacity-75">
-            Start with the breakout show. Five vertical episodes live.
+            {GPTEA.episodes?.length ?? 12} vertical episodes live.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 self-start">
             <TrackedLink

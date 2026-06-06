@@ -355,40 +355,80 @@ export const REX_AND_CROW: Work = {
 
 export const GPTEA: Work = {
   slug: "gptea",
-  category: "Series · 5 episodes",
+  category: "Series · 12 episodes",
   meta: "NEW SHOW",
   title: "GPTea",
   body:
     "A vertical workplace cartoon about Doug, the hoodie guy who has already spiritually clocked out, and Marv, the other guy trying to process the AI apocalypse one meeting at a time.",
-  poster: "/work/gptea/ep-01-poster.jpg",
-  video: "/videos/gptea/ep-01-shelter-weapon.mp4",
+  poster: "/work/gptea/ep-12-poster.jpg",
+  video: "/videos/gptea/ep-12-warm-toilet-seat.mp4",
   aspect: 9 / 16,
   episodeAspect: 9 / 16,
   presentation: "vertical",
   episodes: [
     {
-      episodeNumber: 1,
-      title: "When Shelter Becomes a Weapon",
+      episodeNumber: 12,
+      title: "Warm Toilet Seat Gift",
       body:
-        "Marv finds the emergency supplies. Doug clocks the office apocalypse and somehow makes it sound like a calendar invite.",
-      poster: "/work/gptea/ep-01-poster.jpg",
-      video: "/videos/gptea/ep-01-shelter-weapon.mp4",
+        "Doug finds comfort in the one workplace mystery nobody should be thankful for. Marv tries to keep the room normal.",
+      poster: "/work/gptea/ep-12-poster.jpg",
+      video: "/videos/gptea/ep-12-warm-toilet-seat.mp4",
     },
     {
-      episodeNumber: 2,
-      title: "AI Takeover, Yeah, Saw the Email",
+      episodeNumber: 11,
+      title: "Can't Tell You Apart From a Robot",
       body:
-        "Doug wears the hoodie, holds the mug, and reacts to the end of human labor with terrifying inbox calm. Marv is still catching up.",
-      poster: "/work/gptea/ep-02-poster.jpg",
-      video: "/videos/gptea/ep-02-ai-takeover.mp4",
+        "Doug has lost the line between coworker and chatbot. Marv realizes the audit is somehow emotional.",
+      poster: "/work/gptea/ep-11-poster.jpg",
+      video: "/videos/gptea/ep-11-coworker-robot.mp4",
     },
     {
-      episodeNumber: 3,
-      title: "My AI Girlfriend Came Without a Warranty",
+      episodeNumber: 10,
+      title: "Performance Review Exit Interview",
       body:
-        "Marv tries to explain a relationship issue. Doug discovers the warranty department is not emotionally prepared.",
-      poster: "/work/gptea/ep-03-poster.jpg",
-      video: "/videos/gptea/ep-03-ai-girlfriend.mp4",
+        "A firing happens in plain sight. Doug misses the moment with the confidence of a man still employed in his head.",
+      poster: "/work/gptea/ep-10-poster.jpg",
+      video: "/videos/gptea/ep-10-performance-review.mp4",
+    },
+    {
+      episodeNumber: 9,
+      title: "Doing Nothing Is a Martial Art",
+      body:
+        "Doug turns workplace inactivity into a discipline. Marv keeps searching for the part where work happens.",
+      poster: "/work/gptea/ep-09-poster.jpg",
+      video: "/videos/gptea/ep-09-martial-art.mp4",
+    },
+    {
+      episodeNumber: 8,
+      title: "HR Sent a Chimp to Monitor Water Intake",
+      body:
+        "A wellness initiative enters the office with clipboard energy. Doug treats it like compliance has evolved.",
+      poster: "/work/gptea/ep-08-poster.jpg",
+      video: "/videos/gptea/ep-08-water-intake.mp4",
+    },
+    {
+      episodeNumber: 7,
+      title: "Three Things to Survive Your Job",
+      body:
+        "Doug offers a survival system with zero credentials and total certainty. Marv gets advice anyway.",
+      poster: "/work/gptea/ep-07-poster.jpg",
+      video: "/videos/gptea/ep-07-survive-your-job.mp4",
+    },
+    {
+      episodeNumber: 6,
+      title: "Hips Don't Lie Principle",
+      body:
+        "Marv mistakes a bad theory for math. Doug brings one irrelevant job into evidence.",
+      poster: "/work/gptea/ep-06-poster.jpg",
+      video: "/videos/gptea/ep-06-hips-dont-lie.mp4",
+    },
+    {
+      episodeNumber: 5,
+      title: "The AI Data Center Is Drinking the Breakroom",
+      body:
+        "Doug brings the mug. Marv brings the concern. The office coffee supply enters the infrastructure economy.",
+      poster: "/work/gptea/ep-05-poster.jpg",
+      video: "/videos/gptea/ep-05-data-center.mp4",
     },
     {
       episodeNumber: 4,
@@ -399,12 +439,28 @@ export const GPTEA: Work = {
       video: "/videos/gptea/ep-04-lizard-people.mp4",
     },
     {
-      episodeNumber: 5,
-      title: "The AI Data Center Is Drinking the Breakroom",
+      episodeNumber: 3,
+      title: "My AI Girlfriend Came Without a Warranty",
       body:
-        "Doug brings the mug. Marv brings the concern. The office coffee supply enters the infrastructure economy.",
-      poster: "/work/gptea/ep-05-poster.jpg",
-      video: "/videos/gptea/ep-05-data-center.mp4",
+        "Marv tries to explain a relationship issue. Doug discovers the warranty department is not emotionally prepared.",
+      poster: "/work/gptea/ep-03-poster.jpg",
+      video: "/videos/gptea/ep-03-ai-girlfriend.mp4",
+    },
+    {
+      episodeNumber: 2,
+      title: "AI Takeover, Yeah, Saw the Email",
+      body:
+        "Doug wears the hoodie, holds the mug, and reacts to the end of human labor with terrifying inbox calm. Marv is still catching up.",
+      poster: "/work/gptea/ep-02-poster.jpg",
+      video: "/videos/gptea/ep-02-ai-takeover.mp4",
+    },
+    {
+      episodeNumber: 1,
+      title: "When Shelter Becomes a Weapon",
+      body:
+        "Marv finds the emergency supplies. Doug clocks the office apocalypse and somehow makes it sound like a calendar invite.",
+      poster: "/work/gptea/ep-01-poster.jpg",
+      video: "/videos/gptea/ep-01-shelter-weapon.mp4",
     },
   ],
 };
