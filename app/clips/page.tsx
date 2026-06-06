@@ -134,48 +134,48 @@ function ClipNav() {
 
 function Hero() {
   return (
-    <section className="grid min-h-[calc(100svh-56px)] border-b-2 border-black bg-lavender lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="flex flex-col justify-between gap-10 px-5 py-10 md:px-14 md:py-16">
+    <section className="grid border-b-2 border-black bg-lavender lg:min-h-[calc(100svh-56px)] lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)]">
+      <div className="flex min-h-[calc(100dvh-56px)] flex-col justify-between gap-8 px-5 py-8 md:px-14 md:py-14 lg:min-h-[calc(100svh-56px)]">
         <div>
           <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.16em]">
             Public clipper rules
           </p>
-          <h1 className="font-display text-[clamp(58px,13vw,150px)] uppercase leading-[0.84] tracking-[-0.04em]">
+          <h1 className="font-display text-[clamp(48px,11vw,132px)] uppercase leading-[0.86] tracking-[-0.04em]">
             Clip GPTea.
           </h1>
+          <p className="mt-5 max-w-[620px] text-[17px] leading-[1.35] md:text-[22px]">
+            Repost the clips. Keep the mark visible. Credit VNMSFX. Point
+            people back to the Signal.
+          </p>
         </div>
         <div className="max-w-[760px]">
-          <p className="font-serif text-[22px] italic leading-[1.25] md:text-[30px]">
-            Yes, you can repost GPTea and VNMSFX clips if you keep the signal
-            intact, credit the source, and send people back to the Signal.
-          </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/signal"
+              href="#rules"
               className="bg-black px-5 py-4 text-[12px] font-extrabold uppercase tracking-[0.1em] text-lime hover:bg-[#1a1a1a]"
             >
-              Join the Signal
+              Read rules
             </Link>
-            <a
-              href="https://www.youtube.com/@vnmsfx"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/signal"
               className="border-2 border-black px-5 py-4 text-[12px] font-extrabold uppercase tracking-[0.1em] hover:bg-black hover:text-lime"
             >
-              Watch on YouTube
-            </a>
+              Join Signal
+            </Link>
           </div>
         </div>
       </div>
-      <div className="relative min-h-[520px] border-t-2 border-black bg-black lg:border-l-2 lg:border-t-0">
-        <Image
-          src={HERO_IMAGE}
-          alt="Doug from GPTea holding a coffee mug."
-          fill
-          priority
-          sizes="(max-width: 1024px) 100vw, 46vw"
-          className="object-cover opacity-90"
-        />
+      <div className="flex min-h-[540px] items-center justify-center border-t-2 border-black bg-black p-5 sm:p-8 lg:min-h-[calc(100svh-56px)] lg:border-l-2 lg:border-t-0">
+        <div className="relative aspect-[9/16] w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px]">
+          <Image
+            src={HERO_IMAGE}
+            alt="Doug from GPTea holding a coffee mug."
+            fill
+            priority
+            sizes="(max-width: 1024px) 80vw, 420px"
+            className="object-contain"
+          />
+        </div>
       </div>
     </section>
   );
@@ -205,7 +205,10 @@ function Permission() {
 
 function Rules() {
   return (
-    <section className="border-b-2 border-black bg-cream px-5 py-10 md:px-14 md:py-16">
+    <section
+      id="rules"
+      className="scroll-mt-14 border-b-2 border-black bg-cream px-5 py-10 md:px-14 md:py-16"
+    >
       <div className="mb-8 flex flex-col gap-3 border-b-2 border-black pb-6 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.16em]">

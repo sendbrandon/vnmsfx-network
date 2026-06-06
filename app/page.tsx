@@ -124,10 +124,10 @@ function Hero() {
           </div>
           <div className="hidden md:block w-8 h-[1.5px] mt-3.5 bg-black" />
           <p className="hidden md:block text-[11px] mt-3.5 leading-[1.45]">
-            Short-form shows. Character series. New drops every Thursday.
+            Start with GPTea. New drops every Thursday.
           </p>
           <p className="md:hidden text-[11px] leading-[1.45] flex-1">
-            Short-form shows. New drops every Thursday.
+            Start with GPTea. New drops every Thursday.
           </p>
         </aside>
         <div className="flex-1 min-w-0">
@@ -137,7 +137,7 @@ function Hero() {
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-        <a href="#gptea" className="flex items-center gap-4 group shrink-0">
+        <a href="/gptea" className="flex items-center gap-4 group shrink-0">
           <span className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black flex items-center justify-center group-hover:bg-[#1a1a1a] transition-colors shrink-0">
             <span
               aria-hidden
@@ -152,17 +152,17 @@ function Hero() {
           </span>
           <div className="max-w-[260px]">
             <div className="text-[11px] md:text-xs font-extrabold tracking-[0.08em] uppercase">
-              Watch the latest drops
+              Start with GPTea
             </div>
             <div className="font-serif italic text-[12px] md:text-[13px] mt-1">
-              Four shows, scrollable below
+              The breakout show
             </div>
           </div>
         </a>
         <div className="flex items-end gap-4 md:gap-6 self-stretch md:self-auto justify-between md:justify-end">
           <p className="font-serif italic text-[14px] md:text-[18px] leading-[1.4] text-left md:text-right max-w-[280px] md:max-w-[420px] pb-2 md:pb-3">
-            VNMSFX is an AI-native comedy network making short-form shows,
-            character series, and internet-first video drops.
+            AI-native comedy shows built for the scroll. Join the Signal when
+            you want the next drop first.
           </p>
           <Image
             src={LOGO_SRC}

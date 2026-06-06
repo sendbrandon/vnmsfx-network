@@ -7,7 +7,7 @@ const SITE_URL = "https://vnmsfx.com";
 const LOGO_SRC = "/brand/vnmsfx-logo-black.png";
 const LOGO_W = 2522;
 const LOGO_H = 905;
-const HERO_IMAGE = "/work/gptea/welcome-email-screengrab.jpg";
+const HERO_IMAGE = "/work/gptea/ep-02-poster.jpg";
 
 export const metadata: Metadata = {
   title: "Join the GPTea Signal",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: HERO_IMAGE,
-        width: 1200,
-        height: 720,
-        alt: "A GPTea character calmly drinking coffee during a strange workday.",
+        width: 720,
+        height: 1280,
+        alt: "Doug from GPTea holding office coffee.",
       },
     ],
   },
@@ -131,51 +131,52 @@ function SignalNav() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[calc(100svh-56px)] border-b-2 border-lime">
-      <Image
-        src={HERO_IMAGE}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-55"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.72)_46%,rgba(207,168,250,0.12)_100%)]" />
-      <div className="relative z-10 flex min-h-[calc(100svh-56px)] flex-col justify-between px-5 py-8 md:px-14 md:py-12">
-        <div className="max-w-[980px]">
+    <section className="grid border-b-2 border-lime bg-black text-cream lg:min-h-[calc(100svh-56px)] lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)]">
+      <div className="flex min-h-[calc(100dvh-56px)] flex-col justify-between gap-8 px-5 py-8 md:px-14 md:py-14 lg:min-h-[calc(100svh-56px)]">
+        <div className="max-w-[900px]">
           <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-lime md:text-[12px]">
             GPTea Correspondent Access
           </p>
-          <h1 className="font-display text-[clamp(54px,12vw,150px)] uppercase leading-[0.86] tracking-[-0.04em]">
+          <h1 className="font-display text-[clamp(48px,11vw,132px)] uppercase leading-[0.86] tracking-[-0.04em]">
             Join the GPTea Signal.
           </h1>
+          <p className="mt-5 max-w-[620px] text-[17px] leading-[1.35] text-cream/85 md:text-[22px]">
+            Get the drop first. Vote what ruins the office next. Send the
+            weird thing.
+          </p>
         </div>
 
-        <div className="grid gap-8 pt-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.72fr)] lg:items-end">
-          <p className="max-w-[740px] font-serif text-[22px] italic leading-[1.25] text-cream md:text-[30px]">
-            Vote on what ruins the office next. Send cursed AI and workplace
-            things. If it becomes a bit, get credited.
-          </p>
-          <div className="w-full border-t-2 border-lime pt-5">
-            <SubscribeForm
-              source="signal_hero"
-              variant="dark"
-              includeInterests={false}
-              defaultInterests={["gptea"]}
-              headline="Become a GPTea Correspondent."
-              body="One email when there is a real drop, vote, or weird thing worth sending."
-              buttonLabel="Join the Signal"
-            />
-            <div className="mt-4 flex flex-wrap gap-3 text-[11px] font-extrabold uppercase tracking-[0.08em] text-cream/75">
-              <Link href="/clips" className="hover:text-lime">
-                Clipper rules
-              </Link>
-              <span className="text-cream/35">/</span>
-              <Link href="/gptea" className="hover:text-lime">
-                Watch GPTea
-              </Link>
-            </div>
+        <div className="w-full max-w-[640px] border-t-2 border-lime pt-5">
+          <SubscribeForm
+            source="signal_hero"
+            variant="dark"
+            includeInterests={false}
+            defaultInterests={["gptea"]}
+            headline="Get the next GPTea drop."
+            body="One email when there is a drop, vote, or Correspondent call."
+            buttonLabel="Join Signal"
+          />
+          <div className="mt-4 flex flex-wrap gap-3 text-[11px] font-extrabold uppercase tracking-[0.08em] text-cream/75">
+            <Link href="/clips" className="hover:text-lime">
+              Clipper rules
+            </Link>
+            <span className="text-cream/35">/</span>
+            <Link href="/gptea" className="hover:text-lime">
+              Watch GPTea
+            </Link>
           </div>
+        </div>
+      </div>
+      <div className="flex min-h-[540px] items-center justify-center border-t-2 border-lime bg-[#080808] p-5 sm:p-8 lg:min-h-[calc(100svh-56px)] lg:border-l-2 lg:border-t-0">
+        <div className="relative aspect-[9/16] w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px]">
+          <Image
+            src={HERO_IMAGE}
+            alt="Doug from GPTea holding office coffee."
+            fill
+            priority
+            sizes="(max-width: 1024px) 80vw, 420px"
+            className="object-contain"
+          />
         </div>
       </div>
     </section>

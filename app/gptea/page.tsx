@@ -93,30 +93,25 @@ function ShowNav() {
 
 function Hero() {
   return (
-    <section className="grid min-h-[calc(100svh-56px)] border-b-2 border-black bg-lavender lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.78fr)]">
-      <div className="flex flex-col justify-between gap-8 px-5 py-10 md:px-14 md:py-16">
+    <section className="grid border-b-2 border-black bg-lavender lg:min-h-[calc(100svh-56px)] lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)]">
+      <div className="flex min-h-[calc(100dvh-56px)] flex-col justify-between gap-8 px-5 py-8 md:px-14 md:py-14 lg:min-h-[calc(100svh-56px)]">
         <div className="flex flex-col gap-3 md:gap-4">
           <div className="text-[10px] md:text-[11px] font-bold tracking-[0.14em] uppercase opacity-70 flex items-center gap-2">
             <span className="block w-2.5 h-2.5 rounded-full bg-lime border border-black" />
             <span>A VNMSFX Show · Vertical · {GPTEA.episodes?.length} episodes</span>
           </div>
-          <h1 className="font-display text-[clamp(58px,14vw,178px)] leading-[0.86] tracking-normal uppercase">
+          <h1 className="font-display text-[clamp(58px,13vw,150px)] leading-[0.86] tracking-normal uppercase">
             GPTea
           </h1>
-          <p className="font-serif italic text-[20px] md:text-[28px] leading-[1.2] max-w-[820px]">
-            Office coffee, AI dread, and the hoodie guy who saw it coming.
+          <p className="max-w-[660px] text-[17px] leading-[1.35] md:text-[22px]">
+            Office coffee, AI dread, and two coworkers trying to process the
+            future in vertical bursts.
           </p>
         </div>
-        <div className="flex flex-col gap-8">
-          <div className="flex-1 flex flex-col gap-2 text-[16px] md:text-[18px] leading-[1.5] max-w-[720px]">
-            <p>Doug wears the hoodie.</p>
-            <p>Marv is the other guy.</p>
-            <p>The office is trying to survive the future in twelve-second bursts.</p>
-            <p className="mt-4 opacity-80 text-[14px] md:text-[15px]">
-              The breakroom keeps producing prophecies. Doug keeps sipping.
-              Marv keeps asking why this is happening at work.
-            </p>
-          </div>
+        <div className="flex flex-col gap-5">
+          <p className="max-w-[520px] text-[12px] font-extrabold uppercase leading-[1.45] tracking-[0.1em] opacity-75">
+            Start with the breakout show. Five vertical episodes live.
+          </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 self-start">
             <TrackedLink
               href="#player"
@@ -147,7 +142,7 @@ function Hero() {
           </div>
         </div>
       </div>
-      <div className="flex min-h-[520px] items-center justify-center border-t-2 border-black bg-black p-5 sm:p-8 lg:min-h-[calc(100svh-56px)] lg:border-l-2 lg:border-t-0">
+      <div className="flex min-h-[540px] items-center justify-center border-t-2 border-black bg-black p-5 sm:p-8 lg:min-h-[calc(100svh-56px)] lg:border-l-2 lg:border-t-0">
         <div className="relative aspect-[9/16] w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px]">
           <Image
             src={HERO_POSTER}
