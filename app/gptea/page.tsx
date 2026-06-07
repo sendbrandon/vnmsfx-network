@@ -104,7 +104,7 @@ function Hero() {
             GPTea
           </h1>
           <p className="max-w-[660px] text-[17px] leading-[1.35] md:text-[22px]">
-            Office coffee. AI dread. Two coworkers, zero comfort.
+            Office coffee. AI dread.
           </p>
         </div>
         <div className="flex flex-col gap-5">
@@ -141,15 +141,15 @@ function Hero() {
           </div>
         </div>
       </div>
-      <div className="flex min-h-[540px] items-center justify-center border-t-2 border-black bg-black p-5 sm:p-8 lg:min-h-[calc(100svh-56px)] lg:border-l-2 lg:border-t-0">
-        <div className="relative aspect-[9/16] w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px]">
+      <div className="flex min-h-[540px] items-center justify-center p-5 sm:p-8 lg:min-h-[calc(100svh-56px)]">
+        <div className="relative aspect-[9/16] w-full max-w-[300px] overflow-hidden shadow-[0_18px_50px_rgba(0,0,0,0.16)] sm:max-w-[360px] md:max-w-[420px]">
           <Image
             src={HERO_POSTER}
             alt="Doug from GPTea holding office coffee."
             fill
             priority
             sizes="(max-width: 1024px) 80vw, 420px"
-            className="object-contain"
+            className="object-cover"
           />
         </div>
       </div>

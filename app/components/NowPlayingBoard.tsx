@@ -155,9 +155,9 @@ export function NowPlayingBoard({ work }: { work: Work }) {
   const playerSlot = (
     <div
       ref={playerRef}
-      className={`relative w-full bg-black overflow-hidden scroll-mt-20 ${
+      className={`relative w-full overflow-hidden scroll-mt-20 ${
         isVertical
-          ? "mx-auto max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[430px]"
+          ? "mx-auto max-w-[300px] shadow-[0_18px_50px_rgba(0,0,0,0.16)] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[430px]"
           : ""
       }`}
       style={{ aspectRatio: String(playerAspect) }}
@@ -172,7 +172,7 @@ export function NowPlayingBoard({ work }: { work: Work }) {
           autoPlay
           playsInline
           onEnded={() => setPlaying(false)}
-          className="w-full h-full object-contain bg-black"
+          className="h-full w-full object-cover bg-transparent"
         >
           Your browser does not support HTML5 video.{" "}
           <a href={content.video}>Download {content.title}</a>.
@@ -227,7 +227,7 @@ export function NowPlayingBoard({ work }: { work: Work }) {
           }
         >
           {isVertical ? (
-            <div className="order-2 flex min-h-[520px] items-center justify-center border-2 border-black bg-black p-4 sm:min-h-[600px] sm:p-6 md:p-8 lg:order-2 lg:min-h-[680px]">
+            <div className="order-2 flex items-center justify-center lg:order-2">
               {playerSlot}
             </div>
           ) : (
