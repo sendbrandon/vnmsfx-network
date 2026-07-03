@@ -88,6 +88,10 @@ function TopNav() {
           GPTea
         </Link>
         <span className="opacity-30">·</span>
+        <Link href="/portfolio" className="hover:underline">
+          Portfolio
+        </Link>
+        <span className="opacity-30">·</span>
         <Link href="/checkpoint-chisme" className="hover:underline">
           Checkpoint Chisme
         </Link>
@@ -104,12 +108,11 @@ function TopNav() {
           Clips
         </Link>
       </div>
-      <a
-        href="/signal"
-        className="md:hidden font-extrabold tracking-[0.08em]"
-      >
-        SIGNAL
-      </a>
+      <div className="md:hidden flex items-center gap-2 font-extrabold tracking-[0.08em]">
+        <Link href="/portfolio">PORTFOLIO</Link>
+        <span className="opacity-30">·</span>
+        <Link href="/signal">SIGNAL</Link>
+      </div>
     </nav>
   );
 }

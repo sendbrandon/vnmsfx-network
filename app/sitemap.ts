@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: "https://vnmsfx.com/portfolio",
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
       url: "https://vnmsfx.com/gptea",
       lastModified: now,
       changeFrequency: "weekly",

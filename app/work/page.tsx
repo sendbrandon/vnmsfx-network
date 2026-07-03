@@ -201,6 +201,10 @@ function TopNav() {
           Shows
         </Link>
         <span className="opacity-30">·</span>
+        <Link href="/portfolio" className="hover:underline">
+          Portfolio
+        </Link>
+        <span className="opacity-30">·</span>
         <Link href="/clips" className="hover:underline">
           Clips
         </Link>
