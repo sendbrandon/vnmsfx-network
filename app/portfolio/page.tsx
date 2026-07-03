@@ -271,7 +271,7 @@ function FilmGrid() {
         {TOO_MUCH_FILMS.map((film, index) => (
           <article
             key={film.title}
-            className={`w-[78vw] min-w-[280px] max-w-[340px] shrink-0 snap-start border border-cream/35 bg-black sm:w-[42vw] lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink ${
+            className={`w-[62vw] min-w-[220px] max-w-[260px] shrink-0 snap-start border border-cream/35 bg-black sm:w-[34vw] sm:max-w-[300px] lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink ${
               index === TOO_MUCH_FILMS.length - 1
                 ? "sm:col-span-2 lg:col-span-1"
                 : ""
@@ -284,15 +284,15 @@ function FilmGrid() {
                 label={`TOO MUCH ${film.title} spec ad`}
               />
             </div>
-            <div className="border-t border-cream/35 p-4">
+            <div className="border-t border-cream/35 p-3 md:p-4">
               <div className="mb-2 flex items-center justify-between gap-3 text-[10px] font-bold uppercase opacity-65">
                 <span>{film.number}</span>
                 <span>TOO MUCH</span>
               </div>
-              <h3 className="font-display text-[20px] leading-[1.02] uppercase md:text-[22px]">
+              <h3 className="font-display text-[17px] leading-[1.02] uppercase md:text-[22px]">
                 {film.title}
               </h3>
-              <p className="mt-2 min-h-[42px] text-[13px] leading-[1.35] opacity-80">
+              <p className="mt-2 min-h-[38px] text-[12px] leading-[1.35] opacity-80 md:min-h-[42px] md:text-[13px]">
                 {film.line}
               </p>
             </div>
