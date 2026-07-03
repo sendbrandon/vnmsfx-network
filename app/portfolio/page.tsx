@@ -150,18 +150,18 @@ function PortfolioNav() {
 
 function Hero() {
   return (
-    <section className="relative h-[calc(88svh-56px)] min-h-[480px] md:min-h-[620px] border-b-2 border-lime bg-black text-cream">
+    <section className="relative h-[calc(78svh-56px)] min-h-[430px] border-b-2 border-lime bg-black text-cream md:h-[calc(88svh-56px)] md:min-h-[620px]">
       <Image
         src={HERO}
         alt="TOO MUCH energy drink campaign hero."
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center opacity-80"
+        className="object-cover object-center opacity-80 md:object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
-      <div className="relative z-10 flex h-full flex-col justify-between px-5 py-8 md:px-14 md:py-12">
-        <div className="flex flex-wrap items-center gap-3 text-[10px] md:text-[11px] font-bold uppercase opacity-90">
+      <div className="relative z-10 flex h-full flex-col justify-between px-5 py-7 md:px-14 md:py-12">
+        <div className="hidden flex-wrap items-center gap-3 text-[11px] font-bold uppercase opacity-90 md:flex">
           <span className="block h-2.5 w-2.5 rounded-full bg-lime" />
           <span>Spec ads</span>
           <span className="opacity-45">/</span>
@@ -169,20 +169,29 @@ function Hero() {
           <span className="opacity-45">/</span>
           <span>Scroll-native campaigns</span>
         </div>
+        <div className="flex items-center gap-2 text-[10px] font-bold uppercase opacity-90 md:hidden">
+          <span className="block h-2.5 w-2.5 rounded-full bg-lime" />
+          <span>Spec ads / Campaign 001</span>
+        </div>
 
-        <div className="flex flex-col gap-5 md:gap-7">
+        <div className="flex flex-col gap-4 md:gap-7">
           <div className="max-w-[920px]">
-            <h1 className="font-display text-6xl leading-[0.9] uppercase sm:text-7xl lg:text-9xl">
+            <h1 className="font-display text-[52px] leading-[0.9] uppercase sm:text-7xl lg:text-9xl">
               Portfolio
             </h1>
-            <p className="mt-4 max-w-[620px] text-[17px] leading-[1.35] md:text-[22px]">
-              Spec ads built like entertainment. The first campaign is TOO
-              MUCH&trade;, the world&rsquo;s first clinically excessive energy
-              drink.
+            <p className="mt-3 max-w-[620px] text-[16px] leading-[1.3] md:mt-4 md:text-[22px]">
+              <span className="md:hidden">
+                Spec ads built like entertainment.
+              </span>
+              <span className="hidden md:inline">
+                Spec ads built like entertainment. The first campaign is TOO
+                MUCH&trade;, the world&rsquo;s first clinically excessive energy
+                drink.
+              </span>
             </p>
           </div>
 
-          <div className="grid max-w-[900px] grid-cols-2 border border-cream/35 bg-black/55 text-cream backdrop-blur-sm md:grid-cols-4">
+          <div className="hidden max-w-[900px] grid-cols-2 border border-cream/35 bg-black/55 text-cream backdrop-blur-sm md:grid md:grid-cols-4">
             {[
               ["001", "Campaign"],
               ["5", "Films"],
@@ -258,11 +267,11 @@ function FilmGrid() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] md:-mx-14 md:px-14 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
         {TOO_MUCH_FILMS.map((film, index) => (
           <article
             key={film.title}
-            className={`bg-black border border-cream/35 ${
+            className={`w-[78vw] min-w-[280px] max-w-[340px] shrink-0 snap-start border border-cream/35 bg-black sm:w-[42vw] lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink ${
               index === TOO_MUCH_FILMS.length - 1
                 ? "sm:col-span-2 lg:col-span-1"
                 : ""
