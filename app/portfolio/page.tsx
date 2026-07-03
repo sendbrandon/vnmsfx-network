@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { AutoScrollRail } from "./AutoScrollRail";
 import { AutoplayVideo } from "./AutoplayVideo";
 
 const LOGO = "/brand/vnmsfx-logo-black.png";
@@ -267,11 +268,14 @@ function FilmGrid() {
         </p>
       </header>
 
-      <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] md:-mx-14 md:px-14 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+      <AutoScrollRail
+        ariaLabel="TOO MUCH autoplay film carousel"
+        className="-mx-5 flex gap-4 overflow-x-auto px-5 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] md:-mx-14 md:px-14 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
+      >
         {TOO_MUCH_FILMS.map((film, index) => (
           <article
             key={film.title}
-            className={`w-[62vw] min-w-[220px] max-w-[260px] shrink-0 snap-start border border-cream/35 bg-black sm:w-[34vw] sm:max-w-[300px] lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink ${
+            className={`w-[62vw] min-w-[220px] max-w-[260px] shrink-0 border border-cream/35 bg-black sm:w-[34vw] sm:max-w-[300px] lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink ${
               index === TOO_MUCH_FILMS.length - 1
                 ? "sm:col-span-2 lg:col-span-1"
                 : ""
@@ -298,7 +302,7 @@ function FilmGrid() {
             </div>
           </article>
         ))}
-      </div>
+      </AutoScrollRail>
     </section>
   );
 }
