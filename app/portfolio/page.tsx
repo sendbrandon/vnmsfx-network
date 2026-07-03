@@ -150,14 +150,14 @@ function PortfolioNav() {
 
 function Hero() {
   return (
-    <section className="relative h-[calc(78svh-56px)] min-h-[430px] border-b-2 border-lime bg-black text-cream md:h-[calc(88svh-56px)] md:min-h-[620px]">
+    <section className="relative h-[calc(100svh-56px)] min-h-[560px] overflow-hidden bg-black text-cream md:min-h-[620px]">
       <Image
         src={HERO}
         alt="TOO MUCH energy drink campaign hero."
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center opacity-80 md:object-center"
+        className="portfolio-hero-pan object-cover opacity-80 md:object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
       <div className="relative z-10 flex h-full flex-col justify-between px-5 py-7 md:px-14 md:py-12">

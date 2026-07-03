@@ -14,3 +14,23 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.portfolio-hero-pan {
+  object-position: 44% center;
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .portfolio-hero-pan {
+    animation: portfolio-hero-pan 18s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes portfolio-hero-pan {
+  from {
+    object-position: 34% center;
+  }
+
+  to {
+    object-position: 62% center;
+  }
+}
