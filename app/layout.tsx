@@ -134,6 +134,14 @@ const JSON_LD = {
   "subjectOf": [
     {
       "@type": "TVSeries",
+      name: "The Chrome Run",
+      url: `${SITE_URL}/chrome-run`,
+      genre: ["Comedy", "Short-form", "AI", "Sci-Fi"],
+      description:
+        "A retro-future chase comedy about chrome motorcycles, control-room panic, shark-deck ceremony, and one chicken who refuses to break character.",
+    },
+    {
+      "@type": "TVSeries",
       name: "GPTea",
       url: `${SITE_URL}/gptea`,
       genre: ["Comedy", "Short-form", "AI", "Workplace"],

@@ -7,6 +7,7 @@ type Campaign =
   | "checkpoint_chisme"
   | "rex_and_crow"
   | "gptea"
+  | "chrome_run"
   | "homepage";
 
 function utm(href: string, campaign: Campaign) {
