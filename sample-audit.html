@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sample leak audit — VNMSFX</title>
-<meta name="description" content="A sample VNMSFX leak audit: three illustrative findings — disputable deductions, true SKU margin, quiet accounts — each with the receipt and the drafted fix.">
+<meta name="description" content="A sample VNMSFX leak audit: seven findings totaling $67,500/yr on an invented brand — deductions, SKU margin, quiet accounts, legacy promos, freight, write-offs — each with the receipt and the fix drafted.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/sample-audit">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -51,17 +51,33 @@ footer a{color:var(--soft);text-decoration:none}
 @media (max-width:600px){.navlogo{display:none}}
 
 .banner{background:var(--yellow);border-radius:var(--r);padding:14px 20px;font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.06em;margin-top:22px}
+.statgrid{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.stat{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,13.5px);letter-spacing:.05em;background:var(--card);border-radius:10px;padding:8px 14px}
+.tblwrap{overflow-x:auto;margin-top:18px;border-radius:var(--r);background:var(--band)}
+table.ledger{border-collapse:collapse;width:100%;min-width:640px}
+.ledger th{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:var(--soft);padding:14px 16px;border-bottom:1px solid var(--faint)}
+.ledger td{padding:12px 16px;font-size:clamp(14px,1.25vw,16px);border-bottom:1px solid var(--faint);vertical-align:top}
+.ledger tr:last-child td{border-bottom:none;font-weight:700;background:var(--card)}
+.ledger .fid{font-family:'Space Mono',monospace;font-weight:700;white-space:nowrap}
+.ledger .amt2{font-weight:700;white-space:nowrap}
+.st{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;white-space:nowrap;padding:3px 9px;border-radius:8px;background:var(--card)}
+.st.g{background:var(--volt)}.st.y{background:var(--yellow)}.st.r{background:var(--red);color:#F4F2EC}
 .find{background:var(--band);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);margin-top:20px}
 .find .fh{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
-.find .amt{font-size:clamp(24px,2.8vw,34px);font-weight:700;letter-spacing:-.03em}
+.find .amt{font-size:clamp(22px,2.6vw,31px);font-weight:700;letter-spacing:-.03em}
 .find .amt em{font-style:normal;color:var(--red)}
+.read{font-family:'Space Mono',monospace;font-size:clamp(12px,1.05vw,13.5px);letter-spacing:.05em;color:var(--soft);margin-bottom:10px}
 .act{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);margin-top:12px}
+.openq{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.05em;margin-top:8px;color:var(--ink)}
+.openq b{background:var(--yellow);padding:1px 7px;border-radius:6px;font-weight:700}
+ol.queue{padding-left:24px;display:grid;gap:12px;margin-top:14px}
+ol.queue li{max-width:70ch}
+ol.queue .who{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.06em;color:var(--soft);display:block;margin-top:3px}
 .recv li strong{font-weight:600}
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(32px,4.6vw,60px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:34px}
-.ctaP h2{font-size:clamp(22px,2.8vw,34px);max-width:24ch;margin:0 auto 22px}
+.ctaP h2{font-size:clamp(22px,2.8vw,34px);max-width:24ch;margin:0 auto 22px;color:#F4F2EC}
 .cta{display:inline-block;background:var(--volt);color:var(--ink);font-size:14.5px;font-weight:600;padding:15px 28px;border-radius:999px;text-decoration:none}
 .cta:hover{background:#fff}
-
 </style>
 </head>
 <body>
@@ -77,44 +93,130 @@ footer a{color:var(--soft);text-decoration:none}
 <div class="head">
   <p class="lab"><span class="chip r">SAMPLE</span>Leak audit</p>
   <h1>What an audit actually hands you.</h1>
-  <p class="sub">The format of the real deliverable, shown on an invented brand. Three findings, each with a dollar figure, the receipt behind it, and the fix already drafted.</p>
+  <p class="sub">The real deliverable, shown on an invented brand: six SKUs, about $4M in revenue, DTC plus two regional distributors. Seven findings, a dollar figure and a receipt behind each one, and every fix already drafted.</p>
   <p class="banner">SAMPLE — every figure on this page is illustrative. Real audits carry your numbers, tied to your source documents.</p>
+  <div class="statgrid">
+    <span class="stat">14 DISTRIBUTOR STATEMENTS READ</span>
+    <span class="stat">4,120 ORDER LINES</span>
+    <span class="stat">36 FREIGHT INVOICES</span>
+    <span class="stat">12 MONTHS OF QUICKBOOKS</span>
+    <span class="stat">9 PROMO CODES CHECKED</span>
+    <span class="stat">READ-ONLY ACCESS THROUGHOUT</span>
+  </div>
 </div>
 
 <section>
+  <h2>The leak ledger</h2>
+  <p>Every finding, its size, and where it stands. The full version links every row to its source line.</p>
+  <div class="tblwrap"><table class="ledger">
+    <tr><th>#</th><th>Finding</th><th>Where it lives</th><th>Annualized</th><th>Status</th></tr>
+    <tr><td class="fid">F-01</td><td>Distributor deductions that meet dispute criteria</td><td>Settlement statements</td><td class="amt2">$8,400</td><td><span class="st g">READY TO FILE</span></td></tr>
+    <tr><td class="fid">F-02</td><td>Hero SKU losing $0.42/unit in wholesale</td><td>Landed cost + freight + trade</td><td class="amt2">$19,700</td><td><span class="st r">DECISION NEEDED</span></td></tr>
+    <tr><td class="fid">F-03</td><td>Two quiet accounts stretching reorder cycles</td><td>Order log</td><td class="amt2">$21,000</td><td><span class="st g">OUTREACH DRAFTED</span></td></tr>
+    <tr><td class="fid">F-04</td><td>Legacy promo codes still live from 2024</td><td>Shopify discounts</td><td class="amt2">$6,300</td><td><span class="st g">FIX IS ONE CLICK</span></td></tr>
+    <tr><td class="fid">F-05</td><td>Parcel shipments that should ride LTL</td><td>Freight invoices</td><td class="amt2">$4,900</td><td><span class="st y">VERIFY WITH CARRIER</span></td></tr>
+    <tr><td class="fid">F-06</td><td>Short-dated write-offs, predictable 60 days out</td><td>Inventory + velocity</td><td class="amt2">$7,200</td><td><span class="st g">WATCHLIST LIVE</span></td></tr>
+    <tr><td class="fid">F-07</td><td>Duplicate payment + unclaimed vendor credits</td><td>QuickBooks AP</td><td class="amt2">$3,150 one-time</td><td><span class="st g">RECOVERY DRAFTED</span></td></tr>
+    <tr><td></td><td>TOTAL FOUND, ONE WEEK</td><td></td><td class="amt2">$67,500/yr + $3,150</td><td></td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2>The findings, with receipts</h2>
+
   <div class="find">
     <div class="fh"><span class="chip r">F-01</span><span class="amt">Deductions worth disputing — <em>$8,400</em>/yr</span></div>
-    <p>Twelve months of distributor settlements, read line by line. 14 deduction lines met the distributor's own dispute criteria — short-ship claims on POs the warehouse scans show delivered in full.</p>
+    <p class="read">READ: 14 settlement statements, line by line, both distributors, trailing 12 months</p>
+    <p>14 deduction lines met the distributors' own published dispute criteria — mostly short-ship claims on purchase orders the warehouse scans show picked and delivered in full. All 14 sit inside their 180-day dispute windows.</p>
     <div class="mono">RECEIPT&nbsp;&nbsp;settlement 2026-03-14 · line 27 · "shortage — 12 cs" · PO-4471
 CROSS&nbsp;&nbsp;&nbsp;&nbsp;BOL 88213 signed clean · WMS pick log 288/288 units
-STATUS&nbsp;&nbsp;&nbsp;within 180-day dispute window · claim letter drafted</div>
-    <p class="act">DELIVERED: the 14-line dispute list, claim letters drafted, filing order by deadline.</p>
+WINDOW&nbsp;&nbsp;&nbsp;filed within 180 days · distributor's own criteria met</div>
+    <p class="act">DELIVERED: the 14-line dispute tracker, claim letters drafted per distributor format, filing order by deadline.</p>
   </div>
 
   <div class="find">
-    <div class="fh"><span class="chip g">F-02</span><span class="amt">Hero SKU losing <em>$0.42</em> a unit wholesale</span></div>
-    <p>True contribution margin by SKU and channel — landed cost, freight allocated per case, promo accruals and deduction history included, not just COGS. The best-selling SKU is profitable DTC and underwater at wholesale after freight and trade spend.</p>
+    <div class="fh"><span class="chip g">F-02</span><span class="amt">Hero SKU losing <em>$0.42</em> a unit wholesale — $19,700/yr</span></div>
+    <p class="read">READ: landed cost build-up per SKU, freight allocated per case, promo accruals, deduction history — not just COGS</p>
+    <p>True contribution margin by SKU and channel. The best seller is comfortably profitable DTC and underwater at wholesale once freight and trade spend land on it — at 46,900 wholesale units a year, that's the biggest single number in the audit, moving in silence.</p>
     <div class="mono">SKU-01 · WHOLESALE&nbsp;&nbsp;price 2.10 − landed 1.64 − freight .31 − trade .57 = −0.42
-SKU-01 · DTC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price 3.99 − landed 1.64 − ship 1.02 − fees .48 = +0.85</div>
-    <p class="act">DELIVERED: margin sheet for every SKU × channel, each input tied to its source line — plus the two price/pack moves that flip it positive.</p>
+SKU-01 · DTC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price 3.99 − landed 1.64 − ship 1.02 − fees .48 = +0.85
+VOLUME&nbsp;&nbsp;46,900 units/yr wholesale &rarr; −$19,698 annualized</div>
+    <p class="act">DELIVERED: the margin sheet for all six SKUs × three channels, every input tied to its source line — plus the two price/pack moves that flip it positive, modeled.</p>
+    <p class="openq"><b>YOUR CALL</b> price move vs. pack-size move vs. exit the account tier — the decision log holds the trade-offs, one page.</p>
   </div>
 
   <div class="find">
-    <div class="fh"><span class="chip y">F-03</span><span class="amt">A quiet account worth <em>$21,000</em>/yr</span></div>
-    <p>Reorder-interval scan across every active account. One of the top-ten accounts stretched from a 31-day to a 58-day cycle over five months — invisible in monthly revenue, obvious in the order log. Nobody was told, because nothing was listening.</p>
+    <div class="fh"><span class="chip y">F-03</span><span class="amt">Two quiet accounts — <em>$21,000</em>/yr at risk</span></div>
+    <p class="read">READ: reorder intervals for every active wholesale account, 24 months</p>
+    <p>Account #3 stretched from a 31-day to a 58-day cycle over five months; account #11 went from monthly to "when we remember." Invisible in monthly revenue — the totals were propped up by two new accounts — obvious in the order log. Nothing was listening.</p>
     <div class="mono">ACCT-03&nbsp;&nbsp;orders: Jan 4 · Feb 4 · Mar 8 · Apr 22 · Jun 19
-INTERVAL&nbsp;31d → 33d → 45d → 58d&nbsp;&nbsp;·&nbsp;&nbsp;run-rate −$21k annualized</div>
-    <p class="act">DELIVERED: the quiet-account list ranked by run-rate at risk, with the outreach drafted for each.</p>
+INTERVAL&nbsp;31d &rarr; 33d &rarr; 45d &rarr; 58d&nbsp;&nbsp;·&nbsp;&nbsp;run-rate −$21k annualized combined</div>
+    <p class="act">DELIVERED: the quiet-account watchlist ranked by run-rate at risk, outreach drafted per account, and the alert that fires at +20% interval stretch from now on.</p>
+  </div>
+
+  <div class="find">
+    <div class="fh"><span class="chip r">F-04</span><span class="amt">2024 promo codes, still live — <em>$6,300</em>/yr</span></div>
+    <p class="read">READ: all 9 active Shopify discount codes against their campaign end dates</p>
+    <p>Two codes from a fall 2024 campaign never got turned off. One stacks with free shipping. They've been circulating on coupon sites, clipping full-price orders that would have converted anyway.</p>
+    <div class="mono">FALL24&nbsp;&nbsp;&nbsp;created 2024-09-12 · campaign ended 2024-11-30 · still active
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;412 uses since · 71% arrived via coupon aggregators</div>
+    <p class="act">DELIVERED: the kill list, the two codes worth keeping, and the expiry-date rule so this never recurs.</p>
+  </div>
+
+  <div class="find">
+    <div class="fh"><span class="chip g">F-05</span><span class="amt">Parcel where LTL was cheaper — <em>$4,900</em>/yr</span></div>
+    <p class="read">READ: 36 freight invoices against the carrier's own break-point table</p>
+    <p>88 outbound shipments crossed the weight where less-than-truckload beats parcel, and shipped parcel anyway — an average $56 overpay each. The picking software has the threshold; nobody had set it.</p>
+    <div class="mono">2026-04-08&nbsp;&nbsp;6 cs / 214 lb &rarr; parcel $187 · LTL quote $121 · Δ $66
+PATTERN&nbsp;&nbsp;&nbsp;&nbsp;88 of 312 shipments over 150 lb went parcel · avg Δ $56</div>
+    <p class="act">DELIVERED: the threshold rule, written for your 3PL. <span class="st y">VERIFY WITH CARRIER</span> — the LTL quotes are rate-card based; confirmed pricing may move the figure either way. The ledger keeps the flag until it's confirmed.</p>
+  </div>
+
+  <div class="find">
+    <div class="fh"><span class="chip y">F-06</span><span class="amt">Write-offs you can see coming — <em>$7,200</em>/yr</span></div>
+    <p class="read">READ: lot dates against sell-through velocity, per SKU per channel</p>
+    <p>Three SKU-channel pairs run slower than their shelf life. The write-offs land as "surprises" every quarter, but the collision is visible 60 days out every time — long enough to move product to the fast channel or run a targeted clearance instead of a dumpster.</p>
+    <div class="mono">SKU-04 × RETAIL-EAST&nbsp;&nbsp;velocity 310 u/mo · on hand 1,840 · BBD in 74 days
+MATH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sell-through by BBD ≈ 765 &rarr; ~1,075 units at risk</div>
+    <p class="act">DELIVERED: the watchlist that flags any lot 60 days before it strands, with the two standing plays (channel shift / targeted clearance) pre-written.</p>
+  </div>
+
+  <div class="find">
+    <div class="fh"><span class="chip r">F-07</span><span class="amt">Money already yours — <em>$3,150</em> one-time</span></div>
+    <p class="read">READ: 12 months of AP against vendor statements</p>
+    <p>One invoice paid twice in March. Two vendor credit memos issued and never applied. Small, unglamorous, and sitting there.</p>
+    <div class="mono">INV-2231&nbsp;&nbsp;paid 2026-03-06 and again 2026-03-19 · $1,890
+CREDITS&nbsp;&nbsp;&nbsp;memo CM-118 $780 · memo CM-131 $480 · both unapplied</div>
+    <p class="act">DELIVERED: recovery emails drafted, credits queued against the next invoices.</p>
+    <p class="openq"><b>FLAGGED</b> one credit memo says $480; the vendor's email says $415 "including handling." The ledger keeps the documented value and flags the gap — it never guesses.</p>
   </div>
 </section>
 
 <section>
-  <h2>What you receive, exactly</h2>
+  <h2>The fix queue</h2>
+  <p>Every finding leaves the audit as a queued action, not a paragraph. Ranked by dollars-per-effort:</p>
+  <ol class="queue">
+    <li>Kill the two legacy promo codes; set expiry rule on the rest. <span class="who">OWNER: you (one click) · EFFORT: 10 min · F-04</span></li>
+    <li>File the 14 deduction disputes, deadline order. <span class="who">OWNER: drafted, you approve · EFFORT: 1 hr review · F-01</span></li>
+    <li>Send the two quiet-account check-ins. <span class="who">OWNER: drafted, you approve · EFFORT: 15 min · F-03</span></li>
+    <li>Recover the duplicate payment; apply both credits. <span class="who">OWNER: drafted, you approve · EFFORT: 20 min · F-07</span></li>
+    <li>Set the LTL threshold with the 3PL after carrier confirms rates. <span class="who">OWNER: you + 3PL · EFFORT: one email + one setting · F-05</span></li>
+    <li>Decide the SKU-01 wholesale move from the one-page trade-off log. <span class="who">OWNER: your call · EFFORT: one decision · F-02</span></li>
+    <li>Adopt the short-date watchlist into the weekly rhythm. <span class="who">OWNER: standing · EFFORT: 5 min/wk · F-06</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>What lands in your accounts</h2>
+  <p>The audit isn't a PDF that dies in a drive. It's delivered as a working system inside accounts you own — the same discipline every build gets: official values, statuses, receipts, follow-up queues.</p>
   <ul class="recv">
-    <li><strong>The findings report</strong> — every leak named, sized, and tied to its source line, so your team can verify each number.</li>
-    <li><strong>The fix plan</strong> — ranked by dollars, with what each fix costs and how long it takes.</li>
-    <li><strong>Drafts, not advice</strong> — dispute letters, outreach, price moves: written, ready for your approval.</li>
-    <li><strong>A 60-minute walkthrough</strong> — and the audit credits into the build if you continue. Yours either way.</li>
+    <li><strong>The leak ledger</strong> — every finding with its official value, status, and source link. One number per finding; discrepancies get flagged, never averaged away.</li>
+    <li><strong>The dispute tracker</strong> — one row per claim: amount, evidence, deadline, status from DRAFTED to PAID.</li>
+    <li><strong>The margin workbook</strong> — six SKUs × three channels, every input traced to its source line, the two price/pack scenarios modeled.</li>
+    <li><strong>The quiet-account watchlist</strong> — ranked by run-rate at risk, with the interval alert wired in.</li>
+    <li><strong>The drafts folder</strong> — claim letters, recovery emails, account outreach: written, waiting on your approval. Nothing sends itself.</li>
+    <li><strong>The decision log</strong> — the calls only you can make, one page each, trade-offs stated.</li>
+    <li><strong>The walkthrough</strong> — 60 minutes, finding by finding. Then it's yours either way — and the $2,500 credits into the build if you continue.</li>
   </ul>
 </section>
 
