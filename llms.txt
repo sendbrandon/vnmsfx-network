@@ -1,6 +1,6 @@
 # VNMSFX
 
-> AI systems consultancy for food & beverage brands, New York. VNMSFX finds the money F&B brands lose — true margin by SKU after slotting and promos, unclaimed distributor deductions, accounts going quiet — with one AI system wired to the tools the brand already uses (Shopify, QuickBooks, HubSpot, Notion, Claude, ChatGPT, Gemini, Gmail). Built once, owned by the client. Founder: Brandon Adams.
+> AI systems consultancy for food & beverage (CPG) brands, New York. Every food & beverage brand leaks money; VNMSFX finds it — covering true margin by SKU after slotting and promos, unclaimed distributor deductions, accounts going quiet — with one AI system wired to the tools the brand already uses (Shopify, QuickBooks, HubSpot, Notion, Claude, ChatGPT, Gemini, Gmail). Built once, owned by the client. Founder: Brandon Adams.
 
 ## Engagements
 - Free teardown (30 min): you show me where things live; I name two leaks I'd go after first. Book: https://cal.com/vnmsfx/30min
