@@ -25,9 +25,10 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F0EFEA;--ink:#111110;--soft:#6B6A64;--faint:#D9D6CE;--card:#E4E2DB;--dark:#141412;--red:#8E1F12;--yellow:#F7DC64;--volt:#DDFF3A;--band:#E9E7E1;--r:14px;}
+:root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--faint:#D9D6CE;--card:#E4E2DB;--dark:#141412;--red:#8E1F12;--yellow:#F7DC64;--volt:#DDFF3A;--band:#E9E7E1;--r:14px;}
 *{margin:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{overflow-x:hidden;font-family:'Archivo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -61,6 +62,10 @@ section{padding:clamp(56px,7vw,110px) 0}
 .cta:hover{background:#fff}
 footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.08em;color:var(--soft)}
 a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--volt);color:var(--ink);padding:10px 16px;border-radius:0 0 8px 0;text-decoration:none;font-weight:600}
+.skip:focus{left:0}
+.legal{text-align:center;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;padding-bottom:44px}
+.legal a{color:var(--soft);text-decoration:none;margin:0 10px}
 </style>
 </head>
 <body>
@@ -69,8 +74,10 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4p
   <!-- prototype link — becomes "/" on deploy -->
   <a class="pill" href="/">&larr; VNMSFX</a>
   <img class="navlogo" src="assets/logo.svg" alt="VNMSFX">
-  <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Contact</a>
+  <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Free teardown</a>
 </nav>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
 
 <div class="w head">
   <p class="lab"><span class="chip r">2026</span>Studio</p>
@@ -121,8 +128,10 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4p
     <p style="margin-top:30px"><a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a></p>
   </div>
   <footer><span>VNMSFX LLC — NEW YORK</span><a href="mailto:brandon@vnmsfx.com">BRANDON@VNMSFX.COM</a><span>STUDIO — 2026</span></footer>
+  <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/security">Security</a></p>
 </div>
 
+</main>
 <script>
 // autoplay muted while in view; click = sound on/off. Reduced motion: click to play with controls.
 const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;

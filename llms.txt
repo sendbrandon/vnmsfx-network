@@ -4,16 +4,20 @@
 
 ## Engagements
 - Free teardown (30 min): you show me where things live; I name two leaks I'd go after first. Book: https://cal.com/vnmsfx/30min
-- The leak audit ($2,500): a week inside your numbers; credited toward the build.
-- The build ($5,000/mo, 3 months): one piece at a time, biggest leak first; first fix live in week two; training month included.
+- The leak audit ($2,500): a week inside your numbers, findings tied to source documents; refundable before work begins; credits toward the build. Sample deliverable: https://vnmsfx.com/sample-audit
+- The build ($15,000 total, paid monthly over 3 months; the audit credits in): one piece at a time, biggest leak first; first piece live in the build's first two weeks; month three is the training month.
 - The partnership ($1,500/mo, optional, after the build): monthly review, priority fixes, upgrades.
 
 ## Terms
-Client owns everything — accounts, logins, data, the system itself. No operations taken over, no custom software, no lock-in. Three clients at a time.
+Client owns everything — accounts, logins, data, the system itself. No platform to migrate to, no lock-in, no operations taken over. Three clients at a time. Data handling: least-privilege access under client logins, business-tier AI processing under commercial terms, human approval before anything acts (https://vnmsfx.com/security). Plain-language terms: https://vnmsfx.com/terms
 
 ## Pages
 - https://vnmsfx.com/ — the offer, method, case study, pricing, FAQ
 - https://vnmsfx.com/studio — commissioned AI-generated campaign work (Sweet Vegan, ByteDance's Dreamina, CapCut); no photoshoots
+- https://vnmsfx.com/sample-audit — sample leak-audit deliverable (illustrative figures)
+- https://vnmsfx.com/security — data-handling policy
+- https://vnmsfx.com/terms — plain-language terms
+- https://vnmsfx.com/privacy — site privacy
 
 ## Contact
 brandon@vnmsfx.com · https://cal.com/vnmsfx/30min · https://www.linkedin.com/in/brandonalexanderadams/

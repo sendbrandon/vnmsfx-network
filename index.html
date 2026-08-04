@@ -6,7 +6,7 @@
 <title>AI Systems for Food & Beverage Brands | VNMSFX New York</title>
 <meta name="description" content="VNMSFX finds the money food & beverage (CPG) brands lose: true margin by SKU, distributor deductions, quiet churn. One AI system, wired to your tools. Built once, yours to keep.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"VNMSFX","legalName":"VNMSFX LLC","url":"https://vnmsfx.com","email":"brandon@vnmsfx.com","image":"https://vnmsfx.com/og.jpg","logo":"https://vnmsfx.com/assets/logo.svg","slogan":"Finds the money food & beverage brands lose.","founder":{"@type":"Person","name":"Brandon Adams","sameAs":"https://www.linkedin.com/in/brandonalexanderadams/"},"areaServed":"New York, NY","priceRange":"$2,500 - $17,500","sameAs":["https://www.linkedin.com/in/brandonalexanderadams/","https://cal.com/vnmsfx/30min"],"description":"AI systems consultant for food and beverage (CPG) brands. Finds the money brands lose — true margin by SKU, distributor deductions, quiet churn — with one system wired to Shopify, QuickBooks, HubSpot, Notion and email. Built once, owned by the client.","knowsAbout":["CPG","consumer packaged goods","AI systems integration","food and beverage operations","margin by SKU","distributor deductions","trade spend","customer churn","Claude","ChatGPT","Shopify","QuickBooks"],"makesOffer":{"@type":"OfferCatalog","name":"Engagements","itemListElement":[{"@type":"Offer","name":"Free teardown","price":"0","priceCurrency":"USD","description":"30 minutes. You show me where things live; I name two leaks I'd go after first."},{"@type":"Offer","name":"The leak audit","price":"2500","priceCurrency":"USD","description":"A week inside your numbers. Credited toward the build."},{"@type":"Offer","name":"The build","description":"$5,000/mo for 3 months. Each piece answers a question you can't answer today."},{"@type":"Offer","name":"The partnership","description":"$1,500/mo after the build, optional."}]}}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"VNMSFX","legalName":"VNMSFX LLC","url":"https://vnmsfx.com","email":"brandon@vnmsfx.com","image":"https://vnmsfx.com/og.jpg","logo":"https://vnmsfx.com/assets/logo.svg","slogan":"Finds the money food & beverage brands lose.","founder":{"@type":"Person","name":"Brandon Adams","sameAs":"https://www.linkedin.com/in/brandonalexanderadams/"},"areaServed":"New York, NY","priceRange":"$2,500 - $15,000","sameAs":["https://www.linkedin.com/in/brandonalexanderadams/","https://cal.com/vnmsfx/30min"],"description":"AI systems consultant for food and beverage (CPG) brands. Finds the money brands lose — true margin by SKU, distributor deductions, quiet churn — with one system wired to Shopify, QuickBooks, HubSpot, Notion and email. Built once, owned by the client.","knowsAbout":["CPG","consumer packaged goods","AI systems integration","food and beverage operations","margin by SKU","distributor deductions","trade spend","customer churn","Claude","ChatGPT","Shopify","QuickBooks"],"makesOffer":{"@type":"OfferCatalog","name":"Engagements","itemListElement":[{"@type":"Offer","name":"Free teardown","price":"0","priceCurrency":"USD","description":"30 minutes. You show me where things live; I name two leaks I'd go after first."},{"@type":"Offer","name":"The leak audit","price":"2500","priceCurrency":"USD","description":"A week inside your numbers, findings tied to source documents. Refundable before work begins; credits toward the build."},{"@type":"Offer","name":"The build","price":"15000","priceCurrency":"USD","description":"$15,000 total, paid monthly over three months; the audit credits in. Month three is the training month."},{"@type":"Offer","name":"The partnership","description":"$1,500/mo after the build, optional."}]}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -39,9 +39,11 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="3D/poster-cantoss.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F0EFEA;--ink:#111110;--soft:#6B6A64;--faint:#D9D6CE;--card:#E4E2DB;--band:#E9E7E1;--dark:#141412;--red:#8E1F12;--volt:#DDFF3A;--yellow:#F7DC64;--r:14px;}
+:root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--faint:#D9D6CE;--card:#E4E2DB;--band:#E9E7E1;--dark:#141412;--red:#8E1F12;--volt:#DDFF3A;--yellow:#F7DC64;--r:14px;}
 *{margin:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{overflow-x:hidden}
@@ -197,19 +199,29 @@ details p{font-size:clamp(18px,1.5vw,22px);color:var(--soft);margin-top:12px;max
 .close{background:var(--dark);border-radius:var(--r);padding:clamp(40px,6vw,110px) clamp(24px,3vw,52px);color:#F4F2EC;text-align:center}
 .close h2{font-size:clamp(26px,4vw,54px);font-weight:600;letter-spacing:-.035em;line-height:1.06;max-width:18ch;margin:0 auto}
 a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--volt);color:var(--ink);padding:10px 16px;border-radius:0 0 8px 0;text-decoration:none;font-weight:600}
+.skip:focus{left:0}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.samplelink{margin-top:14px}
+.samplelink a{font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.06em;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.legal{text-align:center;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;padding-bottom:44px}
+.legal a{color:var(--soft);text-decoration:none;margin:0 10px}
+@media (max-width:640px){.hero{padding-top:14px}.mast .orb-s{margin-bottom:10px}.mast .tag{margin-top:10px}.canwrap{margin-top:8px}.stand{margin:22px auto 42px}}
 footer a,.sig a{color:inherit;text-decoration:none}
 footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.08em;color:var(--soft)}
 @media (max-width:820px){.duo,.item,.case{grid-template-columns:1fr}.lab{padding-top:0}.say{max-width:100%}}
-@media (max-width:560px){.pill.hide-m{display:none}.pills{gap:6px}}
+@media (max-width:560px){.pills{gap:5px}.pill{padding:10px 13px;font-size:12px}}
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="pills"><a class="pill hide-m" href="#work">Work</a><a class="pill hide-m" href="#how">Method</a><a class="pill" href="#pricing">Pricing</a></span>
+  <span class="pills"><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="#pricing">Pricing</a></span>
   <!-- CTA target: swap mailto for Calendly URL when live -->
-  <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Contact</a>
+  <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Free teardown</a>
 </nav>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
 
 <div class="w">
   <div class="hero">
@@ -258,9 +270,9 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
     </div>
   </div>
   <div class="qs">
-    <div class="q"><h3>How long since your third-biggest account last ordered?</h3><p>Nobody flagged it. There's no report that would.</p></div>
-    <div class="q"><h3>Which SKU loses money after slotting and promos?</h3><p>You've never been able to check. Neither has your accountant.</p></div>
-    <div class="q"><h3>How much of last year's distributor deductions did you dispute?</h3><p>Some were wrong. Nobody checked.</p></div>
+    <div class="q"><h3>How long since your third-biggest account last ordered?</h3><p>Nobody flagged it. No single report would.</p></div>
+    <div class="q"><h3>Which SKU loses money after slotting and promos?</h3><p>Not without a week of manual reconciliation nobody has.</p></div>
+    <div class="q"><h3>How much of last year's distributor deductions did you dispute?</h3><p>Some were wrong. Checking meant reading every settlement line — so nobody did.</p></div>
     <div class="q"><h3>What did your best customer buy the month before they stopped?</h3><p>They told you — it's in the data. Nothing was listening.</p></div>
   </div>
   <div class="band"><div class="g"></div><!-- VIDEO 03 slot: invoices, macro -->
@@ -273,16 +285,16 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
     <p class="lab"><span class="chip g">02</span>How it works</p>
     <div>
       <h2 class="say wide">One system that answers the questions your reports can't.</h2>
-      <p class="sub">Shopify, QuickBooks, Notion and your inbox, connected into one place you can ask — in plain English, like a text message. It answers with receipts and tells you what to do about it.</p>
+      <p class="sub">Shopify, QuickBooks, Notion and your inbox, connected into one place you can ask — in plain English, like a text message. It answers with receipts — the invoice line, the settlement row, the order — and shows you what to do next. You approve; nothing acts on your books without you.</p>
     </div>
   </div>
   <div class="list">
     <div class="item"><h3>Week one — the audit</h3><p>Read-only access to the tools you already use, then a week inside your numbers. Nothing installed, nothing migrated.</p></div>
     <div class="item"><h3>Week two — the first fix</h3><p>Your biggest leak gets a name, a dollar figure and a working fix. You see it run on your real numbers.</p></div>
-    <div class="item"><h3>Months one to three — the build</h3><p>One piece at a time, biggest leak first. Each piece answers a question you couldn't answer before: true margin by SKU, deductions worth disputing, accounts going quiet.</p></div>
+    <div class="item"><h3>Months one to three — the build</h3><p>One piece at a time, biggest leak first. Each piece answers a question you couldn't answer before: true margin by SKU, deductions worth disputing, accounts going quiet. It reads the ugly inputs too — distributor statements, settlement PDFs, freight bills — the numbers that live in attachments.</p></div>
     <div class="item"><h3>Then — the handover</h3><p>Your team runs it. Training month included. Everything stays in your accounts when I leave — that's the point of it.</p></div>
   </div>
-  <div class="toolroll" aria-label="Tools the system connects"><div class="track"><span>Shopify</span><span>QuickBooks</span><span>HubSpot</span><span>Notion</span><span>Claude</span><span>ChatGPT</span><span>Gemini</span><span>Gmail</span><span>Shopify</span><span>QuickBooks</span><span>HubSpot</span><span>Notion</span><span>Claude</span><span>ChatGPT</span><span>Gemini</span><span>Gmail</span></div></div>
+  <div class="toolroll" role="region" aria-label="Tools the system connects"><div class="track"><span>Shopify</span><span>QuickBooks</span><span>HubSpot</span><span>Notion</span><span>Claude</span><span>ChatGPT</span><span>Gemini</span><span>Gmail</span><span>Shopify</span><span>QuickBooks</span><span>HubSpot</span><span>Notion</span><span>Claude</span><span>ChatGPT</span><span>Gemini</span><span>Gmail</span></div></div>
 </div></section>
 
 <section class="tint" id="work"><div class="w">
@@ -355,7 +367,7 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
     <p class="lab"><span class="chip r">07</span>Terms of engagement</p>
     <div>
       <h2 class="say">You own everything. I'm replaceable. That's the design.</h2>
-      <p class="sub">Your accounts, your logins, your data. No operations, no on-call, no custom software.</p>
+      <p class="sub">Your accounts, your logins, your data. No platform to migrate to, no proprietary lock-in, no operations taken over.</p>
     </div>
   </div>
 </div></section>
@@ -367,8 +379,8 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
   </div>
   <div class="tiles price">
     <div class="tile"><div><p class="amt">Free</p><h3>The teardown</h3><p>30 minutes. You show me where things live; I name two leaks I'd go after first.</p></div></div>
-    <div class="tile"><div><p class="amt">$2,500</p><h3>The leak audit</h3><p>A week inside your numbers. Where the money is going and what it takes to stop it. Yours either way — credited toward the build.</p><a class="buy" href="https://buy.stripe.com/cNi4gBbYl1O7el90Uz5Rm00" target="_blank" rel="noopener">Ready now? Buy the audit →</a><p class="buynote">I'll email you within a day to start week one.</p></div></div>
-    <div class="tile star"><div><p class="amt">$5,000/mo · 3 months</p><h3>The build</h3><p>Each piece answers a question you can't answer today. Biggest leak first. Training month included.</p></div></div>
+    <div class="tile"><div><p class="amt">$2,500</p><h3>The leak audit</h3><p>A week inside your numbers. Where the money is going and what it takes to stop it. Yours either way — and it credits into the build, so the full engagement totals $15,000.</p><p class="samplelink"><a href="/sample-audit">See a sample audit &rarr;</a></p><a class="buy" href="https://buy.stripe.com/cNi4gBbYl1O7el90Uz5Rm00" target="_blank" rel="noopener">Ready now? Buy the audit →</a><p class="buynote">I'll email you within a day to start week one.</p></div></div>
+    <div class="tile star"><div><p class="amt">$5,000/mo · 3 months</p><h3>The build</h3><p>Each piece answers a question you can't answer today. Biggest leak first. Month three is the training month.</p></div></div>
     <div class="tile"><div><p class="amt">$1,500/mo</p><h3>The partnership</h3><p>After the build, optional. Models change, tools break — monthly review, priority fixes, upgrades. I keep the machine current; your team runs it.</p></div></div>
   </div>
 </div></section>
@@ -376,15 +388,16 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
 <section class="tint"><div class="w">
   <div class="duo">
     <p class="lab"><span class="chip y">09</span>Questions</p>
+    <h2 class="vh">Frequently asked questions</h2>
     <div style="width:100%">
-      <details><summary>How long does this take?</summary><p>Thirty minutes for the teardown. A week for the audit. Three months for the build, with the first piece live in week two. The partnership after that is optional.</p></details>
+      <details><summary>How long does this take?</summary><p>Thirty minutes for the teardown. A week for the audit. Then the build: three months, with its first piece live in the first two weeks. Month three is training and handover. The partnership after that is optional.</p></details>
       <details><summary>What if you disappear?</summary><p>Everything lives in your accounts, in plain text, readable by any competent human. That's the point of it.</p></details>
       <details><summary>Why not just hire someone?</summary><p>An ops hire fixes this by working the spreadsheets every night. This fixes it so nobody has to. Three months, and the knowledge lives in files you own — not in someone's head.</p></details>
       <details><summary>We don't use any AI tools yet</summary><p>A Claude seat runs about $20–30 a month, and setting it up is part of the build's first week. You'll be using it by day two.</p></details>
       <details><summary>We already use ChatGPT</summary><p>Using ChatGPT is asking a smart stranger questions. This wires it into your orders, your vendors, your history — so the answers are about you.</p></details>
       <details><summary>We already bought a CRM once</summary><p>So did most of my clients. That's the point — this isn't another tool to adopt. It's the tools you kept, finally connected.</p></details>
             <details><summary>What if the audit finds nothing?</summary><p>Then you'll know that for certain, which is worth something too. But the questions in section 01 usually have uncomfortable answers.</p></details>
-      <details><summary>Is our data safe?</summary><p>The system lives in your accounts, under your logins. I see only what you grant, nothing is copied out, and nothing is trained on. When we part ways you revoke my access in one click — everything I built stays behind, working.</p></details>
+      <details><summary>Is our data safe?</summary><p>The system lives in your accounts, under your logins, on least-privilege access — read-only wherever possible. Data is processed through business-tier AI services under commercial terms, never personal chat accounts, and nothing acts on your books without your approval. When we part ways you revoke access in one click and everything I built stays behind, working. The full data-flow is public: <a href="/security">the security page</a>.</p></details>
     </div>
   </div>
 </div></section>
@@ -395,8 +408,10 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
     <p style="margin-top:34px"><a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a></p>
   </div>
   <footer><span>VNMSFX LLC — NEW YORK</span><a href="mailto:brandon@vnmsfx.com">BRANDON@VNMSFX.COM</a><span>THREE CLIENTS AT A TIME</span></footer>
+  <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/security">Security</a></p>
 </div>
 
+</main>
 <script>
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.querySelectorAll('video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});

@@ -2,4 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://vnmsfx.com/</loc><lastmod>2026-08-04</lastmod><priority>1.0</priority></url>
 <url><loc>https://vnmsfx.com/studio</loc><lastmod>2026-08-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://vnmsfx.com/sample-audit</loc><lastmod>2026-08-04</lastmod><priority>0.6</priority></url>
+<url><loc>https://vnmsfx.com/security</loc><lastmod>2026-08-04</lastmod><priority>0.4</priority></url>
+<url><loc>https://vnmsfx.com/privacy</loc><lastmod>2026-08-04</lastmod><priority>0.2</priority></url>
+<url><loc>https://vnmsfx.com/terms</loc><lastmod>2026-08-04</lastmod><priority>0.2</priority></url>
 </urlset>
