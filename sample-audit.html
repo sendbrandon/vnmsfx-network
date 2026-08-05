@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sample leak audit — VNMSFX</title>
-<meta name="description" content="A sample VNMSFX leak audit, shown as the morning board a founder actually reads: seven one-line findings — the promo that never ended, the ad set that sold nothing, the channel quietly slowing — $64,100/yr with receipts.">
+<meta name="description" content="A sample VNMSFX leak audit: the morning board a founder actually reads, with every figure derived from the receipt printed beneath it and a working paper behind each line. Illustrative numbers, invented brand.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/sample-audit">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--faint:#D9D6CE;--card:#E4E2DB;--dark:#141412;--red:#8E1F12;--yellow:#F7DC64;--volt:#DDFF3A;--band:#E9E7E1;--r:14px;}
+:root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--faint:#D9D6CE;--card:#E4E2DB;--dark:#141412;--red:#8E1F12;--yellow:#F7DC64;--volt:#DDFF3A;--band:#E9E7E1;--green:#3E6212;--amber:#6E5210;--r:14px;}
 *{margin:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{overflow-x:hidden;font-family:'Archivo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -29,8 +29,6 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 .head{padding:clamp(34px,5vw,64px) 0 clamp(10px,2vw,20px)}
 .chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(14px,1.4vw,18px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
 .chip.r{background:var(--red);color:#F4F2EC}
-.chip.g{background:var(--volt);color:var(--ink)}
-.chip.y{background:var(--yellow);color:var(--ink)}
 .lab{font-family:'Space Mono',monospace;font-size:clamp(15px,1.7vw,20px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(16px,2vw,26px)}
 h1{font-size:clamp(30px,4.4vw,54px);font-weight:600;letter-spacing:-.034em;line-height:1.06;max-width:22ch}
 .sub{font-size:clamp(17px,1.5vw,20px);color:var(--soft);max-width:58ch;margin-top:18px;line-height:1.6}
@@ -40,7 +38,6 @@ p,li{font-size:clamp(15.5px,1.35vw,17.5px);color:var(--ink);max-width:66ch}
 section p+p{margin-top:12px}
 ul{padding-left:22px;display:grid;gap:9px;margin-top:10px}
 .note{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);margin-top:14px}
-.mono{font-family:'Space Mono',monospace;background:var(--dark);color:#DDE3D0;border-radius:var(--r);padding:18px 20px;font-size:clamp(12px,1.15vw,14px);line-height:1.75;overflow-x:auto;margin:16px 0;max-width:100%}
 .cardk{background:var(--band);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);margin-top:18px}
 a{color:var(--ink)}
 a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
@@ -51,18 +48,52 @@ footer a{color:var(--soft);text-decoration:none}
 @media (max-width:600px){.navlogo{display:none}}
 
 .banner{background:var(--yellow);border-radius:var(--r);padding:14px 20px;font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.06em;margin-top:22px}
-.statgrid{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.stat{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,13.5px);letter-spacing:.05em;background:var(--card);border-radius:10px;padding:8px 14px}
-.board{margin-top:6px;border-top:1px solid var(--faint)}
-.brow{display:grid;grid-template-columns:minmax(120px,150px) 1fr auto;gap:clamp(14px,2.4vw,34px);align-items:start;padding:clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--faint)}
+
+/* ledger head — four numbers, never one */
+.ledger{background:var(--dark);color:#F4F2EC;border-radius:var(--r);padding:clamp(20px,2.8vw,32px);margin-top:22px}
+.ledger .lh{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:#9C9A92;margin-bottom:16px}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(14px,2vw,24px)}
+.lgrid>div{border-top:1px solid #34332F;padding-top:12px}
+.lgrid .n{font-size:clamp(21px,2.4vw,28px);font-weight:700;letter-spacing:-.03em;line-height:1.1;min-height:2.2em}
+.lgrid .n.loss{color:#E8836F}
+.lgrid .n.cash{color:#B9E86F}
+.lgrid .n.risk{color:#E8C46F}
+.lgrid .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#9C9A92;margin-top:7px;line-height:1.6}
+.ledger .why{font-size:clamp(14px,1.2vw,15.5px);color:#C8C6BE;margin-top:20px;padding-top:16px;border-top:1px solid #34332F;max-width:64ch}
+
+/* board */
+.cat{margin-top:clamp(30px,3.6vw,46px);padding-top:clamp(16px,2vw,22px);border-top:2px solid var(--ink)}
+.cath{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.cat h2{font-family:'Space Mono',monospace;font-size:clamp(13px,1.3vw,15px);letter-spacing:.14em;text-transform:uppercase;margin:0}
+.catt{font-family:'Space Mono',monospace;font-size:clamp(13px,1.3vw,15px);letter-spacing:.06em;font-weight:700}
+.catd{font-size:clamp(14px,1.2vw,15.5px);color:var(--soft);margin-top:8px;max-width:64ch}
+.board{margin-top:4px}
+.brow{display:grid;grid-template-columns:minmax(120px,155px) 1fr auto;gap:clamp(14px,2.4vw,34px);align-items:start;padding:clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--faint)}
 .brow .amt{font-size:clamp(23px,2.7vw,33px);font-weight:700;letter-spacing:-.03em;color:var(--red);line-height:1.05}
-.brow .amt.up{color:#3E6212}
+.brow .amt.up,.brow .amt.cash{color:var(--green)}
+.brow .amt.risk{color:var(--amber)}
 .brow .amt small{display:block;font-size:12px;font-weight:400;font-family:'Space Mono',monospace;letter-spacing:.08em;color:var(--soft);margin-top:5px}
 .brow h3{font-size:clamp(17.5px,1.7vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.3;max-width:56ch}
-.brow .rl{font-family:'Space Mono',monospace;font-size:clamp(11.5px,1.05vw,13px);letter-spacing:.05em;color:var(--soft);margin-top:8px}
+.brow .rl{font-family:'Space Mono',monospace;font-size:clamp(11.5px,1.05vw,13px);letter-spacing:.05em;color:var(--soft);margin-top:8px;line-height:1.7}
 .st{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;white-space:nowrap;padding:4px 10px;border-radius:8px;background:var(--card)}
 .st.g{background:var(--volt)}.st.y{background:var(--yellow)}.st.r{background:var(--red);color:#F4F2EC}
 @media (max-width:640px){.brow{grid-template-columns:1fr auto}.brow .amt{grid-column:1/-1}}
+
+/* working paper */
+.wp{grid-column:1/-1;margin-top:14px}
+.wp summary{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--soft);cursor:pointer;padding:6px 0;list-style:none;display:inline-flex;align-items:center;gap:9px}
+.wp summary::-webkit-details-marker{display:none}
+.wp summary::after{content:'+';font-size:15px;line-height:1}
+.wp[open] summary::after{content:'–'}
+.wp summary:hover{color:var(--ink)}
+.wp summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+.wpb{background:var(--band);border-radius:12px;padding:clamp(16px,2vw,22px);margin-top:8px}
+.wpb dl{display:grid;grid-template-columns:minmax(112px,140px) 1fr;gap:10px clamp(14px,2vw,24px);margin:0}
+.wpb dt{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--soft);text-transform:uppercase;padding-top:2px}
+.wpb dd{margin:0;font-size:clamp(14px,1.2vw,15.5px);max-width:58ch;line-height:1.6}
+.wpb dd.f{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,13.5px);background:var(--dark);color:#DDE3D0;padding:10px 13px;border-radius:8px;line-height:1.7}
+@media (max-width:640px){.wpb dl{grid-template-columns:1fr;gap:3px}.wpb dt{margin-top:12px}}
+
 .look{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(18px,3vw,40px);border-top:1px solid var(--faint)}
 .look>div{padding:clamp(16px,2.2vw,24px) 0;border-bottom:1px solid var(--faint)}
 .look .k{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:var(--soft);display:block;margin-bottom:7px}
@@ -89,65 +120,204 @@ footer a{color:var(--soft);text-decoration:none}
 <div class="head">
   <p class="lab"><span class="chip r">SAMPLE</span>Leak audit</p>
   <h1>The board you'd read every morning.</h1>
-  <p class="sub">This is the audit's deliverable, shown on an invented brand: one line per finding, the receipt underneath, the fix already drafted. No report to decipher.</p>
-  <p class="banner">SAMPLE — every figure is illustrative. The real one runs on your numbers.</p>
+  <p class="sub">One line per finding, the receipt underneath, the working paper behind it. Every figure here can be recomputed from the numbers printed beside it — check them.</p>
+  <p class="banner">SAMPLE — invented brand, illustrative figures. The arithmetic is real: each number derives from its own receipt.</p>
+
+  <div class="ledger">
+    <p class="lh">WHAT THE WEEK FOUND — BY KIND OF MONEY</p>
+    <div class="lgrid">
+      <div><p class="n loss">$13,000</p><p class="k">PER YEAR<br>CONFIRMED LOSS</p></div>
+      <div><p class="n loss">$8,790</p><p class="k">OBSERVED, 5 MO<br>AVOIDABLE SPEND</p></div>
+      <div><p class="n cash">$8,412</p><p class="k">ONE-TIME<br>RECOVERABLE CASH</p></div>
+      <div><p class="n risk">$14,200–17,500</p><p class="k">MODELLED<br>AT RISK</p></div>
+    </div>
+    <p class="why">Four numbers, not one. A dollar of confirmed margin loss, a dollar of avoidable ad spend, a dollar you can claw back from a distributor and a dollar that might walk out the door are four different kinds of money. Adding them together makes a bigger headline and a worse decision.</p>
+  </div>
 </div>
 
 <section>
-  <div class="board">
 
-    <div class="brow"><p class="amt">−$6,300<small>/YEAR</small></p>
-      <div><h3>The fall 2024 promo code is still running.</h3>
-      <p class="rl">FALL24 · campaign ended Nov 2024 · 412 uses since — 71% from coupon sites</p></div>
-      <span class="st g">ONE CLICK</span></div>
+  <div class="cat">
+    <div class="cath"><h2>Confirmed loss</h2><span class="catt">$13,000 / YEAR</span></div>
+    <p class="catd">Money that already left, at order level, and leaves again every year until something changes. Computed from your own order and cost records — not modelled.</p>
+    <div class="board">
 
-    <div class="brow"><p class="amt">−$12,600<small>/YEAR</small></p>
-      <div><h3>One ad set spent $9,200 and sold $410.</h3>
-      <p class="rl">Set to optimize for clicks, not purchases, since March · landing page out of stock 21 days in May</p></div>
-      <span class="st g">ONE SETTING</span></div>
-
-    <div class="brow"><p class="amt">−$21,000<small>AT RISK</small></p>
-      <div><h3>Wholesale has been slowing for five months. DTC growth was hiding it.</h3>
-      <p class="rl">Repeat share 61% &rarr; 38% · biggest quiet account: 31-day reorder cycle stretched to 58</p></div>
-      <span class="st g">CALLS DRAFTED</span></div>
+    <div class="brow"><p class="amt">−$5,600<small>/YEAR</small></p>
+      <div><h3>The fall promo code never stopped running.</h3>
+      <p class="rl">FALL24 · campaign ended 12 months ago · 412 orders since · avg discount $13.60 (20% of $68 AOV) · 412 × $13.60 = $5,603</p></div>
+      <span class="st g">ONE CLICK</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Confirmed contribution loss. A discount comes off contribution one-for-one.</dd>
+          <dt>Source</dt><dd>Shopify → Discounts report, code <code>FALL24</code>; order-level export cross-checked against the campaign brief that set the end date.</dd>
+          <dt>Period</dt><dd>12 months, from the campaign's stated end date to today.</dd>
+          <dt>Formula</dt><dd class="f">412 orders × $13.60 avg discount = $5,603<br>rounded down to $5,600</dd>
+          <dt>Assumption</dt><dd><strong>The soft spot in this finding:</strong> it treats every discounted order as one that would have converted at full price. 71% of these orders arrived from coupon-aggregator sites — people who had already decided to buy, then went looking for a code. Those are the recoverable ones. The other 29% are less certain.</dd>
+          <dt>Confidence</dt><dd>High on the amount given away ($5,603 is billed fact). Medium on how much returns to you after the code is switched off.</dd>
+          <dt>Dedup</dt><dd>Excludes all WELCOME15 orders — those are counted once, in the stacking finding below. No order appears in two findings.</dd>
+          <dt>Action</dt><dd>Deactivate the code. One switch, no trade-off, nothing downstream depends on it.</dd>
+        </dl></div>
+      </details>
+    </div>
 
     <div class="brow"><p class="amt">−$7,400<small>/YEAR</small></p>
       <div><h3>Your best seller loses $1.90 every time the welcome code stacks with free shipping.</h3>
-      <p class="rl">Full price: +$6.10 per order · stacked: −$1.90 · it stacked 3,900 times last year</p></div>
-      <span class="st r">YOUR CALL</span></div>
+      <p class="rl">Full price: +$6.10 contribution/order · stacked: −$1.90 · 3,900 stacked orders in 12 mo · 3,900 × $1.90 = $7,410</p></div>
+      <span class="st r">YOUR CALL</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Confirmed contribution loss, at order level.</dd>
+          <dt>Source</dt><dd>Shopify order export (line-item discounts + shipping) joined to unit COGS from QuickBooks; 3PL pick-and-pack rate from the fulfilment invoice.</dd>
+          <dt>Period</dt><dd>12 months.</dd>
+          <dt>Margin</dt><dd>Contribution = unit price − COGS − pick/pack − outbound shipping − payment fees. It does not carry overhead, salaries or software.</dd>
+          <dt>Formula</dt><dd class="f">full price:  $6.10 contribution<br>+ WELCOME15 (−$5.10) + free ship (−$2.90)<br>= −$1.90 per stacked order<br>3,900 × $1.90 = $7,410 → $7,400</dd>
+          <dt>Confidence</dt><dd>High. Every one of the 3,900 orders is individually identified — this is counted, not estimated.</dd>
+          <dt>Dedup</dt><dd>Excludes the 412 FALL24 orders above. The two codes cannot combine, so the sets do not overlap.</dd>
+          <dt>Action</dt><dd>Three options, priced: minimum order value for free shipping, exclude the best seller from the welcome code, or accept the loss as paid acquisition — it works out to $1.90 per new customer, which is cheap if they come back. <strong>This is a decision, not a fix.</strong></dd>
+        </dl></div>
+      </details>
+    </div>
 
-    <div class="brow"><p class="amt">−$8,400<small>/YEAR</small></p>
-      <div><h3>41 subscribers hit pause and never came back. Nobody emailed them.</h3>
-      <p class="rl">Paused &gt;90 days · win-backs sent: 0 · avg $17.10/mo each</p></div>
-      <span class="st g">WIN-BACK DRAFTED</span></div>
-
-    <div class="brow"><p class="amt">−$8,400<small>/YEAR</small></p>
-      <div><h3>Your distributor billed you for shortages your own warehouse can disprove.</h3>
-      <p class="rl">14 deduction lines · delivery scans show full shipment · all inside the dispute window</p></div>
-      <span class="st y">READY TO FILE</span></div>
-
-    <div class="brow"><p class="amt up">+22<small>ORDERS / POST</small></p>
-      <div><h3>Recipe posts outsell product shots four to one. You posted three last quarter.</h3>
-      <p class="rl">Avg orders per post: recipe 22 · product shot 5 · the calendar says make more</p></div>
-      <span class="st g">DO MORE OF THIS</span></div>
-
-    <div class="brow"><p class="amt">$64,100<small>/YEAR — TOTAL FOUND</small></p>
-      <div><h3>One week. Read-only access. Every number tied to its source line.</h3></div>
-      <span class="st y">7 FINDINGS</span></div>
+    </div>
   </div>
+
+  <div class="cat">
+    <div class="cath"><h2>Avoidable spend</h2><span class="catt">$8,790 OBSERVED</span></div>
+    <p class="catd">Not lost margin — cash going out the door for nothing. Shown as observed, over the period it was actually observed. Not annualised.</p>
+    <div class="board">
+
+    <div class="brow"><p class="amt">−$8,790<small>OBSERVED, 5 MO</small></p>
+      <div><h3>One ad set spent $9,200 and brought back $410.</h3>
+      <p class="rl">Objective set to link clicks, not purchases, since 3 March · $9,200 − $410 = $8,790 over 5 months · $1,758/mo, still running</p></div>
+      <span class="st g">ONE SETTING</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Avoidable spend. This is not contribution loss — it is cash paid to a platform. Different kind of money, so it is not added to the confirmed-loss column.</dd>
+          <dt>Source</dt><dd>Meta Ads Manager (spend, objective, change history) + Shopify (attributed orders). The objective change is timestamped in the account's own edit log.</dd>
+          <dt>Period</dt><dd>5 months, 3 March to 31 July. <strong>Deliberately not annualised</strong> — the set has not run a year, so a yearly figure would be invented. At the observed rate it costs $1,758 a month for as long as it stays on.</dd>
+          <dt>Formula</dt><dd class="f">$9,200 spend − $410 attributed sales<br>= $8,790 over 5 months<br>÷ 5 = $1,758 / month continuing</dd>
+          <dt>Confidence</dt><dd>Spend: high — it is billed. Return: medium — attribution is 7-day-click, and iOS under-reports, so true sales are probably somewhat above $410. That would make the gap smaller, not larger. <strong>The number is stated the way that is least flattering to us.</strong></dd>
+          <dt>Missing</dt><dd>Whether the set drove any view-through or in-store sales. Nothing in the data can rule that out.</dd>
+          <dt>Also found</dt><dd>The destination page was out of stock for 21 days in May. Some of the spend had nowhere to convert.</dd>
+          <dt>Action</dt><dd>Switch the objective to purchases or pause it. Do not judge the creative until it has run once against the right objective.</dd>
+        </dl></div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cath"><h2>Recoverable cash</h2><span class="catt">$8,412 ONE-TIME</span></div>
+    <p class="catd">Money already taken from you that has a documented case for coming back — and a deadline. One-time, not annual.</p>
+    <div class="board">
+
+    <div class="brow"><p class="amt cash">$8,412<small>DISPUTABLE NOW</small></p>
+      <div><h3>Your distributor billed you for shortages your own warehouse can disprove.</h3>
+      <p class="rl">14 deduction lines totalling $8,412 across 6 POs · carrier scans show full pallet counts on all 6 · every line still inside the 90-day window — the earliest closes in 38 days</p></div>
+      <span class="st y">READY TO FILE</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Recoverable cash, one-time. Not annual leakage — though if the pattern repeats, next year's audit will find it again.</dd>
+          <dt>Source</dt><dd>Distributor remittance PDFs (the deduction codes and amounts), matched line-by-line to 3PL bills of lading and carrier delivery scans.</dd>
+          <dt>Formula</dt><dd class="f">14 disputed lines, summed = $8,412<br>largest single line $1,240 · smallest $187</dd>
+          <dt>Confidence</dt><dd>Documentation: high — every line has a matching scan showing the full count delivered. <strong>Recovery: medium.</strong> Having the evidence and getting the credit are two different things; it depends on the distributor.</dd>
+          <dt>Range</dt><dd>$5,000 – $8,412 recovered, based on how these usually settle. We do not promise the top of that range.</dd>
+          <dt>Deadline</dt><dd>All 14 are inside the contractual dispute window. The earliest expires in 38 days; after that the money is gone regardless of the evidence.</dd>
+          <dt>Action</dt><dd>Dispute letters drafted, one per PO, evidence attached. They send from you, after you read them.</dd>
+        </dl></div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cath"><h2>At risk</h2><span class="catt">$14,200 – $17,500 MODELLED</span></div>
+    <p class="catd">Nothing here has been lost yet. These are modelled, they carry the weakest evidence on the board, and they are shown as ranges because a single number would be a guess wearing a suit.</p>
+    <div class="board">
+
+    <div class="brow"><p class="amt risk">$13,100<small>/YR IF IT CHURNS</small></p>
+      <div><h3>Wholesale has been slowing for five months. DTC growth was hiding it.</h3>
+      <p class="rl">Largest quiet account: $3,200/mo through last year, reorder cycle stretched 31 → 58 days · $3,200 × 12 × 34% wholesale contribution = $13,056</p></div>
+      <span class="st g">CALL DRAFTED</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Revenue at risk, modelled. Not a loss. It becomes one only if the account actually leaves.</dd>
+          <dt>Source</dt><dd>Shopify/invoice history by wholesale account; contribution rate from the wholesale price list against unit COGS.</dd>
+          <dt>Formula</dt><dd class="f">$3,200/mo × 12 = $38,400 gross<br>× 34% wholesale contribution<br>= $13,056 → $13,100</dd>
+          <dt>Assumption</dt><dd><strong>This assumes total churn</strong> — the whole account, gone. That is the ceiling, not the expectation. A stretched reorder cycle is a warning, not a departure.</dd>
+          <dt>Confidence</dt><dd>Low to medium. The slowdown is fact: repeat share across wholesale fell 61% → 38%, and this account's cycle nearly doubled. The dollar figure attached to it is a model.</dd>
+          <dt>Missing</dt><dd>Whether they are buying from someone else, carrying stock, or having their own slow quarter. No data you own can answer that. <strong>A phone call can.</strong></dd>
+          <dt>Action</dt><dd>Call script drafted — three questions, none of them "is everything okay?"</dd>
+        </dl></div>
+      </details>
+    </div>
+
+    <div class="brow"><p class="amt risk">$1,100–4,400<small>/YR MODELLED</small></p>
+      <div><h3>41 subscribers hit pause and never came back. Nobody emailed them.</h3>
+      <p class="rl">Paused &gt;90 days · win-backs sent: 0 · avg $17.10/mo × 52% contribution = $8.89/mo each · ceiling 41 × $8.89 × 12 = $4,374</p></div>
+      <span class="st g">WIN-BACK DRAFTED</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Modelled opportunity. The weakest number on this board, and shown as a range for that reason.</dd>
+          <dt>Source</dt><dd>Subscription app export (pause dates, plan value) + ESP send history, which shows zero win-back campaigns to this segment.</dd>
+          <dt>Formula</dt><dd class="f">ceiling — everyone returns, stays 12 months:<br>41 × $8.89 × 12 = $4,374<br><br>floor — 25% win-back rate:<br>10 × $8.89 × 12 = $1,067</dd>
+          <dt>Why a range</dt><dd>The ceiling assumes every paused subscriber returns and stays a full year. <strong>Nobody gets that.</strong> A single number here would be marketing, so you get both ends and the assumption behind each.</dd>
+          <dt>Margin</dt><dd>Contribution, not revenue: $17.10 plan value × 52% after product, pack and shipping. The gross figure would be $8,413 and would mean less.</dd>
+          <dt>Confidence</dt><dd>Low. The 25% floor is a category norm, not your number — you have never run a win-back, so there is no baseline to draw from. <strong>The first campaign creates the benchmark.</strong></dd>
+          <dt>Action</dt><dd>Win-back sequence drafted. Treat the first send as the measurement, not the payoff.</dd>
+        </dl></div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cath"><h2>Worth testing</h2><span class="catt">NOT COUNTED IN ANY TOTAL</span></div>
+    <p class="catd">The one piece of good news on the board — and it is a correlation, not a proven gain. It appears here, outside every total, because we cannot yet show it causes anything.</p>
+    <div class="board">
+
+    <div class="brow"><p class="amt up">+17<small>ORDERS / POST</small></p>
+      <div><h3>Recipe posts sell more than product shots. You made three last quarter.</h3>
+      <p class="rl">Avg orders per post — recipe: 22 · product shot: 5 · difference: +17 · 3 of your 19 posts last quarter were recipes</p></div>
+      <span class="st g">TEST IT</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Unverified opportunity. Counted in no total.</dd>
+          <dt>Formula</dt><dd class="f">recipe avg 22 orders − product-shot avg 5<br>= +17 incremental orders per post<br><br>(22 is the average, not the gain —<br>the gain is the difference.)</dd>
+          <dt>Confidence</dt><dd><strong>Low, and the reason matters.</strong> Recipe posts may simply have had more reach, better timing, or paid amplification behind them. This board cannot separate format from distribution.</dd>
+          <dt>The comeback</dt><dd>If a competitor's analyst wanted to knock this down, they would say: "your recipe posts went out on Sundays with budget behind them; of course they sold more." They would be right that nothing here rules it out.</dd>
+          <dt>What would settle it</dt><dd>Four recipe posts and four product shots, matched for day, time and spend. Two months. Then the number means something.</dd>
+          <dt>Action</dt><dd>Run the test. Do not rebuild the content calendar on one quarter of unmatched data.</dd>
+        </dl></div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <p class="note">ONE WEEK · READ-ONLY ACCESS · SEVEN FINDINGS · EVERY FIGURE ABOVE RECOMPUTES FROM THE RECEIPT PRINTED BESIDE IT</p>
 </section>
 
 <section>
   <h2>The second look</h2>
-  <p>The dashboards aren't lying — they're just answering an easier question. The audit reads the same numbers your eyes are already on, once more, properly:</p>
+  <p>The dashboards aren't lying — they're answering an easier question. The audit reads the same numbers your eyes are already on, once more, properly:</p>
   <div class="look">
     <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>The ad account says 3.1&times; return.</p></div>
-    <div class="is"><span class="k">WHAT IT IS</span><p>After the discount, shipping and fees on each order: 0.9&times; on your best seller.</p></div>
+    <div class="is"><span class="k">WHAT IT IS</span><p>That's the whole account, on last-click revenue. Narrow it to your best seller and take out the discount, shipping and fees on each order: 0.9&times;. Different question, different answer.</p></div>
     <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>Revenue is flat. Fine.</p></div>
     <div class="is"><span class="k">WHAT IT IS</span><p>Repeat business fell 61% to 38% — expensive new accounts papered over the slide.</p></div>
     <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>Engagement rate is up this quarter.</p></div>
     <div class="is"><span class="k">WHAT IT IS</span><p>Reach collapsed. The rate rose because the audience shrank.</p></div>
   </div>
+</section>
+
+<section>
+  <h2>How to read a number you're being sold</h2>
+  <p>Every line on this board tells you four things before it tells you a dollar figure: what kind of money it is, where the number came from, what it assumes, and how confident we are. That is not decoration — it's the only way you can check us.</p>
+  <p>If an audit hands you one big number and no formula, the number is doing a job that has nothing to do with your business.</p>
 </section>
 
 <section>
