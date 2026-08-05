@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sample leak audit — VNMSFX</title>
-<meta name="description" content="A sample VNMSFX leak audit: six findings totaling $64,100/yr on an invented brand — promo stacking, ads optimized for the wrong thing, a quiet channel, legacy codes, silent subscription churn, disputable deductions — each with the receipt and the fix drafted.">
+<meta name="description" content="A sample VNMSFX leak audit, shown as the morning board a founder actually reads: seven one-line findings — the promo that never ended, the ad set that sold nothing, the channel quietly slowing — $64,100/yr with receipts.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/sample-audit">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -53,26 +53,22 @@ footer a{color:var(--soft);text-decoration:none}
 .banner{background:var(--yellow);border-radius:var(--r);padding:14px 20px;font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.06em;margin-top:22px}
 .statgrid{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .stat{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,13.5px);letter-spacing:.05em;background:var(--card);border-radius:10px;padding:8px 14px}
-.tblwrap{overflow-x:auto;margin-top:18px;border-radius:var(--r);background:var(--band)}
-table.ledger{border-collapse:collapse;width:100%;min-width:640px}
-.ledger th{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:var(--soft);padding:14px 16px;border-bottom:1px solid var(--faint)}
-.ledger td{padding:12px 16px;font-size:clamp(14px,1.25vw,16px);border-bottom:1px solid var(--faint);vertical-align:top}
-.ledger tr:last-child td{border-bottom:none;font-weight:700;background:var(--card)}
-.ledger .fid{font-family:'Space Mono',monospace;font-weight:700;white-space:nowrap}
-.ledger .amt2{font-weight:700;white-space:nowrap}
-.st{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;white-space:nowrap;padding:3px 9px;border-radius:8px;background:var(--card)}
+.board{margin-top:6px;border-top:1px solid var(--faint)}
+.brow{display:grid;grid-template-columns:minmax(120px,150px) 1fr auto;gap:clamp(14px,2.4vw,34px);align-items:start;padding:clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--faint)}
+.brow .amt{font-size:clamp(23px,2.7vw,33px);font-weight:700;letter-spacing:-.03em;color:var(--red);line-height:1.05}
+.brow .amt.up{color:#3E6212}
+.brow .amt small{display:block;font-size:12px;font-weight:400;font-family:'Space Mono',monospace;letter-spacing:.08em;color:var(--soft);margin-top:5px}
+.brow h3{font-size:clamp(17.5px,1.7vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.3;max-width:56ch}
+.brow .rl{font-family:'Space Mono',monospace;font-size:clamp(11.5px,1.05vw,13px);letter-spacing:.05em;color:var(--soft);margin-top:8px}
+.st{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;white-space:nowrap;padding:4px 10px;border-radius:8px;background:var(--card)}
 .st.g{background:var(--volt)}.st.y{background:var(--yellow)}.st.r{background:var(--red);color:#F4F2EC}
-.find{background:var(--band);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);margin-top:20px}
-.find .fh{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
-.find .amt{font-size:clamp(22px,2.6vw,31px);font-weight:700;letter-spacing:-.03em}
-.find .amt em{font-style:normal;color:var(--red)}
-.read{font-family:'Space Mono',monospace;font-size:clamp(12px,1.05vw,13.5px);letter-spacing:.05em;color:var(--soft);margin-bottom:10px}
-.act{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);margin-top:12px}
-.openq{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.05em;margin-top:8px;color:var(--ink)}
-.openq b{background:var(--yellow);padding:1px 7px;border-radius:6px;font-weight:700}
-ol.queue{padding-left:24px;display:grid;gap:12px;margin-top:14px}
-ol.queue li{max-width:70ch}
-ol.queue .who{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.06em;color:var(--soft);display:block;margin-top:3px}
+@media (max-width:640px){.brow{grid-template-columns:1fr auto}.brow .amt{grid-column:1/-1}}
+.look{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(18px,3vw,40px);border-top:1px solid var(--faint)}
+.look>div{padding:clamp(16px,2.2vw,24px) 0;border-bottom:1px solid var(--faint)}
+.look .k{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:var(--soft);display:block;margin-bottom:7px}
+.look p{font-size:clamp(15.5px,1.45vw,19px);max-width:40ch}
+.look .is p{font-weight:600}
+@media (max-width:640px){.look{grid-template-columns:1fr}.look .as{border-bottom:none;padding-bottom:4px}}
 .recv li strong{font-weight:600}
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(32px,4.6vw,60px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:34px}
 .ctaP h2{font-size:clamp(22px,2.8vw,34px);max-width:24ch;margin:0 auto 22px;color:#F4F2EC}
@@ -92,122 +88,75 @@ ol.queue .who{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing
 
 <div class="head">
   <p class="lab"><span class="chip r">SAMPLE</span>Leak audit</p>
-  <h1>What an audit actually hands you.</h1>
-  <p class="sub">The real deliverable, shown on an invented brand: six SKUs, about $4M in revenue, DTC plus two regional distributors. Six findings — five simple enough to explain at dinner, one deeper cut only a system would catch — each with a dollar figure, the receipt behind it, and the fix already drafted.</p>
-  <p class="banner">SAMPLE — every figure on this page is illustrative. Real audits carry your numbers, tied to your source documents.</p>
-  <div class="statgrid">
-    <span class="stat">4,120 ORDER LINES READ</span>
-    <span class="stat">EVERY AD SET SINCE JANUARY</span>
-    <span class="stat">THE FULL SUBSCRIPTION LEDGER</span>
-    <span class="stat">9 PROMO CODES TESTED</span>
-    <span class="stat">14 DISTRIBUTOR STATEMENTS</span>
-    <span class="stat">READ-ONLY ACCESS THROUGHOUT</span>
-  </div>
+  <h1>The board you'd read every morning.</h1>
+  <p class="sub">This is the audit's deliverable, shown on an invented brand: one line per finding, the receipt underneath, the fix already drafted. No report to decipher.</p>
+  <p class="banner">SAMPLE — every figure is illustrative. The real one runs on your numbers.</p>
 </div>
 
 <section>
-  <h2>The leak ledger</h2>
-  <p>Every finding, its size, and where it stands. The full version links every row to its source line.</p>
-  <div class="tblwrap"><table class="ledger">
-    <tr><th>#</th><th>Finding</th><th>Where it lives</th><th>Annualized</th><th>Status</th></tr>
-    <tr><td class="fid">F-01</td><td>Hero SKU loses money when the promo stacks</td><td>Shopify orders, 12 months</td><td class="amt2">$7,400</td><td><span class="st r">DECISION NEEDED</span></td></tr>
-    <tr><td class="fid">F-02</td><td>Ad spend optimizing for the wrong thing</td><td>Ad account vs. store</td><td class="amt2">$12,600</td><td><span class="st g">FIX IS ONE SETTING</span></td></tr>
-    <tr><td class="fid">F-03</td><td>A channel that looks fine and isn't</td><td>Order log, 24 months</td><td class="amt2">$21,000</td><td><span class="st g">OUTREACH DRAFTED</span></td></tr>
-    <tr><td class="fid">F-04</td><td>2024 promo codes, still live</td><td>Shopify discounts</td><td class="amt2">$6,300</td><td><span class="st g">FIX IS ONE CLICK</span></td></tr>
-    <tr><td class="fid">F-05</td><td>Subscribers who left without cancelling</td><td>Subscription ledger</td><td class="amt2">$8,400</td><td><span class="st g">WIN-BACK DRAFTED</span></td></tr>
-    <tr><td class="fid">F-06</td><td>Distributor deductions worth disputing</td><td>Settlement statements</td><td class="amt2">$8,400</td><td><span class="st y">READY TO FILE</span></td></tr>
-    <tr><td></td><td>TOTAL FOUND, ONE WEEK</td><td></td><td class="amt2">$64,100/yr</td><td></td></tr>
-  </table></div>
-</section>
+  <div class="board">
 
-<section>
-  <h2>The findings, with receipts</h2>
+    <div class="brow"><p class="amt">−$6,300<small>/YEAR</small></p>
+      <div><h3>The fall 2024 promo code is still running.</h3>
+      <p class="rl">FALL24 · campaign ended Nov 2024 · 412 uses since — 71% from coupon sites</p></div>
+      <span class="st g">ONE CLICK</span></div>
 
-  <div class="find">
-    <div class="fh"><span class="chip r">F-01</span><span class="amt">The promo stack — <em>$7,400</em>/yr</span></div>
-    <p class="read">READ: every order line, 12 months, margin computed per order — not per month</p>
-    <p>At full price, the hero bundle makes money. When the 25% welcome code stacks with free shipping, the same order loses money — and 3,900 orders stacked them last year. Nobody decided that; two promotions written in different months just met at the same checkout.</p>
-    <div class="mono">FULL PRICE&nbsp;&nbsp;$24.00 − landed 9.40 − ship 6.20 − fees 2.30 = <b>+$6.10</b>
-STACKED&nbsp;&nbsp;&nbsp;&nbsp;$18.00 − landed 9.40 − ship 8.20 − fees 2.30 = <b>−$1.90</b>
-VOLUME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3,900 stacked orders &rarr; −$7,410/yr</div>
-    <p class="act">DELIVERED: the stacking rules that stop it, plus the free-shipping threshold that flips the math — modeled both ways.</p>
-    <p class="openq"><b>YOUR CALL</b> raise the free-shipping bar vs. exclude the hero bundle from the code — one page, trade-offs stated.</p>
-  </div>
+    <div class="brow"><p class="amt">−$12,600<small>/YEAR</small></p>
+      <div><h3>One ad set spent $9,200 and sold $410.</h3>
+      <p class="rl">Set to optimize for clicks, not purchases, since March · landing page out of stock 21 days in May</p></div>
+      <span class="st g">ONE SETTING</span></div>
 
-  <div class="find">
-    <div class="fh"><span class="chip g">F-02</span><span class="amt">Ads optimizing for the wrong thing — <em>$12,600</em>/yr</span></div>
-    <p class="read">READ: every ad set against what it was told to optimize for — then against the page it lands on</p>
-    <p>One prospecting campaign has been optimizing for link clicks — not purchases — since March. The platform is doing exactly what it was asked: finding people who click. It found $1,050 a month of them. Four bought anything. And for three weeks in May, the ads pointed at a product page that was out of stock.</p>
-    <div class="mono">CAMPAIGN "PROSPECTING-2"&nbsp;&nbsp;objective: TRAFFIC · running since Mar 3
-SPEND&nbsp;&nbsp;$1,050/mo · attributed purchases: 4
-MAY&nbsp;&nbsp;&nbsp;&nbsp;destination page out of stock 21 days · ads kept running</div>
-    <p class="act">DELIVERED: the one setting change, the out-of-stock rule that pauses ads automatically, and the report that would have caught it in week one.</p>
-  </div>
+    <div class="brow"><p class="amt">−$21,000<small>AT RISK</small></p>
+      <div><h3>Wholesale has been slowing for five months. DTC growth was hiding it.</h3>
+      <p class="rl">Repeat share 61% &rarr; 38% · biggest quiet account: 31-day reorder cycle stretched to 58</p></div>
+      <span class="st g">CALLS DRAFTED</span></div>
 
-  <div class="find">
-    <div class="fh"><span class="chip y">F-03</span><span class="amt">The channel that looks fine — <em>$21,000</em>/yr at risk</span></div>
-    <p class="read">READ: reorder intervals and customer mix for every account, 24 months</p>
-    <p>Wholesale revenue is flat, which reads as fine. Underneath, the mix rotted: repeat business fell from 61% to 38% of the channel, propped up by new accounts that cost real money to land. And the biggest quiet account stretched from a 31-day to a 58-day reorder cycle over five months. Flat isn't fine. Flat is two problems cancelling each other out.</p>
-    <div class="mono">CHANNEL&nbsp;&nbsp;revenue flat YoY · repeat share 61% &rarr; 38%
-ACCT-03&nbsp;&nbsp;orders: Jan 4 · Feb 4 · Mar 8 · Apr 22 · Jun 19
-INTERVAL&nbsp;31d &rarr; 33d &rarr; 45d &rarr; 58d · run-rate −$21k annualized</div>
-    <p class="act">DELIVERED: the quiet-account watchlist ranked by dollars at risk, outreach drafted per account, and the alert that fires at +20% interval stretch from now on.</p>
-  </div>
+    <div class="brow"><p class="amt">−$7,400<small>/YEAR</small></p>
+      <div><h3>Your best seller loses $1.90 every time the welcome code stacks with free shipping.</h3>
+      <p class="rl">Full price: +$6.10 per order · stacked: −$1.90 · it stacked 3,900 times last year</p></div>
+      <span class="st r">YOUR CALL</span></div>
 
-  <div class="find">
-    <div class="fh"><span class="chip r">F-04</span><span class="amt">2024 promo codes, still live — <em>$6,300</em>/yr</span></div>
-    <p class="read">READ: all 9 active discount codes against the campaigns that created them</p>
-    <p>Two codes from a fall 2024 campaign never got turned off. They've been circulating on coupon sites ever since, clipping full-price orders that would have converted anyway.</p>
-    <div class="mono">FALL24&nbsp;&nbsp;&nbsp;created 2024-09-12 · campaign ended 2024-11-30 · still active
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;412 uses since · 71% arrived via coupon aggregators</div>
-    <p class="act">DELIVERED: the kill list, the two codes worth keeping, and the expiry-date rule so this never recurs.</p>
-  </div>
+    <div class="brow"><p class="amt">−$8,400<small>/YEAR</small></p>
+      <div><h3>41 subscribers hit pause and never came back. Nobody emailed them.</h3>
+      <p class="rl">Paused &gt;90 days · win-backs sent: 0 · avg $17.10/mo each</p></div>
+      <span class="st g">WIN-BACK DRAFTED</span></div>
 
-  <div class="find">
-    <div class="fh"><span class="chip g">F-05</span><span class="amt">Subscribers who left without cancelling — <em>$8,400</em>/yr</span></div>
-    <p class="read">READ: the full subscription ledger — active, paused, and the gap between them</p>
-    <p>Churn reports count cancellations. They don't count the 41 subscribers who hit pause more than 90 days ago and never came back. No cancel event, no alarm, no win-back email — just revenue that stopped and nobody was told.</p>
-    <div class="mono">PAUSED &gt;90 DAYS&nbsp;&nbsp;41 subscribers · avg $17.10/mo
-WIN-BACK SENT&nbsp;&nbsp;&nbsp;&nbsp;0
-RUN-RATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;−$8,400/yr, growing</div>
-    <p class="act">DELIVERED: the win-back sequence, drafted and waiting on your approval — plus the rule that flags a pause at day 30, not never.</p>
-  </div>
+    <div class="brow"><p class="amt">−$8,400<small>/YEAR</small></p>
+      <div><h3>Your distributor billed you for shortages your own warehouse can disprove.</h3>
+      <p class="rl">14 deduction lines · delivery scans show full shipment · all inside the dispute window</p></div>
+      <span class="st y">READY TO FILE</span></div>
 
-  <div class="find">
-    <div class="fh"><span class="chip y">F-06</span><span class="amt">The deeper cut: deductions — <em>$8,400</em>/yr</span></div>
-    <p class="read">READ: 14 settlement statements, line by line, both distributors — the one nobody reads without a system</p>
-    <p>When a distributor pays your invoice, they pay it minus fees they assign themselves — "shortage," "promo chargeback," "spoilage." They grade their own homework, and most brands never check the grading. The system read every line: 14 deductions met the distributors' own dispute criteria — short-ship claims on orders the warehouse scans show delivered in full. All still inside their dispute windows.</p>
-    <div class="mono">RECEIPT&nbsp;&nbsp;settlement 2026-03-14 · line 27 · "shortage — 12 cs" · PO-4471
-CROSS&nbsp;&nbsp;&nbsp;&nbsp;BOL 88213 signed clean · WMS pick log 288/288 units
-WINDOW&nbsp;&nbsp;&nbsp;filed within 180 days · distributor's own criteria met</div>
-    <p class="act">DELIVERED: the 14-line dispute tracker, claim letters drafted in each distributor's format, filing order by deadline. You approve; the system did the reading.</p>
+    <div class="brow"><p class="amt up">+22<small>ORDERS / POST</small></p>
+      <div><h3>Recipe posts outsell product shots four to one. You posted three last quarter.</h3>
+      <p class="rl">Avg orders per post: recipe 22 · product shot 5 · the calendar says make more</p></div>
+      <span class="st g">DO MORE OF THIS</span></div>
+
+    <div class="brow"><p class="amt">$64,100<small>/YEAR — TOTAL FOUND</small></p>
+      <div><h3>One week. Read-only access. Every number tied to its source line.</h3></div>
+      <span class="st y">7 FINDINGS</span></div>
   </div>
 </section>
 
 <section>
-  <h2>The fix queue</h2>
-  <p>Every finding leaves the audit as a queued action, not a paragraph. Ranked by dollars-per-effort:</p>
-  <ol class="queue">
-    <li>Kill the two legacy promo codes; set expiry rule on the rest. <span class="who">OWNER: you (one click) · EFFORT: 10 min · F-04</span></li>
-    <li>Switch the ad campaign's objective to purchases; wire the out-of-stock pause. <span class="who">OWNER: you or your ad person · EFFORT: 20 min · F-02</span></li>
-    <li>Approve the win-back sequence for the 41 paused subscribers. <span class="who">OWNER: drafted, you approve · EFFORT: 15 min · F-05</span></li>
-    <li>Send the quiet-account check-ins. <span class="who">OWNER: drafted, you approve · EFFORT: 15 min · F-03</span></li>
-    <li>File the 14 deduction disputes, deadline order. <span class="who">OWNER: drafted, you approve · EFFORT: 1 hr review · F-06</span></li>
-    <li>Decide the promo-stack fix from the one-page trade-off log. <span class="who">OWNER: your call · EFFORT: one decision · F-01</span></li>
-  </ol>
+  <h2>The second look</h2>
+  <p>The dashboards aren't lying — they're just answering an easier question. The audit reads the same numbers your eyes are already on, once more, properly:</p>
+  <div class="look">
+    <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>The ad account says 3.1&times; return.</p></div>
+    <div class="is"><span class="k">WHAT IT IS</span><p>After the discount, shipping and fees on each order: 0.9&times; on your best seller.</p></div>
+    <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>Revenue is flat. Fine.</p></div>
+    <div class="is"><span class="k">WHAT IT IS</span><p>Repeat business fell 61% to 38% — expensive new accounts papered over the slide.</p></div>
+    <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>Engagement rate is up this quarter.</p></div>
+    <div class="is"><span class="k">WHAT IT IS</span><p>Reach collapsed. The rate rose because the audience shrank.</p></div>
+  </div>
 </section>
 
 <section>
-  <h2>What lands in your accounts</h2>
-  <p>The audit isn't a PDF that dies in a drive. It's delivered as a working system inside accounts you own — the same discipline every build gets: official values, statuses, receipts, follow-up queues.</p>
+  <h2>What you walk away with</h2>
   <ul class="recv">
-    <li><strong>The leak ledger</strong> — every finding with its official value, status, and source link. One number per finding; discrepancies get flagged, never averaged away.</li>
-    <li><strong>The order-math workbook</strong> — margin per order, full-price vs. stacked, every input traced to its source line, both fixes modeled.</li>
-    <li><strong>The watchlists</strong> — quiet accounts and paused subscribers, ranked by dollars at risk, with the alerts wired in.</li>
-    <li><strong>The dispute tracker</strong> — one row per claim: amount, evidence, deadline, status from DRAFTED to PAID.</li>
-    <li><strong>The drafts folder</strong> — claim letters, win-backs, account outreach: written, waiting on your approval. Nothing sends itself.</li>
-    <li><strong>The decision log</strong> — the calls only you can make, one page each, trade-offs stated.</li>
-    <li><strong>The walkthrough</strong> — 60 minutes, finding by finding. Then it's yours either way — and the $2,500 credits into the build if you continue.</li>
+    <li><strong>This board, live in your accounts</strong> — every line linked to its source, updating as things change.</li>
+    <li><strong>The drafts</strong> — dispute letters, win-backs, account check-ins: written, waiting on your approval. Nothing sends itself.</li>
+    <li><strong>The decisions</strong> — the two calls only you can make, one page each, trade-offs stated.</li>
+    <li><strong>A 60-minute walkthrough</strong> — then it's yours either way, and the $2,500 credits into the build.</li>
   </ul>
 </section>
 
