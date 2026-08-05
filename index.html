@@ -10,14 +10,14 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How long does this take?","acceptedAnswer":{"@type":"Answer","text":"Thirty minutes for the teardown. A week for the audit. Three months for the build, with the first piece live in week two. The partnership after that is optional."}},
+{"@type":"Question","name":"How long does this take?","acceptedAnswer":{"@type":"Answer","text":"Thirty minutes for the teardown. A week for the audit. Then the build: three months, with its first piece live in the first two weeks. Month three is training and handover. The partnership after that is optional."}},
 {"@type":"Question","name":"What if you disappear?","acceptedAnswer":{"@type":"Answer","text":"Everything lives in your accounts, in plain text, readable by any competent human. That's the point of it."}},
 {"@type":"Question","name":"Why not just hire someone?","acceptedAnswer":{"@type":"Answer","text":"An ops hire fixes this by working the spreadsheets every night. This fixes it so nobody has to. Three months, and the knowledge lives in files you own — not in someone's head."}},
 {"@type":"Question","name":"We don't use any AI tools yet","acceptedAnswer":{"@type":"Answer","text":"A Claude seat runs about $20–30 a month, and setting it up is part of the build's first week. You'll be using it by day two."}},
 {"@type":"Question","name":"We already use ChatGPT","acceptedAnswer":{"@type":"Answer","text":"Using ChatGPT is asking a smart stranger questions. This wires it into your orders, your vendors, your history — so the answers are about you."}},
 {"@type":"Question","name":"We already bought a CRM once","acceptedAnswer":{"@type":"Answer","text":"So did most of my clients. That's the point — this isn't another tool to adopt. It's the tools you kept, finally connected."}},
 {"@type":"Question","name":"What if the audit finds nothing?","acceptedAnswer":{"@type":"Answer","text":"Then you'll know that for certain, which is worth something too. But the questions in section 01 usually have uncomfortable answers."}},
-{"@type":"Question","name":"Is our data safe?","acceptedAnswer":{"@type":"Answer","text":"The system lives in your accounts, under your logins. I see only what you grant, nothing is copied out, and nothing is trained on. When we part ways you revoke my access in one click — everything I built stays behind, working."}}
+{"@type":"Question","name":"Is our data safe?","acceptedAnswer":{"@type":"Answer","text":"The system lives in your accounts, under your logins, on least-privilege access — read-only wherever possible. Data is processed through business-tier AI services under commercial terms, never personal chat accounts, and nothing acts on your books without your approval. When we part ways you revoke access in one click and everything I built stays behind, working."}}
 ]}
 </script>
 <link rel="canonical" href="https://vnmsfx.com/">
@@ -138,6 +138,10 @@ section{padding:clamp(70px,9vw,150px) 0}
 .cta:hover{background:#fff}
 .cta.dk{background:var(--dark);color:#fff}
 .cta.dk:hover{background:var(--volt);color:var(--ink)}
+.hcta{display:flex;align-items:center;gap:clamp(12px,1.8vw,22px);flex-wrap:wrap}
+.cta2{display:inline-flex;align-items:center;min-height:46px;font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+.cta2 span{border-bottom:1.5px solid rgba(17,17,16,.34);padding-bottom:2px}
+.cta2:hover span{border-bottom-color:var(--ink)}
 /* BIO — portrait sits beside the who-builds-it copy */
 .bio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.38fr);gap:clamp(22px,3.5vw,56px);align-items:start}
 .bio img{width:100%;max-width:300px;border-radius:var(--r);display:block;justify-self:end}
@@ -255,7 +259,10 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
         <h1>You've been scaling the products that lose you money.</h1>
         <div class="hrow">
           <p class="hsub">The audit finds it. The build fixes it. You keep everything.</p>
-          <a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a>
+          <div class="hcta">
+            <a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a>
+            <a class="cta2" href="/sample-audit"><span>See the exact deliverable</span></a>
+          </div>
         </div>
       </div>
     </div>
