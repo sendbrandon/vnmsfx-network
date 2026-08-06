@@ -122,46 +122,30 @@ footer a{color:var(--soft);text-decoration:none}
 
 <div class="head">
   <p class="lab"><span class="chip r">SAMPLE</span>Leak audit</p>
-  <h1>The board you'd read every morning.</h1>
-  <p class="sub">One line per finding, the receipt underneath, the working paper behind it. Every figure here can be recomputed from the numbers printed beside it — check them.</p>
+  <h1>The findings board you leave the audit with.</h1>
+  <p class="sub">One line per finding, the receipt underneath, the working paper behind it. Every figure here recomputes from the numbers printed beside it — check them.</p>
   <p class="banner">SAMPLE — invented brand, illustrative figures. The arithmetic is real: each number derives from its own receipt.</p>
 
   <div class="ledger">
     <p class="lh">WHAT THE WEEK FOUND — BY KIND OF MONEY</p>
     <div class="lgrid">
-      <div><p class="n loss">$13,000</p><p class="k">PER YEAR<br>CONFIRMED LOSS</p></div>
-      <div><p class="n loss">$8,790</p><p class="k">OBSERVED, 5 MO<br>AVOIDABLE SPEND</p></div>
-      <div><p class="n cash">$8,412</p><p class="k">ONE-TIME<br>RECOVERABLE CASH</p></div>
-      <div><p class="n risk">$14,200–17,500</p><p class="k">MODELLED<br>AT RISK</p></div>
+      <div><p class="n loss">$7,410</p><p class="k">PER YEAR<br>CONFIRMED CONTRIBUTION LOSS</p></div>
+      <div><p class="n loss">$5,603</p><p class="k">12 MO · AVOIDABLE SHARE NOT ESTABLISHED<br>DISCOUNT GRANTED</p></div>
+      <div><p class="n loss">$9,044</p><p class="k">OBSERVED, 5 MO<br>CONTRIBUTION DRAG</p></div>
+      <div><p class="n cash">$8,412</p><p class="k">CLAIMED · EXPECT $5,000–8,412<br>DISPUTABLE</p></div>
+      <div><p class="n risk">$13,056</p><p class="k">ONLY IF THE ACCOUNT CHURNS<br>CONDITIONAL EXPOSURE</p></div>
+      <div><p class="n risk">$0–4,374</p><p class="k">NO BASELINE YET<br>RECOVERY OPPORTUNITY</p></div>
     </div>
-    <p class="why">Four numbers, not one. A dollar of confirmed margin loss, a dollar of avoidable ad spend, a dollar you can claw back from a distributor and a dollar that might walk out the door are four different kinds of money. Adding them together makes a bigger headline and a worse decision.</p>
+    <p class="why">Six numbers, not one — and they are deliberately not added up. Margin you have already lost, a discount you granted, spend with nothing behind it, cash you can go and claim, revenue that leaves only if an account walks, and money you might win back are six different kinds of money. Summing them would produce a bigger headline and a worse decision, which is the exact trick this board exists to catch.</p>
   </div>
 </div>
 
 <section>
 
   <div class="cat">
-    <div class="cath"><h2>Confirmed loss</h2><span class="catt">$13,000 / YEAR</span></div>
-    <p class="catd">Money that already left, at order level, and leaves again every year until something changes. Computed from your own order and cost records — not modelled.</p>
+    <div class="cath"><h2>Confirmed contribution loss</h2><span class="catt">$7,410 / YEAR</span></div>
+    <p class="catd">Money that already left, identified order by order, and leaves again every year until something changes. Counted from your own order and cost records — not modelled, not annualised from a sample.</p>
     <div class="board">
-
-    <div class="brow"><p class="amt">−$5,600<small>/YEAR</small></p>
-      <div><h3>The fall promo code never stopped running.</h3>
-      <p class="rl">FALL24 · campaign ended 12 months ago · 412 orders since · avg discount $13.60 (20% of $68 AOV) · 412 × $13.60 = $5,603</p></div>
-      <span class="st g">ONE CLICK</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd>Confirmed contribution loss. A discount comes off contribution one-for-one.</dd>
-          <dt>Source</dt><dd>Shopify → Discounts report, code <code>FALL24</code>; order-level export cross-checked against the campaign brief that set the end date.</dd>
-          <dt>Period</dt><dd>12 months, from the campaign's stated end date to today.</dd>
-          <dt>Formula</dt><dd class="f">412 orders × $13.60 avg discount = $5,603<br>rounded down to $5,600</dd>
-          <dt>Assumption</dt><dd><strong>The soft spot in this finding:</strong> it treats every discounted order as one that would have converted at full price. 71% of these orders arrived from coupon-aggregator sites — people who had already decided to buy, then went looking for a code. Those are the recoverable ones. The other 29% are less certain.</dd>
-          <dt>Confidence</dt><dd>High on the amount given away ($5,603 is billed fact). Medium on how much returns to you after the code is switched off.</dd>
-          <dt>Dedup</dt><dd>Excludes all WELCOME15 orders — those are counted once, in the stacking finding below. No order appears in two findings.</dd>
-          <dt>Action</dt><dd>Deactivate the code. One switch, no trade-off, nothing downstream depends on it.</dd>
-        </dl></div>
-      </details>
-    </div>
 
     <div class="brow"><p class="amt">−$7,400<small>/YEAR</small></p>
       <div><h3>Your best seller loses $1.90 every time the welcome code stacks with free shipping.</h3>
@@ -175,7 +159,7 @@ footer a{color:var(--soft);text-decoration:none}
           <dt>Margin</dt><dd>Contribution = unit price − COGS − pick/pack − outbound shipping − payment fees. It does not carry overhead, salaries or software.</dd>
           <dt>Formula</dt><dd class="f">full price:  $6.10 contribution<br>+ WELCOME15 (−$5.10) + free ship (−$2.90)<br>= −$1.90 per stacked order<br>3,900 × $1.90 = $7,410 → $7,400</dd>
           <dt>Confidence</dt><dd>High. Every one of the 3,900 orders is individually identified — this is counted, not estimated.</dd>
-          <dt>Dedup</dt><dd>Excludes the 412 FALL24 orders above. The two codes cannot combine, so the sets do not overlap.</dd>
+          <dt>Dedup</dt><dd>Excludes the 412 FALL24 orders in the next section. The two codes cannot combine, so the sets do not overlap.</dd>
           <dt>Action</dt><dd>Three options, priced: minimum order value for free shipping, exclude the best seller from the welcome code, or accept the loss as paid acquisition — it works out to $1.90 per new customer, which is cheap if they come back. <strong>This is a decision, not a fix.</strong></dd>
         </dl></div>
       </details>
@@ -185,24 +169,24 @@ footer a{color:var(--soft);text-decoration:none}
   </div>
 
   <div class="cat">
-    <div class="cath"><h2>Avoidable spend</h2><span class="catt">$8,790 OBSERVED</span></div>
-    <p class="catd">Not lost margin — cash going out the door for nothing. Shown as observed, over the period it was actually observed. Not annualised.</p>
+    <div class="cath"><h2>Discount granted</h2><span class="catt">$5,603 · AVOIDABLE SHARE NOT ESTABLISHED</span></div>
+    <p class="catd">Margin you definitely gave away. How much of it comes back if you stop is a separate question this audit does not pretend to have answered — so it is not filed as loss recovered, and it is not added to anything.</p>
     <div class="board">
 
-    <div class="brow"><p class="amt">−$8,790<small>OBSERVED, 5 MO</small></p>
-      <div><h3>One ad set spent $9,200 and brought back $410.</h3>
-      <p class="rl">Objective set to link clicks, not purchases, since 3 March · $9,200 − $410 = $8,790 over 5 months · $1,758/mo, still running</p></div>
-      <span class="st g">ONE SETTING</span>
+    <div class="brow"><p class="amt">−$5,603<small>GRANTED, 12 MO</small></p>
+      <div><h3>The fall promo code never stopped running.</h3>
+      <p class="rl">FALL24 · campaign ended 12 months ago · 412 orders since · avg discount $13.60 (20% of $68 AOV) · 412 × $13.60 = $5,603</p></div>
+      <span class="st y">TEST, THEN SWITCH</span>
       <details class="wp"><summary>WORKING PAPER</summary>
         <div class="wpb"><dl>
-          <dt>Category</dt><dd>Avoidable spend. This is not contribution loss — it is cash paid to a platform. Different kind of money, so it is not added to the confirmed-loss column.</dd>
-          <dt>Source</dt><dd>Meta Ads Manager (spend, objective, change history) + Shopify (attributed orders). The objective change is timestamped in the account's own edit log.</dd>
-          <dt>Period</dt><dd>5 months, 3 March to 31 July. <strong>Deliberately not annualised</strong> — the set has not run a year, so a yearly figure would be invented. At the observed rate it costs $1,758 a month for as long as it stays on.</dd>
-          <dt>Formula</dt><dd class="f">$9,200 spend − $410 attributed sales<br>= $8,790 over 5 months<br>÷ 5 = $1,758 / month continuing</dd>
-          <dt>Confidence</dt><dd>Spend: high — it is billed. Return: medium — attribution is 7-day-click, and iOS under-reports, so true sales are probably somewhat above $410. That would make the gap smaller, not larger. <strong>The number is stated the way that is least flattering to us.</strong></dd>
-          <dt>Missing</dt><dd>Whether the set drove any view-through or in-store sales. Nothing in the data can rule that out.</dd>
-          <dt>Also found</dt><dd>The destination page was out of stock for 21 days in May. Some of the spend had nowhere to convert.</dd>
-          <dt>Action</dt><dd>Switch the objective to purchases or pause it. Do not judge the creative until it has run once against the right objective.</dd>
+          <dt>Category</dt><dd><strong>Observed discount / margin reduction — not confirmed recoverable loss.</strong> The $5,603 left your margin; whether it returns depends on a counterfactual nobody has tested yet.</dd>
+          <dt>Source</dt><dd>Shopify → Discounts report, code <code>FALL24</code>; order-level export cross-checked against the campaign brief that set the end date.</dd>
+          <dt>Period</dt><dd>12 months, from the campaign's stated end date to today.</dd>
+          <dt>Formula</dt><dd class="f">412 orders × $13.60 avg discount = $5,603<br>discount granted, trailing 12 months</dd>
+          <dt>Avoidable portion</dt><dd><strong>Not yet established — deliberately left blank.</strong> 71% of these orders came from coupon-aggregator sites, i.e. people who had already decided to buy and then went looking for a code. That is suggestive, not proof. Anyone who hands you a recovery number here is guessing.</dd>
+          <dt>Confidence</dt><dd>Amount granted: <strong>high</strong> — it is billed fact. Contribution recovered after switching the code off: <strong>medium at best</strong>, and possibly negative if the code is quietly doing conversion work.</dd>
+          <dt>Dedup</dt><dd>Excludes all WELCOME15 orders — those are counted once, in the confirmed-loss finding above. No order appears in two findings.</dd>
+          <dt>Action</dt><dd><strong>Controlled shutoff or a holdout test, not a blind switch.</strong> Turn it off for a defined window, or withhold it from a share of traffic, and measure conversion against the discount saved. Two to four weeks buys you the real number, and it costs almost nothing to run.</dd>
         </dl></div>
       </details>
     </div>
@@ -211,22 +195,49 @@ footer a{color:var(--soft);text-decoration:none}
   </div>
 
   <div class="cat">
-    <div class="cath"><h2>Recoverable cash</h2><span class="catt">$8,412 ONE-TIME</span></div>
-    <p class="catd">Money already taken from you that has a documented case for coming back — and a deadline. One-time, not annual.</p>
+    <div class="cath"><h2>Contribution drag</h2><span class="catt">$9,044 OBSERVED, 5 MO</span></div>
+    <p class="catd">Cash going out with almost nothing coming back. Shown over the period it was actually observed, never annualised — and measured against <em>contribution</em>, not revenue, because subtracting a revenue figure from a cost figure is not a real number.</p>
     <div class="board">
 
-    <div class="brow"><p class="amt cash">$8,412<small>DISPUTABLE NOW</small></p>
+    <div class="brow"><p class="amt">−$9,044<small>OBSERVED, 5 MO</small></p>
+      <div><h3>One ad set spent $9,200 and returned $156 of contribution.</h3>
+      <p class="rl">Objective set to link clicks, not purchases, since 3 March · spend $9,200 · attributed revenue $410 · contribution on that revenue 38% = $156 · drag $9,200 − $156 = $9,044 over 5 months</p></div>
+      <span class="st g">ONE SETTING</span>
+      <details class="wp"><summary>WORKING PAPER</summary>
+        <div class="wpb"><dl>
+          <dt>Category</dt><dd>Avoidable spend, measured as contribution drag. This is cash paid to a platform, not margin lost on an order — a different kind of money, so it is not added to the confirmed-loss column.</dd>
+          <dt>Source</dt><dd>Meta Ads Manager (spend, objective, change history) + Shopify (attributed orders, line items). The objective change is timestamped in the account's own edit log.</dd>
+          <dt>Period</dt><dd>5 months, 3 March to 31 July. <strong>Deliberately not annualised</strong> — the set has not run a year, so a yearly figure would be invented.</dd>
+          <dt>Formula</dt><dd class="f">ad spend                       $9,200<br>attributed gross revenue         $410<br>× contribution rate 38%    =     $156<br>─────────────────────────────────────<br>contribution drag              $9,044<br>÷ 5 months  =  $1,809 / month continuing</dd>
+          <dt>Why not $8,790</dt><dd><strong>Because $9,200 − $410 subtracts revenue from cost, and those are not the same unit.</strong> The $410 is gross revenue; what actually offsets ad spend is the contribution left after COGS, pick/pack, shipping, discounts and fees — $156 of it. The honest gap is therefore <em>larger</em> than the crude subtraction, not smaller.</dd>
+          <dt>Confidence</dt><dd>Spend: <strong>high</strong> — it is billed. Return: <strong>medium</strong> — 7-day-click attribution and iOS under-reporting mean true attributed sales are probably somewhat above $410, which would make the drag smaller. Stated the way least flattering to us.</dd>
+          <dt>Missing</dt><dd>View-through and in-store sales. Nothing in the data rules them out, so "this ad set sold nothing" would be an overstatement — it sold $410 that we can see.</dd>
+          <dt>Also found</dt><dd>The destination page was out of stock for 21 days in May. Some of the spend had nowhere to convert.</dd>
+          <dt>Action</dt><dd>Switch the objective to purchases, or pause it. Do not judge the creative until it has run once against the right objective — the creative has never actually been tested for selling.</dd>
+        </dl></div>
+      </details>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cath"><h2>Disputable</h2><span class="catt">$8,412 CLAIMED · EXPECT $5,000–8,412</span></div>
+    <p class="catd">Money already taken from you that has a documented case for coming back — and a deadline. This is the <em>claim</em> amount, not a recovery: filing it and winning it are two different events, and only one of them is in your control.</p>
+    <div class="board">
+
+    <div class="brow"><p class="amt cash">$8,412<small>CLAIMED · NOT YET RECOVERED</small></p>
       <div><h3>Your distributor billed you for shortages your own warehouse can disprove.</h3>
-      <p class="rl">14 deduction lines totalling $8,412 across 6 POs · carrier scans show full pallet counts on all 6 · every line still inside the 90-day window — the earliest closes in 38 days</p></div>
+      <p class="rl">14 deduction lines across 6 POs · carrier scans show full pallet counts on all 6 · every line still inside the 90-day window — the earliest closes in 38 days</p></div>
       <span class="st y">READY TO FILE</span>
       <details class="wp"><summary>WORKING PAPER</summary>
         <div class="wpb"><dl>
-          <dt>Category</dt><dd>Recoverable cash, one-time. Not annual leakage — though if the pattern repeats, next year's audit will find it again.</dd>
-          <dt>Source</dt><dd>Distributor remittance PDFs (the deduction codes and amounts), matched line-by-line to 3PL bills of lading and carrier delivery scans.</dd>
-          <dt>Formula</dt><dd class="f">14 disputed lines, summed = $8,412<br>largest single line $1,240 · smallest $187</dd>
-          <dt>Confidence</dt><dd>Documentation: high — every line has a matching scan showing the full count delivered. <strong>Recovery: medium.</strong> Having the evidence and getting the credit are two different things; it depends on the distributor.</dd>
-          <dt>Range</dt><dd>$5,000 – $8,412 recovered, based on how these usually settle. We do not promise the top of that range.</dd>
-          <dt>Deadline</dt><dd>All 14 are inside the contractual dispute window. The earliest expires in 38 days; after that the money is gone regardless of the evidence.</dd>
+          <dt>Category</dt><dd><strong>Disputable amount — not recovered cash, and not annual.</strong> Filed as the documented claim. If the pattern repeats, next year's audit finds it again.</dd>
+          <dt>Source</dt><dd>Distributor remittance PDFs (deduction codes and amounts), matched line-by-line to 3PL bills of lading and carrier delivery scans.</dd>
+          <dt>The 14 lines</dt><dd class="f">PO-4471   $1,240   $742   $463<br>PO-4488     $816   $688   $391<br>PO-4502     $704   $641<br>PO-4519     $633   $597   $250<br>PO-4533     $552   $187<br>PO-4550     $508<br>──────────────────────────────<br>sum of 14 lines        =   $8,412</dd>
+          <dt>Confidence</dt><dd>Documentation: <strong>high</strong> — every line has a matching scan showing the full count delivered. Recovery: <strong>medium</strong>. Having the evidence and getting the credit are different things; it depends on the distributor.</dd>
+          <dt>Expected recovery</dt><dd><strong>$5,000 – $8,412.</strong> Based on how these typically settle. The headline shows the claim, not the top of this range, because promising the top would be selling you a number we do not control.</dd>
+          <dt>Deadline</dt><dd>All 14 sit inside the contractual dispute window. The earliest expires in <strong>38 days</strong>; after that the money is gone regardless of how good the evidence is.</dd>
           <dt>Action</dt><dd>Dispute letters drafted, one per PO, evidence attached. They send from you, after you read them.</dd>
         </dl></div>
       </details>
@@ -236,40 +247,49 @@ footer a{color:var(--soft);text-decoration:none}
   </div>
 
   <div class="cat">
-    <div class="cath"><h2>At risk</h2><span class="catt">$14,200 – $17,500 MODELLED</span></div>
-    <p class="catd">Nothing here has been lost yet. These are modelled, they carry the weakest evidence on the board, and they are shown as ranges because a single number would be a guess wearing a suit.</p>
+    <div class="cath"><h2>Conditional exposure</h2><span class="catt">$13,056 ONLY IF THE ACCOUNT CHURNS</span></div>
+    <p class="catd">Nothing here has been lost. This is what leaves <em>if</em> one thing happens — and how likely that thing is has not been estimated, because nothing in your data can estimate it.</p>
     <div class="board">
 
-    <div class="brow"><p class="amt risk">$13,100<small>/YR IF IT CHURNS</small></p>
+    <div class="brow"><p class="amt risk">$13,056<small>ONLY IF IT CHURNS</small></p>
       <div><h3>Wholesale has been slowing for five months. DTC growth was hiding it.</h3>
       <p class="rl">Largest quiet account: $3,200/mo through last year, reorder cycle stretched 31 → 58 days · $3,200 × 12 × 34% wholesale contribution = $13,056</p></div>
       <span class="st g">CALL DRAFTED</span>
       <details class="wp"><summary>WORKING PAPER</summary>
         <div class="wpb"><dl>
-          <dt>Category</dt><dd>Revenue at risk, modelled. Not a loss. It becomes one only if the account actually leaves.</dd>
+          <dt>Category</dt><dd><strong>Conditional exposure, modelled. Not a loss and not an opportunity</strong> — it is what one account is worth if it goes. Kept separate from the win-back finding below, because money that might leave and money you might win back are not the same thing and must never be summed.</dd>
           <dt>Source</dt><dd>Shopify/invoice history by wholesale account; contribution rate from the wholesale price list against unit COGS.</dd>
-          <dt>Formula</dt><dd class="f">$3,200/mo × 12 = $38,400 gross<br>× 34% wholesale contribution<br>= $13,056 → $13,100</dd>
+          <dt>Formula</dt><dd class="f">$3,200/mo × 12 = $38,400 gross<br>× 34% wholesale contribution<br>= $13,056 contribution at stake</dd>
           <dt>Assumption</dt><dd><strong>This assumes total churn</strong> — the whole account, gone. That is the ceiling, not the expectation. A stretched reorder cycle is a warning, not a departure.</dd>
-          <dt>Confidence</dt><dd>Low to medium. The slowdown is fact: repeat share across wholesale fell 61% → 38%, and this account's cycle nearly doubled. The dollar figure attached to it is a model.</dd>
-          <dt>Missing</dt><dd>Whether they are buying from someone else, carrying stock, or having their own slow quarter. No data you own can answer that. <strong>A phone call can.</strong></dd>
+          <dt>Probability</dt><dd><strong>Not estimated.</strong> We have no churn history for this account and no visibility into their side, so any percentage here would be invented. Unestimated is the honest state.</dd>
+          <dt>Confidence</dt><dd>The slowdown is fact: repeat share across wholesale fell 61% → 38%, and this account's cycle nearly doubled. The dollar figure attached to it is a model, and the likelihood is unknown.</dd>
+          <dt>Missing</dt><dd>Whether they are buying elsewhere, carrying stock, or having their own slow quarter. No data you own can answer that. <strong>A phone call can, this week.</strong></dd>
           <dt>Action</dt><dd>Call script drafted — three questions, none of them "is everything okay?"</dd>
         </dl></div>
       </details>
     </div>
 
-    <div class="brow"><p class="amt risk">$1,100–4,400<small>/YR MODELLED</small></p>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cath"><h2>Recovery opportunity</h2><span class="catt">$0 – $4,374 · NO BASELINE YET</span></div>
+    <p class="catd">Money that already stopped arriving, which you might win back. The floor is genuinely zero — you have never run this campaign, so there is no rate to apply. Anyone quoting you a floor here invented it.</p>
+    <div class="board">
+
+    <div class="brow"><p class="amt risk">$0–4,374<small>/YR IF THEY RETURN</small></p>
       <div><h3>41 subscribers hit pause and never came back. Nobody emailed them.</h3>
-      <p class="rl">Paused &gt;90 days · win-backs sent: 0 · avg $17.10/mo × 52% contribution = $8.89/mo each · ceiling 41 × $8.89 × 12 = $4,374</p></div>
+      <p class="rl">Paused &gt;90 days · win-backs ever sent: 0 · avg $17.10/mo × 52% contribution = $8.89/mo each · ceiling 41 × $8.89 × 12 = $4,374 · floor $0, no baseline exists</p></div>
       <span class="st g">WIN-BACK DRAFTED</span>
       <details class="wp"><summary>WORKING PAPER</summary>
         <div class="wpb"><dl>
-          <dt>Category</dt><dd>Modelled opportunity. The weakest number on this board, and shown as a range for that reason.</dd>
-          <dt>Source</dt><dd>Subscription app export (pause dates, plan value) + ESP send history, which shows zero win-back campaigns to this segment.</dd>
-          <dt>Formula</dt><dd class="f">ceiling — everyone returns, stays 12 months:<br>41 × $8.89 × 12 = $4,374<br><br>floor — 25% win-back rate:<br>10 × $8.89 × 12 = $1,067</dd>
-          <dt>Why a range</dt><dd>The ceiling assumes every paused subscriber returns and stays a full year. <strong>Nobody gets that.</strong> A single number here would be marketing, so you get both ends and the assumption behind each.</dd>
+          <dt>Category</dt><dd><strong>Recovery opportunity — not money at risk.</strong> These subscribers already stopped paying; nothing further is leaving. This is upside, which is why it is filed apart from the exposure finding above and added to nothing.</dd>
+          <dt>Source</dt><dd>Subscription app export (pause dates, plan value) + ESP send history, which shows zero win-back campaigns ever sent to this segment.</dd>
+          <dt>Formula</dt><dd class="f">ceiling — every one returns and stays 12 months:<br>41 × $8.89 × 12 = $4,374<br><br>floor — nobody returns:<br>                        $0</dd>
+          <dt>Why the floor is zero</dt><dd><strong>Because you have never run a win-back, there is no rate to apply.</strong> An earlier draft of this board used a 25% category benchmark to manufacture a $1,067 floor — that was a borrowed number dressed as your number, and it has been removed. Real recovery could be zero.</dd>
           <dt>Margin</dt><dd>Contribution, not revenue: $17.10 plan value × 52% after product, pack and shipping. The gross figure would be $8,413 and would mean less.</dd>
-          <dt>Confidence</dt><dd>Low. The 25% floor is a category norm, not your number — you have never run a win-back, so there is no baseline to draw from. <strong>The first campaign creates the benchmark.</strong></dd>
-          <dt>Action</dt><dd>Win-back sequence drafted. Treat the first send as the measurement, not the payoff.</dd>
+          <dt>Confidence</dt><dd><strong>Low, and honestly so.</strong> The ceiling assumes every paused subscriber returns and stays a full year, which nobody gets. The only thing established here is that 41 people paused and none were ever contacted.</dd>
+          <dt>Action</dt><dd>Win-back sequence drafted. <strong>Treat the first send as the measurement, not the payoff</strong> — it creates the baseline that makes every future estimate real.</dd>
         </dl></div>
       </details>
     </div>
@@ -320,6 +340,7 @@ footer a{color:var(--soft);text-decoration:none}
 <section>
   <h2>How to read a number you're being sold</h2>
   <p>Every line on this board tells you four things before it tells you a dollar figure: what kind of money it is, where the number came from, what it assumes, and how confident we are. That is not decoration — it's the only way you can check us.</p>
+  <p><strong>The classification is the work.</strong> Margin already lost, a discount granted, spend with nothing behind it, an amount you can dispute, revenue exposed if an account leaves, and money you might win back are six different kinds of money. They behave differently, they need different decisions, and four of the six aren't losses at all. A single total blends them into a number that is bigger, simpler, and wrong.</p>
   <p>If an audit hands you one big number and no formula, the number is doing a job that has nothing to do with your business.</p>
 </section>
 
