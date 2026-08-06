@@ -101,6 +101,9 @@ footer a{color:var(--soft);text-decoration:none}
 .look .is p{font-weight:600}
 @media (max-width:640px){.look{grid-template-columns:1fr}.look .as{border-bottom:none;padding-bottom:4px}}
 .recv li strong{font-weight:600}
+.bnote{background:var(--band);border-left:3px solid var(--red);border-radius:0 12px 12px 0;padding:clamp(16px,2vw,22px) clamp(18px,2.2vw,26px);margin-top:clamp(20px,2.4vw,28px)}
+.bnote p{font-size:clamp(14.5px,1.25vw,16px);color:var(--soft);max-width:64ch;line-height:1.65}
+.bnote strong{color:var(--ink);font-weight:600}
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(32px,4.6vw,60px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:34px}
 .ctaP h2{font-size:clamp(22px,2.8vw,34px);max-width:24ch;margin:0 auto 22px;color:#F4F2EC}
 .cta{display:inline-block;background:var(--volt);color:var(--ink);font-size:14.5px;font-weight:600;padding:15px 28px;border-radius:999px;text-decoration:none}
@@ -323,11 +326,14 @@ footer a{color:var(--soft);text-decoration:none}
 <section>
   <h2>What you walk away with</h2>
   <ul class="recv">
-    <li><strong>This board, live in your accounts</strong> — every line linked to its source, updating as things change.</li>
-    <li><strong>The drafts</strong> — dispute letters, win-backs, account check-ins: written, waiting on your approval. Nothing sends itself.</li>
+    <li><strong>This board</strong> — five to seven findings, each with the working paper behind it: source, period, formula, assumption, confidence, and what's missing.</li>
+    <li><strong>The build map</strong> — what it would take to stop each leak, in order, priced. Yours to keep and hand to anyone, whether or not I build it.</li>
     <li><strong>The decisions</strong> — the two calls only you can make, one page each, trade-offs stated.</li>
     <li><strong>A 60-minute walkthrough</strong> — then it's yours either way, and the $2,500 credits into the build.</li>
   </ul>
+  <div class="bnote">
+    <p><strong>What the audit is not.</strong> It's a snapshot, not a running system. The board that updates itself every morning, the connections behind it, and the dispute letters and win-backs that go out on your approval — that's the build. The audit's job is to tell you what's worth building first, and to be worth having even if you never build it.</p>
+  </div>
 </section>
 
 <div class="ctaP">

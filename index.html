@@ -197,6 +197,22 @@ section{padding:clamp(70px,9vw,150px) 0}
 .buy:hover{color:var(--ink);border-color:var(--ink)}
 .buynote{font-size:13px;color:var(--soft);margin-top:9px}
 .found{margin-top:22px;font-family:'Space Mono',monospace;font-size:clamp(13.5px,1.2vw,15.5px);letter-spacing:.04em;line-height:1.65;color:var(--ink);background:var(--card);border-radius:var(--r);padding:16px 22px;max-width:74ch}
+/* who this is for */
+.who{margin:clamp(18px,2.2vw,28px) 0 clamp(22px,2.6vw,32px);max-width:70ch}
+.who .whoh{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+.who p:not(.whoh){font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:var(--ink)}
+/* payment schedule */
+.sched{margin-top:clamp(22px,2.6vw,32px);background:var(--dark);color:#F4F2EC;border-radius:var(--r);padding:clamp(20px,2.6vw,30px);max-width:74ch}
+.sched .schedh{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9C9A92;margin-bottom:14px}
+.schedl{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.schedl li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:11px 0;border-bottom:1px solid #2C2B27;font-size:clamp(14.5px,1.25vw,16.5px)}
+.schedl li span{color:#D8D6CE}
+.schedl li em{font-style:normal;color:#8E8C84;font-size:.88em}
+.schedl li b{font-family:'Space Mono',monospace;font-weight:700;white-space:nowrap}
+.schedl li.tot{border-bottom:none;border-top:2px solid #4A4842;margin-top:6px;padding-top:14px;font-weight:600}
+.schedl li.tot b{font-size:1.18em}
+.sched .schedn{margin-top:14px;font-size:clamp(13.5px,1.15vw,15px);color:#A8A69E;line-height:1.6}
+@media (max-width:520px){.schedl li{flex-direction:column;gap:3px;align-items:flex-start}}
 /* FAQ */
 details{border-bottom:1px solid var(--faint);padding:19px 0}
 summary{font-size:clamp(21px,1.85vw,25px);font-weight:500;cursor:pointer;letter-spacing:-.014em}
@@ -386,13 +402,28 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
     <p class="lab"><span class="chip g">08</span>Pricing</p>
     <div><h2 class="say">First conversation free. First fix live in two weeks.</h2></div>
   </div>
+  <div class="who">
+    <p class="whoh">Who this is for</p>
+    <p>Founder-led food &amp; beverage brands, four or more years in, doing real revenue with a small team. You sell direct and wholesale — maybe subscriptions, maybe a stall or a shop. You still answer customer emails yourself. Nobody's job title is "operations," so every question about margin, a distributor deduction or an account gone quiet eventually lands on you. The business outgrew the spreadsheets a while ago and everyone just worked harder instead.</p>
+  </div>
   <div class="tiles price">
     <div class="tile"><div><p class="amt">Free</p><h3>The teardown</h3><p>30 minutes. You show me where things live; I name two leaks I'd go after first.</p></div></div>
-    <div class="tile"><div><p class="amt">$2,500</p><h3>The leak audit</h3><p>A week inside your numbers. Where the money is going and what it takes to stop it. Yours either way — and it credits into the build, so the full engagement totals $15,000.</p><p class="samplelink"><a href="/sample-audit">See a sample audit &rarr;</a></p><a class="buy" href="https://buy.stripe.com/cNi4gBbYl1O7el90Uz5Rm00" target="_blank" rel="noopener">Ready now? Buy the audit →</a><p class="buynote">I'll email you within a day to start week one.</p></div></div>
+    <div class="tile"><div><p class="amt">$2,500</p><h3>The leak audit</h3><p>A week inside your numbers. Where the money is going and what it takes to stop it. Findings and a build map, yours either way — and it credits into the build.</p><p class="samplelink"><a href="/sample-audit">See a sample audit &rarr;</a></p><a class="buy" href="https://buy.stripe.com/cNi4gBbYl1O7el90Uz5Rm00" target="_blank" rel="noopener">Ready now? Buy the audit →</a><p class="buynote">I'll email you within a day to start week one.</p></div></div>
     <div class="tile star"><div><p class="amt">$5,000/mo · 3 months</p><h3>The build</h3><p>Each piece answers a question you can't answer today. Biggest leak first. Month three is the training month.</p></div></div>
     <div class="tile"><div><p class="amt">$2,500/mo</p><h3>The partnership</h3><p>After the build, optional. Models change, tools break — monthly review, priority fixes, upgrades. I keep the machine current; your team runs it.</p></div></div>
   </div>
-  <p class="found">The offer is new. The operator isn't — my first client has run on this system for four years, at $5,000 a month. Founding-client pricing holds until the first two case studies are written. Then it goes up.</p>
+  <div class="sched">
+    <p class="schedh">What you actually pay, in order</p>
+    <ol class="schedl">
+      <li><span>The leak audit</span><b>$2,500</b></li>
+      <li><span>Build, month one <em>&mdash; $5,000 less the audit credit</em></span><b>$2,500</b></li>
+      <li><span>Build, month two</span><b>$5,000</b></li>
+      <li><span>Build, month three <em>&mdash; training and handover</em></span><b>$5,000</b></li>
+      <li class="tot"><span>Audit through handover</span><b>$15,000</b></li>
+    </ol>
+    <p class="schedn">The audit credits in, so it's $15,000 all-in &mdash; not $17,500. The partnership afterwards is optional and separate.</p>
+  </div>
+  <p class="found">The offer is new, and priced that way. This rate holds until the first two case studies are written. Then it goes up.</p>
 </div></section>
 
 <section class="tint"><div class="w">

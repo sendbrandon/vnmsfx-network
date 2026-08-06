@@ -5,9 +5,11 @@
 ## Engagements
 - Free teardown (30 min): you show me where things live; I name two leaks I'd go after first. Book: https://cal.com/vnmsfx/30min
 - The leak audit ($2,500): a week inside your numbers, findings tied to source documents; refundable before work begins; credits toward the build. Sample deliverable: https://vnmsfx.com/sample-audit
-- The build ($15,000 total, paid monthly over 3 months; the audit credits in): one piece at a time, biggest leak first; first piece live in the build's first two weeks; month three is the training month.
+- The build ($5,000/mo x 3): one piece at a time, biggest leak first; first piece live in the build's first two weeks; month three is the training month.
+- Payment schedule, audit through handover: audit $2,500, then build month one $2,500 (that month's $5,000 less the audit credit), month two $5,000, month three $5,000. $15,000 all-in, not $17,500.
+- What the audit is vs the build: the audit is a snapshot — findings with working papers, plus a build map, yours either way. The live board that updates itself, the connections behind it, and the drafted letters that go out on approval are the build.
 - The partnership ($2,500/mo, optional, after the build): monthly review, priority fixes, upgrades.
-- Founding-client pricing: the offer is new; the operator's first client has run on this system for four years at $5,000/mo. Pricing holds until the first two case studies, then rises.
+- Introductory pricing: the offer is new and priced that way. The rate holds until the first two case studies, then rises.
 
 ## Terms
 Client owns everything — accounts, logins, data, the system itself. No platform to migrate to, no lock-in, no operations taken over. Three clients at a time. Data handling: least-privilege access under client logins, business-tier AI processing under commercial terms, human approval before anything acts (https://vnmsfx.com/security). Plain-language terms: https://vnmsfx.com/terms
