@@ -4,6 +4,12 @@
   "framework": null,
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.vnmsfx.com" }],
+      "destination": "https://vnmsfx.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.vnmsfx.com" }],
       "destination": "https://vnmsfx.com/:path*",
