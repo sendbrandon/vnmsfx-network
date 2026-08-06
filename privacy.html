@@ -74,7 +74,8 @@ footer a{color:var(--soft);text-decoration:none}
     <li>vnmsfx.com sets no advertising trackers and runs no third-party ad pixels.</li>
     <li>Hosting (Vercel) keeps standard server logs — IP address, browser, pages requested — for security and uptime.</li>
     <li>Fonts load from Google Fonts, which receives the standard request data involved in serving a file.</li>
-    <li>If you arrive from a link that carries a campaign tag (<code>utm_source</code> and the like), the tag is held in your browser for that tab only and added to the booking or checkout link if you click one — so I can tell which message brought you. No cookies, no analytics service, no profile built, and nothing about you is sent anywhere by the page itself. Close the tab and it's gone.</li>
+    <li>Page views and visits are counted with Vercel Web Analytics, served from this domain. It is aggregate and cookieless: no advertising identifier, no profile, and no following you to other websites.</li>
+    <li>If you arrive from a link that carries a campaign tag (<code>utm_source</code> and the like), the tag is held in your browser for that tab only and added to the booking or checkout link if you click one — so I can tell which message brought you. No cookies, no profile built, and nothing about you is sent anywhere by the page itself. Close the tab and it's gone.</li>
   </ul>
 </section>
 
@@ -121,5 +122,6 @@ Array.prototype.forEach.call(document.querySelectorAll('a[href*="cal.com/vnmsfx"
 try{var u=new URL(a.href);Object.keys(s).forEach(function(k){if(!u.searchParams.has(k))u.searchParams.set(k,s[k]);});a.href=u.toString();}catch(e){}});
 }catch(e){}})();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
