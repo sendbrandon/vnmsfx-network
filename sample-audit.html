@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sample audit — VNMSFX</title>
-<meta name="description" content="A fictional sample of the VNMSFX Audit: four missed handoffs — samples nobody followed up on, a quiet wholesale account, an ad pointing at a sold-out product, a paid subscription with no shipment record — and the system worth building first for each.">
+<title>Sample audit — Uncle Ott&#8217;s Horseradish (fictional) — VNMSFX</title>
+<meta name="description" content="A sample VNMSFX audit told through a fictional CPG brand: a grocer that quietly stopped reordering, ads selling a flavor first-timers couldn't buy, the posts that sell being the ones they stopped making, deductions nobody disputed, and a win-back that over-discounts everyone.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/sample-audit">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -18,7 +18,7 @@
 *{margin:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{overflow-x:hidden;font-family:'Archivo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-.w{max-width:980px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
+.w{max-width:1060px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
 nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,2vw,26px);background:rgba(240,239,234,.86);backdrop-filter:blur(10px)}
 .pill{white-space:nowrap;font-size:13.5px;padding:8px 17px;border-radius:999px;background:var(--card);text-decoration:none;color:var(--ink)}
 .pill:hover{background:var(--faint)}
@@ -29,20 +29,31 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 @media (max-width:600px){.navlogo{display:none}}
 
 .head{padding:clamp(28px,4vw,52px) 0 clamp(8px,1.6vw,16px)}
-.chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(13px,1.35vw,17px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
+.chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(12.5px,1.3vw,16px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:12px;vertical-align:2px}
 .chip.r{background:var(--red);color:#F4F2EC}
 .chip.y{background:var(--yellow);color:var(--ink)}
 .lab{font-family:'Space Mono',monospace;font-size:clamp(13.5px,1.55vw,18px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(14px,1.8vw,22px)}
 h1{font-size:clamp(27px,3.8vw,47px);font-weight:600;letter-spacing:-.034em;line-height:1.08;max-width:26ch}
 .sub{font-size:clamp(16.5px,1.45vw,19.5px);color:var(--soft);max-width:62ch;margin-top:16px;line-height:1.6}
-.banner{background:var(--yellow);border-radius:var(--r);padding:14px 20px;font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.06em;margin-top:20px;max-width:80ch}
+.banner{background:var(--yellow);border-radius:var(--r);padding:13px 19px;font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,14px);letter-spacing:.05em;margin-top:18px;max-width:84ch;line-height:1.7}
 
-section{padding:clamp(24px,3vw,40px) 0}
+section{padding:clamp(22px,2.8vw,36px) 0}
 h2.say{font-size:clamp(20px,2.3vw,28px);font-weight:600;letter-spacing:-.02em;margin-bottom:clamp(14px,1.8vw,20px)}
 
+/* the story */
+.story{background:var(--band);border-radius:var(--r);padding:clamp(20px,2.6vw,30px)}
+.story p{font-size:clamp(15.5px,1.35vw,17.5px);max-width:70ch;line-height:1.65}
+.story p+p{margin-top:11px}
+
+.pull{font-size:clamp(19px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.25;max-width:30ch;margin-top:13px}
+mark{background:var(--volt);color:var(--ink);padding:0 4px;border-radius:4px}
+.cell.bld mark{background:var(--volt)}
+.stat{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(12px,1.6vw,18px)}
+.stat .n{font-family:'Space Mono',monospace;font-size:clamp(34px,4.6vw,58px);font-weight:700;letter-spacing:-.03em;color:var(--red);line-height:1}
+.stat .k{font-family:'Space Mono',monospace;font-size:clamp(11px,1.05vw,13px);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);max-width:22ch;line-height:1.5}
 /* summary cards */
-.sumgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,16px)}
-@media (max-width:860px){.sumgrid{grid-template-columns:1fr 1fr}}
+.sumgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.4vw,16px);margin-top:clamp(14px,1.8vw,20px)}
+@media (max-width:960px){.sumgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.sumgrid{grid-template-columns:1fr}}
 .sum{background:var(--card);border-radius:var(--r);padding:clamp(15px,1.8vw,20px)}
 .sum .sk{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:8px}
@@ -51,12 +62,13 @@ h2.say{font-size:clamp(20px,2.3vw,28px);font-weight:600;letter-spacing:-.02em;ma
 /* findings */
 .find{border-top:2px solid var(--ink);padding-top:clamp(16px,2vw,22px);margin-top:clamp(22px,2.8vw,34px)}
 .find .lab{margin-bottom:10px}
-.find h2{font-size:clamp(19px,2.1vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.2;max-width:34ch;margin-bottom:clamp(14px,1.8vw,20px)}
-.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(12px,1.6vw,20px)}
-@media (max-width:760px){.trio{grid-template-columns:1fr}}
+.find h2{font-size:clamp(19px,2.1vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.2;max-width:36ch;margin-bottom:clamp(14px,1.8vw,20px)}
+.trio{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:clamp(12px,1.6vw,20px)}
+@media (max-width:820px){.trio{grid-template-columns:1fr}}
 .cell{border-radius:12px;padding:clamp(15px,1.8vw,21px)}
 .cell .ck{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:8px}
-.cell p{font-size:clamp(14.5px,1.25vw,16px);line-height:1.6}
+.cell p{font-size:clamp(14px,1.2vw,15.5px);line-height:1.6}
+.cell p+p{margin-top:8px}
 .cell.rec{background:var(--card)}
 .cell.rec .ck{color:var(--soft)}
 .cell.why{background:transparent;border-left:3px solid var(--red);border-radius:0;padding-left:16px}
@@ -83,7 +95,7 @@ h2.say{font-size:clamp(20px,2.3vw,28px);font-weight:600;letter-spacing:-.02em;ma
 .vscol p{font-size:clamp(14.5px,1.3vw,16.5px);line-height:1.6}
 .vscol.b p{color:#E8E6DE}
 .vscol p+p{margin-top:9px}
-.scope{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);line-height:1.8;margin-top:clamp(16px,2vw,22px);max-width:82ch}
+.scope{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);line-height:1.8;margin-top:clamp(16px,2vw,22px);max-width:84ch}
 
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(30px,4.2vw,54px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:clamp(8px,1.2vw,14px)}
 .ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:26ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
@@ -111,58 +123,115 @@ footer a{color:var(--soft);text-decoration:none}
 <div class="w">
 
 <div class="head">
-  <p class="lab"><span class="chip r">SAMPLE AUDIT &middot; FICTIONAL EXAMPLE</span></p>
-  <h1>You already won the customer, the order and the buyer&rsquo;s attention. Then the follow-through broke.</h1>
-  <p class="sub">This fictional food and beverage brand sells wholesale, direct to consumers, through subscriptions and to hotels and retailers. The products are not the problem. Important deadlines, handoffs and follow-ups are being missed behind the scenes. Here is what the VNMSFX Audit surfaced&mdash;and the systems worth building first.</p>
-  <p class="banner">This company and its records are invented. A real Audit looks at one area at a time and only at the records agreed with the client.</p>
+  <p class="lab"><span class="chip r">FICTIONAL COMPANY</span><span class="chip y">SAMPLE AUDIT</span></p>
+  <h1>Uncle Ott&rsquo;s makes horseradish that clears a sinus at ten feet. The office is another story.</h1>
+  <p class="sub">An invented company, audited for real. This is what a VNMSFX Audit reads like&mdash;the story of a brand that does the hard part beautifully and loses the easy part, and exactly what one week in their records caught.</p>
+  <p class="banner">Uncle Ott&rsquo;s Horseradish is fictional. Every person, record, date and count below is invented to demonstrate the audit format. A real Audit looks at one agreed area at a time and only at the records agreed with the client.</p>
 </div>
 
 <section>
-  <h2 class="say">Four problems hiding in plain sight.</h2>
+  <h2 class="say">The story</h2>
+  <div class="story">
+    <p>Uncle Ott&rsquo;s is two siblings, their grandfather&rsquo;s recipe, and eight years of grating fresh horseradish that makes grown chefs sit down. It started at a farmers-market card table. It is now 41 grocery doors built store by store, one regional distributor, a webshop shipping 3-packs nationwide, and the Root Club &mdash; 214 members who get a quarterly box and whatever the siblings are testing that season.</p>
+    <p>The product wins awards. The office is a laptop next to the grating room, an inbox with 4,000 unread emails, and a binder labeled DISTRIBUTOR that lives in the delivery van. It is the only office where crying at your email might just be the horseradish.</p>
+    <p>The recipe has never missed. The follow-through misses plenty.</p>
+    <p class="pull">They brought in an audit because revenue looked fine &mdash; and the bank account disagreed.</p>
+  </div>
+
   <div class="sumgrid">
-    <div class="sum"><span class="sk">Sales</span><p>Samples delivered. Nobody followed up.</p></div>
-    <div class="sum"><span class="sk">Wholesale</span><p>Good account quiet. No owner.</p></div>
-    <div class="sum"><span class="sk">Direct to Consumer</span><p>Active ad. Sold-out product.</p></div>
-    <div class="sum"><span class="sk">Subscriptions</span><p>Customer paid. Shipment record missing.</p></div>
+    <div class="sum"><span class="sk">Wholesale</span><p>The grocer reordered like clockwork for two years. Then nothing. Nobody called.</p></div>
+    <div class="sum"><span class="sk">Ads</span><p>The page said in stock. The size first-timers buy was gone.</p></div>
+    <div class="sum"><span class="sk">Social</span><p>The posts that sell are the ones they stopped making.</p></div>
+    <div class="sum"><span class="sk">Wholesale</span><p>Deducted for cases the shipping records can disprove.</p></div>
+    <div class="sum"><span class="sk">The Root Club</span><p>Everyone who leaves gets 20% off. Most could be won back for less.</p></div>
   </div>
 
   <div class="find">
-    <p class="lab"><span class="chip y">FINDING 01</span>Sales</p>
-    <h2>You sent the samples. Nobody followed up.</h2>
+    <p class="lab"><span class="chip y">FINDING 01</span>Wholesale &middot; quiet account</p>
+    <h2>The grocer reordered every three weeks for two years. Then it didn&rsquo;t.</h2>
+    <div class="stat"><span class="n">9 WEEKS</span><span class="k">of silence from a clockwork account</span></div>
     <div class="trio">
-      <div class="cell rec"><span class="ck">What the records show</span><p>A hotel buyer asked for pricing and samples. The samples arrived 19 days ago. No owner, follow-up date or next step was recorded.</p></div>
-      <div class="cell why"><span class="ck">Why it hurts</span><p>You did the hard part: earned a real buyer&rsquo;s interest. Then the relationship was left to cool in somebody&rsquo;s inbox.</p></div>
-      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A simple sales system that keeps the company, contact, sales stage, owner, last conversation and next step in one place&mdash;and flags active conversations that are going quiet.</p></div>
+      <div class="cell rec"><span class="ck">What the records show</span>
+        <p>34 consecutive reorders from one specialty grocer, every 19 to 24 days &mdash; then nothing for 9 weeks. <mark>The account still says active.</mark> The last recorded contact is a text message from March, on the older sibling&rsquo;s phone.</p>
+        <p>The store changed buyers in the spring; nobody told the new buyer the horseradish wasn&rsquo;t discontinued. And no chart ever dipped &mdash; <mark>two new accounts opened the same month, so total wholesale looked fine</mark> while the best account went dark.</p>
+      </div>
+      <div class="cell why"><span class="ck">Why it hurts</span>
+        <p>Two years of demos and deliveries built that account. It didn&rsquo;t leave angry &mdash; it just faded, while everyone was busy with the doors that still order.</p>
+      </div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span>
+        <p>A system that flags any account past its own ordering rhythm and shows the last order, the history, the owner and a drafted check-in &mdash; a weekly list of warm accounts, before they cool all the way.</p>
+      </div>
     </div>
   </div>
 
   <div class="find">
-    <p class="lab"><span class="chip y">FINDING 02</span>Wholesale</p>
-    <h2>A good wholesale account went quiet. Nobody noticed.</h2>
+    <p class="lab"><span class="chip y">FINDING 02</span>Ads &middot; direct to consumer</p>
+    <h2>The ads worked. The flavor first-timers buy was gone.</h2>
+    <div class="stat"><span class="n">6 DAYS</span><span class="k">of paid clicks with no flavor a first-timer would pick</span></div>
     <div class="trio">
-      <div class="cell rec"><span class="ck">What the records show</span><p>The retailer normally ordered every 30 to 45 days. It has now been 80 days. The account still says active, but no follow-up task is visible.</p></div>
-      <div class="cell why"><span class="ck">Why it hurts</span><p>Your team already did the hard work of winning the account. The relationship can fade while everybody is focused on finding new customers.</p></div>
-      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A system that flags accounts that have gone past the reorder timing your team chooses and shows the last order, account owner, last contact and suggested next step.</p></div>
+      <div class="cell rec"><span class="ck">What the records show</span>
+        <p>The ads ran to a page that said <em>in stock</em> &mdash; and it was: Extra Hot was in stock. But the Classic, <mark>the flavor 9 out of 10 first-time buyers choose</mark>, sold out on a Tuesday and stayed out for six days. Clicks continued. First orders stopped. Nothing flagged it, because technically nothing was broken.</p>
+        <p>Separately: a HOLIDAY code from December is <mark>still live in month five</mark>, listed on two coupon sites, and stacking with the Root Club discount.</p>
+      </div>
+      <div class="cell why"><span class="ck">Why it hurts</span>
+        <p>A cold customer does not start their horseradish journey at Extra Hot. The page looked fine, the dashboard blamed the creative, and the ad budget kept buying visits with nothing a first-timer would pick.</p>
+      </div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span>
+        <p>A system that checks active campaigns against <strong>the flavor and size new customers actually buy</strong> &mdash; its availability, the variant mix on the page, offer dates and code rules &mdash; not just whether the page loads. It flags the mismatch while the ads are still spending.</p>
+      </div>
     </div>
   </div>
 
   <div class="find">
-    <p class="lab"><span class="chip y">FINDING 03</span>Direct to Consumer</p>
-    <h2>Your ad is still running. The product is sold out.</h2>
+    <p class="lab"><span class="chip y">FINDING 03</span>Social &middot; what to post</p>
+    <h2>The posts that sell jars are the posts they stopped making.</h2>
+    <div class="stat"><span class="n">3 VS 40</span><span class="k">recipe reels posted last quarter, versus label glamour shots</span></div>
     <div class="trio">
-      <div class="cell rec"><span class="ck">What the records show</span><p>The campaign is active. The destination product has been unavailable for four days.</p></div>
-      <div class="cell why"><span class="ck">Why it hurts</span><p>Every new click lands on a dead end. You keep paying to disappoint someone who was ready to shop.</p></div>
-      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A system that checks active campaigns against product pages, inventory and offer dates, then flags anything that no longer matches.</p></div>
+      <div class="cell rec"><span class="ck">What the records show</span>
+        <p>Three recipe reels posted last quarter &mdash; grandma&rsquo;s remoulade, a bloody-mary build, a sinus-clearing first-taste reaction. <mark>Each one lines up with a bump in site visits and first orders.</mark> The forty label glamour shots don&rsquo;t.</p>
+        <p>Nobody tracks any of it, so the content calendar keeps favoring what looks good in the grid.</p>
+      </div>
+      <div class="cell why"><span class="ck">Why it hurts</span>
+        <p>The content that sells is being rationed. The content that doesn&rsquo;t is being produced on schedule. The effort lands where the likes are &mdash; not where the orders are.</p>
+      </div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span>
+        <p>A system that classifies every post by format, lines each format up against an agreed traffic-and-order window, <strong>separates real attribution from coincidence</strong>, and tells the calendar which formats deserve another test.</p>
+      </div>
     </div>
   </div>
 
   <div class="find">
-    <p class="lab"><span class="chip y">FINDING 04</span>Subscriptions</p>
-    <h2>The customer paid. The order never appeared.</h2>
+    <p class="lab"><span class="chip y">FINDING 04</span>Wholesale &middot; deductions</p>
+    <h2>The distributor deducted for short cases. The proof was in three places.</h2>
+    <div class="stat"><span class="n">9 DAYS</span><span class="k">until the first dispute deadline closes</span></div>
     <div class="trio">
-      <div class="cell rec"><span class="ck">What the records show</span><p>The payment record shows a successful subscription renewal. The store and warehouse records do not show the matching order or shipment step.</p></div>
-      <div class="cell why"><span class="ck">Why it hurts</span><p>A paying customer may be waiting for an order your team believes is already handled.</p></div>
-      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A system that checks the expected path&mdash;payment, order and shipment&mdash;and flags the missing step for your team to review.</p></div>
+      <div class="cell rec"><span class="ck">What the records show</span>
+        <p>Across four purchase orders this quarter, the distributor deducted for 17 cases marked short. The purchase orders, the 3PL pick records and the signed delivery receipts &mdash; <mark>which show full counts on three of the four shipments</mark> &mdash; live in email, a portal and the binder in the van.</p>
+        <p>The dispute window is 90 days. The earliest deadline closes in 9 days. Nobody has matched the paperwork, because the person who could is running the grater.</p>
+      </div>
+      <div class="cell why"><span class="ck">Why it hurts</span>
+        <p>No single deduction was big enough for anyone to stop and look &mdash; that is exactly why they add up. The evidence to push back exists; it just rides around in the van until the deadline makes it worthless.</p>
+      </div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span>
+        <p>A system that reads each deduction, checks it against the dispute deadline, gathers the matching purchase order, pick record and delivery receipt, and prepares one evidence package for the siblings to review.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="find">
+    <p class="lab"><span class="chip y">FINDING 05</span>The Root Club &middot; win-backs</p>
+    <h2>Every lapsed member gets the same 20% off &mdash; whatever the reason they left.</h2>
+    <div class="stat"><span class="n">20%</span><span class="k">the one offer sent to every canceled or paused member</span></div>
+    <div class="trio">
+      <div class="cell rec"><span class="ck">What the records show</span>
+        <p>The Root Club win-back is one email: 20% off, sent to everyone. But the records show <mark>who left for which reason</mark> &mdash; nine members lapsed because a reissued card failed, several paused over shipping cost, and some simply chose to leave. The offer ignores all of it.</p>
+      </div>
+      <div class="cell why"><span class="ck">Why it hurts</span>
+        <p>The failed-card members would come back for a simple update-your-card note. The shipping-sensitive ones would come back for a shipping discount. <mark>They all get 20% off instead</mark> &mdash; the deepest discount, spent on the people who needed it least.</p>
+      </div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span>
+        <p>A system that separates lapsed members by why they left and matches the approved offer to the reason &mdash; card note, shipping discount, smaller coupon, the full 20% only where it earns its keep &mdash; then compares each approach against actual reactivation.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -172,7 +241,7 @@ footer a{color:var(--soft);text-decoration:none}
   <div class="gives">
     <div class="give"><h3>What is being missed</h3><p>The account, order, payment, campaign or buyer conversation that needs attention.</p></div>
     <div class="give"><h3>What shows the problem</h3><p>The records, dates and activity that caused it to be flagged.</p></div>
-    <div class="give"><h3>What needs attention now</h3><p>The deadline, customer, campaign, order or follow-up your team should review.</p></div>
+    <div class="give"><h3>What needs attention now</h3><p>The deadline, customer, campaign, order or follow-up the team should review.</p></div>
     <div class="give"><h3>What VNMSFX should build</h3><p>The first system that would keep the same problem from staying hidden again.</p></div>
   </div>
 </section>
@@ -182,7 +251,7 @@ footer a{color:var(--soft);text-decoration:none}
   <div class="vs">
     <div class="vscol a">
       <h3>The Audit</h3>
-      <p>The Audit shows what your team is missing, why it matters and which system is worth building first.</p>
+      <p>The Audit shows what the team is missing, why it matters and which system is worth building first.</p>
     </div>
     <div class="vscol b">
       <h3>The Build</h3>
@@ -190,19 +259,20 @@ footer a{color:var(--soft);text-decoration:none}
       <p>The system puts the important item and supporting information in front of your team. Your team decides what to send, change, challenge or follow up on.</p>
     </div>
   </div>
-  <p class="scope">This page combines four fictional examples to demonstrate the format. A real Audit focuses on one agreed area&mdash;not all four. Nothing is changed or sent during the Audit.</p>
+  <p class="scope">Uncle Ott&rsquo;s Horseradish and every record above are invented, and this page combines five areas to demonstrate the format. A real Audit focuses on one agreed area&mdash;not all five. Nothing is changed or sent during the Audit.</p>
 </section>
 
 <section>
   <div class="ctaP">
     <h2>What is your team missing right now?</h2>
     <p>You may already have the order, customer or buyer interest. The problem may be what happens&mdash;or fails to happen&mdash;next.</p>
+    <p>This is the job an ops team would do &mdash; if a small brand could afford one. The system does it instead.</p>
     <p>In a free teardown, we will talk through one place where important follow-through may be breaking and show you what a better system could look like.</p>
     <a class="ctaBtn" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book my free teardown</a>
   </div>
 </section>
 
-  <footer><span>VNMSFX LLC — NEW YORK</span><a href="mailto:brandon@vnmsfx.com">BRANDON@VNMSFX.COM</a><span>SAMPLE AUDIT</span></footer>
+  <footer><span>VNMSFX LLC — NEW YORK</span><a href="mailto:brandon@vnmsfx.com">BRANDON@VNMSFX.COM</a><span>SAMPLE AUDIT · FICTIONAL</span></footer>
   <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/security">Security</a></p>
 </div>
 </main>

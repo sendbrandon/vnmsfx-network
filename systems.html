@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What We Build — VNMSFX</title>
-<meta name="description" content="A buyer goes quiet. Your distributor pays you less. An ad sends shoppers to a product they cannot buy. VNMSFX builds the system that catches the miss, shows your team what happened and puts the next step in front of the right person.">
+<meta name="description" content="How food & beverage brands lose money without seeing it — distributor deductions, quiet wholesale accounts, broken ad measurement, subscription systems that stop agreeing — and the exception systems VNMSFX builds to catch each one.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/systems">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -18,7 +18,7 @@
 *{margin:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{overflow-x:hidden;font-family:'Archivo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-.w{max-width:980px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
+.w{max-width:1060px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
 nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,2vw,26px);background:rgba(240,239,234,.86);backdrop-filter:blur(10px)}
 .pill{white-space:nowrap;font-size:13.5px;padding:8px 17px;border-radius:999px;background:var(--card);text-decoration:none;color:var(--ink)}
 .pill:hover{background:var(--faint)}
@@ -29,37 +29,51 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 @media (max-width:600px){.navlogo{display:none}}
 
 .head{padding:clamp(28px,4vw,52px) 0 clamp(8px,1.6vw,16px)}
-.chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(14px,1.4vw,18px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
+.chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(13px,1.35vw,17px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
 .chip.g{background:var(--volt);color:var(--ink)}
 .chip.y{background:var(--yellow);color:var(--ink)}
-.chip.r{background:var(--red);color:#F4F2EC}
-.lab{font-family:'Space Mono',monospace;font-size:clamp(14px,1.6vw,19px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(14px,1.8vw,22px)}
+.lab{font-family:'Space Mono',monospace;font-size:clamp(13.5px,1.55vw,18px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(14px,1.8vw,22px)}
 h1{font-size:clamp(28px,4vw,50px);font-weight:600;letter-spacing:-.034em;line-height:1.08;max-width:24ch}
-.sub{font-size:clamp(16.5px,1.45vw,19.5px);color:var(--soft);max-width:60ch;margin-top:16px;line-height:1.6}
-.pattern{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.05em;line-height:1.8;background:var(--dark);color:#DDE3D0;border-radius:var(--r);padding:15px 20px;margin-top:18px;max-width:76ch}
+.sub{font-size:clamp(16.5px,1.45vw,19.5px);color:var(--soft);max-width:62ch;margin-top:16px;line-height:1.6}
+.pattern{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.05em;line-height:1.8;background:var(--dark);color:#DDE3D0;border-radius:var(--r);padding:15px 20px;margin-top:18px;max-width:78ch}
+.banner{background:var(--yellow);border-radius:var(--r);padding:13px 19px;font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,14px);letter-spacing:.05em;margin-top:16px;max-width:80ch;line-height:1.7}
 .heroCta{margin-top:20px}
 .cta{display:inline-block;background:var(--dark);color:#fff;font-size:14.5px;font-weight:600;padding:14px 27px;border-radius:999px;text-decoration:none}
 .cta:hover{background:var(--red)}
 
-section{padding:clamp(24px,3vw,40px) 0}
+section{padding:clamp(22px,2.8vw,36px) 0}
 .cat{border-top:2px solid var(--ink);padding-top:clamp(16px,2vw,22px)}
-.cat .lab{margin-bottom:8px}
-.cat .intro{font-size:clamp(17px,1.6vw,21px);font-weight:600;letter-spacing:-.015em;max-width:52ch;margin-bottom:clamp(16px,2vw,24px);line-height:1.4}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,20px)}
-@media (max-width:720px){.cards{grid-template-columns:1fr}}
-.card{background:var(--card);border-radius:var(--r);padding:clamp(18px,2.2vw,26px);display:flex;flex-direction:column;gap:11px}
-.card h3{font-size:clamp(17px,1.55vw,20px);font-weight:600;letter-spacing:-.015em;line-height:1.3}
-.card p{font-size:clamp(14.5px,1.25vw,16px);color:var(--soft);line-height:1.6}
-.card .hurt{border-left:3px solid var(--red);padding:2px 0 2px 13px}
-.card .hurt p{color:var(--ink)}
-.card .hurt .hk,.card .build .bk{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--soft);display:block;margin-bottom:4px}
-.card .build{background:var(--band);border-radius:10px;padding:13px 15px;margin-top:auto}
-.card .build p{color:var(--ink)}
+.cat>.lab{margin-bottom:clamp(16px,2vw,24px)}
+
+.wf{margin-bottom:clamp(26px,3.2vw,40px)}
+.wf:last-child{margin-bottom:0}
+.wf h2{font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-.02em;line-height:1.25;max-width:36ch;margin-bottom:clamp(12px,1.6vw,18px)}
+.wf h2 .wl{font-family:'Space Mono',monospace;font-size:.62em;font-weight:700;letter-spacing:.1em;color:var(--soft);vertical-align:2px;margin-right:10px}
+.trio{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:clamp(12px,1.6vw,20px)}
+@media (max-width:820px){.trio{grid-template-columns:1fr}}
+.cell{border-radius:12px;padding:clamp(15px,1.8vw,21px)}
+.cell .ck{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:8px}
+.cell p,.cell li{font-size:clamp(14px,1.2vw,15.5px);line-height:1.6}
+.cell ul,.cell ol{padding-left:19px;display:grid;gap:4px;margin-top:7px}
+.cell p+p,.cell ul+p,.cell ol+p,.cell p+ul,.cell p+ol{margin-top:8px}
+.cell.rec{background:var(--card)}
+.cell.rec .ck{color:var(--soft)}
+.cell.why{background:transparent;border-left:3px solid var(--red);border-radius:0;padding-left:16px}
+.cell.why .ck{color:var(--red)}
+.cell.bld{background:var(--dark);color:#F4F2EC}
+.cell.bld .ck{color:#9C9A92}
+.cell.bld p,.cell.bld li{color:#E8E6DE}
+.cell.bld .note{color:#A8A69E;font-size:clamp(12.5px,1.1vw,14px)}
 
 .close{background:var(--band);border-radius:var(--r);padding:clamp(22px,2.8vw,34px);margin-top:clamp(8px,1.2vw,14px)}
-.close h2{font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;max-width:28ch}
-.close p{font-size:clamp(15.5px,1.35vw,17.5px);max-width:64ch;line-height:1.6}
+.close h2{font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;max-width:30ch}
+.close p{font-size:clamp(15.5px,1.35vw,17.5px);max-width:66ch;line-height:1.6}
 .close p+p{margin-top:10px}
+.ops{background:var(--volt);border-radius:var(--r);padding:clamp(24px,3.2vw,42px) clamp(20px,2.8vw,36px);margin-top:clamp(14px,1.8vw,22px)}
+.ops .opsk{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.16em;margin-bottom:12px}
+.ops h2{font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.028em;line-height:1.12;max-width:24ch;margin-bottom:12px}
+.ops p:not(.opsk){font-size:clamp(15.5px,1.4vw,18px);max-width:62ch;line-height:1.6}
+.close .quote{font-family:'Space Mono',monospace;font-size:clamp(13px,1.2vw,15px);letter-spacing:.04em;line-height:1.75;background:var(--dark);color:#DDE3D0;border-radius:12px;padding:15px 19px;margin:14px 0;max-width:72ch}
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(30px,4.2vw,54px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:clamp(20px,2.6vw,30px)}
 .ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:26ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
 .ctaP p{font-size:clamp(15px,1.3vw,17px);color:#C8C6BE;max-width:56ch;margin:0 auto 22px;line-height:1.6}
@@ -87,101 +101,225 @@ footer a{color:var(--soft);text-decoration:none}
 <div class="head">
   <p class="lab"><span class="chip g">WHAT VNMSFX BUILDS</span></p>
   <h1>The problem that costs you is the one nobody catches in time.</h1>
-  <p class="sub">A buyer goes quiet. Your distributor pays you less. An ad sends shoppers to a product they cannot buy. A customer pays, but no order appears. VNMSFX builds the system that catches the miss, shows your team what happened and puts the next step in front of the right person.</p>
-  <p class="pattern">Something important happens &rarr; nobody sees it &rarr; nobody owns the next step &rarr; the sale, order, customer or deadline slips away.</p>
+  <p class="sub">VNMSFX builds exception systems for food and beverage brands: they watch the records you already have, catch the item that needs attention and put it&mdash;with the evidence behind it&mdash;in front of the right person.</p>
+  <p class="pattern">Something valuable happens &rarr; nobody sees the exception &rarr; no one follows through &rarr; money leaks or an opportunity expires.</p>
+  <p class="banner">The examples below are realistic hypotheticals about an invented brand &mdash; not claims about any real company.</p>
   <p class="heroCta"><a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a></p>
 </div>
 
 <section>
   <div class="cat">
-    <p class="lab"><span class="chip y">01</span>Sales</p>
-    <h2 class="intro">Before the account is won, keep real buyer conversations moving.</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Your sales pipeline lives in inboxes and memory.</h3>
-        <p>One person has the hotel contact. Another has the distributor email. Retailer notes are in a spreadsheet. Nobody can see the full picture or who owns the next move.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>A real sales opportunity does not have to reject you. It can disappear because nobody followed up.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A simple sales system that keeps the company, contact, sales stage, owner, last conversation and next step in one place&mdash;and flags conversations that are going quiet.</p></div>
-      </div>
-      <div class="card">
-        <h3>The samples arrived. The deal stopped moving.</h3>
-        <p>The buyer asked for samples. You sent them. They arrived. Then nobody recorded when or how to follow up.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>You earned the buyer&rsquo;s interest and paid to support the conversation. Then the opportunity was left to cool in somebody&rsquo;s inbox.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that shows which quotes, samples, meetings and contract conversations have stalled, what happened last and who owns the next step.</p></div>
+    <p class="lab"><span class="chip y">01</span>Direct-to-consumer brands spending on paid media</p>
+
+    <div class="wf">
+      <h2><span class="wl">A</span>Ad measurement integrity</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>A brand spends heavily on Meta every month. The purchase event is misconfigured &mdash; missing purchases, counting them twice, or losing events after a website change.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>Meta overstates and you keep scaling an ad that is not producing &mdash; or understates and you kill an ad that was working. You are making spending decisions from an unreliable instrument.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It tests whether purchase events fire, checks for duplicates, compares platform totals with store records, and labels the number unreliable when the check fails.</p>
+        </div>
       </div>
     </div>
+
+    <div class="wf">
+      <h2><span class="wl">B</span>Ad-to-inventory and landing-page guard</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>The ad keeps spending &mdash; but the product is sold out, the page is broken, or the promotion in the ad has expired.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>You pay for clicks that cannot complete the purchase, and frustrate customers who were ready to buy.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It checks active campaigns against product pages, inventory and offer dates, and flags mismatches so your team can pause, redirect or correct.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <h2><span class="wl">C</span>Promotion and discount leakage</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>An influencer code was supposed to end after a weekend. Six months later it is still active and on coupon sites &mdash; or customers stack discounts that were never meant to combine.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>The business gives away more discount than management approved.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It compares code usage with approved dates and rules, shows the affected orders and discount amounts, and routes the code to its owner for review.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <h2><span class="wl">D</span>Content performance learning loop</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>Recipe videos, product shots, founder stories &mdash; the team keeps making whatever looks attractive, but nobody compares content type with signups, add-to-carts or orders.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>The production budget goes to formats that create attention but little buying behavior.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It classifies content by format, compares each type against an agreed traffic or order window, separates real attribution from coincidence, and shows which formats deserve another test.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section>
   <div class="cat">
-    <p class="lab"><span class="chip y">02</span>Wholesale</p>
-    <h2 class="intro">After the account is won, protect the order and the relationship.</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Your distributor pays you less. Your proof is scattered.</h3>
-        <p>The purchase order is in email. The warehouse record is in the 3PL portal. The delivery proof is somewhere else. Meanwhile, the deadline to challenge the deduction keeps getting closer.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>The deadline can pass while the evidence sits untouched in different systems.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags the deadline, brings the matching records together and prepares one evidence package for your team to review.</p></div>
-      </div>
-      <div class="card">
-        <h3>A good wholesale account goes quiet. Nobody notices.</h3>
-        <p>The retailer normally orders every 30 to 45 days. Now it has been 80. The CRM still says active, but nobody owns the follow-up.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>You did the hard work of winning the account. Then the relationship can fade while your team is busy chasing new business.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags accounts that have gone quiet and shows the last order, previous order history, account owner and suggested next step.</p></div>
+    <p class="lab"><span class="chip y">02</span>Wholesale-heavy brands</p>
+
+    <div class="wf">
+      <h2><span class="wl">A</span>Quiet wholesale account reactivation</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>A retailer used to order every 30 to 45 days. It has now been 80 &mdash; but nobody owns a reorder report, and the CRM does not know the last actual order date.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>The retailer may have forgotten, changed buyers, or started buying from a competitor. You already paid the cost of winning the account, then let the relationship quietly die.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It shows the account, last order, normal reorder pattern, owner and a suggested follow-up &mdash; a weekly list of warm accounts that deserve attention.</p>
+        </div>
       </div>
     </div>
+
+    <div class="wf">
+      <h2><span class="wl">B</span>Distributor deduction and shortage review</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>The distributor pays less, claiming 100 cases were missing. The deduction is in a PDF, the purchase order in email, the warehouse record in the 3PL portal &mdash; and nobody matches them before the dispute deadline expires.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>The distributor simply pays less. The records may support a dispute, but the chance is lost because no one assembled the evidence in time.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It reads each deduction, checks the dispute window, gathers the purchase order, warehouse record and delivery proof, and prepares the evidence package. Your team decides whether to dispute.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <h2><span class="wl">C</span>Wholesale pipeline leakage</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>A buyer asks for samples at a trade show. A quote goes out with no reminder. A broker introduction sits in an inbox and never enters a shared pipeline.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>You spend on trade shows, samples, brokers and travel &mdash; and qualified opportunities disappear because nobody owns the next action.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>One review list answering one question: which buyer inquiries, samples, quotes or introductions have no owner or an overdue next step?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <h2><span class="wl">D</span>Open-order and fulfillment exceptions</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>A retailer sends a purchase order. Sales believes it is accepted &mdash; but inventory is short, the warehouse never got the instruction, the ship date passes, and nobody tells the retailer.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>The retailer may cancel, cut future orders, or issue a shortage deduction. The order was already won; the internal handoff failed.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It compares accepted orders, inventory, warehouse allocation, ship dates and delivered quantities &mdash; and flags what is late, short or missing so a person can act before the retailer does.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section>
   <div class="cat">
-    <p class="lab"><span class="chip y">03</span>Direct to Consumer</p>
-    <h2 class="intro">You paid for the attention. Make sure customers can buy what they clicked.</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>You are paying to send shoppers somewhere they cannot buy.</h3>
-        <p>The product is sold out. The page is broken. The ad points to the wrong item. Or the offer shown in the ad has expired.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>You keep paying for visits that cannot complete the purchase shown in the ad.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that checks active campaigns against product pages, inventory and offer dates, then flags anything that does not match.</p></div>
-      </div>
-      <div class="card">
-        <h3>The promotion ended. The discount did not.</h3>
-        <p>An influencer code was supposed to stop months ago. Or customers are combining discounts that were never intended to work together.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>Customers keep receiving a deal you never meant to keep giving.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that checks discount use against your approved dates and rules and shows the affected orders and discount amounts.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <p class="lab"><span class="chip y">03</span>Subscription brands</p>
 
-<section>
-  <div class="cat">
-    <p class="lab"><span class="chip y">04</span>Subscriptions</p>
-    <h2 class="intro">A broken payment or handoff should not quietly cost you a customer.</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Their payment fails. Your follow-up fails too.</h3>
-        <p>A customer&rsquo;s card expires or a recurring payment fails. The retry or message does not happen, and the subscription eventually disappears.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>The customer may not have chosen to cancel. The recovery process simply stopped before anybody finished it.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags failed payments that still need attention and shows the customer history, retry status and next step.</p></div>
-      </div>
-      <div class="card">
-        <h3>They paid you. The order or shipment is missing.</h3>
-        <p>The payment succeeded, but no order was created. Or the order exists, but the warehouse never received it.</p>
-        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>The customer has paid, but the product may never leave the warehouse. Your team may not discover the problem until the customer complains.</p></div>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that checks for a matching payment, order and shipment&mdash;and flags the missing step.</p></div>
+    <div class="wf">
+      <h2><span class="wl">A</span>Failed-payment and dunning recovery</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>A subscriber&rsquo;s card expires. The retry is weak, the email never sends, nobody sees high-value failures &mdash; and the subscription eventually cancels.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>The customer did not choose to leave. The transaction failed, and the recovery process never completed.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It shows the failed charge, subscriber history, retry status and the next approved recovery step. Your team handles the customer.</p>
+        </div>
       </div>
     </div>
+
+    <div class="wf">
+      <h2><span class="wl">B</span>Paused and repeatedly skipped subscribers</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>A customer pauses for a month &mdash; six months later, still paused. Another skips every shipment but stays &ldquo;active.&rdquo; No report shows it.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>Recurring revenue quietly disappears without ever appearing as a cancellation.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It flags subscribers past your threshold &mdash; paused 90+ days, three skipped shipments &mdash; with their history and a prepared reactivation step.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <h2><span class="wl">C</span>Subscriber-state reconciliation</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>The app says active, but no charge occurred. The payment succeeded, but no order was created. The customer canceled, but marketing still emails them.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>You can lose revenue, ship unpaid product, or fail to ship paid product &mdash; failures between systems that no single dashboard shows.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It compares expected states &mdash; payment &rarr; order &rarr; fulfillment &mdash; and when a step is missing, creates an exception with the evidence and the owner.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <h2><span class="wl">D</span>Win-back learning loop</h2>
+      <div class="trio">
+        <div class="cell rec"><span class="ck">What happens before the workflow</span>
+          <p>Every canceled or paused subscriber gets the same 20% discount &mdash; whether they left on purpose or their card just failed.</p>
+        </div>
+        <div class="cell why"><span class="ck">How the brand loses money</span>
+          <p>You over-discount people who would have returned anyway, and never learn what works for each reason for leaving.</p>
+        </div>
+        <div class="cell bld"><span class="ck">How the workflow fixes it</span>
+          <p>It separates customers by why they left and compares approaches against actual reactivation &mdash; discount versus none, failed payment versus chosen cancellation.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section>
   <div class="close">
-    <h2>The system catches the miss. Your team decides what happens next.</h2>
-    <p>VNMSFX builds the system. The system shows what needs attention, why it was flagged and what should happen next.</p>
-    <p>Your team reviews the information and decides what to send, change, challenge or follow up on.</p>
-    <p>We start with the one or two problems that matter most&mdash;not all eight at once.</p>
+    <h2>These are not dashboards. They are exception systems.</h2>
+    <p class="quote">&ldquo;This account, order, payment, campaign, deduction, subscriber or buyer conversation needs attention &mdash; and here is the evidence explaining why.&rdquo;</p>
+    <p>Your team still decides what to do. The system&rsquo;s job is to make sure the important item does not stay hidden until the money, the customer, the dispute window or the opportunity is gone.</p>
+    <p>We start with the one or two problems that matter most to your business&mdash;not all of these at once.</p>
+  </div>
+
+  <div class="ops">
+    <p class="opsk">WHAT THIS ADDS UP TO</p>
+    <h2>The ops team you never hired, doing the job anyway.</h2>
+    <p>VC-funded brands run tight because the money buys an operations team to watch everything. VNMSFX builds the system that does the watching &mdash; so a small team operates like a funded one, <strong>without the payroll and without giving up a piece of the company.</strong></p>
   </div>
 
   <div class="ctaP">
