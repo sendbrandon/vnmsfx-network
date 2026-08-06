@@ -225,6 +225,9 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offse
 .skip:focus{left:0}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .samplelink{margin-top:14px}
+.syslink{margin-top:clamp(18px,2.2vw,28px)}
+.syslink a{font-family:'Space Mono',monospace;font-size:clamp(13px,1.2vw,15px);letter-spacing:.06em;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.syslink a:hover{color:var(--red)}
 .samplelink a{font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.06em;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 .legal{text-align:center;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;padding-bottom:44px}
 .legal a{color:var(--soft);text-decoration:none;margin:0 10px}
@@ -238,7 +241,7 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
 <body>
 
 <nav>
-  <span class="pills"><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="#pricing">Pricing</a></span>
+  <span class="pills"><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="/systems">What We Build</a><a class="pill" href="#pricing">Pricing</a></span>
   <!-- CTA target: swap mailto for Calendly URL when live -->
   <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Free teardown</a>
 </nav>
@@ -300,6 +303,7 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
     <div class="q"><h3>Deductions get taken, not checked</h3><p>Distributors subtract fees from every payment. Checking means reading every line — so nobody does.</p></div>
     <div class="q"><h3>The warning was always on record</h3><p>Orders, emails, settlements — the signal sat in tools nobody opens. Nothing was listening.</p></div>
   </div>
+  <p class="syslink"><a href="/systems">See what VNMSFX builds &rarr;</a></p>
   <div class="band"><div class="g"></div><!-- VIDEO 03 slot: invoices, macro -->
     <div class="t"><h3>The mistakes you catch cost you an afternoon.</h3><p>The ones nobody catches cost you the quarter.</p></div>
   </div>
