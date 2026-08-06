@@ -243,13 +243,33 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offse
 footer a,.sig a{color:inherit;text-decoration:none}
 footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.08em;color:var(--soft)}
 @media (max-width:820px){.duo,.item,.case{grid-template-columns:1fr}.lab{padding-top:0}.say{max-width:100%}}
-@media (max-width:560px){.pills{gap:5px}.pill{padding:10px 13px;font-size:12px}}
+/* MOBILE NAV — five nowrap pills overflow ~390px viewports; collapse to a menu */
+.burger{display:none;width:40px;height:36px;padding:0;border:0;border-radius:11px;background:var(--card);
+  cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.burger span{display:block;width:17px;height:1.8px;background:var(--ink);border-radius:2px;
+  transition:transform .22s cubic-bezier(.2,.7,.2,1),opacity .16s}
+nav[data-open="true"] .burger span:nth-child(1){transform:translateY(5.8px) rotate(45deg)}
+nav[data-open="true"] .burger span:nth-child(2){opacity:0}
+nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rotate(-45deg)}
+@media (max-width:760px){
+  .burger{display:flex}
+  .pills{position:absolute;top:calc(100% + 6px);left:clamp(14px,2vw,26px);flex-direction:column;
+    align-items:stretch;gap:4px;min-width:196px;padding:7px;border-radius:15px;
+    background:var(--bg);border:1px solid var(--faint);box-shadow:0 14px 34px rgba(0,0,0,.13);
+    opacity:0;visibility:hidden;transform:translateY(-7px) scale(.98);transform-origin:top left;
+    transition:opacity .19s ease,transform .19s cubic-bezier(.2,.7,.2,1),visibility .19s}
+  nav[data-open="true"] .pills{opacity:1;visibility:visible;transform:none}
+  .pills .pill{background:transparent;border-radius:10px;padding:11px 14px;font-size:14px}
+  .pills .pill:hover,.pills .pill:focus-visible{background:var(--card)}
+}
+@media (max-width:560px){.pill{padding:10px 13px;font-size:12px}.pills .pill{padding:11px 14px;font-size:14px}}
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="pills"><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="/systems">What We Build</a><a class="pill" href="#pricing">Pricing</a></span>
+  <button class="burger" id="menuBtn" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <span class="pills" id="navmenu"><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="/systems">What We Build</a><a class="pill" href="#pricing">Pricing</a></span>
   <!-- CTA target: swap mailto for Calendly URL when live -->
   <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Free teardown</a>
 </nav>
@@ -271,7 +291,7 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
       <p class="tag">Rapid response ops for<br>food &amp; beverage brands.</p>
       <div class="opwrap"><picture>
         <source media="(prefers-reduced-motion: reduce)" srcset="assets/operator-scan-still.webp">
-        <img src="assets/operator-scan.webp" width="400" height="400" alt="The Operator: a matte-black head with a single glowing sensor slit, sweeping left and right" fetchpriority="high" decoding="async">
+        <img src="assets/operator-scan.webp" width="340" height="282" alt="The Operator: a matte-black head with a single glowing sensor slit, sweeping left and right" fetchpriority="high" decoding="async">
       </picture></div>
     </div>
     <p class="stand"><span>A wholesale account went quiet. An ad is buying clicks for a sold-out flavor.</span>I build the AI-native system that catches it. Built once, yours to&nbsp;keep.</p>
@@ -462,6 +482,22 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.querySelectorAll('video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});
 }
+/* Mobile menu. Closes on outside click, Escape, link choice, and on resize past the breakpoint. */
+(function(){
+  var nav=document.querySelector('nav'), btn=document.getElementById('menuBtn');
+  if(!nav||!btn) return;
+  function set(open){
+    nav.setAttribute('data-open', open?'true':'false');
+    btn.setAttribute('aria-expanded', open?'true':'false');
+    btn.setAttribute('aria-label', open?'Close menu':'Open menu');
+  }
+  set(false);
+  btn.addEventListener('click', function(e){ e.stopPropagation(); set(nav.getAttribute('data-open')!=='true'); });
+  document.addEventListener('click', function(e){ if(!nav.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'&&nav.getAttribute('data-open')==='true'){ set(false); btn.focus(); } });
+  Array.prototype.forEach.call(nav.querySelectorAll('.pills a'), function(a){ a.addEventListener('click', function(){ set(false); }); });
+  matchMedia('(min-width:761px)').addEventListener('change', function(m){ if(m.matches) set(false); });
+})();
 </script>
 <script>
 /* First-party campaign attribution. No cookies, no third-party script, no beacons.
