@@ -117,12 +117,10 @@ section{padding:clamp(70px,9vw,150px) 0}
 .panel.typeonly .hcopy{padding:clamp(30px,5vw,84px) clamp(24px,4vw,72px)}
 .panel.typeonly .hcopy h1{max-width:15ch;font-size:clamp(32px,5.6vw,76px)}
 .panel.typeonly .hsub{max-width:38ch}
-/* THE OPERATOR — stands on the page above the panel; scaled as a small object, not a mascot */
-.opwrap{display:flex;justify-content:center;margin:clamp(2px,1vw,14px) 0 clamp(16px,2.4vw,30px)}
-.opwrap img{display:block;width:auto;height:clamp(132px,17vw,228px)}
-@media (max-width:640px){.opwrap img{height:120px}.opwrap{margin:0 0 14px}}
-@media (prefers-reduced-motion:no-preference){.opwrap img{animation:opIn .7s cubic-bezier(.2,.7,.2,1) both}}
-@keyframes opIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* THE OPERATOR — head close-up, scanning; sits under the tagline inside the masthead */
+.opwrap{display:flex;justify-content:center;margin:clamp(10px,1.6vw,20px) 0 0}
+.opwrap img{display:block;width:auto;height:clamp(148px,15vw,196px)}
+@media (max-width:640px){.opwrap img{height:140px}.opwrap{margin:12px 0 0}}
 /* QUESTIONS — the problem section reads as things you can't answer, not as invented stats */
 .qs{margin-top:clamp(34px,4vw,58px);border-top:1px solid var(--faint)}
 .q{display:grid;grid-template-columns:minmax(0,.58fr) minmax(0,.42fr);gap:clamp(16px,3vw,44px);
@@ -271,9 +269,12 @@ footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;f
       </div>
       <img src="assets/logo.svg" alt="VNMSFX">
       <p class="tag">Rapid response ops for<br>food &amp; beverage brands.</p>
+      <div class="opwrap"><picture>
+        <source media="(prefers-reduced-motion: reduce)" srcset="assets/operator-scan-still.webp">
+        <img src="assets/operator-scan.webp" width="400" height="400" alt="The Operator: a matte-black head with a single glowing sensor slit, sweeping left and right" fetchpriority="high" decoding="async">
+      </picture></div>
     </div>
     <p class="stand"><span>A wholesale account went quiet. An ad is buying clicks for a sold-out flavor.</span>I build the AI-native system that catches it. Built once, yours to&nbsp;keep.</p>
-    <div class="opwrap"><img src="assets/operator.webp" width="699" height="920" alt="The Operator: a small matte-black unit with a single glowing sensor slit" fetchpriority="high" decoding="async"></div>
     <div class="panel typeonly">
       <div class="hcopy">
         <h1>Run like you have an ops team. Without hiring one.</h1>
