@@ -116,5 +116,21 @@ BACK INTO YOUR ACCOUNTS — nothing acts without your approval</div>
   <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/security">Security</a></p>
 </div>
 </main>
+<script>
+/* First-party campaign attribution. No cookies, no third-party script, no beacons.
+   Reads utm_* / ref from the landing URL, keeps them for the tab (sessionStorage),
+   and carries them onto the Cal and Stripe links the visitor chooses to click —
+   so a booking or a purchase can be traced back to the campaign that produced it. */
+(function(){try{
+var K='vx_attr',KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','ref'],
+q=new URLSearchParams(location.search),f={},s={};
+KEYS.forEach(function(k){var v=q.get(k);if(v)f[k]=String(v).slice(0,120);});
+try{s=JSON.parse(sessionStorage.getItem(K)||'{}');}catch(e){}
+if(Object.keys(f).length){s=f;try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
+if(!Object.keys(s).length)return;
+Array.prototype.forEach.call(document.querySelectorAll('a[href*="cal.com/vnmsfx"],a[href*="buy.stripe.com"]'),function(a){
+try{var u=new URL(a.href);Object.keys(s).forEach(function(k){if(!u.searchParams.has(k))u.searchParams.set(k,s[k]);});a.href=u.toString();}catch(e){}});
+}catch(e){}})();
+</script>
 </body>
 </html>
