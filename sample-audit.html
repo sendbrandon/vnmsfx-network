@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sample leak audit — VNMSFX</title>
-<meta name="description" content="A sample VNMSFX leak audit: the morning board a founder actually reads, with every figure derived from the receipt printed beneath it and a working paper behind each line. Illustrative numbers, invented brand.">
+<title>Sample audit — VNMSFX</title>
+<meta name="description" content="A fictional sample of the VNMSFX Audit: four missed handoffs — samples nobody followed up on, a quiet wholesale account, an ad pointing at a sold-out product, a paid subscription with no shipment record — and the system worth building first for each.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/sample-audit">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -14,11 +14,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--faint:#D9D6CE;--card:#E4E2DB;--dark:#141412;--red:#8E1F12;--yellow:#F7DC64;--volt:#DDFF3A;--band:#E9E7E1;--green:#3E6212;--amber:#6E5210;--r:14px;}
+:root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--faint:#D9D6CE;--card:#E4E2DB;--dark:#141412;--red:#8E1F12;--yellow:#F7DC64;--volt:#DDFF3A;--band:#E9E7E1;--r:14px;}
 *{margin:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{overflow-x:hidden;font-family:'Archivo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-.w{max-width:880px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
+.w{max-width:980px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
 nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,2vw,26px);background:rgba(240,239,234,.86);backdrop-filter:blur(10px)}
 .pill{white-space:nowrap;font-size:13.5px;padding:8px 17px;border-radius:999px;background:var(--card);text-decoration:none;color:var(--ink)}
 .pill:hover{background:var(--faint)}
@@ -26,88 +26,78 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 .navlogo{height:19px;width:auto;display:block}
 .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--volt);color:var(--ink);padding:10px 16px;border-radius:0 0 8px 0;text-decoration:none;font-weight:600}
 .skip:focus{left:0}
-.head{padding:clamp(34px,5vw,64px) 0 clamp(10px,2vw,20px)}
-.chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(14px,1.4vw,18px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
+@media (max-width:600px){.navlogo{display:none}}
+
+.head{padding:clamp(28px,4vw,52px) 0 clamp(8px,1.6vw,16px)}
+.chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(13px,1.35vw,17px);letter-spacing:.06em;padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
 .chip.r{background:var(--red);color:#F4F2EC}
-.lab{font-family:'Space Mono',monospace;font-size:clamp(15px,1.7vw,20px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(16px,2vw,26px)}
-h1{font-size:clamp(30px,4.4vw,54px);font-weight:600;letter-spacing:-.034em;line-height:1.06;max-width:22ch}
-.sub{font-size:clamp(17px,1.5vw,20px);color:var(--soft);max-width:58ch;margin-top:18px;line-height:1.6}
-section{padding:clamp(26px,3.4vw,44px) 0}
-h2{font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px}
-p,li{font-size:clamp(15.5px,1.35vw,17.5px);color:var(--ink);max-width:66ch}
-section p+p{margin-top:12px}
-ul{padding-left:22px;display:grid;gap:9px;margin-top:10px}
-.note{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);margin-top:14px}
-.cardk{background:var(--band);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);margin-top:18px}
+.chip.y{background:var(--yellow);color:var(--ink)}
+.lab{font-family:'Space Mono',monospace;font-size:clamp(13.5px,1.55vw,18px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(14px,1.8vw,22px)}
+h1{font-size:clamp(27px,3.8vw,47px);font-weight:600;letter-spacing:-.034em;line-height:1.08;max-width:26ch}
+.sub{font-size:clamp(16.5px,1.45vw,19.5px);color:var(--soft);max-width:62ch;margin-top:16px;line-height:1.6}
+.banner{background:var(--yellow);border-radius:var(--r);padding:14px 20px;font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.06em;margin-top:20px;max-width:80ch}
+
+section{padding:clamp(24px,3vw,40px) 0}
+h2.say{font-size:clamp(20px,2.3vw,28px);font-weight:600;letter-spacing:-.02em;margin-bottom:clamp(14px,1.8vw,20px)}
+
+/* summary cards */
+.sumgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,16px)}
+@media (max-width:860px){.sumgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.sumgrid{grid-template-columns:1fr}}
+.sum{background:var(--card);border-radius:var(--r);padding:clamp(15px,1.8vw,20px)}
+.sum .sk{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:8px}
+.sum p{font-size:clamp(14.5px,1.3vw,16.5px);font-weight:600;letter-spacing:-.01em;line-height:1.4}
+
+/* findings */
+.find{border-top:2px solid var(--ink);padding-top:clamp(16px,2vw,22px);margin-top:clamp(22px,2.8vw,34px)}
+.find .lab{margin-bottom:10px}
+.find h2{font-size:clamp(19px,2.1vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.2;max-width:34ch;margin-bottom:clamp(14px,1.8vw,20px)}
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(12px,1.6vw,20px)}
+@media (max-width:760px){.trio{grid-template-columns:1fr}}
+.cell{border-radius:12px;padding:clamp(15px,1.8vw,21px)}
+.cell .ck{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:8px}
+.cell p{font-size:clamp(14.5px,1.25vw,16px);line-height:1.6}
+.cell.rec{background:var(--card)}
+.cell.rec .ck{color:var(--soft)}
+.cell.why{background:transparent;border-left:3px solid var(--red);border-radius:0;padding-left:16px}
+.cell.why .ck{color:var(--red)}
+.cell.bld{background:var(--dark);color:#F4F2EC}
+.cell.bld .ck{color:#9C9A92}
+.cell.bld p{color:#E8E6DE}
+
+/* what the audit gives you */
+.gives{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,20px)}
+@media (max-width:720px){.gives{grid-template-columns:1fr}}
+.give{background:var(--card);border-radius:var(--r);padding:clamp(16px,2vw,22px)}
+.give h3{font-size:clamp(15.5px,1.4vw,17.5px);font-weight:600;letter-spacing:-.01em;margin-bottom:7px}
+.give p{font-size:clamp(14.5px,1.25vw,16px);color:var(--soft);line-height:1.6}
+
+/* audit vs build */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,20px)}
+@media (max-width:720px){.vs{grid-template-columns:1fr}}
+.vscol{border-radius:var(--r);padding:clamp(18px,2.2vw,26px)}
+.vscol.a{background:var(--card)}
+.vscol.b{background:var(--dark);color:#F4F2EC}
+.vscol h3{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.2vw,14.5px);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.vscol.b h3{color:#DDFF3A}
+.vscol p{font-size:clamp(14.5px,1.3vw,16.5px);line-height:1.6}
+.vscol.b p{color:#E8E6DE}
+.vscol p+p{margin-top:9px}
+.scope{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,14px);letter-spacing:.05em;color:var(--soft);line-height:1.8;margin-top:clamp(16px,2vw,22px);max-width:82ch}
+
+.ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(30px,4.2vw,54px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:clamp(8px,1.2vw,14px)}
+.ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:26ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
+.ctaP p{font-size:clamp(15px,1.3vw,17px);color:#C8C6BE;max-width:58ch;margin:0 auto;line-height:1.6}
+.ctaP p+p{margin-top:10px}
+.ctaBtn{display:inline-block;background:var(--volt);color:var(--ink);font-size:14.5px;font-weight:600;padding:15px 28px;border-radius:999px;text-decoration:none;margin-top:22px}
+.ctaBtn:hover{background:#fff}
+
 a{color:var(--ink)}
 a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
 footer{padding:38px 0 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--soft)}
 footer a{color:var(--soft);text-decoration:none}
 .legal{text-align:center;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;padding-bottom:44px}
 .legal a{color:var(--soft);text-decoration:none;margin:0 10px}
-@media (max-width:600px){.navlogo{display:none}}
-
-.banner{background:var(--yellow);border-radius:var(--r);padding:14px 20px;font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.06em;margin-top:22px}
-
-/* ledger head — four numbers, never one */
-.ledger{background:var(--dark);color:#F4F2EC;border-radius:var(--r);padding:clamp(20px,2.8vw,32px);margin-top:22px}
-.ledger .lh{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:#9C9A92;margin-bottom:16px}
-.lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(14px,2vw,24px)}
-.lgrid>div{border-top:1px solid #34332F;padding-top:12px}
-.lgrid .n{font-size:clamp(21px,2.4vw,28px);font-weight:700;letter-spacing:-.03em;line-height:1.1;min-height:2.2em}
-.lgrid .n.loss{color:#E8836F}
-.lgrid .n.cash{color:#B9E86F}
-.lgrid .n.risk{color:#E8C46F}
-.lgrid .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#9C9A92;margin-top:7px;line-height:1.6}
-.ledger .why{font-size:clamp(14px,1.2vw,15.5px);color:#C8C6BE;margin-top:20px;padding-top:16px;border-top:1px solid #34332F;max-width:64ch}
-
-/* board */
-.cat{margin-top:clamp(30px,3.6vw,46px);padding-top:clamp(16px,2vw,22px);border-top:2px solid var(--ink)}
-.cath{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
-.cat h2{font-family:'Space Mono',monospace;font-size:clamp(13px,1.3vw,15px);letter-spacing:.14em;text-transform:uppercase;margin:0}
-.catt{font-family:'Space Mono',monospace;font-size:clamp(13px,1.3vw,15px);letter-spacing:.06em;font-weight:700}
-.catd{font-size:clamp(14px,1.2vw,15.5px);color:var(--soft);margin-top:8px;max-width:64ch}
-.board{margin-top:4px}
-.brow{display:grid;grid-template-columns:minmax(120px,155px) 1fr auto;gap:clamp(14px,2.4vw,34px);align-items:start;padding:clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--faint)}
-.brow .amt{font-size:clamp(23px,2.7vw,33px);font-weight:700;letter-spacing:-.03em;color:var(--red);line-height:1.05}
-.brow .amt.up,.brow .amt.cash{color:var(--green)}
-.brow .amt.risk{color:var(--amber)}
-.brow .amt small{display:block;font-size:12px;font-weight:400;font-family:'Space Mono',monospace;letter-spacing:.08em;color:var(--soft);margin-top:5px}
-.brow h3{font-size:clamp(17.5px,1.7vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.3;max-width:56ch}
-.brow .rl{font-family:'Space Mono',monospace;font-size:clamp(11.5px,1.05vw,13px);letter-spacing:.05em;color:var(--soft);margin-top:8px;line-height:1.7}
-.st{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;white-space:nowrap;padding:4px 10px;border-radius:8px;background:var(--card)}
-.st.g{background:var(--volt)}.st.y{background:var(--yellow)}.st.r{background:var(--red);color:#F4F2EC}
-@media (max-width:640px){.brow{grid-template-columns:1fr auto}.brow .amt{grid-column:1/-1}}
-
-/* working paper */
-.wp{grid-column:1/-1;margin-top:14px}
-.wp summary{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--soft);cursor:pointer;padding:6px 0;list-style:none;display:inline-flex;align-items:center;gap:9px}
-.wp summary::-webkit-details-marker{display:none}
-.wp summary::after{content:'+';font-size:15px;line-height:1}
-.wp[open] summary::after{content:'–'}
-.wp summary:hover{color:var(--ink)}
-.wp summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
-.wpb{background:var(--band);border-radius:12px;padding:clamp(16px,2vw,22px);margin-top:8px}
-.wpb dl{display:grid;grid-template-columns:minmax(112px,140px) 1fr;gap:10px clamp(14px,2vw,24px);margin:0}
-.wpb dt{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--soft);text-transform:uppercase;padding-top:2px}
-.wpb dd{margin:0;font-size:clamp(14px,1.2vw,15.5px);max-width:58ch;line-height:1.6}
-.wpb dd.f{font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,13.5px);background:var(--dark);color:#DDE3D0;padding:10px 13px;border-radius:8px;line-height:1.7}
-@media (max-width:640px){.wpb dl{grid-template-columns:1fr;gap:3px}.wpb dt{margin-top:12px}}
-
-.look{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(18px,3vw,40px);border-top:1px solid var(--faint)}
-.look>div{padding:clamp(16px,2.2vw,24px) 0;border-bottom:1px solid var(--faint)}
-.look .k{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:var(--soft);display:block;margin-bottom:7px}
-.look p{font-size:clamp(15.5px,1.45vw,19px);max-width:40ch}
-.look .is p{font-weight:600}
-@media (max-width:640px){.look{grid-template-columns:1fr}.look .as{border-bottom:none;padding-bottom:4px}}
-.recv li strong{font-weight:600}
-.bnote{background:var(--band);border-left:3px solid var(--red);border-radius:0 12px 12px 0;padding:clamp(16px,2vw,22px) clamp(18px,2.2vw,26px);margin-top:clamp(20px,2.4vw,28px)}
-.bnote p{font-size:clamp(14.5px,1.25vw,16px);color:var(--soft);max-width:64ch;line-height:1.65}
-.bnote strong{color:var(--ink);font-weight:600}
-.ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(32px,4.6vw,60px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:34px}
-.ctaP h2{font-size:clamp(22px,2.8vw,34px);max-width:24ch;margin:0 auto 22px;color:#F4F2EC}
-.cta{display:inline-block;background:var(--volt);color:var(--ink);font-size:14.5px;font-weight:600;padding:15px 28px;border-radius:999px;text-decoration:none}
-.cta:hover{background:#fff}
 </style>
 </head>
 <body>
@@ -121,248 +111,98 @@ footer a{color:var(--soft);text-decoration:none}
 <div class="w">
 
 <div class="head">
-  <p class="lab"><span class="chip r">SAMPLE</span>Leak audit</p>
-  <h1>The findings board you leave the audit with.</h1>
-  <p class="sub">One line per finding, the receipt underneath, the working paper behind it. Every figure here recomputes from the numbers printed beside it — check them.</p>
-  <p class="banner">SAMPLE — invented brand, illustrative figures. The arithmetic is real: each number derives from its own receipt.</p>
-
-  <div class="ledger">
-    <p class="lh">WHAT THE WEEK FOUND — BY KIND OF MONEY</p>
-    <div class="lgrid">
-      <div><p class="n loss">$7,410</p><p class="k">PER YEAR<br>CONFIRMED CONTRIBUTION LOSS</p></div>
-      <div><p class="n loss">$5,603</p><p class="k">12 MO · AVOIDABLE SHARE NOT ESTABLISHED<br>DISCOUNT GRANTED</p></div>
-      <div><p class="n loss">$9,044</p><p class="k">OBSERVED, 5 MO<br>CONTRIBUTION DRAG</p></div>
-      <div><p class="n cash">$8,412</p><p class="k">CLAIMED · EXPECT $5,000–8,412<br>DISPUTABLE</p></div>
-      <div><p class="n risk">$13,056</p><p class="k">ONLY IF THE ACCOUNT CHURNS<br>CONDITIONAL EXPOSURE</p></div>
-      <div><p class="n risk">$0–4,374</p><p class="k">NO BASELINE YET<br>RECOVERY OPPORTUNITY</p></div>
-    </div>
-    <p class="why">Six numbers, not one — and they are deliberately not added up. Margin you have already lost, a discount you granted, spend with nothing behind it, cash you can go and claim, revenue that leaves only if an account walks, and money you might win back are six different kinds of money. Summing them would produce a bigger headline and a worse decision, which is the exact trick this board exists to catch.</p>
-  </div>
+  <p class="lab"><span class="chip r">SAMPLE AUDIT &middot; FICTIONAL EXAMPLE</span></p>
+  <h1>You already won the customer, the order and the buyer&rsquo;s attention. Then the follow-through broke.</h1>
+  <p class="sub">This fictional food and beverage brand sells wholesale, direct to consumers, through subscriptions and to hotels and retailers. The products are not the problem. Important deadlines, handoffs and follow-ups are being missed behind the scenes. Here is what the VNMSFX Audit surfaced&mdash;and the systems worth building first.</p>
+  <p class="banner">This company and its records are invented. A real Audit looks at one area at a time and only at the records agreed with the client.</p>
 </div>
 
 <section>
+  <h2 class="say">Four problems hiding in plain sight.</h2>
+  <div class="sumgrid">
+    <div class="sum"><span class="sk">Sales</span><p>Samples delivered. Nobody followed up.</p></div>
+    <div class="sum"><span class="sk">Wholesale</span><p>Good account quiet. No owner.</p></div>
+    <div class="sum"><span class="sk">Direct to Consumer</span><p>Active ad. Sold-out product.</p></div>
+    <div class="sum"><span class="sk">Subscriptions</span><p>Customer paid. Shipment record missing.</p></div>
+  </div>
 
-  <div class="cat">
-    <div class="cath"><h2>Confirmed contribution loss</h2><span class="catt">$7,410 / YEAR</span></div>
-    <p class="catd">Money that already left, identified order by order, and leaves again every year until something changes. Counted from your own order and cost records — not modelled, not annualised from a sample.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt">−$7,400<small>/YEAR</small></p>
-      <div><h3>Your best seller loses $1.90 every time the welcome code stacks with free shipping.</h3>
-      <p class="rl">Full price: +$6.10 contribution/order · stacked: −$1.90 · 3,900 stacked orders in 12 mo · 3,900 × $1.90 = $7,410</p></div>
-      <span class="st r">YOUR CALL</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd>Confirmed contribution loss, at order level.</dd>
-          <dt>Source</dt><dd>Shopify order export (line-item discounts + shipping) joined to unit COGS from QuickBooks; 3PL pick-and-pack rate from the fulfilment invoice.</dd>
-          <dt>Period</dt><dd>12 months.</dd>
-          <dt>Margin</dt><dd>Contribution = unit price − COGS − pick/pack − outbound shipping − payment fees. It does not carry overhead, salaries or software.</dd>
-          <dt>Formula</dt><dd class="f">full price:  $6.10 contribution<br>+ WELCOME15 (−$5.10) + free ship (−$2.90)<br>= −$1.90 per stacked order<br>3,900 × $1.90 = $7,410 → $7,400</dd>
-          <dt>Confidence</dt><dd>High. Every one of the 3,900 orders is individually identified — this is counted, not estimated.</dd>
-          <dt>Dedup</dt><dd>Excludes the 412 FALL24 orders in the next section. The two codes cannot combine, so the sets do not overlap.</dd>
-          <dt>Action</dt><dd>Three options, priced: minimum order value for free shipping, exclude the best seller from the welcome code, or accept the loss as paid acquisition — it works out to $1.90 per new customer, which is cheap if they come back. <strong>This is a decision, not a fix.</strong></dd>
-        </dl></div>
-      </details>
-    </div>
-
+  <div class="find">
+    <p class="lab"><span class="chip y">FINDING 01</span>Sales</p>
+    <h2>You sent the samples. Nobody followed up.</h2>
+    <div class="trio">
+      <div class="cell rec"><span class="ck">What the records show</span><p>A hotel buyer asked for pricing and samples. The samples arrived 19 days ago. No owner, follow-up date or next step was recorded.</p></div>
+      <div class="cell why"><span class="ck">Why it hurts</span><p>You did the hard part: earned a real buyer&rsquo;s interest. Then the relationship was left to cool in somebody&rsquo;s inbox.</p></div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A simple sales system that keeps the company, contact, sales stage, owner, last conversation and next step in one place&mdash;and flags active conversations that are going quiet.</p></div>
     </div>
   </div>
 
-  <div class="cat">
-    <div class="cath"><h2>Discount granted</h2><span class="catt">$5,603 · AVOIDABLE SHARE NOT ESTABLISHED</span></div>
-    <p class="catd">Margin you definitely gave away. How much of it comes back if you stop is a separate question this audit does not pretend to have answered — so it is not filed as loss recovered, and it is not added to anything.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt">−$5,603<small>GRANTED, 12 MO</small></p>
-      <div><h3>The fall promo code never stopped running.</h3>
-      <p class="rl">FALL24 · campaign ended 12 months ago · 412 orders since · avg discount $13.60 (20% of $68 AOV) · 412 × $13.60 = $5,603</p></div>
-      <span class="st y">TEST, THEN SWITCH</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd><strong>Observed discount / margin reduction — not confirmed recoverable loss.</strong> The $5,603 left your margin; whether it returns depends on a counterfactual nobody has tested yet.</dd>
-          <dt>Source</dt><dd>Shopify → Discounts report, code <code>FALL24</code>; order-level export cross-checked against the campaign brief that set the end date.</dd>
-          <dt>Period</dt><dd>12 months, from the campaign's stated end date to today.</dd>
-          <dt>Formula</dt><dd class="f">412 orders × $13.60 avg discount = $5,603<br>discount granted, trailing 12 months</dd>
-          <dt>Avoidable portion</dt><dd><strong>Not yet established — deliberately left blank.</strong> 71% of these orders came from coupon-aggregator sites, i.e. people who had already decided to buy and then went looking for a code. That is suggestive, not proof. Anyone who hands you a recovery number here is guessing.</dd>
-          <dt>Confidence</dt><dd>Amount granted: <strong>high</strong> — it is billed fact. Contribution recovered after switching the code off: <strong>medium at best</strong>, and possibly negative if the code is quietly doing conversion work.</dd>
-          <dt>Dedup</dt><dd>Excludes all WELCOME15 orders — those are counted once, in the confirmed-loss finding above. No order appears in two findings.</dd>
-          <dt>Action</dt><dd><strong>Controlled shutoff or a holdout test, not a blind switch.</strong> Turn it off for a defined window, or withhold it from a share of traffic, and measure conversion against the discount saved. Two to four weeks buys you the real number, and it costs almost nothing to run.</dd>
-        </dl></div>
-      </details>
-    </div>
-
+  <div class="find">
+    <p class="lab"><span class="chip y">FINDING 02</span>Wholesale</p>
+    <h2>A good wholesale account went quiet. Nobody noticed.</h2>
+    <div class="trio">
+      <div class="cell rec"><span class="ck">What the records show</span><p>The retailer normally ordered every 30 to 45 days. It has now been 80 days. The account still says active, but no follow-up task is visible.</p></div>
+      <div class="cell why"><span class="ck">Why it hurts</span><p>Your team already did the hard work of winning the account. The relationship can fade while everybody is focused on finding new customers.</p></div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A system that flags accounts that have gone past the reorder timing your team chooses and shows the last order, account owner, last contact and suggested next step.</p></div>
     </div>
   </div>
 
-  <div class="cat">
-    <div class="cath"><h2>Contribution drag</h2><span class="catt">$9,044 OBSERVED, 5 MO</span></div>
-    <p class="catd">Cash going out with almost nothing coming back. Shown over the period it was actually observed, never annualised — and measured against <em>contribution</em>, not revenue, because subtracting a revenue figure from a cost figure is not a real number.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt">−$9,044<small>OBSERVED, 5 MO</small></p>
-      <div><h3>One ad set spent $9,200 and returned $156 of contribution.</h3>
-      <p class="rl">Objective set to link clicks, not purchases, since 3 March · spend $9,200 · attributed revenue $410 · contribution on that revenue 38% = $156 · drag $9,200 − $156 = $9,044 over 5 months</p></div>
-      <span class="st g">ONE SETTING</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd>Avoidable spend, measured as contribution drag. This is cash paid to a platform, not margin lost on an order — a different kind of money, so it is not added to the confirmed-loss column.</dd>
-          <dt>Source</dt><dd>Meta Ads Manager (spend, objective, change history) + Shopify (attributed orders, line items). The objective change is timestamped in the account's own edit log.</dd>
-          <dt>Period</dt><dd>5 months, 3 March to 31 July. <strong>Deliberately not annualised</strong> — the set has not run a year, so a yearly figure would be invented.</dd>
-          <dt>Formula</dt><dd class="f">ad spend                       $9,200<br>attributed gross revenue         $410<br>× contribution rate 38%    =     $156<br>─────────────────────────────────────<br>contribution drag              $9,044<br>÷ 5 months  =  $1,809 / month continuing</dd>
-          <dt>Why not $8,790</dt><dd><strong>Because $9,200 − $410 subtracts revenue from cost, and those are not the same unit.</strong> The $410 is gross revenue; what actually offsets ad spend is the contribution left after COGS, pick/pack, shipping, discounts and fees — $156 of it. The honest gap is therefore <em>larger</em> than the crude subtraction, not smaller.</dd>
-          <dt>Confidence</dt><dd>Spend: <strong>high</strong> — it is billed. Return: <strong>medium</strong> — 7-day-click attribution and iOS under-reporting mean true attributed sales are probably somewhat above $410, which would make the drag smaller. Stated the way least flattering to us.</dd>
-          <dt>Missing</dt><dd>View-through and in-store sales. Nothing in the data rules them out, so "this ad set sold nothing" would be an overstatement — it sold $410 that we can see.</dd>
-          <dt>Also found</dt><dd>The destination page was out of stock for 21 days in May. Some of the spend had nowhere to convert.</dd>
-          <dt>Action</dt><dd>Switch the objective to purchases, or pause it. Do not judge the creative until it has run once against the right objective — the creative has never actually been tested for selling.</dd>
-        </dl></div>
-      </details>
-    </div>
-
+  <div class="find">
+    <p class="lab"><span class="chip y">FINDING 03</span>Direct to Consumer</p>
+    <h2>Your ad is still running. The product is sold out.</h2>
+    <div class="trio">
+      <div class="cell rec"><span class="ck">What the records show</span><p>The campaign is active. The destination product has been unavailable for four days.</p></div>
+      <div class="cell why"><span class="ck">Why it hurts</span><p>Every new click lands on a dead end. You keep paying to disappoint someone who was ready to shop.</p></div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A system that checks active campaigns against product pages, inventory and offer dates, then flags anything that no longer matches.</p></div>
     </div>
   </div>
 
-  <div class="cat">
-    <div class="cath"><h2>Disputable</h2><span class="catt">$8,412 CLAIMED · EXPECT $5,000–8,412</span></div>
-    <p class="catd">Money already taken from you that has a documented case for coming back — and a deadline. This is the <em>claim</em> amount, not a recovery: filing it and winning it are two different events, and only one of them is in your control.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt cash">$8,412<small>CLAIMED · NOT YET RECOVERED</small></p>
-      <div><h3>Your distributor billed you for shortages your own warehouse can disprove.</h3>
-      <p class="rl">14 deduction lines across 6 POs · carrier scans show full pallet counts on all 6 · every line still inside the 90-day window — the earliest closes in 38 days</p></div>
-      <span class="st y">READY TO FILE</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd><strong>Disputable amount — not recovered cash, and not annual.</strong> Filed as the documented claim. If the pattern repeats, next year's audit finds it again.</dd>
-          <dt>Source</dt><dd>Distributor remittance PDFs (deduction codes and amounts), matched line-by-line to 3PL bills of lading and carrier delivery scans.</dd>
-          <dt>The 14 lines</dt><dd class="f">PO-4471   $1,240   $742   $463<br>PO-4488     $816   $688   $391<br>PO-4502     $704   $641<br>PO-4519     $633   $597   $250<br>PO-4533     $552   $187<br>PO-4550     $508<br>──────────────────────────────<br>sum of 14 lines        =   $8,412</dd>
-          <dt>Confidence</dt><dd>Documentation: <strong>high</strong> — every line has a matching scan showing the full count delivered. Recovery: <strong>medium</strong>. Having the evidence and getting the credit are different things; it depends on the distributor.</dd>
-          <dt>Expected recovery</dt><dd><strong>$5,000 – $8,412.</strong> Based on how these typically settle. The headline shows the claim, not the top of this range, because promising the top would be selling you a number we do not control.</dd>
-          <dt>Deadline</dt><dd>All 14 sit inside the contractual dispute window. The earliest expires in <strong>38 days</strong>; after that the money is gone regardless of how good the evidence is.</dd>
-          <dt>Action</dt><dd>Dispute letters drafted, one per PO, evidence attached. They send from you, after you read them.</dd>
-        </dl></div>
-      </details>
+  <div class="find">
+    <p class="lab"><span class="chip y">FINDING 04</span>Subscriptions</p>
+    <h2>The customer paid. The order never appeared.</h2>
+    <div class="trio">
+      <div class="cell rec"><span class="ck">What the records show</span><p>The payment record shows a successful subscription renewal. The store and warehouse records do not show the matching order or shipment step.</p></div>
+      <div class="cell why"><span class="ck">Why it hurts</span><p>A paying customer may be waiting for an order your team believes is already handled.</p></div>
+      <div class="cell bld"><span class="ck">What VNMSFX would build</span><p>A system that checks the expected path&mdash;payment, order and shipment&mdash;and flags the missing step for your team to review.</p></div>
     </div>
-
-    </div>
-  </div>
-
-  <div class="cat">
-    <div class="cath"><h2>Conditional exposure</h2><span class="catt">$13,056 ONLY IF THE ACCOUNT CHURNS</span></div>
-    <p class="catd">Nothing here has been lost. This is what leaves <em>if</em> one thing happens — and how likely that thing is has not been estimated, because nothing in your data can estimate it.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt risk">$13,056<small>ONLY IF IT CHURNS</small></p>
-      <div><h3>Wholesale has been slowing for five months. DTC growth was hiding it.</h3>
-      <p class="rl">Largest quiet account: $3,200/mo through last year, reorder cycle stretched 31 → 58 days · $3,200 × 12 × 34% wholesale contribution = $13,056</p></div>
-      <span class="st g">CALL DRAFTED</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd><strong>Conditional exposure, modelled. Not a loss and not an opportunity</strong> — it is what one account is worth if it goes. Kept separate from the win-back finding below, because money that might leave and money you might win back are not the same thing and must never be summed.</dd>
-          <dt>Source</dt><dd>Shopify/invoice history by wholesale account; contribution rate from the wholesale price list against unit COGS.</dd>
-          <dt>Formula</dt><dd class="f">$3,200/mo × 12 = $38,400 gross<br>× 34% wholesale contribution<br>= $13,056 contribution at stake</dd>
-          <dt>Assumption</dt><dd><strong>This assumes total churn</strong> — the whole account, gone. That is the ceiling, not the expectation. A stretched reorder cycle is a warning, not a departure.</dd>
-          <dt>Probability</dt><dd><strong>Not estimated.</strong> We have no churn history for this account and no visibility into their side, so any percentage here would be invented. Unestimated is the honest state.</dd>
-          <dt>Confidence</dt><dd>The slowdown is fact: repeat share across wholesale fell 61% → 38%, and this account's cycle nearly doubled. The dollar figure attached to it is a model, and the likelihood is unknown.</dd>
-          <dt>Missing</dt><dd>Whether they are buying elsewhere, carrying stock, or having their own slow quarter. No data you own can answer that. <strong>A phone call can, this week.</strong></dd>
-          <dt>Action</dt><dd>Call script drafted — three questions, none of them "is everything okay?"</dd>
-        </dl></div>
-      </details>
-    </div>
-
-    </div>
-  </div>
-
-  <div class="cat">
-    <div class="cath"><h2>Recovery opportunity</h2><span class="catt">$0 – $4,374 · NO BASELINE YET</span></div>
-    <p class="catd">Money that already stopped arriving, which you might win back. The floor is genuinely zero — you have never run this campaign, so there is no rate to apply. Anyone quoting you a floor here invented it.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt risk">$0–4,374<small>/YR IF THEY RETURN</small></p>
-      <div><h3>41 subscribers hit pause and never came back. Nobody emailed them.</h3>
-      <p class="rl">Paused &gt;90 days · win-backs ever sent: 0 · avg $17.10/mo × 52% contribution = $8.89/mo each · ceiling 41 × $8.89 × 12 = $4,374 · floor $0, no baseline exists</p></div>
-      <span class="st g">WIN-BACK DRAFTED</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd><strong>Recovery opportunity — not money at risk.</strong> These subscribers already stopped paying; nothing further is leaving. This is upside, which is why it is filed apart from the exposure finding above and added to nothing.</dd>
-          <dt>Source</dt><dd>Subscription app export (pause dates, plan value) + ESP send history, which shows zero win-back campaigns ever sent to this segment.</dd>
-          <dt>Formula</dt><dd class="f">ceiling — every one returns and stays 12 months:<br>41 × $8.89 × 12 = $4,374<br><br>floor — nobody returns:<br>                        $0</dd>
-          <dt>Why the floor is zero</dt><dd><strong>Because you have never run a win-back, there is no rate to apply.</strong> A category benchmark — "win-backs usually recover 25%" — would be a borrowed number dressed as yours, so this board doesn't use one. Real recovery could be zero.</dd>
-          <dt>Margin</dt><dd>Contribution, not revenue: $17.10 plan value × 52% after product, pack and shipping. The gross figure would be $8,413 and would mean less.</dd>
-          <dt>Confidence</dt><dd><strong>Low, and honestly so.</strong> The ceiling assumes every paused subscriber returns and stays a full year, which nobody gets. The only thing established here is that 41 people paused and none were ever contacted.</dd>
-          <dt>Action</dt><dd>Win-back sequence drafted. <strong>Treat the first send as the measurement, not the payoff</strong> — it creates the baseline that makes every future estimate real.</dd>
-        </dl></div>
-      </details>
-    </div>
-
-    </div>
-  </div>
-
-  <div class="cat">
-    <div class="cath"><h2>Worth testing</h2><span class="catt">NOT COUNTED IN ANY TOTAL</span></div>
-    <p class="catd">The one piece of good news on the board — and it is a correlation, not a proven gain. It appears here, outside every total, because we cannot yet show it causes anything.</p>
-    <div class="board">
-
-    <div class="brow"><p class="amt up">+17<small>ORDERS / POST</small></p>
-      <div><h3>Recipe posts sell more than product shots. You made three last quarter.</h3>
-      <p class="rl">Avg orders per post — recipe: 22 · product shot: 5 · difference: +17 · 3 of your 19 posts last quarter were recipes</p></div>
-      <span class="st g">TEST IT</span>
-      <details class="wp"><summary>WORKING PAPER</summary>
-        <div class="wpb"><dl>
-          <dt>Category</dt><dd>Unverified opportunity. Counted in no total.</dd>
-          <dt>Formula</dt><dd class="f">recipe avg 22 orders − product-shot avg 5<br>= +17 incremental orders per post<br><br>(22 is the average, not the gain —<br>the gain is the difference.)</dd>
-          <dt>Confidence</dt><dd><strong>Low, and the reason matters.</strong> Recipe posts may simply have had more reach, better timing, or paid amplification behind them. This board cannot separate format from distribution.</dd>
-          <dt>The comeback</dt><dd>If a competitor's analyst wanted to knock this down, they would say: "your recipe posts went out on Sundays with budget behind them; of course they sold more." They would be right that nothing here rules it out.</dd>
-          <dt>What would settle it</dt><dd>Four recipe posts and four product shots, matched for day, time and spend. Two months. Then the number means something.</dd>
-          <dt>Action</dt><dd>Run the test. Do not rebuild the content calendar on one quarter of unmatched data.</dd>
-        </dl></div>
-      </details>
-    </div>
-
-    </div>
-  </div>
-
-  <p class="note">ONE WEEK · READ-ONLY ACCESS · SEVEN FINDINGS · EVERY FIGURE ABOVE RECOMPUTES FROM THE RECEIPT PRINTED BESIDE IT</p>
-</section>
-
-<section>
-  <h2>The second look</h2>
-  <p>The dashboards aren't lying — they're answering an easier question. The audit reads the same numbers your eyes are already on, once more, properly:</p>
-  <div class="look">
-    <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>The ad account says 3.1&times; return.</p></div>
-    <div class="is"><span class="k">WHAT IT IS</span><p>That's the whole account, on last-click revenue. Narrow it to your best seller and take out the discount, shipping and fees on each order: 0.9&times;. Different question, different answer.</p></div>
-    <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>Revenue is flat. Fine.</p></div>
-    <div class="is"><span class="k">WHAT IT IS</span><p>Repeat business fell 61% to 38% — expensive new accounts papered over the slide.</p></div>
-    <div class="as"><span class="k">WHAT IT LOOKS LIKE</span><p>Engagement rate is up this quarter.</p></div>
-    <div class="is"><span class="k">WHAT IT IS</span><p>Reach collapsed. The rate rose because the audience shrank.</p></div>
   </div>
 </section>
 
 <section>
-  <h2>How to read a number you're being sold</h2>
-  <p>Every line on this board tells you four things before it tells you a dollar figure: what kind of money it is, where the number came from, what it assumes, and how confident we are. That is not decoration — it's the only way you can check us.</p>
-  <p><strong>The classification is the work.</strong> Margin already lost, a discount granted, spend with nothing behind it, an amount you can dispute, revenue exposed if an account leaves, and money you might win back are six different kinds of money. They behave differently, they need different decisions, and four of the six aren't losses at all. A single total blends them into a number that is bigger, simpler, and wrong.</p>
-  <p>If an audit hands you one big number and no formula, the number is doing a job that has nothing to do with your business.</p>
-</section>
-
-<section>
-  <h2>What you walk away with</h2>
-  <ul class="recv">
-    <li><strong>This board</strong> — five to seven findings, each with the working paper behind it: source, period, formula, assumption, confidence, and what's missing.</li>
-    <li><strong>The build map</strong> — what it would take to stop each leak, in order, priced. Yours to keep and hand to anyone, whether or not I build it.</li>
-    <li><strong>The decisions</strong> — the two calls only you can make, one page each, trade-offs stated.</li>
-    <li><strong>A 60-minute walkthrough</strong> — then it's yours either way, and the $2,500 credits into the build.</li>
-  </ul>
-  <div class="bnote">
-    <p><strong>What the audit is not.</strong> It's a snapshot, not a running system. The board that updates itself every morning, the connections behind it, and the dispute letters and win-backs that go out on your approval — that's the build. The audit's job is to tell you what's worth building first, and to be worth having even if you never build it.</p>
+  <h2 class="say">The Audit makes missed work visible.</h2>
+  <div class="gives">
+    <div class="give"><h3>What is being missed</h3><p>The account, order, payment, campaign or buyer conversation that needs attention.</p></div>
+    <div class="give"><h3>What shows the problem</h3><p>The records, dates and activity that caused it to be flagged.</p></div>
+    <div class="give"><h3>What needs attention now</h3><p>The deadline, customer, campaign, order or follow-up your team should review.</p></div>
+    <div class="give"><h3>What VNMSFX should build</h3><p>The first system that would keep the same problem from staying hidden again.</p></div>
   </div>
 </section>
 
-<div class="ctaP">
-  <h2>The real one runs on your numbers.</h2>
-  <a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book the free teardown</a>
-</div>
+<section>
+  <h2 class="say">The Audit finds the break. The Build creates the system.</h2>
+  <div class="vs">
+    <div class="vscol a">
+      <h3>The Audit</h3>
+      <p>The Audit shows what your team is missing, why it matters and which system is worth building first.</p>
+    </div>
+    <div class="vscol b">
+      <h3>The Build</h3>
+      <p>If you continue, VNMSFX creates and tests the working system that keeps watching for the problem.</p>
+      <p>The system puts the important item and supporting information in front of your team. Your team decides what to send, change, challenge or follow up on.</p>
+    </div>
+  </div>
+  <p class="scope">This page combines four fictional examples to demonstrate the format. A real Audit focuses on one agreed area&mdash;not all four. Nothing is changed or sent during the Audit.</p>
+</section>
 
-  <footer><span>VNMSFX LLC — NEW YORK</span><a href="mailto:brandon@vnmsfx.com">BRANDON@VNMSFX.COM</a><span>SAMPLE DELIVERABLE</span></footer>
+<section>
+  <div class="ctaP">
+    <h2>What is your team missing right now?</h2>
+    <p>You may already have the order, customer or buyer interest. The problem may be what happens&mdash;or fails to happen&mdash;next.</p>
+    <p>In a free teardown, we will talk through one place where important follow-through may be breaking and show you what a better system could look like.</p>
+    <a class="ctaBtn" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book my free teardown</a>
+  </div>
+</section>
+
+  <footer><span>VNMSFX LLC — NEW YORK</span><a href="mailto:brandon@vnmsfx.com">BRANDON@VNMSFX.COM</a><span>SAMPLE AUDIT</span></footer>
   <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/security">Security</a></p>
 </div>
 </main>

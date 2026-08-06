@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What We Build — VNMSFX</title>
-<meta name="description" content="VNMSFX builds simple systems for food and beverage brands: they watch for orders, accounts, payments, campaigns and sales conversations that need attention — then put the right information in front of your team before money or opportunity slips away.">
+<meta name="description" content="A buyer goes quiet. Your distributor pays you less. An ad sends shoppers to a product they cannot buy. VNMSFX builds the system that catches the miss, shows your team what happened and puts the next step in front of the right person.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://vnmsfx.com/systems">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -34,9 +34,9 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 .chip.y{background:var(--yellow);color:var(--ink)}
 .chip.r{background:var(--red);color:#F4F2EC}
 .lab{font-family:'Space Mono',monospace;font-size:clamp(14px,1.6vw,19px);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:clamp(14px,1.8vw,22px)}
-h1{font-size:clamp(29px,4.2vw,52px);font-weight:600;letter-spacing:-.034em;line-height:1.06;max-width:22ch}
+h1{font-size:clamp(28px,4vw,50px);font-weight:600;letter-spacing:-.034em;line-height:1.08;max-width:24ch}
 .sub{font-size:clamp(16.5px,1.45vw,19.5px);color:var(--soft);max-width:60ch;margin-top:16px;line-height:1.6}
-.pattern{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.05em;line-height:1.8;background:var(--dark);color:#DDE3D0;border-radius:var(--r);padding:15px 20px;margin-top:18px;max-width:74ch}
+.pattern{font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.15vw,14.5px);letter-spacing:.05em;line-height:1.8;background:var(--dark);color:#DDE3D0;border-radius:var(--r);padding:15px 20px;margin-top:18px;max-width:76ch}
 .heroCta{margin-top:20px}
 .cta{display:inline-block;background:var(--dark);color:#fff;font-size:14.5px;font-weight:600;padding:14px 27px;border-radius:999px;text-decoration:none}
 .cta:hover{background:var(--red)}
@@ -47,19 +47,21 @@ section{padding:clamp(24px,3vw,40px) 0}
 .cat .intro{font-size:clamp(17px,1.6vw,21px);font-weight:600;letter-spacing:-.015em;max-width:52ch;margin-bottom:clamp(16px,2vw,24px);line-height:1.4}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,20px)}
 @media (max-width:720px){.cards{grid-template-columns:1fr}}
-.card{background:var(--card);border-radius:var(--r);padding:clamp(18px,2.2vw,26px);display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border-radius:var(--r);padding:clamp(18px,2.2vw,26px);display:flex;flex-direction:column;gap:11px}
 .card h3{font-size:clamp(17px,1.55vw,20px);font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .card p{font-size:clamp(14.5px,1.25vw,16px);color:var(--soft);line-height:1.6}
+.card .hurt{border-left:3px solid var(--red);padding:2px 0 2px 13px}
+.card .hurt p{color:var(--ink)}
+.card .hurt .hk,.card .build .bk{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--soft);display:block;margin-bottom:4px}
 .card .build{background:var(--band);border-radius:10px;padding:13px 15px;margin-top:auto}
 .card .build p{color:var(--ink)}
-.card .build .bk{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--soft);display:block;margin-bottom:5px}
 
 .close{background:var(--band);border-radius:var(--r);padding:clamp(22px,2.8vw,34px);margin-top:clamp(8px,1.2vw,14px)}
-.close h2{font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;max-width:26ch}
+.close h2{font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;max-width:28ch}
 .close p{font-size:clamp(15.5px,1.35vw,17.5px);max-width:64ch;line-height:1.6}
 .close p+p{margin-top:10px}
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(30px,4.2vw,54px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:clamp(20px,2.6vw,30px)}
-.ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:24ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
+.ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:26ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
 .ctaP p{font-size:clamp(15px,1.3vw,17px);color:#C8C6BE;max-width:56ch;margin:0 auto 22px;line-height:1.6}
 .ctaBtn{display:inline-block;background:var(--volt);color:var(--ink);font-size:14.5px;font-weight:600;padding:15px 28px;border-radius:999px;text-decoration:none}
 .ctaBtn:hover{background:#fff}
@@ -84,25 +86,48 @@ footer a{color:var(--soft);text-decoration:none}
 
 <div class="head">
   <p class="lab"><span class="chip g">WHAT VNMSFX BUILDS</span></p>
-  <h1>Systems that catch what gets missed.</h1>
-  <p class="sub">VNMSFX builds simple systems for food and beverage brands. They watch for orders, accounts, payments, campaigns and sales conversations that need attention&mdash;then put the right information in front of your team before money or opportunity slips away.</p>
-  <p class="pattern">Something important happens &rarr; nobody sees it &rarr; nobody follows through &rarr; money or opportunity slips away.</p>
+  <h1>The problem that costs you is the one nobody catches in time.</h1>
+  <p class="sub">A buyer goes quiet. Your distributor pays you less. An ad sends shoppers to a product they cannot buy. A customer pays, but no order appears. VNMSFX builds the system that catches the miss, shows your team what happened and puts the next step in front of the right person.</p>
+  <p class="pattern">Something important happens &rarr; nobody sees it &rarr; nobody owns the next step &rarr; the sale, order, customer or deadline slips away.</p>
   <p class="heroCta"><a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a></p>
 </div>
 
 <section>
   <div class="cat">
-    <p class="lab"><span class="chip y">01</span>Wholesale</p>
-    <h2 class="intro">Catch problems after the account or order has already been won.</h2>
+    <p class="lab"><span class="chip y">01</span>Sales</p>
+    <h2 class="intro">Before the account is won, keep real buyer conversations moving.</h2>
     <div class="cards">
       <div class="card">
-        <h3>A distributor deducts money and the proof is scattered</h3>
-        <p>A distributor pays you less and says cases were missing. The purchase order, warehouse record and delivery proof are sitting in different places while the deadline to challenge it gets closer.</p>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags the deadline, gathers the matching records and prepares one evidence package for your team to review.</p></div>
+        <h3>Your sales pipeline lives in inboxes and memory.</h3>
+        <p>One person has the hotel contact. Another has the distributor email. Retailer notes are in a spreadsheet. Nobody can see the full picture or who owns the next move.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>A real sales opportunity does not have to reject you. It can disappear because nobody followed up.</p></div>
+        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A simple sales system that keeps the company, contact, sales stage, owner, last conversation and next step in one place&mdash;and flags conversations that are going quiet.</p></div>
       </div>
       <div class="card">
-        <h3>A good wholesale account stops ordering</h3>
-        <p>A retailer normally orders every 30 to 45 days. Day 80 arrives, but nobody notices and no follow-up happens.</p>
+        <h3>The samples arrived. The deal stopped moving.</h3>
+        <p>The buyer asked for samples. You sent them. They arrived. Then nobody recorded when or how to follow up.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>You earned the buyer&rsquo;s interest and paid to support the conversation. Then the opportunity was left to cool in somebody&rsquo;s inbox.</p></div>
+        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that shows which quotes, samples, meetings and contract conversations have stalled, what happened last and who owns the next step.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cat">
+    <p class="lab"><span class="chip y">02</span>Wholesale</p>
+    <h2 class="intro">After the account is won, protect the order and the relationship.</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Your distributor pays you less. Your proof is scattered.</h3>
+        <p>The purchase order is in email. The warehouse record is in the 3PL portal. The delivery proof is somewhere else. Meanwhile, the deadline to challenge the deduction keeps getting closer.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>The deadline can pass while the evidence sits untouched in different systems.</p></div>
+        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags the deadline, brings the matching records together and prepares one evidence package for your team to review.</p></div>
+      </div>
+      <div class="card">
+        <h3>A good wholesale account goes quiet. Nobody notices.</h3>
+        <p>The retailer normally orders every 30 to 45 days. Now it has been 80. The CRM still says active, but nobody owns the follow-up.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>You did the hard work of winning the account. Then the relationship can fade while your team is busy chasing new business.</p></div>
         <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags accounts that have gone quiet and shows the last order, previous order history, account owner and suggested next step.</p></div>
       </div>
     </div>
@@ -111,17 +136,19 @@ footer a{color:var(--soft);text-decoration:none}
 
 <section>
   <div class="cat">
-    <p class="lab"><span class="chip y">02</span>Direct to Consumer</p>
-    <h2 class="intro">Catch problems between the campaign, the offer and the store.</h2>
+    <p class="lab"><span class="chip y">03</span>Direct to Consumer</p>
+    <h2 class="intro">You paid for the attention. Make sure customers can buy what they clicked.</h2>
     <div class="cards">
       <div class="card">
-        <h3>An ad keeps sending customers somewhere they cannot buy</h3>
-        <p>The product is sold out. The page is broken. The ad points to the wrong item. Or the offer in the ad has expired.</p>
+        <h3>You are paying to send shoppers somewhere they cannot buy.</h3>
+        <p>The product is sold out. The page is broken. The ad points to the wrong item. Or the offer shown in the ad has expired.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>You keep paying for visits that cannot complete the purchase shown in the ad.</p></div>
         <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that checks active campaigns against product pages, inventory and offer dates, then flags anything that does not match.</p></div>
       </div>
       <div class="card">
-        <h3>A discount keeps running longer than intended</h3>
-        <p>An influencer code was supposed to end months ago. Or customers are combining discounts that were never meant to work together.</p>
+        <h3>The promotion ended. The discount did not.</h3>
+        <p>An influencer code was supposed to stop months ago. Or customers are combining discounts that were never intended to work together.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>Customers keep receiving a deal you never meant to keep giving.</p></div>
         <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that checks discount use against your approved dates and rules and shows the affected orders and discount amounts.</p></div>
       </div>
     </div>
@@ -130,17 +157,19 @@ footer a{color:var(--soft);text-decoration:none}
 
 <section>
   <div class="cat">
-    <p class="lab"><span class="chip y">03</span>Subscriptions</p>
-    <h2 class="intro">Catch failed payments and broken handoffs before customers disappear.</h2>
+    <p class="lab"><span class="chip y">04</span>Subscriptions</p>
+    <h2 class="intro">A broken payment or handoff should not quietly cost you a customer.</h2>
     <div class="cards">
       <div class="card">
-        <h3>A payment fails and the follow-up never happens</h3>
+        <h3>Their payment fails. Your follow-up fails too.</h3>
         <p>A customer&rsquo;s card expires or a recurring payment fails. The retry or message does not happen, and the subscription eventually disappears.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>The customer may not have chosen to cancel. The recovery process simply stopped before anybody finished it.</p></div>
         <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that flags failed payments that still need attention and shows the customer history, retry status and next step.</p></div>
       </div>
       <div class="card">
-        <h3>The customer paid, but the order or shipment is missing</h3>
+        <h3>They paid you. The order or shipment is missing.</h3>
         <p>The payment succeeded, but no order was created. Or the order exists, but the warehouse never received it.</p>
+        <div class="hurt"><span class="hk">WHY IT HURTS</span><p>The customer has paid, but the product may never leave the warehouse. Your team may not discover the problem until the customer complains.</p></div>
         <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that checks for a matching payment, order and shipment&mdash;and flags the missing step.</p></div>
       </div>
     </div>
@@ -148,35 +177,16 @@ footer a{color:var(--soft);text-decoration:none}
 </section>
 
 <section>
-  <div class="cat">
-    <p class="lab"><span class="chip y">04</span>Sales</p>
-    <h2 class="intro">Keep hotel, retailer, distributor and buyer conversations moving.</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>A buyer conversation has no next step</h3>
-        <p>A hotel asks for pricing. A retailer requests samples. A distributor wants more information. Then the conversation sits in somebody&rsquo;s inbox.</p>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A simple sales system that keeps the company, contact, sales stage, owner, last conversation and next step in one place. It flags conversations that are going quiet.</p></div>
-      </div>
-      <div class="card">
-        <h3>A quote, sample or contract stops moving</h3>
-        <p>The quote was sent. The samples arrived. A contract is being discussed. But nobody knows who should follow up or when.</p>
-        <div class="build"><span class="bk">WHAT VNMSFX BUILDS</span><p>A system that shows which opportunities have stalled, what happened last and what the next step should be.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
   <div class="close">
-    <h2>The system does the watching. Your team stays in control.</h2>
+    <h2>The system catches the miss. Your team decides what happens next.</h2>
     <p>VNMSFX builds the system. The system shows what needs attention, why it was flagged and what should happen next.</p>
-    <p>Your team reviews the information and decides what to do.</p>
-    <p>These are examples. We start with the one or two problems that matter most to your business&mdash;not all eight at once.</p>
+    <p>Your team reviews the information and decides what to send, change, challenge or follow up on.</p>
+    <p>We start with the one or two problems that matter most&mdash;not all eight at once.</p>
   </div>
 
   <div class="ctaP">
-    <h2>Which of these sounds familiar?</h2>
-    <p>In a free 30-minute teardown, we&rsquo;ll talk through one place where something important may be getting missed and show you what a better system could look like.</p>
+    <h2>Which of these is already happening in your business?</h2>
+    <p>In a free teardown, we&rsquo;ll talk through one place where something important may be getting missed and show you what a better system could look like.</p>
     <a class="ctaBtn" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book my free teardown</a>
   </div>
 </section>
