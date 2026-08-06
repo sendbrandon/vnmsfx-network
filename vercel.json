@@ -14,6 +14,26 @@
       "has": [{ "type": "host", "value": "www.vnmsfx.com" }],
       "destination": "https://vnmsfx.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/case-studies/sweet-vegan",
+      "destination": "/#work",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/all-american-brad",
+      "destination": "/studio",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/dreamina-ai",
+      "destination": "/studio",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/:slug*",
+      "destination": "/studio",
+      "permanent": true
     }
   ],
   "headers": [
