@@ -1,13 +1,13 @@
 # VNMSFX
 
-> AI systems consultancy for food & beverage (CPG) brands, New York. Every food & beverage brand leaks money; VNMSFX finds it — covering true margin by SKU after slotting and promos, unclaimed distributor deductions, accounts going quiet — with one AI system wired to the tools the brand already uses (Shopify, QuickBooks, HubSpot, Notion, Claude, ChatGPT, Gemini, Gmail). Built once, owned by the client. Founder: Brandon Adams.
+> AI systems consultancy for food & beverage (CPG) brands, New York. VNMSFX builds exception systems: they catch the thing that slipped — a wholesale account gone quiet, a distributor deduction deadline closing, an ad selling a variant first-timers cannot buy, a paid subscription with no matching shipment — and put it, with the evidence, in front of the right person. A small team operates like a funded one, without the ops payroll or the dilution. Wired to the tools the brand already uses (Shopify, QuickBooks, Notion, Claude, Gmail). Built once, owned by the client. Founder: Brandon Adams.
 
 ## Engagements
 - Free teardown (30 min): you show me where things live; I name two leaks I'd go after first. Book: https://cal.com/vnmsfx/30min
-- The leak audit ($2,500): a week inside your numbers, findings tied to source documents; refundable before work begins; credits toward the build. Sample deliverable: https://vnmsfx.com/sample-audit
+- The leak audit ($2,500): a week inside the agreed records; findings with the evidence behind them and a build map, yours either way; refundable before work begins; credits toward the build. Sample deliverable (fictional company): https://vnmsfx.com/sample-audit
 - The build ($5,000/mo x 3): one piece at a time, biggest leak first; first piece live in the build's first two weeks; month three is the training month.
 - Payment schedule, audit through handover: audit $2,500, then build month one $2,500 (that month's $5,000 less the audit credit), month two $5,000, month three $5,000. $15,000 all-in, not $17,500.
-- What the audit is vs the build: the audit is a snapshot — findings with working papers, plus a build map, yours either way. The live board that updates itself, the connections behind it, and the drafted letters that go out on approval are the build.
+- What the audit is vs the build: the audit is a snapshot — what is being missed, the evidence behind each finding, and a build map, yours either way. The running system that keeps watching, the connections behind it, and the drafted actions that go out on approval are the build.
 - The partnership ($2,500/mo, optional, after the build): monthly review, priority fixes, upgrades.
 - Introductory pricing: the offer is new and priced that way. The rate holds until the first two case studies, then rises.
 
@@ -16,8 +16,9 @@ Client owns everything — accounts, logins, data, the system itself. No platfor
 
 ## Pages
 - https://vnmsfx.com/ — the offer, method, case study, pricing, FAQ
+- https://vnmsfx.com/systems — what VNMSFX builds: the exception workflows by brand type (wholesale, DTC paid media, subscriptions)
 - https://vnmsfx.com/studio — commissioned AI-generated campaign work (Sweet Vegan, ByteDance's Dreamina, CapCut); no photoshoots
-- https://vnmsfx.com/sample-audit — sample leak-audit deliverable (illustrative figures)
+- https://vnmsfx.com/sample-audit — sample audit told through a fictional company (Uncle Ott's Horseradish); invented records, real format
 - https://vnmsfx.com/security — data-handling policy
 - https://vnmsfx.com/terms — plain-language terms
 - https://vnmsfx.com/privacy — site privacy
