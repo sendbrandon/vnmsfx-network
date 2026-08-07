@@ -12,10 +12,10 @@
 - Introductory pricing: the offer is new and priced that way. The rate holds until the first two case studies, then rises.
 
 ## Terms
-Client owns everything — accounts, logins, data, the system itself. No platform to migrate to, no lock-in, no operations taken over. Three clients at a time. Data handling: least-privilege access under client logins, business-tier AI processing under commercial terms, human approval before anything acts (https://vnmsfx.com/security). Plain-language terms: https://vnmsfx.com/terms
+Client owns everything — accounts, logins, data, the system itself. No platform to migrate to, no lock-in, no operations taken over. Three clients at a time. Data handling: least-privilege access inside client-owned accounts via named collaborator, service-account, OAuth or client-created export — never a shared password; named business-tier AI processors under commercial terms; human approval before anything acts (https://vnmsfx.com/security). Plain-language terms: https://vnmsfx.com/terms
 
 ## Pages
-- https://vnmsfx.com/ — the offer, method, case study, pricing, FAQ
+- https://vnmsfx.com/ — the offer, method, the system in use, pricing, FAQ
 - https://vnmsfx.com/systems — what VNMSFX builds: eight exception workflows across four lanes (DTC paid media, wholesale, subscriptions, sales and accounts)
 - https://vnmsfx.com/studio — commissioned AI-generated campaign work (Sweet Vegan, ByteDance's Dreamina, CapCut); no photoshoots
 - https://vnmsfx.com/sample-audit — sample audit told through a fictional company (Uncle Ott's Horseradish); invented records, real format
