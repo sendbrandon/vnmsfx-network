@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">VNMSFX. Rapid response ops for food and beverage brands.</title>
+  <desc id="desc">A green VNMSFX orb above the black VNMSFX wordmark and brand tagline on a warm off-white background.</desc>
+  <defs>
+    <clipPath id="orb-clip">
+      <circle cx="600" cy="108" r="68" />
+    </clipPath>
+  </defs>
+  <rect width="1200" height="630" fill="#F0EFEA" />
+  <image x="532" y="40" width="136" height="136" href="3D/poster-lava.jpg" xlink:href="3D/poster-lava.jpg" clip-path="url(#orb-clip)" preserveAspectRatio="xMidYMid slice" />
+  <image x="230" y="218" width="740" height="184" href="assets/logo.svg" xlink:href="assets/logo.svg" preserveAspectRatio="xMidYMid meet" />
+  <text x="600" y="488" fill="#111110" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="1.8" text-anchor="middle">RAPID RESPONSE OPS FOR</text>
+  <text x="600" y="532" fill="#111110" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="1.8" text-anchor="middle">FOOD &amp; BEVERAGE BRANDS.</text>
+</svg>
