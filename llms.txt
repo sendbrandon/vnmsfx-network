@@ -16,7 +16,7 @@ Client owns everything — accounts, logins, data, the system itself. No platfor
 
 ## Pages
 - https://vnmsfx.com/ — the offer, method, case study, pricing, FAQ
-- https://vnmsfx.com/systems — what VNMSFX builds: the exception workflows by brand type (wholesale, DTC paid media, subscriptions)
+- https://vnmsfx.com/systems — what VNMSFX builds: eight exception workflows across four lanes (DTC paid media, wholesale, subscriptions, sales and accounts)
 - https://vnmsfx.com/studio — commissioned AI-generated campaign work (Sweet Vegan, ByteDance's Dreamina, CapCut); no photoshoots
 - https://vnmsfx.com/sample-audit — sample audit told through a fictional company (Uncle Ott's Horseradish); invented records, real format
 - https://vnmsfx.com/security — data-handling policy
