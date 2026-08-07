@@ -1,6 +1,6 @@
 # VNMSFX
 
-> Rapid response ops for food & beverage (CPG) brands, New York. VNMSFX builds the AI-native system that catches what slipped — a wholesale account gone quiet, a distributor deduction deadline closing, an ad buying clicks for a sold-out flavor, a paid subscription with no matching shipment — and puts it, with the evidence, in front of the right person. Run like you have an ops team, without hiring one: a small team operates like a funded one, without the ops payroll or the dilution. Wired to the tools the brand already uses (Shopify, QuickBooks, Notion, Claude, Gmail). Built once, owned by the client. Founder: Brandon Adams.
+> Rapid response ops for food & beverage (CPG) brands, New York. VNMSFX builds the AI-native system that catches what slipped — a wholesale account gone quiet, a distributor deduction deadline closing, a Meta ad buying clicks for a sold-out flavor, a paid subscription with no matching shipment — and puts it, with the evidence, in front of the right person. Run your business like you have an ops team, without hiring one: a small team operates like a funded one, without the ops payroll or the dilution. Wired to the tools the brand already uses (Shopify, QuickBooks, Notion, Claude, Gmail). Built once, owned by the client. Founder: Brandon Adams.
 
 ## Engagements
 - Free teardown (30 min): you show me where things live; I name two leaks I'd go after first. Book: https://cal.com/vnmsfx/30min
