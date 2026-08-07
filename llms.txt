@@ -1,27 +1,28 @@
 # VNMSFX
 
-> Rapid response ops for food & beverage (CPG) brands, New York. VNMSFX builds the AI-native system that catches what slipped — a wholesale account gone quiet, a distributor deduction deadline closing, a Meta ad buying clicks for a sold-out flavor, a paid subscription with no matching shipment — and puts it, with the evidence, in front of the right person. Run your business like you have an ops team, without hiring one: a small team operates like a funded one, without the ops payroll or the dilution. Wired to the tools the brand already uses (Shopify, QuickBooks, Notion, Claude, Gmail). Built once, owned by the client. Founder: Brandon Adams.
+> VNMSFX helps founder-led food and beverage brands find important operating problems hidden across the tools they already use. The system handles repeatable checking, shows the records behind each result and puts the next step in front of the right person. The client's team decides and takes the action. Founder: Brandon Adams, New York.
 
 ## Engagements
-- Free teardown (30 min): you show me where things live; I name two leaks I'd go after first. Book: https://cal.com/vnmsfx/30min
-- The leak audit ($2,500): a week inside the agreed records; findings with the evidence behind them and a build map, yours either way; refundable before work begins; credits toward the build. Sample deliverable (fictional company): https://vnmsfx.com/sample-audit
-- The build ($5,000/mo x 3): one piece at a time, biggest leak first; first piece live in the build's first two weeks; month three is the training month.
-- Payment schedule, audit through handover: audit $2,500, then build month one $2,500 (that month's $5,000 less the audit credit), month two $5,000, month three $5,000. $15,000 all-in, not $17,500.
-- What the audit is vs the build: the audit is a snapshot — what is being missed, the evidence behind each finding, and a build map, yours either way. The running system that keeps watching, the connections behind it, and the drafted actions that go out on approval are the build.
-- The partnership ($2,500/mo, optional, after the build): monthly review, priority fixes, upgrades.
-- Introductory pricing: the offer is new and priced that way. The rate holds until the first two case studies, then rises.
+- Free teardown (30 minutes): a conversation about one place where important follow-through may be breaking and whether the Audit fits. Do not send passwords or confidential records. Book: https://cal.com/vnmsfx/30min
+- The Leak Audit ($2,500): three written questions in one agreed area. Once the agreement, payment, records and access are ready, VNMSFX confirms the start in writing and delivers within five business days. The client receives three answers backed by the records, a Build Map and a 60-minute walkthrough. The Audit does not install or run anything. Fictional examples: https://vnmsfx.com/sample-audit
+- No-invented-leak promise: before payment, VNMSFX and the client agree on the three questions, records, dates and exact rule for each. If all three tests are completed and the records support no issue under those rules, VNMSFX refunds the full $2,500 and the client keeps the report. A hunch, missing file, possible upside or unverified lead does not count. The result covers only the agreed questions, records and dates; it does not certify that the whole business is leak-free.
+- The standard Build ($5,000 per month for three months): three running checks using up to four tools or data sources across the full project. The first check runs within 10 business days after the Build agreement, first payment, access and client decisions are ready. All three run by the end of week eight. Month three covers reliability, training and handover, followed by 30 days of no-cost fixes if the accepted system fails an agreed test.
+- The standard Build is offered only when the Audit supports three honest running checks. If it supports only one or two, the client keeps the completed Audit and VNMSFX stops there rather than inventing another problem.
+- Payment inside the 60-day credit window: Audit $2,500; Build month one $2,500 after the Audit credit; Build month two $5,000; Build month three $5,000. Total from Audit through handover: $15,000. After 60 days, the credit ends and a new Audit is required. At today's prices, starting again would be a new $15,000 Audit-to-handover project; the earlier $2,500 would remain money already spent.
+- Third-party tools are paid directly by the client with no VNMSFX markup and sit outside the $15,000. Most small-brand Builds should plan for about $100–$300 a month. A lean setup may be $50–$125; a complex or high-volume setup may be $300–$800 or more. Before the Build agreement is signed or its first payment is made, the client receives the exact tools, expected cost and approved spending limit.
+- Launch price: $15,000 applies to the first two complete VNMSFX Builds. Pricing will be reviewed after those Builds are documented.
 
-## Terms
-Client owns everything — accounts, logins, data, the system itself. No platform to migrate to, no lock-in, no operations taken over. Three clients at a time. Data handling: least-privilege access inside client-owned accounts via named collaborator, service-account, OAuth or client-created export — never a shared password; named business-tier AI processors under commercial terms; human approval before anything acts (https://vnmsfx.com/security). Plain-language terms: https://vnmsfx.com/terms
+## Data boundary
+Do not send passwords, private exports, accounting rows, customer lists or confidential screen-share through this website or the free teardown. Before any paid work handles private records, the written agreement names the records, access method, AI tools, client-owned workspace, data rules and how access is removed when work ends. Access uses a named account, approved connection or client-created export, never a shared password. The standard system does not change books, orders, inventory or payments and does not send messages. AI may help read and organize records, but an important answer must show the original records, the agreed rule and what is missing. The client's team makes the final decision. Private-data work does not begin until those controls are agreed and tested. Security: https://vnmsfx.com/security. Offer summary: https://vnmsfx.com/terms
 
 ## Pages
-- https://vnmsfx.com/ — the offer, method, the system in use, pricing, FAQ
-- https://vnmsfx.com/systems — what VNMSFX builds: eight exception workflows across four lanes (DTC paid media, wholesale, subscriptions, sales and accounts)
-- https://vnmsfx.com/studio — commissioned AI-generated campaign work (Sweet Vegan, ByteDance's Dreamina, CapCut); no photoshoots
-- https://vnmsfx.com/sample-audit — sample audit told through a fictional company (Uncle Ott's Horseradish); invented records, real format
-- https://vnmsfx.com/security — data-handling policy
-- https://vnmsfx.com/terms — plain-language terms
-- https://vnmsfx.com/privacy — site privacy
+- https://vnmsfx.com/ — offer, method, pricing and frequently asked questions
+- https://vnmsfx.com/systems — examples of the systems VNMSFX can build for direct-to-consumer, wholesale, subscription, sales and account follow-through
+- https://vnmsfx.com/studio — commissioned AI-generated campaign work
+- https://vnmsfx.com/sample-audit — five fictional examples showing what the records show, what they do not show, why the issue needs attention and what VNMSFX would build. A real Audit covers three questions in one agreed area.
+- https://vnmsfx.com/security — the private-data boundary and the controls required before paid work
+- https://vnmsfx.com/terms — plain-language offer summary
+- https://vnmsfx.com/privacy — website privacy
 
 ## Contact
 brandon@vnmsfx.com · https://cal.com/vnmsfx/30min · https://www.linkedin.com/in/brandonalexanderadams/
