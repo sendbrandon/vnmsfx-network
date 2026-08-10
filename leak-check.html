@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The 5-Minute Leak Check | VNMSFX</title>
-<meta name="description" content="Twelve yes-or-no questions that show where a food and beverage business may be quietly losing money. No logins, no files, nothing leaves this page.">
+<meta name="description" content="Twelve quick multiple-choice questions that show how many money leaks a food and beverage business is running. Answer from your gut — no logins, no files.">
 <link rel="canonical" href="https://vnmsfx.com/leak-check">
 <meta name="theme-color" content="#F0EFEA">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vnmsfx.com/leak-check">
 <meta property="og:site_name" content="VNMSFX">
-<meta property="og:title" content="The 5-Minute Leak Check — VNMSFX">
-<meta property="og:description" content="Twelve yes-or-no questions that show where a food and beverage business may be quietly losing money. No logins, no files, nothing leaves this page.">
+<meta property="og:title" content="The 5-Minute Leak Check — how many leaks are you running?">
+<meta property="og:description" content="Twelve quick multiple-choice questions that show how many money leaks a food and beverage business is running. Answer from your gut — no logins, no files.">
 <meta property="og:image" content="https://vnmsfx.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="VNMSFX. Rapid response ops for food and beverage brands.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The 5-Minute Leak Check — VNMSFX">
-<meta name="twitter:description" content="Twelve yes-or-no questions that show where a food and beverage business may be quietly losing money.">
+<meta name="twitter:title" content="The 5-Minute Leak Check — how many leaks are you running?">
+<meta name="twitter:description" content="Twelve quick multiple-choice questions. Answer from your gut. Find out how many money leaks you're running.">
 <meta name="twitter:image" content="https://vnmsfx.com/og.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -89,7 +89,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   .pills .pill:hover,.pills .pill:focus-visible{background:var(--card)}
 }
 @media (max-width:560px){.pill{padding:10px 13px;font-size:12px}.pills .pill{padding:11px 14px;font-size:14px}}
-/* CHECK — the quiz reads like the site's question rows, answered with pills */
+/* CHECK — recognition questions: three situations, pick the one that's you */
 .check-hero{padding:clamp(40px,6vw,84px) 0 clamp(10px,2vw,24px)}
 .check-hero .say{max-width:16ch}
 .meter{position:sticky;top:64px;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:14px;
@@ -99,22 +99,24 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 .meter b{font-weight:700;color:var(--ink)}
 .meter .bar{flex:1;height:3px;background:var(--faint);border-radius:2px;overflow:hidden}
 .meter .bar i{display:block;height:100%;width:0%;background:var(--ink);transition:width .25s ease}
+.meter .flags{display:none;background:var(--yellow);color:var(--ink);padding:4px 11px;border-radius:8px;font-weight:700;white-space:nowrap}
+.meter .flags.on{display:inline-block}
 .qgroup{margin-top:clamp(30px,3.6vw,52px)}
 .qgroup .ghead{font-family:'Space Mono',monospace;font-size:clamp(13px,1.2vw,15px);letter-spacing:.14em;text-transform:uppercase;
   color:var(--ink);font-weight:700;padding-bottom:12px;border-bottom:1px solid var(--faint)}
-.cq{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,.38fr);gap:clamp(16px,3vw,44px);
-  padding:clamp(20px,2.3vw,30px) 0;border-bottom:1px solid var(--faint);align-items:center}
-.cq h3{font-size:clamp(19px,2vw,27px);font-weight:600;letter-spacing:-.024em;line-height:1.2}
-.cq .why{font-size:clamp(15.5px,1.3vw,18px);color:var(--soft);line-height:1.5;margin-top:8px;max-width:52ch}
-.opts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
-.opt{position:relative}
+.cq{display:grid;grid-template-columns:minmax(0,.46fr) minmax(0,.54fr);gap:clamp(16px,3vw,44px);
+  padding:clamp(22px,2.5vw,34px) 0;border-bottom:1px solid var(--faint);align-items:start}
+.cq h3{font-size:clamp(19px,2vw,27px);font-weight:600;letter-spacing:-.024em;line-height:1.22}
+.cq .why{font-size:clamp(15px,1.3vw,17.5px);color:var(--soft);line-height:1.5;margin-top:8px;max-width:44ch}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{position:relative;display:block}
 .opt input{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.opt span{display:inline-block;font-size:13.5px;font-weight:600;padding:11px 20px;border-radius:999px;background:var(--card);
-  cursor:pointer;user-select:none;white-space:nowrap;transition:background .14s ease,color .14s ease}
+.opt span{display:block;font-size:clamp(14.5px,1.25vw,16.5px);font-weight:500;line-height:1.4;padding:13px 18px;border-radius:12px;background:var(--card);
+  cursor:pointer;user-select:none;transition:background .14s ease,color .14s ease}
 .opt span:hover{background:var(--faint)}
 .opt input:checked + span{background:var(--dark);color:#F4F2EC}
 .opt input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
-@media (max-width:820px){.cq{grid-template-columns:1fr;gap:12px}.opts{justify-content:flex-start}}
+@media (max-width:820px){.cq{grid-template-columns:1fr;gap:14px}}
 .scorebar{display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;margin-top:clamp(26px,3.2vw,44px)}
 .scorebtn{border:0;font-family:'Archivo',sans-serif;display:inline-block;background:var(--faint);color:var(--soft);font-size:13.5px;font-weight:600;
   padding:14px 26px;border-radius:999px;cursor:not-allowed;white-space:nowrap}
@@ -130,13 +132,18 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 .verdict h3{font-size:clamp(22px,2.3vw,31px);font-weight:600;letter-spacing:-.024em;margin-top:10px;max-width:26ch}
 .verdict p{font-size:clamp(17px,1.5vw,21px);color:rgba(244,242,236,.72);margin-top:12px;max-width:56ch;line-height:1.6}
 .leaklist{margin-top:clamp(18px,2.2vw,28px);border-top:1px solid var(--faint)}
-.leaklist .lk{display:grid;grid-template-columns:minmax(0,.5fr) minmax(0,.5fr);gap:clamp(16px,3vw,44px);
-  padding:clamp(16px,1.9vw,24px) 0;border-bottom:1px solid var(--faint);align-items:baseline}
+.leaklist .lk{display:flex;gap:16px;align-items:baseline;justify-content:space-between;
+  padding:clamp(13px,1.5vw,18px) 0;border-bottom:1px solid var(--faint)}
 .leaklist .lk h4{font-size:clamp(18px,1.7vw,23px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
-.leaklist .lk p{font-size:clamp(15.5px,1.35vw,19px);color:var(--soft);line-height:1.55}
 .leaklist .lk .tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  display:inline-block;padding:3px 9px;border-radius:7px;background:var(--yellow);color:var(--ink);margin-bottom:8px;font-weight:700}
-@media (max-width:820px){.leaklist .lk{grid-template-columns:1fr;gap:6px}}
+  display:inline-block;padding:3px 9px;border-radius:7px;background:var(--yellow);color:var(--ink);font-weight:700;white-space:nowrap}
+.leaklist .lk .tag.hot{background:var(--ink);color:#F4F2EC}
+/* the email payoff */
+.payoff{background:var(--yellow);border-radius:var(--r);padding:clamp(24px,3vw,42px);margin-top:clamp(22px,2.6vw,34px)}
+.payoff h3{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.028em;line-height:1.15;max-width:24ch}
+.payoff p{font-size:clamp(16px,1.4vw,19px);color:rgba(17,17,16,.78);margin-top:12px;max-width:56ch;line-height:1.55}
+.payoff .cta.dk{background:var(--dark);color:#fff;margin-top:18px}
+.payoff .cta.dk:hover{background:var(--ink)}
 .result-actions{display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;margin-top:clamp(22px,2.6vw,34px)}
 </style>
 </head>
@@ -155,14 +162,15 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     <div class="duo">
       <p class="lab"><span class="chip g">✓</span>Free self-check</p>
       <div>
-        <h1 class="say">The 5-Minute Leak Check.</h1>
-        <p class="sub">Twelve yes-or-no questions that show where a food and beverage business quietly loses money. Answer honestly&mdash;<strong>&ldquo;not sure&rdquo; is the most useful answer you can give.</strong></p>
-        <p class="sub">No logins, no files, no email required. Your answers stay on this page: nothing is sent or stored when you score it.</p>
+        <h1 class="say">How many leaks are you running?</h1>
+        <p class="sub">Most food &amp; beverage brands are losing money in places nobody is watching&mdash;quiet accounts, expiring claims, follow-ups living in someone&rsquo;s head. Twelve quick questions show how many of those places <em>you</em> have.</p>
+        <p class="sub">Answer from your gut&mdash;pick the one that&rsquo;s closest to how it <strong>really</strong> works, not how it&rsquo;s supposed to work. No logins, no homework, nothing to look up.</p>
       </div>
     </div>
     <div class="meter" aria-hidden="false">
-      <span><b id="done">0</b>&nbsp;/&nbsp;12 answered</span>
+      <span><b id="done">0</b>&nbsp;/&nbsp;12</span>
       <span class="bar"><i id="fill"></i></span>
+      <span class="flags" id="flagChip">flags: 0</span>
       <span>~5 min</span>
     </div>
   </div>
@@ -172,132 +180,144 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   <form id="check" novalidate>
 
     <div class="qgroup">
-      <p class="ghead"><span class="chip r">01</span>Can you trust your numbers?</p>
-      <div class="cq" data-q="1" data-flag="Your ad account may be flying blind" data-cost="If the purchase tracker is broken, every ad decision&mdash;good and bad&mdash;was made on static. A five-minute test settles it.">
-        <div><h3>Has anyone test-fired your website&rsquo;s purchase tracking in the last 90 days?</h3>
-        <p class="why">Not &ldquo;is it installed&rdquo;&mdash;has someone run a test order and watched the sale get counted?</p></div>
+      <p class="ghead"><span class="chip r">01</span>Your numbers</p>
+
+      <div class="cq" data-q="1" data-flag="Your ad spend may be grading its own homework"
+           data-cost="Ad platforms count sales by their own rules and ignore refunds entirely. Fund the wrong campaign for one quarter and the loss quietly compounds.">
+        <div><h3>How do you actually know if your ads made money last month?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 1">
-          <label class="opt"><input type="radio" name="q1" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q1" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q1" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q1" value="a"><span>One trusted report&mdash;checked against real orders</span></label>
+          <label class="opt"><input type="radio" name="q1" value="b"><span>Whatever the ad platform says</span></label>
+          <label class="opt"><input type="radio" name="q1" value="c"><span>Gut feel, honestly</span></label>
         </div>
       </div>
-      <div class="cq" data-q="2" data-flag="Two reports, two versions of the truth" data-cost="Without one agreed ruler&mdash;same dates, same definition of a sale&mdash;you may keep funding the wrong campaign or stop one that worked.">
-        <div><h3>Do your ad platform and your store agree on last month&rsquo;s sales?</h3>
-        <p class="why">Same date range, same definition of &ldquo;a sale.&rdquo; If you have never compared them, that is a &ldquo;not sure.&rdquo;</p></div>
+
+      <div class="cq" data-q="2" data-flag="Two versions of the truth"
+           data-cost="When two reports disagree, one of them is feeding you decisions on bad numbers — and you don't know which one.">
+        <div><h3>Two of your reports show two different numbers. What usually happens?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 2">
-          <label class="opt"><input type="radio" name="q2" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q2" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q2" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q2" value="a"><span>We have one source of truth we always trust</span></label>
+          <label class="opt"><input type="radio" name="q2" value="b"><span>We go with whichever seems more believable</span></label>
+          <label class="opt"><input type="radio" name="q2" value="c"><span>We shrug&mdash;that&rsquo;s just how it is</span></label>
         </div>
       </div>
-      <div class="cq" data-q="3" data-flag="Refunds may be hiding in your results" data-cost="Ad-platform return numbers ignore refunds entirely. A high-refund product can look profitable while it loses money.">
-        <div><h3>Are refunds subtracted before you judge whether a campaign worked?</h3>
-        <p class="why">The platform&rsquo;s number and the money that actually stayed are not the same number.</p></div>
+
+      <div class="cq" data-q="3" data-flag="Your #1 seller could be leaking margin"
+           data-cost="A high-refund, high-fee product can look like a winner while it loses money on every promotion. Selling great and keeping money are different numbers.">
+        <div><h3>Your best seller&mdash;what does it actually <em>keep</em> after refunds, fees and discounts?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 3">
-          <label class="opt"><input type="radio" name="q3" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q3" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q3" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q3" value="a"><span>I know, and I could show you</span></label>
+          <label class="opt"><input type="radio" name="q3" value="b"><span>Roughly</span></label>
+          <label class="opt"><input type="radio" name="q3" value="c"><span>It sells great. That&rsquo;s what I know</span></label>
         </div>
       </div>
     </div>
 
     <div class="qgroup">
-      <p class="ghead"><span class="chip g">02</span>Money you&rsquo;re owed</p>
-      <div class="cq" data-q="4" data-flag="Short-pays may be expiring unchallenged" data-cost="The claim is in a PDF, the order in email, the delivery proof in a portal. Miss the window to connect them and the money is gone.">
-        <div><h3>When a distributor pays less than invoiced, do you catch and challenge it before the deadline?</h3>
-        <p class="why">Deductions, chargebacks, &ldquo;missing cases&rdquo;&mdash;every one has a clock on it.</p></div>
+      <p class="ghead"><span class="chip g">02</span>Money slipping away</p>
+
+      <div class="cq" data-q="4" data-flag="Short-pays may be expiring unchallenged"
+           data-cost="Deduction claims have deadlines. The claim is in a PDF, the order in email, the proof in a portal — every one that expires unexamined is money you agreed to lose.">
+        <div><h3>A distributor pays less than the invoice and mentions &ldquo;missing cases.&rdquo; What happens?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 4">
-          <label class="opt"><input type="radio" name="q4" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q4" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q4" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q4" value="a"><span>Someone owns it and challenges it before the deadline</span></label>
+          <label class="opt"><input type="radio" name="q4" value="b"><span>We catch it when we reconcile&mdash;sometimes late</span></label>
+          <label class="opt"><input type="radio" name="q4" value="c"><span>Small short-pays just&hellip; slip</span></label>
         </div>
       </div>
-      <div class="cq" data-q="5" data-flag="Good accounts can go quiet for months" data-cost="A retailer that orders every 30&ndash;45 days can sit silent for 80 before anyone notices&mdash;because the last order and the account owner live in different tools.">
-        <div><h3>Would you know this week if a good wholesale account stopped ordering?</h3>
-        <p class="why">Without anyone having to remember to go look.</p></div>
+
+      <div class="cq" data-q="5" data-flag="Good accounts can go quiet for months"
+           data-cost="An account that orders every 30–45 days can sit silent for 80 before anyone notices — and by then someone else may be on the shelf.">
+        <div><h3>A wholesale account that used to order every month goes quiet. When do you find out?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 5">
-          <label class="opt"><input type="radio" name="q5" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q5" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q5" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q5" value="a"><span>While it&rsquo;s fresh&mdash;something surfaces it</span></label>
+          <label class="opt"><input type="radio" name="q5" value="b"><span>When someone happens to think of it</span></label>
+          <label class="opt"><input type="radio" name="q5" value="c"><span>When it&rsquo;s been months&mdash;and it&rsquo;s awkward</span></label>
         </div>
       </div>
-      <div class="cq" data-q="6" data-flag="Churn is invisible until you go looking" data-cost="Lapsed subscribers and repeat customers rarely announce they are leaving. By the time someone checks, the relationship is cold.">
-        <div><h3>Do lapsed subscribers or repeat customers get noticed while they&rsquo;re still warm?</h3>
-        <p class="why">Noticed by a system or a routine&mdash;not by luck.</p></div>
+
+      <div class="cq" data-q="6" data-flag="Churn is invisible until you go looking"
+           data-cost="Every quiet cancel is revenue you already earned once and lost silently. By the time someone checks, the relationship is cold.">
+        <div><h3>Subscribers or repeat customers who quietly stop buying&mdash;</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 6">
-          <label class="opt"><input type="radio" name="q6" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q6" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q6" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q6" value="a"><span>We catch them while they&rsquo;re still warm</span></label>
+          <label class="opt"><input type="radio" name="q6" value="b"><span>We run a win-back blast now and then</span></label>
+          <label class="opt"><input type="radio" name="q6" value="c"><span>We don&rsquo;t really see them leave</span></label>
         </div>
       </div>
     </div>
 
     <div class="qgroup">
       <p class="ghead"><span class="chip y">03</span>Follow-through</p>
-      <div class="cq" data-q="7" data-flag="Follow-ups depend on memory" data-cost="&ldquo;I thought you had it&rdquo; is the most expensive sentence in a small team. Every promised follow-up needs an owner and a date somewhere a person actually checks.">
-        <div><h3>Does every promised follow-up&mdash;vendor, buyer, partner&mdash;have an owner and a due date written down?</h3>
-        <p class="why">Somewhere that gets checked. An inbox is not that place.</p></div>
+
+      <div class="cq" data-q="7" data-flag="Follow-ups depend on memory"
+           data-cost="&ldquo;I thought you had it&rdquo; is the most expensive sentence in a small team. A follow-up without an owner and a date is a coin flip.">
+        <div><h3>The follow-ups you&rsquo;ve promised&mdash;vendor calls, buyer samples&mdash;where do they live?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 7">
-          <label class="opt"><input type="radio" name="q7" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q7" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q7" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q7" value="a"><span>One place, with an owner and a date</span></label>
+          <label class="opt"><input type="radio" name="q7" value="b"><span>Across inboxes, notes and chat threads</span></label>
+          <label class="opt"><input type="radio" name="q7" value="c"><span>In my head, mostly</span></label>
         </div>
       </div>
-      <div class="cq" data-q="8" data-flag="Answers take a meeting instead of a minute" data-cost="If &ldquo;what happened last month&rdquo; means opening five tools and asking three people, the answer is slow&mdash;and slow is where sales fall through.">
-        <div><h3>Could you answer &ldquo;where does X stand right now?&rdquo; in under a minute?</h3>
-        <p class="why">From a system&mdash;not by asking around.</p></div>
+
+      <div class="cq" data-q="8" data-flag="Answers take a meeting instead of a minute"
+           data-cost="If &ldquo;where does it stand&rdquo; takes asking around, the answer is slow — and slow is how won deals stall and warm buyers cool.">
+        <div><h3>Someone asks where the big deal stands. What actually happens?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 8">
-          <label class="opt"><input type="radio" name="q8" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q8" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q8" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q8" value="a"><span>Anyone can pull it up in a minute</span></label>
+          <label class="opt"><input type="radio" name="q8" value="b"><span>I ask the one person who&rsquo;d know</span></label>
+          <label class="opt"><input type="radio" name="q8" value="c"><span>We rebuild the story from email and memory</span></label>
         </div>
       </div>
-      <div class="cq" data-q="9" data-flag="One person is a single point of failure" data-cost="If important work lives only in one person&rsquo;s head or inbox, the business stops when they do&mdash;vacation, illness, or a busy week.">
-        <div><h3>If your busiest person went quiet for a week, would the team still know what&rsquo;s owed and when?</h3>
-        <p class="why">Or does part of the business live only in their head?</p></div>
+
+      <div class="cq" data-q="9" data-flag="One person is a single point of failure"
+           data-cost="A business that lives in one person's head stops when they do — vacation, flu, or one busy week.">
+        <div><h3>If your most on-top-of-it person vanished for two weeks&mdash;</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 9">
-          <label class="opt"><input type="radio" name="q9" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q9" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q9" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q9" value="a"><span>It&rsquo;s written down; the business would run</span></label>
+          <label class="opt"><input type="radio" name="q9" value="b"><span>We&rsquo;d limp through</span></label>
+          <label class="opt"><input type="radio" name="q9" value="c"><span>Things would fall through the floor</span></label>
         </div>
       </div>
     </div>
 
     <div class="qgroup">
       <p class="ghead"><span class="chip r">04</span>Handoffs</p>
-      <div class="cq" data-q="10" data-flag="A won sale can still be lost in the handoff" data-cost="Sales thinks the order is moving; the warehouse never got the instruction. The ship date passes quietly and a sale you already won is at risk.">
-        <div><h3>When a sale is won, is there a check that the warehouse actually got the instruction and shipped on time?</h3>
-        <p class="why">A check that runs&mdash;not an assumption.</p></div>
+
+      <div class="cq" data-q="10" data-flag="A won sale can still be lost in the handoff"
+           data-cost="Sales thinks the order is moving; the warehouse never got the instruction. The ship date passes quietly and a sale you already won is at risk.">
+        <div><h3>An order is won. How do you know it actually shipped on time?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 10">
-          <label class="opt"><input type="radio" name="q10" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q10" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q10" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q10" value="a"><span>There&rsquo;s a check&mdash;we&rsquo;d know same day</span></label>
+          <label class="opt"><input type="radio" name="q10" value="b"><span>We assume it shipped unless we hear otherwise</span></label>
+          <label class="opt"><input type="radio" name="q10" value="c"><span>We find out when the customer complains</span></label>
         </div>
       </div>
-      <div class="cq" data-q="11" data-flag="Retyping between tools breeds errors" data-cost="Every place a person retypes information from one tool into another is a place records quietly drift apart&mdash;and where mistakes are born.">
-        <div><h3>Does information move between your tools without someone retyping it?</h3>
-        <p class="why">Orders into spreadsheets, emails into trackers, totals into reports.</p></div>
+
+      <div class="cq" data-q="11" data-flag="Retyping breeds silent errors"
+           data-cost="Every place someone retypes information from one tool into another is a place records quietly drift apart — and where mistakes are born.">
+        <div><h3>How does information move between your tools&mdash;orders into sheets, emails into trackers?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 11">
-          <label class="opt"><input type="radio" name="q11" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q11" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q11" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q11" value="a"><span>It flows on its own</span></label>
+          <label class="opt"><input type="radio" name="q11" value="b"><span>Someone retypes it</span></label>
+          <label class="opt"><input type="radio" name="q11" value="c"><span>What trackers?</span></label>
         </div>
       </div>
-      <div class="cq" data-q="12" data-flag="The story takes hours to rebuild" data-cost="When something goes wrong, the pieces&mdash;order, email, file&mdash;are scattered across tools. Rebuilding the story by hand costs an afternoon each time.">
-        <div><h3>When something goes wrong, can you trace what happened&mdash;order, email, file&mdash;in one place?</h3>
-        <p class="why">Or does someone have to rebuild the story by hand?</p></div>
+
+      <div class="cq" data-q="12" data-flag="The story takes hours to rebuild"
+           data-cost="Every incident costs you twice: the problem itself, plus the afternoon someone spends reconstructing what happened from scattered tools.">
+        <div><h3>When something goes wrong, how long until you know what actually happened?</h3></div>
         <div class="opts" role="radiogroup" aria-label="Question 12">
-          <label class="opt"><input type="radio" name="q12" value="yes"><span>Yes</span></label>
-          <label class="opt"><input type="radio" name="q12" value="unsure"><span>Not sure</span></label>
-          <label class="opt"><input type="radio" name="q12" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q12" value="a"><span>Minutes&mdash;it&rsquo;s all in one place</span></label>
+          <label class="opt"><input type="radio" name="q12" value="b"><span>An afternoon of digging</span></label>
+          <label class="opt"><input type="radio" name="q12" value="c"><span>Days. And we&rsquo;re still not sure</span></label>
         </div>
       </div>
     </div>
 
     <div class="scorebar">
       <button type="button" class="scorebtn" id="scoreBtn" disabled>Answer all 12 to see your result</button>
-      <span class="scorenote" id="scoreNote">Nothing is sent or stored. The result appears right here.</span>
+      <span class="scorenote" id="scoreNote">Nothing is sent or stored. Your result appears right here.</span>
     </div>
   </form>
 
@@ -309,17 +329,20 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
       <p id="verdictBody"></p>
     </div>
     <div class="leaklist" id="leakList"></div>
-    <p class="found" id="foundNote"><strong>The point isn&rsquo;t the number.</strong> Every &ldquo;no&rdquo; or &ldquo;not sure&rdquo; is a place where the truth about your business is spread across tools, and nobody sees the problem soon enough. Any one mistake is easy to fix after you see it. The harder problem is that seeing it still depends on you.</p>
+    <div class="payoff" id="payoff">
+      <h3>Your full breakdown&mdash;what each leak tends to cost, and the first check to run&mdash;comes by email.</h3>
+      <p>Email me your result and I&rsquo;ll reply with the leak-by-leak breakdown: why each flagged area quietly costs food &amp; beverage brands money, and the one thing I&rsquo;d check first for each. A real reply from me&mdash;not a drip campaign.</p>
+      <a class="cta dk" id="mailBtn" href="mailto:brandon@vnmsfx.com">Email me my full breakdown</a>
+    </div>
     <div class="result-actions">
-      <a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a>
-      <a class="cta2" id="mailBtn" href="mailto:brandon@vnmsfx.com"><span>Email me my result</span></a>
+      <a class="cta2" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener"><span>Or skip ahead: book the free 30-min teardown</span></a>
       <a class="cta2" href="/sample-audit"><span>See a sample audit</span></a>
     </div>
     <p class="scorenote" style="margin-top:14px">The teardown is 30 minutes, led by me. Bring the situation&mdash;you don&rsquo;t need to diagnose anything, and I never ask for passwords or files.</p>
   </div>
 
   <div class="found" style="margin-top:clamp(40px,5vw,64px)">
-    <strong>What this is&mdash;and isn&rsquo;t.</strong> This is a self-check to help you think, not a diagnosis of your business. It runs entirely on this page: your answers are not sent, stored, or tracked. VNMSFX finds operating problems that may be costing you money and shows the records behind them&mdash;your team always makes the decisions.
+    <strong>What this is&mdash;and isn&rsquo;t.</strong> This is a self-check to help you think, not a diagnosis of your business. It runs entirely on this page: your answers are not sent, stored, or tracked unless you choose to email them. VNMSFX finds operating problems that may be costing you money and shows the records behind them&mdash;your team always makes the decisions.
   </div>
 
   <div class="close" style="margin-top:clamp(48px,6vw,90px)">
@@ -350,36 +373,43 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 })();
 </script>
 <script>
-/* The check. Everything stays on this page: no request is made and nothing is
-   stored when the visitor scores it. "No" and "Not sure" both count as a leak —
-   an instrument you can't vouch for is not an instrument you can rely on. */
+/* The check. Everything stays on this page until the visitor chooses to email
+   their result. Answer "a" is the healthy state; "b" is worth a look; "c" is a
+   flag. The live flag chip builds the reason to finish; the detailed
+   leak-by-leak breakdown arrives by email reply, which is the whole point. */
 (function(){
   var TOTAL=12,
       form=document.getElementById('check'),
       btn=document.getElementById('scoreBtn'),
       done=document.getElementById('done'),
       fill=document.getElementById('fill'),
+      flagChip=document.getElementById('flagChip'),
       result=document.getElementById('result');
 
-  function answered(){
-    var n=0;
-    for(var i=1;i<=TOTAL;i++){ if(form.querySelector('input[name="q'+i+'"]:checked')) n++; }
-    return n;
+  function tally(){
+    var answered=0, flags=0;
+    for(var i=1;i<=TOTAL;i++){
+      var v=form.querySelector('input[name="q'+i+'"]:checked');
+      if(v){ answered++; if(v.value!=='a') flags++; }
+    }
+    return {answered:answered, flags:flags};
   }
   function refresh(){
-    var n=answered();
-    done.textContent=n;
-    fill.style.width=(n/TOTAL*100)+'%';
-    if(n===TOTAL){ btn.disabled=false; btn.classList.add('ready'); btn.textContent='See my result'; }
+    var t=tally();
+    done.textContent=t.answered;
+    fill.style.width=(t.answered/TOTAL*100)+'%';
+    flagChip.textContent='flags: '+t.flags;
+    flagChip.classList.toggle('on', t.flags>0);
+    if(t.answered===TOTAL){ btn.disabled=false; btn.classList.add('ready'); btn.textContent='Show me my '+t.flags+(t.flags===1?' leak':' leaks'); }
     else { btn.disabled=true; btn.classList.remove('ready'); btn.textContent='Answer all 12 to see your result'; }
   }
   form.addEventListener('change', refresh);
   refresh();
 
   var VERDICTS=[
-    {max:2, head:'Tight ship.', body:'You have built real discipline. The one or two gaps above are worth a look, but you are ahead of most founder-led brands. If you want a second set of eyes on what remains, the free teardown is 30 minutes.'},
-    {max:5, head:'A few real leaks.', body:'Individually small; together they are a slow drip that adds up over a year. None of this is a talent problem — it is a visibility problem, and visibility is fixable. The flagged areas below are where I would start.'},
-    {max:12, head:'Money is leaving quietly.', body:'Six or more gaps usually means the business still depends on you personally checking tools, connecting dots and sounding the alarm. The good news: every one of these is fixable, and the flagged areas below show exactly where to start.'}
+    {max:2, head:'Tight ship.', body:'You are ahead of most founder-led brands. The flags above are still worth a look — small leaks do not stay small, and they never announce themselves.'},
+    {max:5, head:'You are running on luck in a few places.', body:'Individually these look small. Together they are a slow drip that compounds every month, and none of them will announce themselves. The good news: this is a visibility problem, not a talent problem — and visibility is fixable.'},
+    {max:12, head:'Money is leaving quietly.', body:'This many flags usually means the business still depends on you personally noticing everything — checking tools, connecting dots, sounding the alarm. Every one of these is fixable. None of them get fixed while nobody can see them.'}
   ];
 
   btn.addEventListener('click', function(){
@@ -388,8 +418,8 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     Array.prototype.forEach.call(groups, function(g){
       var q=g.getAttribute('data-q'),
           v=form.querySelector('input[name="q'+q+'"]:checked');
-      if(v && v.value!=='yes'){
-        leaks.push({flag:g.getAttribute('data-flag'), cost:g.getAttribute('data-cost'), unsure:v.value==='unsure'});
+      if(v && v.value!=='a'){
+        leaks.push({flag:g.getAttribute('data-flag'), hot:v.value==='c'});
       }
     });
     var n=leaks.length,
@@ -403,22 +433,20 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     list.innerHTML='';
     leaks.forEach(function(l){
       var row=document.createElement('div'); row.className='lk';
-      var left=document.createElement('div');
-      var tag=document.createElement('span'); tag.className='tag'; tag.textContent=l.unsure?'Not sure':'Flagged';
       var h=document.createElement('h4'); h.textContent=l.flag;
-      left.appendChild(tag); left.appendChild(h);
-      var p=document.createElement('p'); p.textContent=l.cost;
-      row.appendChild(left); row.appendChild(p);
+      var tag=document.createElement('span'); tag.className='tag'+(l.hot?' hot':''); tag.textContent=l.hot?'Flagged':'Worth a look';
+      row.appendChild(h); row.appendChild(tag);
       list.appendChild(row);
     });
+    document.getElementById('payoff').style.display = n>0 ? '' : 'none';
 
-    /* Prefilled email so the visitor can send themselves (and me) the result.
-       The visitor sends it from their own mail app — nothing is transmitted by this page. */
-    var lines=['My 5-Minute Leak Check result: '+n+(n===1?' leak':' leaks')+' flagged.',''];
-    leaks.forEach(function(l){ lines.push('- '+l.flag+(l.unsure?' (not sure)':'')); });
-    lines.push('','Score context: 0-2 tight ship / 3-5 a few real leaks / 6+ money leaving quietly.','','Found via vnmsfx.com/leak-check');
+    /* The visitor emails their result from their own mail app; the detailed
+       breakdown comes back as a personal reply. Nothing is transmitted by this page. */
+    var lines=['My Leak Check result: '+n+(n===1?' leak':' leaks')+' flagged.',''];
+    leaks.forEach(function(l){ lines.push('- '+l.flag+(l.hot?'':' (worth a look)')); });
+    lines.push('','Please send my full leak-by-leak breakdown.','','Found via vnmsfx.com/leak-check');
     document.getElementById('mailBtn').href='mailto:brandon@vnmsfx.com'
-      +'?subject='+encodeURIComponent('My 5-Minute Leak Check result ('+n+' flagged)')
+      +'?subject='+encodeURIComponent('My Leak Check result — send my full breakdown ('+n+' flagged)')
       +'&body='+encodeURIComponent(lines.join('\n'));
 
     result.classList.add('on');
