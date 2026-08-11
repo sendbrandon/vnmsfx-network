@@ -141,10 +141,12 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 .payoff{background:var(--card);border-radius:var(--r);padding:clamp(24px,3vw,42px);margin-top:clamp(14px,1.8vw,20px)}
 .payoff h3{font-size:clamp(21px,2.3vw,31px);font-weight:600;letter-spacing:-.026em;line-height:1.16;max-width:25ch;text-wrap:balance}
 .payoff .plede{font-size:clamp(16px,1.4vw,19px);color:var(--soft);margin-top:12px;max-width:54ch;line-height:1.55}
-.capture{display:flex;gap:10px;margin-top:20px;max-width:560px;flex-wrap:wrap}
-.capture input[type="email"]{flex:1;min-width:230px;font-family:'Archivo',sans-serif;font-size:16px;padding:14px 18px;
+.capture{display:flex;gap:10px;margin-top:20px;max-width:600px;flex-wrap:wrap}
+.capture input{font-family:'Archivo',sans-serif;font-size:16px;padding:14px 18px;
   border-radius:999px;border:1.5px solid rgba(17,17,16,.25);background:#FBFAF6;color:var(--ink)}
-.capture input[type="email"]::placeholder{color:#8B877C}
+.capture input#nameField{flex:0 1 150px;min-width:130px}
+.capture input[type="email"]{flex:1 1 220px;min-width:200px}
+.capture input::placeholder{color:#8B877C}
 .capture .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .pmicro{margin-top:14px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;line-height:1.7;color:var(--soft);max-width:58ch}
 .perr{display:none;margin-top:10px;font-size:14px;font-weight:600;color:var(--red)}
@@ -220,11 +222,12 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
       <p class="plede">Leave your email and I&rsquo;ll send one personal reply: what I&rsquo;d review first in this process, in the order I&rsquo;d review it, written for a business that sells the way yours does. One reply from me&mdash;no newsletter, no sequence.</p>
       <form class="capture" id="captureForm" novalidate>
         <input type="text" class="hp" id="hpField" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="text" id="nameField" name="firstName" placeholder="First name" autocomplete="given-name" required aria-label="Your first name">
         <input type="email" id="emailField" name="email" placeholder="you@yourbrand.com" autocomplete="email" inputmode="email" required aria-label="Your email">
         <button class="cta dk" id="sendBtn" type="submit">Send my teardown prep</button>
       </form>
-      <p class="perr" id="emailErr">That email doesn&rsquo;t look complete &mdash; check it once and try again.</p>
-      <p class="pmicro">Your answers are sent with your email and used only for that reply. No confidential files, no passwords, no list.</p>
+      <p class="perr" id="emailErr">Add your first name and a complete email, then try again.</p>
+      <p class="pmicro">Your answers are sent with your name and email and used only for that reply. No confidential files, no passwords, no list.</p>
     </div>
 
     <div class="confirm hide" id="confirm">
@@ -547,14 +550,16 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   /* Email capture — the only transmission on this page, and only on submit. */
   var form=document.getElementById('captureForm'),
       emailField=document.getElementById('emailField'),
+      nameField=document.getElementById('nameField'),
       err=document.getElementById('emailErr'),
       sendBtn=document.getElementById('sendBtn');
 
   function sellsLabel(){ return ROUTER.opts[answers[0]]||'Unstated'; }
 
-  function mailtoFallback(email){
+  function mailtoFallback(name,email){
     var s=score(), top=topTheme(s);
-    var lines=['My leak check result.','Sells: '+sellsLabel(),'First process to review: '+(s.points===0?'none indicated':THEMES[top].process),'Reply to: '+email,''];
+    var lines=['Name: '+name,'Sells: '+sellsLabel(),'Reply to: '+email,'',
+               'First process to review: '+(s.points===0?'none indicated':THEMES[top].process),''];
     s.noted.forEach(function(l){ lines.push('- '+l.flag+(l.hot?' (worth checking)':' (keep an eye on)')); });
     lines.push('','Please send my teardown prep.','','Found via vnmsfx.com/leak-check');
     location.href='mailto:brandon@vnmsfx.com'
@@ -566,29 +571,41 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     e.preventDefault();
     err.classList.remove('on');
     var email=(emailField.value||'').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.classList.add('on'); emailField.focus(); return; }
+    var name=(nameField.value||'').trim();
+    if(!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+      err.classList.add('on'); (name?emailField:nameField).focus(); return;
+    }
     if(document.getElementById('hpField').value){ return; }
-    var s=score(), top=topTheme(s);
+    /* Send the raw answers and let the server do the scoring — the page never
+       tells the server what the result was. answers[0] is the routing choice,
+       so the scored answers start at index 1. */
     var payload={
+      firstName:name,
       email:email,
-      sells:sellsLabel(),
-      process:(s.points===0?'none indicated':THEMES[top].process),
-      answered:s.answered,
-      points:s.points,
-      maxPoints:s.maxPoints,
-      financeTouched:s.finance,
-      flags:s.noted.map(function(l){return {name:l.flag, severity:l.hot?'worth-checking':'keep-an-eye-on'};}),
+      channel:channel,
+      answers:answers.slice(1),
       page:'leak-check'
     };
     sendBtn.disabled=true; sendBtn.textContent='Sending…';
     fetch('/api/leak-check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
       .then(function(r){ if(!r.ok) throw new Error('endpoint '+r.status); return r.json(); })
-      .then(function(){
+      .then(function(data){
         document.getElementById('payoff').classList.add('hide');
         document.getElementById('confirm').classList.remove('hide');
+        /* State the exact deadline the server committed to, not a vague promise. */
+        if(data && data.deadline){
+          document.getElementById('confirmBody').textContent=
+            'I read every submission myself. You’ll have my reply by '+data.deadline+
+            ' with the process I’d inspect first. Your confirmation email is on its way — if it lands in spam, fish it out once and it won’t again.';
+        }
+        if(data && data.receiptDelivered===false){
+          document.getElementById('confirmBody').textContent=
+            'Your answers reached me — I’ll reply by '+(data.deadline||'tomorrow')+
+            '. The confirmation email didn’t go through on our side, so nothing will arrive until my reply. Nothing is wrong with your submission.';
+        }
       })
       .catch(function(){
-        mailtoFallback(email);
+        mailtoFallback(name,email);
         document.getElementById('payoff').classList.add('hide');
         document.getElementById('confirm').classList.remove('hide');
         document.getElementById('confirmMark').textContent='→';
