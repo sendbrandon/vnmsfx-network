@@ -70,7 +70,9 @@ async function notionCreate(b, lead) {
     "Owner": text("Brandon"),
     "Next Action": text("Send the personal reply"),
     "Reply Due": { date: { start: lead.replyDueIso } },
-    "Recommended Process": text(lead.process),
+    // Named a hint, not a recommendation: a questionnaire cannot rank
+    // processes, and the column heading should not imply that it can.
+    "Routing Hint (unverified)": text(lead.process),
     "Score": { number: lead.points },
     "Answered": { number: lead.answered },
     "Finance Flagged": { checkbox: !!lead.financeTouched },
@@ -123,7 +125,7 @@ async function airCreate(b, lead) {
     "Submission ID": lead.submissionId, "First Name": lead.firstName, "Email": lead.email,
     "Sells": lead.channelLabel, "Status": "NEW", "Owner": "Brandon",
     "Next Action": "Send the personal reply", "Reply Due": lead.replyDueIso,
-    "Recommended Process": lead.process, "Score": lead.points, "Answered": lead.answered,
+    "Routing Hint (unverified)": lead.process, "Score": lead.points, "Answered": lead.answered,
     "Finance Flagged": !!lead.financeTouched, "Areas Noted": lead.notedText,
     "Answers": lead.transcriptText, "Source": lead.source, "Campaign": lead.campaign,
     "Content ID": lead.contentId, "Survey Version": lead.surveyVersion, "Received": lead.receivedIso,
