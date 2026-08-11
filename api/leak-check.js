@@ -22,9 +22,32 @@ function esc(text) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== "POST") return bad(res, 405, "POST only");
-
   const key = process.env.RESEND_API_KEY;
+
+  // No-send diagnostic: reports whether the key works and which sending
+  // domains this account has verified. Sends no email and reveals no secret.
+  if (req.method === "GET" && req.query && req.query.probe === "vx-probe") {
+    if (!key) return res.status(200).json({ keyPresent: false });
+    try {
+      const r = await fetch("https://api.resend.com/domains", {
+        headers: { Authorization: "Bearer " + key },
+      });
+      const data = await r.json().catch(function () { return null; });
+      const list = (data && (data.data || data)) || [];
+      return res.status(200).json({
+        keyPresent: true,
+        keyAccepted: r.ok,
+        httpStatus: r.status,
+        domains: Array.isArray(list)
+          ? list.map(function (d) { return { name: d.name, status: d.status, region: d.region }; })
+          : data,
+      });
+    } catch (e) {
+      return res.status(200).json({ keyPresent: true, probeError: String(e && e.message) });
+    }
+  }
+
+  if (req.method !== "POST") return bad(res, 405, "POST only");
   if (!key) return bad(res, 503, "intake not configured");
 
   let body = req.body;
@@ -73,7 +96,18 @@ module.exports = async function handler(req, res) {
       flagLines + "\n\n" +
       "Promise made on the page: personal reply within 24 hours.",
   });
-  if (!toBrandon.ok) return bad(res, 502, "delivery failed");
+  if (!toBrandon.ok) {
+    // Surface the provider's actual reason (unverified domain, bad key, etc.)
+    // instead of a generic failure that hides the cause.
+    const detail = await toBrandon.text().catch(function () { return ""; });
+    console.error("Resend send failed", toBrandon.status, detail);
+    return res.status(502).json({
+      ok: false,
+      error: "delivery failed",
+      providerStatus: toBrandon.status,
+      providerDetail: String(detail).slice(0, 400),
+    });
+  }
 
   // 2. One confirmation to the visitor. Transactional only — no list, no sequence.
   await send({
