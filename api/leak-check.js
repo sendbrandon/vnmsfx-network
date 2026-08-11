@@ -2,7 +2,8 @@
 //
 // One visitor-initiated submission produces exactly two emails:
 //   1. an honest automatic RECEIPT to the visitor — transparent about being
-//      automatic, no booking CTA, no claim that money was lost; and
+//      automatic, no claim that money was lost, and one plain text link to the
+//      free teardown (a soft alternative, deliberately not a button); and
 //   2. the lead to Brandon, carrying the raw material he needs to write a
 //      genuinely personal reply (their name, channel, and their actual answers).
 //
@@ -23,7 +24,7 @@ const QUESTION_BANK = {
       flag: "Status answers take a hunt",
       opts: ["Under a minute—one place has it", "I check a few tools and ask around", "Depends who's in that day"] },
     { t: "OWNERSHIP", q: "You promised a buyer samples and a follow-up call next week. Where does that promise live right now?",
-      flag: "Promises live in memory",
+      flag: "No single home for open promises",
       opts: ["One tracker, with an owner and a due date", "My inbox and a few sticky notes", "My memory"] },
     { t: "OWNERSHIP", q: "The one person who knows where everything stands goes on vacation. What breaks?",
       flag: "One person holds the current picture",
@@ -37,10 +38,16 @@ const QUESTION_BANK = {
     { t: "VISIBILITY", q: "A big order went wrong. How long did it take to piece together what actually happened?",
       flag: "Reconstructing an incident takes hours",
       opts: ["Minutes—the trail is in one place", "An afternoon of digging", "We never fully figured it out"] },
+    // Second fulfillment question, shared by every sales type. With only one,
+    // this area could reach a perfect score off a single answer and won far
+    // more often than the areas carrying three or four questions.
+    { t: "FULFILLMENT", q: "A customer says they never got what they paid for. How fast can you prove it went out?",
+      flag: "No proof trail from paid to delivered",
+      opts: ["Minutes—there's a record at every step", "I'd have to ask whoever handled it", "Honestly, we'd take their word for it"] },
   ],
   direct: [
     { t: "FULFILLMENT", q: "An order needed to go out today and didn't. Would you know before the customer told you?",
-      flag: "Late shipments surface from the customer",
+      flag: "No dependable flag when an order misses its date",
       opts: ["Yes—something flags it same day", "Probably, eventually", "We usually hear it from them first"] },
     { t: "RECONCILIATION", q: "Your best seller—what does it actually keep after refunds, fees and discounts?",
       flag: "True margin on the top seller is unclear", finance: true,
@@ -121,20 +128,47 @@ function esc(text) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-// Next business day at the same clock time, rendered in Eastern time.
-function replyDeadline(now) {
-  const due = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-  const dayET = Number(
-    new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", weekday: "short" })
-      .format(due) === "Sat" ? 2 : 0
-  );
-  let adjusted = new Date(due.getTime() + dayET * 24 * 60 * 60 * 1000);
-  const wd = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", weekday: "short" }).format(adjusted);
-  if (wd === "Sun") adjusted = new Date(adjusted.getTime() + 24 * 60 * 60 * 1000);
+// ── Reply deadline: ONE source of truth ──────────────────────────────────────
+// The date the visitor is promised and the timestamp stored on the lead are
+// derived from the same instant. They previously diverged: the visitor saw a
+// weekend-skipped date while the record kept a flat +24h, so a Friday-night
+// submission told the visitor "Monday" and told the queue "Saturday".
+function etParts(instant) {
+  const p = {};
+  new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York", hour12: false, weekday: "short",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+  }).formatToParts(instant).forEach((x) => { p[x.type] = x.value; });
+  return p;
+}
+
+// How far Eastern wall-clock sits from UTC at this instant (handles DST).
+function etOffsetMs(instant) {
+  const p = etParts(instant);
+  return Date.UTC(+p.year, +p.month - 1, +p.day,
+    p.hour === "24" ? 0 : +p.hour, +p.minute, +p.second) - instant.getTime();
+}
+
+// 5pm Eastern on the next business day.
+function replyDueDate(now) {
+  let cursor = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+  for (let i = 0; i < 3; i++) {
+    const wd = etParts(cursor).weekday;
+    if (wd !== "Sat" && wd !== "Sun") break;
+    cursor = new Date(cursor.getTime() + 24 * 60 * 60 * 1000);
+  }
+  const p = etParts(cursor);
+  const at5pm = Date.UTC(+p.year, +p.month - 1, +p.day, 17, 0, 0);
+  return new Date(at5pm - etOffsetMs(new Date(at5pm)));
+}
+
+// A date a human would say out loud. No minute: an exact clock time reads
+// machine-generated and can promise a reply near midnight.
+function formatDeadline(due) {
   return new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York", weekday: "long", month: "long", day: "numeric",
-    hour: "numeric", minute: "2-digit",
-  }).format(adjusted) + " ET";
+  }).format(due);
 }
 
 function receivedStamp(now) {
@@ -187,6 +221,10 @@ module.exports = async function handler(req, res) {
   const flow = QUESTION_BANK.shared.concat(QUESTION_BANK[channel]);
   const answers = Array.isArray(body.answers) ? body.answers.slice(0, flow.length) : [];
   const themes = { VISIBILITY: 0, OWNERSHIP: 0, RECONCILIATION: 0, FULFILLMENT: 0 };
+  // Points available per area, counted only over questions actually answered.
+  // Without this, an area carrying one question could never outrank an area
+  // carrying four, no matter how the visitor answered.
+  const themeMax = { VISIBILITY: 0, OWNERSHIP: 0, RECONCILIATION: 0, FULFILLMENT: 0 };
   const worst = {};
   const noted = [];
   const transcript = [];
@@ -200,7 +238,7 @@ module.exports = async function handler(req, res) {
     }
     const w = Number(a);
     if (!Number.isInteger(w) || w < 0 || w > 2) return;
-    answered++; points += w; themes[q.t] += w;
+    answered++; points += w; themes[q.t] += w; themeMax[q.t] += 2;
     transcript.push({ q: q.q, a: q.opts[w] });
     if (w > 0) {
       noted.push({ flag: q.flag, severity: w === 2 ? "worth checking" : "keep an eye on" });
@@ -211,23 +249,40 @@ module.exports = async function handler(req, res) {
 
   if (!answered) return bad(res, 400, "no scored answers");
 
-  let top = THEME_ORDER[0];
-  THEME_ORDER.forEach((t) => {
-    if (themes[t] > themes[top]) top = t;
-    else if (themes[t] === themes[top] && (worst[t] || 0) > (worst[top] || 0)) top = t;
-  });
+  // Rank by share of each area's own available points, not raw totals.
+  const share = {};
+  THEME_ORDER.forEach((t) => { share[t] = themeMax[t] ? themes[t] / themeMax[t] : 0; });
+  let peak = 0;
+  THEME_ORDER.forEach((t) => { if (share[t] > peak) peak = share[t]; });
+
+  let tied = THEME_ORDER.filter((t) => share[t] === peak && peak > 0);
+  // A sharper single answer still settles a share tie. What survives that is a
+  // genuine dead heat, and it gets reported as one rather than silently picked.
+  if (tied.length > 1) {
+    let sev = 0;
+    tied.forEach((t) => { if ((worst[t] || 0) > sev) sev = worst[t] || 0; });
+    const sharper = tied.filter((t) => (worst[t] || 0) === sev);
+    if (sharper.length) tied = sharper;
+  }
+  const top = tied[0] || THEME_ORDER[0];
   const recommended = points === 0 ? null : PROCESS[top];
+  const alsoLevel = points === 0 ? [] : tied.slice(1).map((t) => PROCESS[t].name);
 
   const now = new Date();
   // Deterministic: the identical submission retried yields the identical ID, so
   // a retry updates nothing and creates no second lead.
   const fingerprint = [email, channel, answers.join(",")].join("|");
-  const submissionId = "LC-" + now.toISOString().slice(0, 10).replace(/-/g, "") + "-" +
+  // Date the reference in Eastern time, matching the "Received" line the
+  // visitor reads. In UTC a 7pm-or-later submission was stamped the next day,
+  // so the receipt showed a reference dated after the date it was received.
+  const idDay = etParts(now);
+  const submissionId = "LC-" + idDay.year + idDay.month + idDay.day + "-" +
     Math.abs(Array.from(fingerprint).reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7)).toString(36).slice(0, 6).toUpperCase();
-  const deadline = replyDeadline(now);
+  const dueDate = replyDueDate(now);
+  const deadline = formatDeadline(dueDate);
   const received = receivedStamp(now);
   const channelLabel = CHANNEL_LABEL[channel] || channel;
-  const replyDueIso = new Date(now.getTime() + 24 * 60 * 60 * 1000).toISOString();
+  const replyDueIso = dueDate.toISOString();
 
   const send = (payload) =>
     fetch("https://api.resend.com/emails", {
@@ -282,12 +337,19 @@ module.exports = async function handler(req, res) {
       `Email:   ${email}\n` +
       `Sells:   ${channelLabel}\n` +
       `Received:${received}\n\n` +
-      `RECOMMENDED FIRST PROCESS: ${recommended ? recommended.name : "none indicated (all settled answers)"}\n` +
+      (financeTouched ? `NOTE: a margin/cost answer was flagged — route that judgment to their finance owner.\n\n` : "") +
+      // Their words come first. The scoring output sits at the bottom on
+      // purpose: if the machine tells you what to think before you have read
+      // the answers, the reply you send is not actually yours.
+      `THEIR ANSWERS (read these first — quote them back)\n\n${transcriptText}\n\n` +
+      `WHAT THEY FLAGGED\n${notedText}\n\n` +
+      `${"─".repeat(60)}\n` +
+      `ROUTING HINT — UNVERIFIED: ${recommended ? recommended.name : "none indicated (all settled answers)"}\n` +
+      (alsoLevel.length ? `LEVEL WITH IT: ${alsoLevel.join("; ")}\n` : "") +
       `Score: ${points} across ${answered} scored answers\n` +
-      (financeTouched ? `NOTE: a margin/cost answer was flagged — route that judgment to their finance owner.\n` : "") +
-      `\nWHAT THEY FLAGGED\n${notedText}\n\n` +
-      `THEIR ANSWERS (quote these back in your reply)\n\n${transcriptText}\n\n` +
-      (recommended ? `SUGGESTED FIRST CHECK\n${recommended.check}\n` : ""),
+      `A questionnaire cannot rank processes. This is routing, not judgment —\n` +
+      `form your own view from the answers above before you reply.\n` +
+      (recommended ? `\nCHECK THE HINT POINTS AT (confirm it fits before you send it)\n${recommended.check}\n` : ""),
   });
 
   if (!toBrandon.ok) {
@@ -312,7 +374,10 @@ follows up separately with one of three things:
   - one question he needs answered; or
   - a straight note that he doesn't think the Audit fits.
 
-You can expect that reply by ${deadline}.
+You can expect that reply by end of day ${deadline}.
+
+If you would rather just talk it through, the 30-minute teardown is free:
+https://cal.com/vnmsfx/30min
 
 The check identifies areas worth examining. It does not prove that money was
 lost, and it is not a diagnosis of your business.
@@ -351,7 +416,11 @@ This automatic receipt does not add you to a newsletter.`;
     Brandon reviews each submission himself and follows up separately with one of three things: the recurring process he would inspect first, one question he needs answered, or a straight note that he doesn&rsquo;t think the Audit fits.
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#111110;">
-    You can expect that reply by <strong>${esc(deadline)}</strong>.
+    You can expect that reply by <strong>end of day ${esc(deadline)}</strong>.
+  </td></tr>
+  <tr><td style="padding:14px 32px 0 32px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#3A3832;">
+    Would you rather just talk it through? The 30-minute teardown is free &mdash;
+    <a href="https://cal.com/vnmsfx/30min" style="color:#111110;">pick a time here</a>.
   </td></tr>
   <tr><td style="padding:22px 32px 0 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F2EC;border:1px solid #E4E0D5;border-radius:8px;">

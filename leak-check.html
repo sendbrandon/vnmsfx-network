@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The 5-Minute Leak Check | VNMSFX</title>
-<meta name="description" content="Ten quick questions about how orders, follow-ups and records actually move through your food and beverage business. You'll see the one process most worth checking — and a check you can run yourself.">
+<meta name="description" content="Eleven quick questions about how orders, follow-ups and records actually move through your food and beverage business. You'll see the one process most worth checking — and a check you can run yourself.">
 <link rel="canonical" href="https://vnmsfx.com/leak-check">
 <meta name="theme-color" content="#F0EFEA">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vnmsfx.com/leak-check">
 <meta property="og:site_name" content="VNMSFX">
 <meta property="og:title" content="The 5-Minute Leak Check — find the one process most worth checking">
-<meta property="og:description" content="Ten quick questions about how orders, follow-ups and records actually move through your business. You'll see where I'd look first — and a check you can run yourself.">
+<meta property="og:description" content="Eleven quick questions about how orders, follow-ups and records actually move through your business. You'll see where I'd look first — and a check you can run yourself.">
 <meta property="og:image" content="https://vnmsfx.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="VNMSFX. Rapid response ops for food and beverage brands.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The 5-Minute Leak Check — find the one process most worth checking">
-<meta name="twitter:description" content="Ten quick questions. You'll see where I'd look first, and a check you can run yourself.">
+<meta name="twitter:description" content="Eleven quick questions. You'll see where I'd look first, and a check you can run yourself.">
 <meta name="twitter:image" content="https://vnmsfx.com/og.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -177,10 +177,10 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   <div class="check-hero" id="intro">
     <p style="margin-bottom:18px"><span class="chip g">✓</span><span style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700">Free self-check</span></p>
     <h1 class="say">Find the one process most worth checking.</h1>
-    <p class="sub">Ten quick questions about how orders, follow-ups and records actually move through your business. At the end you&rsquo;ll see where I&rsquo;d look first and one check you can run yourself&mdash;before entering an email.</p>
+    <p class="sub">Eleven quick questions about how orders, follow-ups and records actually move through your business. At the end you&rsquo;ll see where I&rsquo;d look first and one check you can run yourself&mdash;before entering an email.</p>
     <p class="sub">Answer from your gut: how it <em>really</em> works, not how it&rsquo;s supposed to. Nothing to look up.</p>
     <div class="trustline">
-      <span><b>10 questions</b>&nbsp;· under five minutes</span>
+      <span><b>11 questions</b>&nbsp;· under five minutes</span>
       <span><b>No logins</b>&nbsp;· no files, no confidential numbers</span>
     </div>
     <div class="startrow">
@@ -233,7 +233,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     <div class="confirm hide" id="confirm">
       <span class="ok" id="confirmMark">✓</span>
       <h3 id="confirmHead">Got it. Your answers are with me.</h3>
-      <p id="confirmBody">I&rsquo;ll read them myself and reply within 24 hours with what I&rsquo;d review first. If it lands in spam, fish it out once and it won&rsquo;t again.</p>
+      <p id="confirmBody">I&rsquo;ll read them myself and reply by the end of the next business day with what I&rsquo;d review first. If it lands in spam, fish it out once and it won&rsquo;t again.</p>
       <p class="from" id="confirmFrom">Reply comes from&nbsp;&nbsp;BRANDON@VNMSFX.COM</p>
     </div>
 
@@ -326,7 +326,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
      flag:'Status answers take a hunt',
      opts:["Under a minute—one place has it","I check a few tools and ask around","Depends who’s in that day"]},
     {t:'OWNERSHIP', q:"You promised a buyer samples and a follow-up call next week. Where does that promise live right now?",
-     flag:'Promises live in memory',
+     flag:'No single home for open promises',
      opts:["One tracker, with an owner and a due date","My inbox and a few sticky notes","My memory"]},
     {t:'OWNERSHIP', q:"The one person who knows where everything stands goes on vacation. What breaks?",
      flag:'One person holds the current picture',
@@ -339,13 +339,20 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
      opts:["Almost none—it flows on its own","Some, every week","That’s basically someone’s job"]},
     {t:'VISIBILITY', q:"A big order went wrong. How long did it take to piece together what actually happened?",
      flag:'Reconstructing an incident takes hours',
-     opts:["Minutes—the trail is in one place","An afternoon of digging","We never fully figured it out"]}
+     opts:["Minutes—the trail is in one place","An afternoon of digging","We never fully figured it out"]},
+    /* Second fulfillment question, shared by every sales type. With only one,
+       this area hit a perfect score off a single answer and outranked areas
+       carrying three or four questions. Order must mirror the server exactly —
+       answers are sent as a positional array. */
+    {t:'FULFILLMENT', q:"A customer says they never got what they paid for. How fast can you prove it went out?",
+     flag:'No proof trail from paid to delivered',
+     opts:["Minutes—there’s a record at every step","I’d have to ask whoever handled it","Honestly, we’d take their word for it"]}
   ];
 
   var BY_CHANNEL={
     direct:[
       {t:'FULFILLMENT', q:"An order needed to go out today and didn’t. Would you know before the customer told you?",
-       flag:'Late shipments surface from the customer',
+       flag:'No dependable flag when an order misses its date',
        opts:["Yes—something flags it same day","Probably, eventually","We usually hear it from them first"]},
       {t:'RECONCILIATION', q:"Your best seller—what does it actually keep after refunds, fees and discounts?",
        flag:'True margin on the top seller is unclear', finance:true,
@@ -457,6 +464,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   /* Weighted, applicability-aware scoring. */
   function score(){
     var themes={VISIBILITY:0,OWNERSHIP:0,RECONCILIATION:0,FULFILLMENT:0},
+        themeMax={VISIBILITY:0,OWNERSHIP:0,RECONCILIATION:0,FULFILLMENT:0},
         worst={}, noted=[], answered=0, points=0, maxPoints=0, financeFlagged=false;
     flow.forEach(function(q,i){
       if(q.route) return;
@@ -466,35 +474,57 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
       var w=a; // 0 settled, 1 shaky, 2 exposed
       points+=w;
       themes[q.t]+=w;
+      themeMax[q.t]+=2;
       if(w>0){
         noted.push({flag:q.flag, hot:w===2});
         if(q.finance) financeFlagged=true;
         if(!worst[q.t]||w>worst[q.t]) worst[q.t]=w;
       }
     });
-    return {themes:themes, noted:noted, answered:answered, points:points, maxPoints:maxPoints, worst:worst, finance:financeFlagged};
+    return {themes:themes, themeMax:themeMax, noted:noted, answered:answered, points:points, maxPoints:maxPoints, worst:worst, finance:financeFlagged};
   }
 
-  function topTheme(s){
-    var order=['FULFILLMENT','RECONCILIATION','VISIBILITY','OWNERSHIP'], best=null;
+  /* Rank by share of each area's OWN available points. Raw totals let an area
+     with four questions beat an area with one regardless of the answers, which
+     meant the order-to-ship result was decided by list position, not by the
+     visitor. A share tie that survives severity is reported as a tie. */
+  function topThemes(s){
+    var order=['FULFILLMENT','RECONCILIATION','VISIBILITY','OWNERSHIP'], peak=0, share={};
     order.forEach(function(t){
-      if(best===null) { best=t; return; }
-      if(s.themes[t]>s.themes[best]) best=t;
-      else if(s.themes[t]===s.themes[best] && (s.worst[t]||0)>(s.worst[best]||0)) best=t;
+      share[t]=s.themeMax[t]?s.themes[t]/s.themeMax[t]:0;
+      if(share[t]>peak) peak=share[t];
     });
-    return best;
+    var tied=order.filter(function(t){ return share[t]===peak && peak>0; });
+    if(tied.length>1){
+      var sev=0;
+      tied.forEach(function(t){ if((s.worst[t]||0)>sev) sev=s.worst[t]||0; });
+      var sharper=tied.filter(function(t){ return (s.worst[t]||0)===sev; });
+      if(sharper.length) tied=sharper;
+    }
+    return tied.length?tied:[order[0]];
+  }
+
+  /* Every branch below rewrites this copy, so every branch must be able to
+     start from the original. Without this, a clean result followed by a retake
+     leaves "Want a second opinion anyway?" sitting above a flagged result. */
+  function resetResultCopy(){
+    document.querySelector('.vlbl').textContent='First process worth reviewing';
+    document.querySelector('#payoff h3').textContent='Want this as your teardown agenda?';
+    document.querySelector('#payoff .plede').textContent=
+      'Leave your email and I’ll send one personal reply: what I’d review first in this process, in the order I’d review it, written for a business that sells the way yours does. One reply from me—no newsletter, no sequence.';
   }
 
   function showResult(){
-    var s=score(), top=topTheme(s), T=THEMES[top];
+    var s=score(), tops=topThemes(s), top=tops[0], T=THEMES[top];
     stage.classList.add('hide');
     meter.classList.remove('on');
     result.classList.remove('hide');
+    resetResultCopy();
 
     if(s.points===0){
       document.getElementById('processName').textContent='Nothing here points to a recurring gap.';
       document.getElementById('verdictLede').textContent=
-        'On these ten questions you answered the settled option every time. That is unusual, and it means this check has nothing useful to tell you — the honest answer is that a review would need to start from your actual records rather than from a questionnaire.';
+        'On every one of these questions you answered the settled option. That is unusual, and it means this check has nothing useful to tell you — the honest answer is that a review would need to start from your actual records rather than from a questionnaire.';
       document.getElementById('firstCheck').classList.add('hide');
       document.getElementById('whyRow').classList.add('hide');
       document.querySelector('#payoff h3').textContent='Want a second opinion anyway?';
@@ -503,8 +533,29 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     } else {
       document.getElementById('firstCheck').classList.remove('hide');
       document.getElementById('whyRow').classList.remove('hide');
-      document.getElementById('processName').textContent=T.process;
-      document.getElementById('verdictLede').textContent=T.lede;
+      if(tops.length>1){
+        /* A genuine dead heat. Say so — and say how many — instead of picking
+           one silently. Answering everything at the worst level ties all four. */
+        var names=tops.map(function(t){ return THEMES[t].process; });
+        var joined=names.slice(0,-1).join(', ')+' — and '+names[names.length-1];
+        document.querySelector('.vlbl').textContent=
+          tops.length===2?'Two areas came out level':'Several areas came out level';
+        if(tops.length===2){
+          document.getElementById('processName').textContent=joined;
+          document.getElementById('verdictLede').textContent=
+            'Your answers flagged these two areas to the same degree, so this check cannot honestly put one ahead of the other. Both are worth raising. The exercise below covers the first; the same approach applies to the second.';
+        } else {
+          /* Listing four processes in the headline reads as a wall. Name the
+             finding up top, put the areas in the sentence underneath. */
+          document.getElementById('processName').textContent='No single process stands out.';
+          document.getElementById('verdictLede').textContent=
+            'Your answers flagged '+tops.length+' areas to the same degree — '+joined.toLowerCase()+
+            '. This check cannot put one ahead of the others, and that is worth knowing on its own: when everything reads the same, the useful next step is a conversation rather than another questionnaire. The exercise below is a reasonable place to start.';
+        }
+      } else {
+        document.getElementById('processName').textContent=T.process;
+        document.getElementById('verdictLede').textContent=T.lede;
+      }
       document.getElementById('checkTitle').textContent=T.checkTitle;
       document.getElementById('checkBody').textContent=T.checkBody;
       var list=document.getElementById('leakList');
@@ -528,7 +579,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     renderQuestion();
   });
   document.getElementById('retakeBtn').addEventListener('click', function(){
-    answers=[]; idx=0; flow=[ROUTER]; channel=null; total.textContent='10';
+    answers=[]; idx=0; flow=[ROUTER]; channel=null; total.textContent='11';
     result.classList.add('hide');
     document.getElementById('confirm').classList.add('hide');
     resetConfirmCopy();
@@ -545,7 +596,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     document.getElementById('confirmMark').textContent='✓';
     document.getElementById('confirmHead').textContent='Got it. Your answers are with me.';
     document.getElementById('confirmBody').textContent=
-      'I’ll read them myself and reply within 24 hours with what I’d review first. If it lands in spam, fish it out once and it won’t again.';
+      'I’ll read them myself and reply by the end of the next business day with what I’d review first. If it lands in spam, fish it out once and it won’t again.';
     document.getElementById('confirmFrom').textContent='Reply comes from  BRANDON@VNMSFX.COM';
   }
 
@@ -602,12 +653,12 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
         /* State the exact deadline the server committed to, not a vague promise. */
         if(data && data.deadline){
           document.getElementById('confirmBody').textContent=
-            'I read every submission myself. You’ll have my reply by '+data.deadline+
+            'I read every submission myself. You’ll have my reply by end of day '+data.deadline+
             ' with the process I’d inspect first. Your confirmation email is on its way — if it lands in spam, fish it out once and it won’t again.';
         }
         if(data && data.receiptDelivered===false){
           document.getElementById('confirmBody').textContent=
-            'Your answers reached me — I’ll reply by '+(data.deadline||'tomorrow')+
+            'Your answers reached me — I’ll reply by end of day '+(data.deadline||'the next business day')+
             '. The confirmation email didn’t go through on our side, so nothing will arrive until my reply. Nothing is wrong with your submission.';
         }
       })
@@ -618,7 +669,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
         document.getElementById('confirmMark').textContent='→';
         document.getElementById('confirmHead').textContent='One last tap: your email is written and waiting.';
         document.getElementById('confirmBody').textContent=
-          'Your mail app just opened with your result already filled in. Hit send and it comes straight to me — then I read it myself and reply within 24 hours. Nothing has reached me until you send it.';
+          'Your mail app just opened with your result already filled in. Hit send and it comes straight to me — then I read it myself and reply by the end of the next business day. Nothing has reached me until you send it.';
         document.getElementById('confirmFrom').textContent='Sends to  BRANDON@VNMSFX.COM';
       })
       .finally(function(){ sendBtn.disabled=false; sendBtn.textContent='Send my teardown prep'; });
