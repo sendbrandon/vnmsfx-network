@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The 5-Minute Leak Check | VNMSFX</title>
-<meta name="description" content="Twelve quick multiple-choice questions that show how many money leaks a food and beverage business is running. Answer from your gut — no logins, no files.">
+<meta name="description" content="Twelve taps. About a minute. Find out how many money leaks your food and beverage business is running — and get a personal reply within 24 hours.">
 <link rel="canonical" href="https://vnmsfx.com/leak-check">
 <meta name="theme-color" content="#F0EFEA">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vnmsfx.com/leak-check">
 <meta property="og:site_name" content="VNMSFX">
 <meta property="og:title" content="The 5-Minute Leak Check — how many leaks are you running?">
-<meta property="og:description" content="Twelve quick multiple-choice questions that show how many money leaks a food and beverage business is running. Answer from your gut — no logins, no files.">
+<meta property="og:description" content="Twelve taps. About a minute. Find out how many money leaks your food and beverage business is running — and get a personal reply within 24 hours.">
 <meta property="og:image" content="https://vnmsfx.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="VNMSFX. Rapid response ops for food and beverage brands.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The 5-Minute Leak Check — how many leaks are you running?">
-<meta name="twitter:description" content="Twelve quick multiple-choice questions. Answer from your gut. Find out how many money leaks you're running.">
+<meta name="twitter:description" content="Twelve taps. About a minute. Find out how many money leaks you're running.">
 <meta name="twitter:image" content="https://vnmsfx.com/og.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -39,36 +39,29 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 .pill{white-space:nowrap;font-size:13.5px;padding:8px 17px;border-radius:999px;background:var(--card);text-decoration:none;color:var(--ink)}
 .pill:hover{background:var(--faint)}
 .pill.dk{background:var(--dark);color:#fff;justify-self:end}
-/* SECTIONS */
+/* SHARED */
 .chip{font-family:'Space Mono',monospace;display:inline-block;font-size:clamp(15px,1.6vw,21px);letter-spacing:.06em;
       padding:5px 14px;border-radius:10px;margin-right:14px;vertical-align:2px}
-.chip.r{background:var(--ink);color:#F4F2EC}
 .chip.g{background:var(--volt);color:var(--ink)}
-.chip.y{background:var(--yellow);color:var(--ink)}
-.tint{background:var(--band)}
-section{padding:clamp(56px,7vw,110px) 0}
-.duo{display:grid;grid-template-columns:minmax(0,.22fr) minmax(0,.78fr);gap:clamp(20px,4vw,60px);align-items:start}
-.lab{font-family:'Space Mono',monospace;font-size:clamp(17px,1.9vw,24px);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding-top:6px;font-weight:700}
 .say{font-size:clamp(31px,4.8vw,66px);font-weight:600;letter-spacing:-.034em;line-height:1.05;max-width:20ch}
 .sub{font-size:clamp(19px,1.6vw,23px);color:var(--soft);max-width:46ch;margin-top:22px;line-height:1.6}
-.duo .sub + .sub{margin-top:12px}
-.cta{display:inline-block;background:var(--volt);color:var(--ink);font-size:13.5px;font-weight:600;padding:14px 26px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.cta{display:inline-block;border:0;font-family:'Archivo',sans-serif;background:var(--volt);color:var(--ink);font-size:13.5px;font-weight:600;padding:14px 26px;border-radius:999px;text-decoration:none;white-space:nowrap;cursor:pointer}
 .cta:hover{background:#fff}
-.cta2{display:inline-flex;align-items:center;min-height:46px;font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+.cta.dk{background:var(--dark);color:#fff}
+.cta.dk:hover{background:var(--ink)}
+.cta2{display:inline-flex;align-items:center;min-height:46px;font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap;background:none;border:0;cursor:pointer;font-family:'Archivo',sans-serif}
 .cta2 span{border-bottom:1.5px solid rgba(17,17,16,.34);padding-bottom:2px}
 .cta2:hover span{border-bottom-color:var(--ink)}
 .found{margin-top:22px;font-family:'Space Mono',monospace;font-size:clamp(13.5px,1.2vw,15.5px);letter-spacing:.04em;line-height:1.65;color:var(--ink);background:var(--card);border-radius:var(--r);padding:16px 22px;max-width:74ch}
 .close{background:var(--dark);border-radius:var(--r);padding:clamp(40px,6vw,110px) clamp(24px,3vw,52px);color:#F4F2EC;text-align:center}
 .close h2{font-size:clamp(26px,4vw,54px);font-weight:600;letter-spacing:-.035em;line-height:1.06;max-width:18ch;margin:0 auto}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
 .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--volt);color:var(--ink);padding:10px 16px;border-radius:0 0 8px 0;text-decoration:none;font-weight:600}
 .skip:focus{left:0}
-.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .legal{text-align:center;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;padding-bottom:44px}
 .legal a{color:var(--soft);text-decoration:none;margin:0 10px}
 footer a{color:inherit;text-decoration:none}
 footer{padding:38px 0 54px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:13.5px;letter-spacing:.08em;color:var(--soft)}
-@media (max-width:820px){.duo{grid-template-columns:1fr}.lab{padding-top:0}.say{max-width:100%}}
 /* MOBILE NAV */
 .burger{display:none;width:40px;height:36px;padding:0;border:0;border-radius:11px;background:var(--card);
   cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
@@ -89,62 +82,74 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   .pills .pill:hover,.pills .pill:focus-visible{background:var(--card)}
 }
 @media (max-width:560px){.pill{padding:10px 13px;font-size:12px}.pills .pill{padding:11px 14px;font-size:14px}}
-/* CHECK — recognition questions: three situations, pick the one that's you */
-.check-hero{padding:clamp(40px,6vw,84px) 0 clamp(10px,2vw,24px)}
-.check-hero .say{max-width:16ch}
-.meter{position:sticky;top:64px;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:14px;
+/* ── THE CHECK: one question per screen ── */
+.stagewrap{max-width:820px;margin:0 auto;padding:0 clamp(14px,2vw,26px)}
+.check-hero{padding:clamp(44px,7vw,96px) 0 clamp(24px,3vw,40px);text-align:left}
+.check-hero .say{max-width:17ch}
+.trustline{display:flex;gap:14px 22px;flex-wrap:wrap;margin-top:22px;font-family:'Space Mono',monospace;
+  font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.trustline b{color:var(--ink);font-weight:700}
+.startrow{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.meter{display:none;position:sticky;top:64px;z-index:40;align-items:center;gap:14px;
   font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);
   background:rgba(240,239,234,.92);backdrop-filter:blur(10px);border-top:1px solid var(--faint);border-bottom:1px solid var(--faint);
-  padding:10px 2px;margin-top:clamp(22px,3vw,36px)}
+  padding:10px 2px}
+.meter.on{display:flex}
 .meter b{font-weight:700;color:var(--ink)}
 .meter .bar{flex:1;height:3px;background:var(--faint);border-radius:2px;overflow:hidden}
 .meter .bar i{display:block;height:100%;width:0%;background:var(--ink);transition:width .25s ease}
 .meter .flags{display:none;background:var(--yellow);color:var(--ink);padding:4px 11px;border-radius:8px;font-weight:700;white-space:nowrap}
 .meter .flags.on{display:inline-block}
-.qgroup{margin-top:clamp(30px,3.6vw,52px)}
-.qgroup .ghead{font-family:'Space Mono',monospace;font-size:clamp(13px,1.2vw,15px);letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink);font-weight:700;padding-bottom:12px;border-bottom:1px solid var(--faint)}
-.cq{display:grid;grid-template-columns:minmax(0,.46fr) minmax(0,.54fr);gap:clamp(16px,3vw,44px);
-  padding:clamp(22px,2.5vw,34px) 0;border-bottom:1px solid var(--faint);align-items:start}
-.cq h3{font-size:clamp(19px,2vw,27px);font-weight:600;letter-spacing:-.024em;line-height:1.22}
-.cq .why{font-size:clamp(15px,1.3vw,17.5px);color:var(--soft);line-height:1.5;margin-top:8px;max-width:44ch}
-.opts{display:flex;flex-direction:column;gap:8px}
-.opt{position:relative;display:block}
-.opt input{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.opt span{display:block;font-size:clamp(14.5px,1.25vw,16.5px);font-weight:500;line-height:1.4;padding:13px 18px;border-radius:12px;background:var(--card);
-  cursor:pointer;user-select:none;transition:background .14s ease,color .14s ease}
-.opt span:hover{background:var(--faint)}
-.opt input:checked + span{background:var(--dark);color:#F4F2EC}
-.opt input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
-@media (max-width:820px){.cq{grid-template-columns:1fr;gap:14px}}
-.scorebar{display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;margin-top:clamp(26px,3.2vw,44px)}
-.scorebtn{border:0;font-family:'Archivo',sans-serif;display:inline-block;background:var(--faint);color:var(--soft);font-size:13.5px;font-weight:600;
-  padding:14px 26px;border-radius:999px;cursor:not-allowed;white-space:nowrap}
-.scorebtn.ready{background:var(--volt);color:var(--ink);cursor:pointer}
-.scorebtn.ready:hover{background:#fff}
-.scorenote{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;color:var(--soft)}
+.stage{padding:clamp(28px,4vw,56px) 0 clamp(40px,6vw,80px)}
+.qcard{display:none}
+.qcard.on{display:block;animation:qin .28s cubic-bezier(.2,.7,.2,1)}
+@keyframes qin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.qcard.on{animation:none}}
+.qcard .qnum{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);font-weight:700;margin-bottom:14px}
+.qcard h2{font-size:clamp(24px,3.4vw,40px);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:24ch;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:clamp(20px,2.6vw,30px);max-width:640px}
+.opt{display:block;width:100%;text-align:left;font-family:'Archivo',sans-serif;font-size:clamp(15.5px,1.4vw,18px);font-weight:500;line-height:1.4;
+  padding:16px 20px;border-radius:12px;background:var(--card);border:0;cursor:pointer;color:var(--ink);
+  transition:background .14s ease,color .14s ease,transform .1s ease}
+.opt:hover{background:var(--faint)}
+.opt:active{transform:scale(.99)}
+.opt.picked{background:var(--dark);color:#F4F2EC}
+.backrow{margin-top:22px}
+.backrow button{background:none;border:0;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.08em;color:var(--soft);cursor:pointer;text-transform:uppercase}
+.backrow button:hover{color:var(--ink)}
 /* RESULT */
-#result{display:none}
-#result.on{display:block}
-.verdict{background:var(--dark);color:#F4F2EC;border-radius:var(--r);padding:clamp(26px,3.4vw,48px);margin-top:clamp(26px,3.2vw,44px)}
+.verdict{background:var(--dark);color:#F4F2EC;border-radius:var(--r);padding:clamp(26px,3.4vw,48px)}
 .verdict .vlbl{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9C9A92;margin-bottom:14px}
-.verdict .big{font-family:'Space Mono',monospace;font-size:clamp(38px,5vw,64px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.verdict .big{font-family:'Space Mono',monospace;font-size:clamp(40px,5.4vw,68px);font-weight:700;letter-spacing:-.04em;line-height:1}
 .verdict h3{font-size:clamp(22px,2.3vw,31px);font-weight:600;letter-spacing:-.024em;margin-top:10px;max-width:26ch}
 .verdict p{font-size:clamp(17px,1.5vw,21px);color:rgba(244,242,236,.72);margin-top:12px;max-width:56ch;line-height:1.6}
-.leaklist{margin-top:clamp(18px,2.2vw,28px);border-top:1px solid var(--faint)}
+.leaklist{margin-top:clamp(16px,2vw,24px);border-top:1px solid var(--faint)}
 .leaklist .lk{display:flex;gap:16px;align-items:baseline;justify-content:space-between;
-  padding:clamp(13px,1.5vw,18px) 0;border-bottom:1px solid var(--faint)}
-.leaklist .lk h4{font-size:clamp(18px,1.7vw,23px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
+  padding:clamp(12px,1.4vw,17px) 0;border-bottom:1px solid var(--faint)}
+.leaklist .lk h4{font-size:clamp(17px,1.6vw,22px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
 .leaklist .lk .tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   display:inline-block;padding:3px 9px;border-radius:7px;background:var(--yellow);color:var(--ink);font-weight:700;white-space:nowrap}
 .leaklist .lk .tag.hot{background:var(--ink);color:#F4F2EC}
-/* the email payoff */
-.payoff{background:var(--yellow);border-radius:var(--r);padding:clamp(24px,3vw,42px);margin-top:clamp(22px,2.6vw,34px)}
-.payoff h3{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.028em;line-height:1.15;max-width:24ch}
-.payoff p{font-size:clamp(16px,1.4vw,19px);color:rgba(17,17,16,.78);margin-top:12px;max-width:56ch;line-height:1.55}
-.payoff .cta.dk{background:var(--dark);color:#fff;margin-top:18px}
-.payoff .cta.dk:hover{background:var(--ink)}
-.result-actions{display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;margin-top:clamp(22px,2.6vw,34px)}
+/* EMAIL CAPTURE — the payoff */
+.payoff{background:var(--yellow);border-radius:var(--r);padding:clamp(24px,3vw,42px);margin-top:clamp(20px,2.4vw,30px)}
+.payoff h3{font-size:clamp(22px,2.5vw,33px);font-weight:600;letter-spacing:-.028em;line-height:1.14;max-width:23ch;text-wrap:balance}
+.payoff .plede{font-size:clamp(16px,1.4vw,19px);color:rgba(17,17,16,.78);margin-top:12px;max-width:52ch;line-height:1.55}
+.capture{display:flex;gap:10px;margin-top:20px;max-width:560px;flex-wrap:wrap}
+.capture input[type="email"]{flex:1;min-width:230px;font-family:'Archivo',sans-serif;font-size:16px;padding:14px 18px;
+  border-radius:999px;border:1.5px solid rgba(17,17,16,.25);background:#FBFAF6;color:var(--ink)}
+.capture input[type="email"]::placeholder{color:#8B877C}
+.capture .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.pmicro{margin-top:14px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;line-height:1.7;color:rgba(17,17,16,.62);max-width:56ch}
+.perr{display:none;margin-top:10px;font-size:14px;font-weight:600;color:var(--red)}
+.perr.on{display:block}
+/* CONFIRMATION */
+.confirm{background:var(--dark);color:#F4F2EC;border-radius:var(--r);padding:clamp(28px,3.6vw,52px);margin-top:clamp(20px,2.4vw,30px)}
+.confirm .ok{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--volt);color:var(--ink);font-size:20px;font-weight:700;margin-bottom:16px}
+.confirm h3{font-size:clamp(23px,2.6vw,34px);font-weight:600;letter-spacing:-.028em;line-height:1.15;max-width:24ch}
+.confirm p{font-size:clamp(16.5px,1.45vw,20px);color:rgba(244,242,236,.72);margin-top:12px;max-width:52ch;line-height:1.6}
+.confirm .from{margin-top:18px;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.06em;color:#C9C6BC}
+.result-actions{display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;margin-top:clamp(20px,2.4vw,30px)}
+.hide{display:none !important}
 </style>
 </head>
 <body>
@@ -157,171 +162,37 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
 
-<div class="w">
-  <div class="check-hero">
-    <div class="duo">
-      <p class="lab"><span class="chip g">✓</span>Free self-check</p>
-      <div>
-        <h1 class="say">How many leaks are you running?</h1>
-        <p class="sub">Most food &amp; beverage brands are losing money in places nobody is watching&mdash;quiet accounts, expiring claims, follow-ups living in someone&rsquo;s head. Twelve quick questions show how many of those places <em>you</em> have.</p>
-        <p class="sub">Answer from your gut&mdash;pick the one that&rsquo;s closest to how it <strong>really</strong> works, not how it&rsquo;s supposed to work. No logins, no homework, nothing to look up.</p>
-      </div>
+<div class="stagewrap">
+
+  <!-- INTRO -->
+  <div class="check-hero" id="intro">
+    <p style="margin-bottom:18px"><span class="chip g">✓</span><span style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700">Free self-check</span></p>
+    <h1 class="say">How many leaks are you running?</h1>
+    <p class="sub">Most food &amp; beverage brands lose money in places nobody is watching&mdash;quiet accounts, expiring claims, follow-ups living in someone&rsquo;s head. Thirteen taps show how many of those places <em>you</em> have.</p>
+    <p class="sub">Answer from your gut&mdash;the honest answer, not the aspirational one. Nothing to look up, nothing to log into.</p>
+    <div class="trustline">
+      <span><b>13 taps</b>&nbsp;· about a minute</span>
+      <span><b>No logins</b>&nbsp;· no files</span>
+      <span><b>Personal reply</b>&nbsp;· within 24h if you want it</span>
     </div>
-    <div class="meter" aria-hidden="false">
-      <span><b id="done">0</b>&nbsp;/&nbsp;12</span>
-      <span class="bar"><i id="fill"></i></span>
-      <span class="flags" id="flagChip">flags: 0</span>
-      <span>~5 min</span>
+    <div class="startrow">
+      <button class="cta" id="startBtn" type="button">Start the check</button>
+      <a class="cta2" href="/sample-audit"><span>See a sample audit first</span></a>
     </div>
   </div>
-</div>
 
-<div class="w">
-  <form id="check" novalidate>
+  <!-- METER -->
+  <div class="meter" id="meter" aria-hidden="false">
+    <span><b id="done">0</b>&nbsp;/&nbsp;13</span>
+    <span class="bar"><i id="fill"></i></span>
+    <span class="flags" id="flagChip">flags: 0</span>
+  </div>
 
-    <div class="qgroup">
-      <p class="ghead"><span class="chip r">01</span>Your numbers</p>
+  <!-- STAGE: one question at a time, injected by script -->
+  <div class="stage" id="stage" aria-live="polite"></div>
 
-      <div class="cq" data-q="1" data-flag="Your ad spend may be grading its own homework"
-           data-cost="Ad platforms count sales by their own rules and ignore refunds entirely. Fund the wrong campaign for one quarter and the loss quietly compounds.">
-        <div><h3>How do you actually know if your ads made money last month?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 1">
-          <label class="opt"><input type="radio" name="q1" value="a"><span>One trusted report&mdash;checked against real orders</span></label>
-          <label class="opt"><input type="radio" name="q1" value="b"><span>Whatever the ad platform says</span></label>
-          <label class="opt"><input type="radio" name="q1" value="c"><span>Gut feel, honestly</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="2" data-flag="Two versions of the truth"
-           data-cost="When two reports disagree, one of them is feeding you decisions on bad numbers — and you don't know which one.">
-        <div><h3>Two of your reports show two different numbers. What usually happens?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 2">
-          <label class="opt"><input type="radio" name="q2" value="a"><span>We have one source of truth we always trust</span></label>
-          <label class="opt"><input type="radio" name="q2" value="b"><span>We go with whichever seems more believable</span></label>
-          <label class="opt"><input type="radio" name="q2" value="c"><span>We shrug&mdash;that&rsquo;s just how it is</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="3" data-flag="Your #1 seller could be leaking margin"
-           data-cost="A high-refund, high-fee product can look like a winner while it loses money on every promotion. Selling great and keeping money are different numbers.">
-        <div><h3>Your best seller&mdash;what does it actually <em>keep</em> after refunds, fees and discounts?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 3">
-          <label class="opt"><input type="radio" name="q3" value="a"><span>I know, and I could show you</span></label>
-          <label class="opt"><input type="radio" name="q3" value="b"><span>Roughly</span></label>
-          <label class="opt"><input type="radio" name="q3" value="c"><span>It sells great. That&rsquo;s what I know</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="qgroup">
-      <p class="ghead"><span class="chip g">02</span>Money slipping away</p>
-
-      <div class="cq" data-q="4" data-flag="Short-pays may be expiring unchallenged"
-           data-cost="Deduction claims have deadlines. The claim is in a PDF, the order in email, the proof in a portal — every one that expires unexamined is money you agreed to lose.">
-        <div><h3>A distributor pays less than the invoice and mentions &ldquo;missing cases.&rdquo; What happens?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 4">
-          <label class="opt"><input type="radio" name="q4" value="a"><span>Someone owns it and challenges it before the deadline</span></label>
-          <label class="opt"><input type="radio" name="q4" value="b"><span>We catch it when we reconcile&mdash;sometimes late</span></label>
-          <label class="opt"><input type="radio" name="q4" value="c"><span>Small short-pays just&hellip; slip</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="5" data-flag="Good accounts can go quiet for months"
-           data-cost="An account that orders every 30–45 days can sit silent for 80 before anyone notices — and by then someone else may be on the shelf.">
-        <div><h3>A wholesale account that used to order every month goes quiet. When do you find out?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 5">
-          <label class="opt"><input type="radio" name="q5" value="a"><span>While it&rsquo;s fresh&mdash;something surfaces it</span></label>
-          <label class="opt"><input type="radio" name="q5" value="b"><span>When someone happens to think of it</span></label>
-          <label class="opt"><input type="radio" name="q5" value="c"><span>When it&rsquo;s been months&mdash;and it&rsquo;s awkward</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="6" data-flag="Churn is invisible until you go looking"
-           data-cost="Every quiet cancel is revenue you already earned once and lost silently. By the time someone checks, the relationship is cold.">
-        <div><h3>Subscribers or repeat customers who quietly stop buying&mdash;</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 6">
-          <label class="opt"><input type="radio" name="q6" value="a"><span>We catch them while they&rsquo;re still warm</span></label>
-          <label class="opt"><input type="radio" name="q6" value="b"><span>We run a win-back blast now and then</span></label>
-          <label class="opt"><input type="radio" name="q6" value="c"><span>We don&rsquo;t really see them leave</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="qgroup">
-      <p class="ghead"><span class="chip y">03</span>Follow-through</p>
-
-      <div class="cq" data-q="7" data-flag="Follow-ups depend on memory"
-           data-cost="&ldquo;I thought you had it&rdquo; is the most expensive sentence in a small team. A follow-up without an owner and a date is a coin flip.">
-        <div><h3>The follow-ups you&rsquo;ve promised&mdash;vendor calls, buyer samples&mdash;where do they live?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 7">
-          <label class="opt"><input type="radio" name="q7" value="a"><span>One place, with an owner and a date</span></label>
-          <label class="opt"><input type="radio" name="q7" value="b"><span>Across inboxes, notes and chat threads</span></label>
-          <label class="opt"><input type="radio" name="q7" value="c"><span>In my head, mostly</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="8" data-flag="Answers take a meeting instead of a minute"
-           data-cost="If &ldquo;where does it stand&rdquo; takes asking around, the answer is slow — and slow is how won deals stall and warm buyers cool.">
-        <div><h3>Someone asks where the big deal stands. What actually happens?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 8">
-          <label class="opt"><input type="radio" name="q8" value="a"><span>Anyone can pull it up in a minute</span></label>
-          <label class="opt"><input type="radio" name="q8" value="b"><span>I ask the one person who&rsquo;d know</span></label>
-          <label class="opt"><input type="radio" name="q8" value="c"><span>We rebuild the story from email and memory</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="9" data-flag="One person is a single point of failure"
-           data-cost="A business that lives in one person's head stops when they do — vacation, flu, or one busy week.">
-        <div><h3>If your most on-top-of-it person vanished for two weeks&mdash;</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 9">
-          <label class="opt"><input type="radio" name="q9" value="a"><span>It&rsquo;s written down; the business would run</span></label>
-          <label class="opt"><input type="radio" name="q9" value="b"><span>We&rsquo;d limp through</span></label>
-          <label class="opt"><input type="radio" name="q9" value="c"><span>Things would fall through the floor</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="qgroup">
-      <p class="ghead"><span class="chip r">04</span>Handoffs</p>
-
-      <div class="cq" data-q="10" data-flag="A won sale can still be lost in the handoff"
-           data-cost="Sales thinks the order is moving; the warehouse never got the instruction. The ship date passes quietly and a sale you already won is at risk.">
-        <div><h3>An order is won. How do you know it actually shipped on time?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 10">
-          <label class="opt"><input type="radio" name="q10" value="a"><span>There&rsquo;s a check&mdash;we&rsquo;d know same day</span></label>
-          <label class="opt"><input type="radio" name="q10" value="b"><span>We assume it shipped unless we hear otherwise</span></label>
-          <label class="opt"><input type="radio" name="q10" value="c"><span>We find out when the customer complains</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="11" data-flag="Retyping breeds silent errors"
-           data-cost="Every place someone retypes information from one tool into another is a place records quietly drift apart — and where mistakes are born.">
-        <div><h3>How does information move between your tools&mdash;orders into sheets, emails into trackers?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 11">
-          <label class="opt"><input type="radio" name="q11" value="a"><span>It flows on its own</span></label>
-          <label class="opt"><input type="radio" name="q11" value="b"><span>Someone retypes it</span></label>
-          <label class="opt"><input type="radio" name="q11" value="c"><span>What trackers?</span></label>
-        </div>
-      </div>
-
-      <div class="cq" data-q="12" data-flag="The story takes hours to rebuild"
-           data-cost="Every incident costs you twice: the problem itself, plus the afternoon someone spends reconstructing what happened from scattered tools.">
-        <div><h3>When something goes wrong, how long until you know what actually happened?</h3></div>
-        <div class="opts" role="radiogroup" aria-label="Question 12">
-          <label class="opt"><input type="radio" name="q12" value="a"><span>Minutes&mdash;it&rsquo;s all in one place</span></label>
-          <label class="opt"><input type="radio" name="q12" value="b"><span>An afternoon of digging</span></label>
-          <label class="opt"><input type="radio" name="q12" value="c"><span>Days. And we&rsquo;re still not sure</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="scorebar">
-      <button type="button" class="scorebtn" id="scoreBtn" disabled>Answer all 12 to see your result</button>
-      <span class="scorenote" id="scoreNote">Nothing is sent or stored. Your result appears right here.</span>
-    </div>
-  </form>
-
-  <div id="result" role="region" aria-live="polite" aria-label="Your leak check result">
+  <!-- RESULT -->
+  <div class="hide" id="result" role="region" aria-label="Your leak check result">
     <div class="verdict">
       <p class="vlbl">Your result</p>
       <p class="big"><span id="leakCount">0</span>&nbsp;<span id="leakWord">leaks</span></p>
@@ -329,22 +200,40 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
       <p id="verdictBody"></p>
     </div>
     <div class="leaklist" id="leakList"></div>
+
     <div class="payoff" id="payoff">
-      <h3>Your full breakdown&mdash;what each leak tends to cost, and the first check to run&mdash;comes by email.</h3>
-      <p>Email me your result and I&rsquo;ll reply with the leak-by-leak breakdown: why each flagged area quietly costs food &amp; beverage brands money, and the one thing I&rsquo;d check first for each. A real reply from me&mdash;not a drip campaign.</p>
-      <a class="cta dk" id="mailBtn" href="mailto:brandon@vnmsfx.com">Email me my full breakdown</a>
+      <h3>Want to know the first check I&rsquo;d run on each of these?</h3>
+      <p class="plede">Leave your email and I&rsquo;ll personally reply within 24 hours with your leak-by-leak breakdown&mdash;what each flag tends to cost a brand like yours, and the one thing I&rsquo;d check first. Written by me for your answers. Not a sequence, not a newsletter, no list to unsubscribe from.</p>
+      <form class="capture" id="captureForm" novalidate>
+        <input type="text" class="hp" id="hpField" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="email" id="emailField" name="email" placeholder="you@yourbrand.com" autocomplete="email" inputmode="email" required aria-label="Your email">
+        <button class="cta dk" id="sendBtn" type="submit">Send my breakdown</button>
+      </form>
+      <p class="perr" id="emailErr">That email doesn&rsquo;t look complete &mdash; check it once and try again.</p>
+      <p class="pmicro">One personal reply from Brandon Adams, the person who runs VNMSFX. Your answers travel with your email and nowhere else. No passwords, no files, nothing automated pretending to be human.</p>
     </div>
+
+    <div class="confirm hide" id="confirm">
+      <span class="ok">✓</span>
+      <h3 id="confirmHead">Got it. Your result is with me.</h3>
+      <p>I&rsquo;ll read your thirteen answers myself and reply within 24 hours with the first check I&rsquo;d run on each flag. If it lands in spam, fish it out once and it won&rsquo;t again.</p>
+      <p class="from">Reply comes from&nbsp;&nbsp;BRANDON@VNMSFX.COM</p>
+    </div>
+
     <div class="result-actions">
-      <a class="cta2" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener"><span>Or skip ahead: book the free 30-min teardown</span></a>
-      <a class="cta2" href="/sample-audit"><span>See a sample audit</span></a>
+      <a class="cta2" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener"><span>Skip the wait &mdash; book the free 30-min teardown</span></a>
+      <button class="cta2" id="retakeBtn" type="button"><span>Retake the check</span></button>
     </div>
-    <p class="scorenote" style="margin-top:14px">The teardown is 30 minutes, led by me. Bring the situation&mdash;you don&rsquo;t need to diagnose anything, and I never ask for passwords or files.</p>
+    <p class="pmicro" style="margin-top:10px">The teardown is 30 minutes, led by me. Bring the situation&mdash;you don&rsquo;t need to diagnose anything, and I never ask for passwords or files.</p>
   </div>
 
   <div class="found" style="margin-top:clamp(40px,5vw,64px)">
-    <strong>What this is&mdash;and isn&rsquo;t.</strong> This is a self-check to help you think, not a diagnosis of your business. It runs entirely on this page: your answers are not sent, stored, or tracked unless you choose to email them. VNMSFX finds operating problems that may be costing you money and shows the records behind them&mdash;your team always makes the decisions.
+    <strong>What this is&mdash;and isn&rsquo;t.</strong> A self-check to help you think, not a diagnosis of your business. Your answers stay on this page unless you choose to send them with your email&mdash;nothing else is collected or tracked by this check.
   </div>
 
+</div>
+
+<div class="w">
   <div class="close" style="margin-top:clamp(48px,6vw,90px)">
     <h2>You do not have to know where the problem is. Finding it is my job.</h2>
     <p style="margin-top:34px"><a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a></p>
@@ -373,62 +262,144 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 })();
 </script>
 <script>
-/* The check. Everything stays on this page until the visitor chooses to email
-   their result. Answer "a" is the healthy state; "b" is worth a look; "c" is a
-   flag. The live flag chip builds the reason to finish; the detailed
-   leak-by-leak breakdown arrives by email reply, which is the whole point. */
+/* The check: one question per screen, tap to advance, instant result.
+   Answers stay in this tab; they are transmitted only if the visitor submits
+   their email, and then only to VNMSFX. Answer "a" is the healthy state;
+   "b" is worth a look; "c" is a flag. */
 (function(){
-  var TOTAL=12,
-      form=document.getElementById('check'),
-      btn=document.getElementById('scoreBtn'),
-      done=document.getElementById('done'),
-      fill=document.getElementById('fill'),
-      flagChip=document.getElementById('flagChip'),
-      result=document.getElementById('result');
-
-  function tally(){
-    var answered=0, flags=0;
-    for(var i=1;i<=TOTAL;i++){
-      var v=form.querySelector('input[name="q'+i+'"]:checked');
-      if(v){ answered++; if(v.value!=='a') flags++; }
-    }
-    return {answered:answered, flags:flags};
-  }
-  function refresh(){
-    var t=tally();
-    done.textContent=t.answered;
-    fill.style.width=(t.answered/TOTAL*100)+'%';
-    flagChip.textContent='flags: '+t.flags;
-    flagChip.classList.toggle('on', t.flags>0);
-    if(t.answered===TOTAL){ btn.disabled=false; btn.classList.add('ready'); btn.textContent='Show me my '+t.flags+(t.flags===1?' leak':' leaks'); }
-    else { btn.disabled=true; btn.classList.remove('ready'); btn.textContent='Answer all 12 to see your result'; }
-  }
-  form.addEventListener('change', refresh);
-  refresh();
-
+  var QUESTIONS=[
+    {seg:true, q:"First—how do you mainly sell?",
+     opts:["Direct online (our own store)","Wholesale / retail","Subscriptions","A real mix"]},
+    {q:"Someone asks where the big deal stands. What actually happens?",
+     flag:"Answers take a meeting instead of a minute",
+     cost:"If “where does it stand” takes asking around, the answer is slow — and slow is how won deals stall and warm buyers cool.",
+     opts:["Anyone can pull it up in a minute","I ask the one person who’d know","We rebuild the story from email and memory"]},
+    {q:"The follow-ups you’ve promised—vendor calls, buyer samples—where do they live?",
+     flag:"Follow-ups depend on memory",
+     cost:"“I thought you had it” is the most expensive sentence in a small team. A follow-up without an owner and a date is a coin flip.",
+     opts:["One place, with an owner and a date","Across inboxes, notes and chat threads","In my head, mostly"]},
+    {q:"If your most on-top-of-it person vanished for two weeks—",
+     flag:"One person is a single point of failure",
+     cost:"A business that lives in one person’s head stops when they do — vacation, flu, or one busy week.",
+     opts:["It’s written down; the business would run","We’d limp through","Things would fall through the floor"]},
+    {q:"How do you actually know if your ads made money last month?",
+     flag:"Your ad spend may be grading its own homework",
+     cost:"Ad platforms count sales by their own rules and ignore refunds entirely. Fund the wrong campaign for one quarter and the loss quietly compounds.",
+     opts:["One trusted report—checked against real orders","Whatever the ad platform says","Gut feel, honestly"]},
+    {q:"Two of your reports show two different numbers. What usually happens?",
+     flag:"Two versions of the truth",
+     cost:"When two reports disagree, one of them is feeding you decisions on bad numbers — and you don’t know which one.",
+     opts:["We have one source of truth we always trust","We go with whichever seems more believable","We shrug—that’s just how it is"]},
+    {q:"Your best seller—what does it actually keep after refunds, fees and discounts?",
+     flag:"Your #1 seller could be leaking margin",
+     cost:"A high-refund, high-fee product can look like a winner while it loses money on every promotion. Selling great and keeping money are different numbers.",
+     opts:["I know, and I could show you","Roughly","It sells great. That’s what I know"]},
+    {q:"A distributor pays less than the invoice and mentions “missing cases.” What happens?",
+     flag:"Short-pays may be expiring unchallenged",
+     cost:"Deduction claims have deadlines. The claim is in a PDF, the order in email, the proof in a portal — every one that expires unexamined is money you agreed to lose.",
+     opts:["Someone owns it and challenges it before the deadline","We catch it when we reconcile—sometimes late","Small short-pays just… slip"]},
+    {q:"A wholesale account that used to order every month goes quiet. When do you find out?",
+     flag:"Good accounts can go quiet for months",
+     cost:"An account that orders every 30–45 days can sit silent for 80 before anyone notices — and by then someone else may be on the shelf.",
+     opts:["While it’s fresh—something surfaces it","When someone happens to think of it","When it’s been months—and it’s awkward"]},
+    {q:"Subscribers or repeat customers who quietly stop buying—",
+     flag:"Churn is invisible until you go looking",
+     cost:"Every quiet cancel is revenue you already earned once and lost silently. By the time someone checks, the relationship is cold.",
+     opts:["We catch them while they’re still warm","We run a win-back blast now and then","We don’t really see them leave"]},
+    {q:"An order is won. How do you know it actually shipped on time?",
+     flag:"A won sale can still be lost in the handoff",
+     cost:"Sales thinks the order is moving; the warehouse never got the instruction. The ship date passes quietly and a sale you already won is at risk.",
+     opts:["There’s a check—we’d know same day","We assume it shipped unless we hear otherwise","We find out when the customer complains"]},
+    {q:"How does information move between your tools—orders into sheets, emails into trackers?",
+     flag:"Retyping breeds silent errors",
+     cost:"Every place someone retypes information from one tool into another is a place records quietly drift apart — and where mistakes are born.",
+     opts:["It flows on its own","Someone retypes it","What trackers?"]},
+    {q:"When something goes wrong, how long until you know what actually happened?",
+     flag:"The story takes hours to rebuild",
+     cost:"Every incident costs you twice: the problem itself, plus the afternoon someone spends reconstructing what happened from scattered tools.",
+     opts:["Minutes—it’s all in one place","An afternoon of digging","Days. And we’re still not sure"]}
+  ];
   var VERDICTS=[
     {max:2, head:'Tight ship.', body:'You are ahead of most founder-led brands. The flags above are still worth a look — small leaks do not stay small, and they never announce themselves.'},
     {max:5, head:'You are running on luck in a few places.', body:'Individually these look small. Together they are a slow drip that compounds every month, and none of them will announce themselves. The good news: this is a visibility problem, not a talent problem — and visibility is fixable.'},
     {max:12, head:'Money is leaving quietly.', body:'This many flags usually means the business still depends on you personally noticing everything — checking tools, connecting dots, sounding the alarm. Every one of these is fixable. None of them get fixed while nobody can see them.'}
   ];
+  var LETTERS=['a','b','c','d'];
+  var answers=new Array(QUESTIONS.length).fill(null);
+  var idx=0, advanceTimer=null;
 
-  btn.addEventListener('click', function(){
-    if(btn.disabled) return;
-    var leaks=[], groups=form.querySelectorAll('.cq');
-    Array.prototype.forEach.call(groups, function(g){
-      var q=g.getAttribute('data-q'),
-          v=form.querySelector('input[name="q'+q+'"]:checked');
-      if(v && v.value!=='a'){
-        leaks.push({flag:g.getAttribute('data-flag'), hot:v.value==='c'});
+  var intro=document.getElementById('intro'),
+      meter=document.getElementById('meter'),
+      stage=document.getElementById('stage'),
+      result=document.getElementById('result'),
+      done=document.getElementById('done'),
+      fill=document.getElementById('fill'),
+      flagChip=document.getElementById('flagChip');
+
+  function flagsSoFar(){
+    var n=0;
+    for(var i=0;i<QUESTIONS.length;i++){
+      if(!QUESTIONS[i].seg && answers[i] && answers[i]!=='a') n++;
+    }
+    return n;
+  }
+  function answeredCount(){
+    var n=0; answers.forEach(function(a){ if(a) n++; }); return n;
+  }
+  function refreshMeter(){
+    var n=answeredCount(), f=flagsSoFar();
+    done.textContent=n;
+    fill.style.width=(n/QUESTIONS.length*100)+'%';
+    flagChip.textContent='flags: '+f;
+    flagChip.classList.toggle('on', f>0);
+  }
+  function renderQuestion(){
+    var q=QUESTIONS[idx];
+    var html='<div class="qcard on"><p class="qnum">'+(idx+1)+' of '+QUESTIONS.length+(q.seg?'':' · tap the honest one')+'</p>'
+      +'<h2>'+q.q+'</h2><div class="opts" role="group" aria-label="Question '+(idx+1)+'">';
+    q.opts.forEach(function(text,i){
+      var picked=answers[idx]===LETTERS[i]?' picked':'';
+      html+='<button type="button" class="opt'+picked+'" data-v="'+LETTERS[i]+'">'+text+'</button>';
+    });
+    html+='</div>';
+    html+='<div class="backrow">'+(idx>0?'<button type="button" id="backBtn">← Back</button>':'')+'</div></div>';
+    stage.innerHTML=html;
+    var back=document.getElementById('backBtn');
+    if(back) back.addEventListener('click', function(){ if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null;} idx=Math.max(0,idx-1); renderQuestion(); });
+    Array.prototype.forEach.call(stage.querySelectorAll('.opt'), function(b){
+      b.addEventListener('click', function(){
+        Array.prototype.forEach.call(stage.querySelectorAll('.opt'), function(x){x.classList.remove('picked');});
+        b.classList.add('picked');
+        answers[idx]=b.getAttribute('data-v');
+        refreshMeter();
+        if(advanceTimer) clearTimeout(advanceTimer);
+        advanceTimer=setTimeout(function(){
+          advanceTimer=null;
+          if(idx<QUESTIONS.length-1){ idx++; renderQuestion(); window.scrollTo({top:0,behavior:'instant'}); }
+          else { showResult(); }
+        }, 220);
+      });
+    });
+  }
+  function currentLeaks(){
+    var leaks=[];
+    QUESTIONS.forEach(function(q,i){
+      if(!q.seg && answers[i] && answers[i]!=='a'){
+        leaks.push({flag:q.flag, cost:q.cost, hot:answers[i]==='c'});
       }
     });
-    var n=leaks.length,
+    return leaks;
+  }
+  function showResult(){
+    var leaks=currentLeaks(), n=leaks.length,
         verdict=VERDICTS.filter(function(v){return n<=v.max;})[0];
+    stage.classList.add('hide');
+    meter.classList.remove('on');
+    result.classList.remove('hide');
     document.getElementById('leakCount').textContent=n;
     document.getElementById('leakWord').textContent=(n===1?'leak':'leaks');
     document.getElementById('verdictHead').textContent=verdict.head;
     document.getElementById('verdictBody').textContent=verdict.body;
-
     var list=document.getElementById('leakList');
     list.innerHTML='';
     leaks.forEach(function(l){
@@ -438,19 +409,80 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
       row.appendChild(h); row.appendChild(tag);
       list.appendChild(row);
     });
-    document.getElementById('payoff').style.display = n>0 ? '' : 'none';
+    document.getElementById('payoff').classList.toggle('hide', n===0);
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  document.getElementById('startBtn').addEventListener('click', function(){
+    intro.classList.add('hide');
+    meter.classList.add('on');
+    refreshMeter();
+    renderQuestion();
+  });
+  document.getElementById('retakeBtn').addEventListener('click', function(){
+    answers=new Array(QUESTIONS.length).fill(null); idx=0;
+    result.classList.add('hide');
+    document.getElementById('confirm').classList.add('hide');
+    document.getElementById('payoff').classList.remove('hide');
+    document.getElementById('captureForm').classList.remove('hide');
+    stage.classList.remove('hide');
+    meter.classList.add('on');
+    refreshMeter();
+    renderQuestion();
+    window.scrollTo({top:0,behavior:'instant'});
+  });
 
-    /* The visitor emails their result from their own mail app; the detailed
-       breakdown comes back as a personal reply. Nothing is transmitted by this page. */
-    var lines=['My Leak Check result: '+n+(n===1?' leak':' leaks')+' flagged.',''];
+  /* Email capture. POSTs the result to /api/leak-check (visitor-initiated, the
+     only transmission on this page). If the endpoint is missing or down, we
+     fall back to a prefilled email from the visitor's own mail app so no lead
+     is ever lost to infrastructure. */
+  var form=document.getElementById('captureForm'),
+      emailField=document.getElementById('emailField'),
+      err=document.getElementById('emailErr'),
+      sendBtn=document.getElementById('sendBtn');
+
+  function segAnswer(){
+    var map={a:'Direct online',b:'Wholesale / retail',c:'Subscriptions',d:'A real mix'};
+    return map[answers[0]]||'Unstated';
+  }
+  function mailtoFallback(email){
+    var leaks=currentLeaks(), n=leaks.length;
+    var lines=['My Leak Check result: '+n+(n===1?' leak':' leaks')+' flagged.','Sells: '+segAnswer(),'Reply to: '+email,''];
     leaks.forEach(function(l){ lines.push('- '+l.flag+(l.hot?'':' (worth a look)')); });
     lines.push('','Please send my full leak-by-leak breakdown.','','Found via vnmsfx.com/leak-check');
-    document.getElementById('mailBtn').href='mailto:brandon@vnmsfx.com'
-      +'?subject='+encodeURIComponent('My Leak Check result — send my full breakdown ('+n+' flagged)')
+    location.href='mailto:brandon@vnmsfx.com'
+      +'?subject='+encodeURIComponent('My Leak Check result — send my breakdown ('+n+' flagged)')
       +'&body='+encodeURIComponent(lines.join('\n'));
-
-    result.classList.add('on');
-    result.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.classList.remove('on');
+    var email=(emailField.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.classList.add('on'); emailField.focus(); return; }
+    if(document.getElementById('hpField').value){ return; }
+    var leaks=currentLeaks();
+    var payload={
+      email:email,
+      sells:segAnswer(),
+      count:leaks.length,
+      flags:leaks.map(function(l){return {name:l.flag, severity:l.hot?'flagged':'worth-a-look'};}),
+      page:'leak-check'
+    };
+    sendBtn.disabled=true; sendBtn.textContent='Sending…';
+    fetch('/api/leak-check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('endpoint '+r.status); return r.json(); })
+      .then(function(){
+        document.getElementById('payoff').classList.add('hide');
+        document.getElementById('confirm').classList.remove('hide');
+      })
+      .catch(function(){
+        /* No endpoint yet (or it failed): open the visitor's own mail app,
+           prefilled. Their reply address rides in the body. */
+        mailtoFallback(email);
+        document.getElementById('payoff').classList.add('hide');
+        document.getElementById('confirm').classList.remove('hide');
+        document.getElementById('confirmHead').textContent='Almost there — hit send in your mail app.';
+      })
+      .finally(function(){ sendBtn.disabled=false; sendBtn.textContent='Send my breakdown'; });
   });
 })();
 </script>
