@@ -44,12 +44,38 @@ function notionFetch(b, path, init) {
 
 const text = (v) => ({ rich_text: [{ text: { content: String(v == null ? "" : v).slice(0, 1900) } }] });
 
-async function notionFind(b, submissionId) {
+// The reference number ends with a date-free hash of email+channel+answers.
+// Deduplicate on THAT, never on the whole reference number, which carries the
+// date and so failed to match an identical retry across midnight.
+function fingerprintOf(lead) {
+  return lead.fingerprint || String(lead.submissionId).split("-").pop();
+}
+
+// A week. Long enough to catch any retry or double-submit; short enough that
+// someone re-taking the check months later still reaches Brandon as new
+// information rather than being silently swallowed as a duplicate.
+const DEDUPE_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+
+function dedupeSince(lead) {
+  const base = Date.parse(lead.receivedIso);
+  return new Date((Number.isFinite(base) ? base : Date.now()) - DEDUPE_WINDOW_MS).toISOString();
+}
+
+async function notionFind(b, lead) {
   const r = await notionFetch(b, "/databases/" + b.db + "/query", {
     method: "POST",
     body: JSON.stringify({
       page_size: 1,
-      filter: { property: "Submission ID", title: { equals: submissionId } },
+      // Email is part of the match on purpose. The hash is short, so on its own
+      // a collision could silently drop a different person's lead — a worse
+      // failure than the duplicate this fixes. Both must agree.
+      filter: {
+        and: [
+          { property: "Email", email: { equals: lead.email } },
+          { property: "Submission ID", title: { ends_with: "-" + fingerprintOf(lead) } },
+          { property: "Received", date: { on_or_after: dedupeSince(lead) } },
+        ],
+      },
     }),
   });
   if (!r.ok) throw new Error("notion query " + r.status + " " + (await r.text().catch(() => "")).slice(0, 200));
@@ -58,7 +84,7 @@ async function notionFind(b, submissionId) {
 }
 
 async function notionCreate(b, lead) {
-  const existing = await notionFind(b, lead.submissionId);
+  const existing = await notionFind(b, lead);
   if (existing) return { persisted: true, duplicate: true, recordId: existing };
 
   const properties = {
@@ -114,7 +140,14 @@ function airFetch(b, path, init) {
 }
 
 async function airCreate(b, lead) {
-  const formula = encodeURIComponent(`{Submission ID}="${lead.submissionId}"`);
+  // Same rule as Notion: match the date-free hash plus the email, inside the
+  // dedupe window — never the dated reference number.
+  const fp = String(fingerprintOf(lead)).replace(/"/g, "");
+  const addr = String(lead.email || "").replace(/"/g, "");
+  const formula = encodeURIComponent(
+    `AND({Email}="${addr}",RIGHT({Submission ID},${fp.length + 1})="-${fp}",` +
+    `IS_AFTER({Received},"${dedupeSince(lead)}"))`
+  );
   const look = await airFetch(b, "?maxRecords=1&filterByFormula=" + formula, { method: "GET" });
   if (!look.ok) throw new Error("airtable lookup " + look.status);
   const found = await look.json();

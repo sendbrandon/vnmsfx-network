@@ -276,8 +276,14 @@ module.exports = async function handler(req, res) {
   // visitor reads. In UTC a 7pm-or-later submission was stamped the next day,
   // so the receipt showed a reference dated after the date it was received.
   const idDay = etParts(now);
-  const submissionId = "LC-" + idDay.year + idDay.month + idDay.day + "-" +
-    Math.abs(Array.from(fingerprint).reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7)).toString(36).slice(0, 6).toUpperCase();
+  // The deduplication key is this hash, NOT the reference number. The reference
+  // number carries the date for humans; matching on it meant an identical retry
+  // either side of midnight produced two IDs, two leads, and two receipt emails
+  // to the same person. Confirmed live 2026-08-11, six minutes apart.
+  const fingerprintHash = Math.abs(
+    Array.from(fingerprint).reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7)
+  ).toString(36).slice(0, 6).toUpperCase();
+  const submissionId = "LC-" + idDay.year + idDay.month + idDay.day + "-" + fingerprintHash;
   const dueDate = replyDueDate(now);
   const deadline = formatDeadline(dueDate);
   const received = receivedStamp(now);
@@ -302,7 +308,7 @@ module.exports = async function handler(req, res) {
   let leadRecord = { persisted: false };
   try {
     leadRecord = await leadStore.createLead({
-      submissionId, firstName, email, channelLabel,
+      submissionId, fingerprint: fingerprintHash, firstName, email, channelLabel,
       process: recommended ? recommended.name : "none indicated",
       points, answered, financeTouched, notedText, transcriptText,
       replyDueIso, receivedIso: now.toISOString(),
