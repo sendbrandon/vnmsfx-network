@@ -214,10 +214,10 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     </div>
 
     <div class="confirm hide" id="confirm">
-      <span class="ok">✓</span>
+      <span class="ok" id="confirmMark">✓</span>
       <h3 id="confirmHead">Got it. Your result is with me.</h3>
-      <p>I&rsquo;ll read your thirteen answers myself and reply within 24 hours with the first check I&rsquo;d run on each flag. If it lands in spam, fish it out once and it won&rsquo;t again.</p>
-      <p class="from">Reply comes from&nbsp;&nbsp;BRANDON@VNMSFX.COM</p>
+      <p id="confirmBody">I&rsquo;ll read your answers myself and reply within 24 hours with the first check I&rsquo;d run on each flag. If it lands in spam, fish it out once and it won&rsquo;t again.</p>
+      <p class="from" id="confirmFrom">Reply comes from&nbsp;&nbsp;BRANDON@VNMSFX.COM</p>
     </div>
 
     <div class="result-actions">
@@ -422,6 +422,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     answers=new Array(QUESTIONS.length).fill(null); idx=0;
     result.classList.add('hide');
     document.getElementById('confirm').classList.add('hide');
+    resetConfirmCopy();
     document.getElementById('payoff').classList.remove('hide');
     document.getElementById('captureForm').classList.remove('hide');
     stage.classList.remove('hide');
@@ -430,6 +431,17 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     renderQuestion();
     window.scrollTo({top:0,behavior:'instant'});
   });
+
+  /* The confirmation has two states — sent, and still-needs-one-tap. Restore
+     the sent wording whenever the check is retaken so a fallback run never
+     leaves stale instructions behind. */
+  function resetConfirmCopy(){
+    document.getElementById('confirmMark').textContent='✓';
+    document.getElementById('confirmHead').textContent='Got it. Your result is with me.';
+    document.getElementById('confirmBody').textContent=
+      'I’ll read your answers myself and reply within 24 hours with the first check I’d run on each flag. If it lands in spam, fish it out once and it won’t again.';
+    document.getElementById('confirmFrom').textContent='Reply comes from  BRANDON@VNMSFX.COM';
+  }
 
   /* Email capture. POSTs the result to /api/leak-check (visitor-initiated, the
      only transmission on this page). If the endpoint is missing or down, we
@@ -476,11 +488,17 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
       })
       .catch(function(){
         /* No endpoint yet (or it failed): open the visitor's own mail app,
-           prefilled. Their reply address rides in the body. */
+           prefilled. Their reply address rides in the body. Swap the whole
+           confirmation — headline, body and footer — so it never mixes the
+           "already sent" promise with the "still needs one tap" instruction. */
         mailtoFallback(email);
         document.getElementById('payoff').classList.add('hide');
         document.getElementById('confirm').classList.remove('hide');
-        document.getElementById('confirmHead').textContent='Almost there — hit send in your mail app.';
+        document.getElementById('confirmMark').textContent='→';
+        document.getElementById('confirmHead').textContent='One last tap: your email is written and waiting.';
+        document.getElementById('confirmBody').textContent=
+          'Your mail app just opened with your result already filled in. Hit send and it comes straight to me — then I read your answers myself and reply within 24 hours with the first check I’d run on each flag. Nothing has reached me until you send it.';
+        document.getElementById('confirmFrom').textContent='Sends to  BRANDON@VNMSFX.COM';
       })
       .finally(function(){ sendBtn.disabled=false; sendBtn.textContent='Send my breakdown'; });
   });
