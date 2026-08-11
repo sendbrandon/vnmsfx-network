@@ -286,7 +286,7 @@ lost, and it is not a diagnosis of your business.
 
 Brandon Adams
 Founder, VNMSFX
-Operational visibility systems for food & beverage teams
+Rapid response ops for food & beverage brands.
 vnmsfx.com
 
 You received this because you completed the VNMSFX Leak Check.
@@ -298,8 +298,11 @@ This automatic receipt does not add you to a newsletter.`;
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F0EFEA;">
 <tr><td align="center" style="padding:32px 16px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;background:#FFFFFF;border:1px solid #DDD9CE;border-radius:12px;">
-  <tr><td style="padding:28px 32px 0 32px;">
-    <div style="font-family:'Courier New',Courier,monospace;font-size:12px;letter-spacing:3px;color:#111110;font-weight:bold;">VNMSFX</div>
+  <tr><td align="center" style="padding:30px 32px 0 32px;">
+    <img src="https://vnmsfx.com/assets/email-orb.png" width="52" height="52" alt=""
+         style="display:block;border:0;outline:none;text-decoration:none;width:52px;height:52px;border-radius:26px;margin:0 auto 10px auto;">
+    <img src="https://vnmsfx.com/assets/email-logo.png" width="176" height="44" alt="VNMSFX"
+         style="display:block;border:0;outline:none;text-decoration:none;width:176px;height:auto;margin:0 auto;">
   </td></tr>
   <tr><td style="padding:22px 32px 0 32px;">
     <div style="font-family:Georgia,'Times New Roman',serif;font-size:23px;line-height:1.3;color:#111110;">Your check is in, ${esc(firstName)}.</div>
@@ -329,7 +332,7 @@ This automatic receipt does not add you to a newsletter.`;
     <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111110;padding-top:20px;">
       <strong>Brandon Adams</strong><br>
       <span style="color:#6B675E;">Founder, VNMSFX</span><br>
-      <span style="color:#6B675E;">Operational visibility systems for food &amp; beverage teams</span><br>
+      <span style="color:#6B675E;">Rapid response ops for food &amp; beverage brands.</span><br>
       <a href="https://vnmsfx.com" style="color:#6B675E;">vnmsfx.com</a>
     </div>
   </td></tr>
