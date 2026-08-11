@@ -291,6 +291,8 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
    - Nothing is transmitted unless the visitor submits their email. */
 (function(){
 
+  var SURVEY_VERSION='v2-2026-08-11';
+
   var THEMES={
     VISIBILITY:{
       process:'Order and account status visibility',
@@ -579,11 +581,16 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     /* Send the raw answers and let the server do the scoring — the page never
        tells the server what the result was. answers[0] is the routing choice,
        so the scored answers start at index 1. */
+    /* Carry the campaign that produced this lead so the source is never lost. */
+    var attribution={};
+    try{ attribution=JSON.parse(sessionStorage.getItem('vx_attr')||'{}'); }catch(e){}
     var payload={
       firstName:name,
       email:email,
       channel:channel,
       answers:answers.slice(1),
+      attribution:attribution,
+      surveyVersion:SURVEY_VERSION,
       page:'leak-check'
     };
     sendBtn.disabled=true; sendBtn.textContent='Sending…';

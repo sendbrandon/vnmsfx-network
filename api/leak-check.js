@@ -8,9 +8,14 @@
 //
 // The score is recomputed HERE from the raw answers. Labels, themes and the
 // recommended process supplied by the browser are ignored — a caller cannot
-// dictate its own result. Nothing is stored by this function; the lead email
-// carries a submission ID and an exact reply-by deadline so the promise on the
-// page is traceable in the inbox.
+// dictate its own result.
+//
+// The lead is written to the durable store BEFORE either email is sent, so an
+// email-provider failure cannot lose a prospect, and the write is idempotent on
+// submission ID so a retry cannot create a second lead. Each record carries its
+// owner, next action and an exact reply-by deadline.
+
+const leadStore = require("./_lead-store.js");
 
 const QUESTION_BANK = {
   shared: [
@@ -214,11 +219,15 @@ module.exports = async function handler(req, res) {
   const recommended = points === 0 ? null : PROCESS[top];
 
   const now = new Date();
+  // Deterministic: the identical submission retried yields the identical ID, so
+  // a retry updates nothing and creates no second lead.
+  const fingerprint = [email, channel, answers.join(",")].join("|");
   const submissionId = "LC-" + now.toISOString().slice(0, 10).replace(/-/g, "") + "-" +
-    Math.abs(Array.from(email).reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7)).toString(36).slice(0, 5).toUpperCase();
+    Math.abs(Array.from(fingerprint).reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 7)).toString(36).slice(0, 6).toUpperCase();
   const deadline = replyDeadline(now);
   const received = receivedStamp(now);
   const channelLabel = CHANNEL_LABEL[channel] || channel;
+  const replyDueIso = new Date(now.getTime() + 24 * 60 * 60 * 1000).toISOString();
 
   const send = (payload) =>
     fetch("https://api.resend.com/emails", {
@@ -227,12 +236,40 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify(payload),
     });
 
-  // ── 1. The lead to Brandon: raw material for a genuinely personal reply ──
   const transcriptText = transcript.map((t) => "  Q: " + t.q + "\n  A: " + t.a).join("\n\n");
   const notedText = noted.length
     ? noted.map((n) => "- " + n.flag + " (" + n.severity + ")").join("\n")
     : "- none";
 
+  // ── 1. Persist the lead FIRST. An email failure must never lose a prospect. ──
+  const attrib = (body.attribution && typeof body.attribution === "object") ? body.attribution : {};
+  const str = (v) => String(v == null ? "" : v).slice(0, 200);
+  let leadRecord = { persisted: false };
+  try {
+    leadRecord = await leadStore.createLead({
+      submissionId, firstName, email, channelLabel,
+      process: recommended ? recommended.name : "none indicated",
+      points, answered, financeTouched, notedText, transcriptText,
+      replyDueIso, receivedIso: now.toISOString(),
+      source: str(attrib.utm_source || attrib.ref),
+      campaign: str(attrib.utm_campaign),
+      contentId: str(attrib.utm_content),
+      surveyVersion: str(body.surveyVersion),
+    });
+  } catch (e) {
+    console.error("lead persist failed", e && e.message);
+    leadRecord = { persisted: false, error: String(e && e.message).slice(0, 200) };
+  }
+
+  // A retried submission already has a record and already had its emails sent.
+  if (leadRecord.duplicate) {
+    return res.status(200).json({
+      ok: true, duplicate: true, leadPersisted: true,
+      leadDelivered: true, receiptDelivered: true, submissionId, deadline,
+    });
+  }
+
+  // ── 2. The lead to Brandon: raw material for a genuinely personal reply ──
   const toBrandon = await send({
     from: "VNMSFX Leak Check <leak-check@vnmsfx.com>",
     to: ["brandon@vnmsfx.com"],
@@ -356,13 +393,30 @@ This automatic receipt does not add you to a newsletter.`;
   if (!toVisitor.ok) {
     const detail = await toVisitor.text().catch(() => "");
     console.error("Resend receipt send failed", toVisitor.status, detail);
+    await leadStore.markDelivery(leadRecord.recordId, {
+      status: "RECEIPT SENT", receiptDelivered: false,
+      note: "Visitor receipt failed to send (" + toVisitor.status + "). Lead reached Brandon.",
+    }).catch(() => false);
     return res.status(207).json({
       ok: true, leadDelivered: true, receiptDelivered: false,
+      leadPersisted: !!leadRecord.persisted,
       submissionId, deadline,
       note: "Lead reached Brandon; the visitor receipt failed to send.",
       providerStatus: toVisitor.status,
     });
   }
 
-  res.status(200).json({ ok: true, leadDelivered: true, receiptDelivered: true, submissionId, deadline });
+  const leadId = await toBrandon.json().then((d) => d && d.id).catch(() => null);
+  const receiptId = await toVisitor.json().then((d) => d && d.id).catch(() => null);
+  await leadStore.markDelivery(leadRecord.recordId, {
+    status: "RECEIPT SENT",
+    leadMessageId: leadId,
+    receiptMessageId: receiptId,
+    receiptDelivered: true,
+  }).catch(() => false);
+
+  res.status(200).json({
+    ok: true, leadDelivered: true, receiptDelivered: true,
+    leadPersisted: !!leadRecord.persisted, submissionId, deadline,
+  });
 };
