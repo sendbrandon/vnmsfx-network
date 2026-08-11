@@ -115,6 +115,9 @@ mark{background:var(--yellow);color:var(--ink);padding:0 4px;border-radius:0}
 .ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:26ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
 .ctaP p{font-size:clamp(15px,1.3vw,17px);color:#C8C6BE;max-width:58ch;margin:0 auto;line-height:1.6}
 .ctaP p+p{margin-top:10px}
+/* quiet secondary route for a reader who is not ready to book yet */
+.ctaP p.ctaAlt{margin-top:clamp(18px,2vw,24px);font-family:'Space Mono',monospace;font-size:clamp(12.5px,1.1vw,14px);letter-spacing:.04em;color:#9C9A92}
+.ctaP p.ctaAlt a{color:#F4F2EC;text-decoration:underline;text-underline-offset:3px}
 .ctaBtn{display:inline-block;background:var(--yellow);color:var(--ink);font-size:14.5px;font-weight:600;padding:15px 28px;border-radius:999px;text-decoration:none;margin-top:22px}
 .ctaBtn:hover{background:#fff}
 
@@ -323,6 +326,7 @@ footer a{color:var(--soft);text-decoration:none}
     <p>Give me the quick version of how you sell and how work moves through the team. I will ask the questions, choose the process worth tracing and tell you whether it is worth auditing.</p>
     <p>No files, passwords or private data needed for the call.</p>
     <a class="ctaBtn" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a>
+    <p class="ctaAlt">Not ready to talk? <a href="/leak-check">Take the 5-minute check</a> and see the one process I&rsquo;d look at first.</p>
   </div>
 </section>
 
