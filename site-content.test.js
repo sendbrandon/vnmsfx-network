@@ -19,7 +19,7 @@ test('homepage diagram shows four raw sources producing one derived finding', ()
   assert.match(html, /Payment posted · \$7,580/);
   assert.match(html, /Dispute deadline · Friday/);
   assert.match(html, /100 cases delivered · signed/);
-  assert.match(html, /VNMSFX found/);
+  assert.match(html, /SIGHT found/);
   assert.match(html, /\$4,820 short-pay/);
   assert.doesNotMatch(html, /These six logos are examples|mechanism-notes/);
 });
@@ -35,11 +35,37 @@ test('example-day findings are visible without JavaScript and preventive', () =>
 test('connection explainer is VNMSFX-owned and platform-neutral in visible copy', () => {
   const html = read('how-it-connects.html');
   const text = visibleText(html);
-  assert.match(text, /Your VNMSFX system/);
-  assert.match(text, /Your company AI checks the right tools/);
+  assert.match(text, /SIGHT by VNMSFX/);
+  assert.match(text, /Ask SIGHT a normal business question\. It checks the right tools/);
+  assert.match(text, /See Important Gaps Hiding between Tools/);
   assert.match(text, /Act before day 35/);
   assert.doesNotMatch(text, /Claude/i);
+  assert.ok((text.match(/\bSIGHT\b/g) || []).length <= 10, 'connection page should explain the name without chanting it');
   assert.match(html, /\.answer\{opacity:1;transform:none\}/);
+});
+
+test('SIGHT is placed as one system identity without renaming unrelated pages', () => {
+  const home = visibleText(read('index.html'));
+  const systems = visibleText(read('systems.html'));
+  const sample = visibleText(read('sample-audit.html'));
+  const terms = visibleText(read('terms.html'));
+  const security = visibleText(read('security.html'));
+  const unrelated = ['privacy.html', 'studio.html', 'leak-check.html']
+    .map((name) => visibleText(read(name)))
+    .join(' ');
+
+  assert.match(home, /I build SIGHT by VNMSFX/);
+  assert.match(home, /SIGHT keeps checking the process we audited/);
+  assert.match(home, /You own SIGHT/);
+  assert.match(systems, /How SIGHT handles it/);
+  assert.match(sample, /The Build creates SIGHT to keep watching it/);
+  assert.match(terms, /builds SIGHT by VNMSFX, one client-owned AI system/);
+  assert.match(security, /SIGHT is the standard VNMSFX system/);
+  assert.doesNotMatch(`${home} ${systems} ${sample}`, /Sight AI|Site by VNMSFX/i);
+  assert.doesNotMatch(unrelated, /\bSIGHT\b/);
+  assert.ok((home.match(/\bSIGHT\b/g) || []).length <= 12, 'homepage should not repeat the name excessively');
+  assert.ok((systems.match(/\bSIGHT\b/g) || []).length <= 14, 'systems page should keep the name scannable');
+  assert.ok((sample.match(/\bSIGHT\b/g) || []).length <= 12, 'sample page should stay focused on the method');
 });
 
 test('machine-readable category copy stays direct without expanding the held offer', () => {
@@ -57,5 +83,5 @@ test('JSON-LD remains valid and the systems comparison stays semantic', () => {
   assert.equal(blocks.length, 2);
   blocks.forEach((block) => assert.doesNotThrow(() => JSON.parse(block[1])));
   assert.doesNotMatch(systems, /class="sales-check" role="img"/);
-  assert.match(systems, /See how your company AI reaches the approved tools/);
+  assert.match(systems, /See how SIGHT reaches the approved tools/);
 });
