@@ -37,8 +37,10 @@ test('homepage introduces SIGHT inside the existing mobile copy budget', () => {
   const match = html.match(/<p class="hero-deck">([\s\S]*?)<\/p>/);
   assert.ok(match, 'homepage hero deck should exist');
   const copy = visibleText(match[1]);
-  assert.match(copy, /^Meet SIGHT by VNMSFX, your company AI\./);
-  assert.ok(copy.split(/\s+/).length <= 28, 'SIGHT introduction should stay at or below 28 words');
+  assert.match(copy, /^Hidden problems cost you money\./);
+  assert.ok(copy.split(/\s+/).length <= 28, 'hero deck should stay at or below 28 words');
+  assert.match(html, /<h2 class="say wide">Meet SIGHT\.<\/h2>/);
+  assert.match(html, /SIGHT is the AI system I build for you/);
 });
 
 test('connection explainer is VNMSFX-owned and platform-neutral in visible copy', () => {
@@ -64,8 +66,8 @@ test('SIGHT is placed as one system identity without renaming unrelated pages', 
     .map((name) => visibleText(read(name)))
     .join(' ');
 
-  assert.match(home, /Meet SIGHT by VNMSFX, your company AI/);
-  assert.match(home, /SIGHT keeps checking the process we audited/);
+  assert.match(home, /Meet SIGHT\./);
+  assert.match(home, /SIGHT is the AI system I build for you/);
   assert.match(home, /You own SIGHT/);
   assert.match(systems, /How SIGHT handles it/);
   assert.match(sample, /The Build creates SIGHT to keep watching it/);
