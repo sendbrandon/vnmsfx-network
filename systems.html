@@ -64,6 +64,28 @@ section{padding:clamp(22px,2.8vw,36px) 0}
 .wf h2 .wl{font-family:'Space Mono',monospace;font-size:.62em;font-weight:700;letter-spacing:.1em;color:var(--soft);vertical-align:2px;margin-right:10px}
 .trio{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:clamp(12px,1.6vw,20px)}
 @media (max-width:820px){.trio{grid-template-columns:1fr}}
+.sales-check{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(16px,2.4vw,30px);align-items:center;
+             min-height:390px;padding:clamp(22px,3.4vw,42px);border-radius:16px;overflow:hidden;background:var(--dark);perspective:1100px;
+             box-shadow:0 28px 70px rgba(17,17,16,.16)}
+.sales-check:before{content:"";position:absolute;inset:0;opacity:.16;background-image:radial-gradient(circle,rgba(244,242,236,.55) 1px,transparent 1.5px);background-size:30px 30px}
+.sales-card{position:relative;z-index:1;min-height:230px;padding:22px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:linear-gradient(145deg,#33322D,#1B1B18);
+            color:#F4F2EC;box-shadow:0 24px 48px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.07);animation:sales-float 5s ease-in-out infinite}
+.sales-card.store{animation-delay:-2.5s}.sales-source{display:flex;align-items:center;gap:11px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#BBB8AF}
+.sales-source svg{width:28px;height:28px;fill:currentColor}.sales-card.meta .sales-source{color:#79AFFF}.sales-card.store .sales-source{color:#95BF47}
+.sales-card .sales-number{display:block;margin-top:38px;font-size:clamp(46px,6vw,72px);line-height:.9;letter-spacing:-.06em}.sales-card p{margin-top:12px;font-size:clamp(15px,1.3vw,17px);line-height:1.45;color:#CCC9C0}
+.sales-gap{position:relative;z-index:2;width:clamp(120px,14vw,170px);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:50%;
+           background:radial-gradient(circle at 30% 25%,#FFF4B7,#F7DC64 36%,#9E7E20 100%);color:var(--ink);box-shadow:0 0 0 14px rgba(247,220,100,.07),0 22px 48px rgba(0,0,0,.42)}
+.sales-gap strong{font-size:clamp(40px,5vw,58px);letter-spacing:-.06em;line-height:.9}.sales-gap span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;max-width:11ch;margin-top:8px}
+.sales-flow{position:absolute;z-index:0;left:27%;right:27%;top:50%;height:1px;background:rgba(244,242,236,.32)}
+.sales-flow:after{content:"";position:absolute;top:-4px;left:0;width:9px;height:9px;border-radius:50%;background:var(--volt);box-shadow:0 0 15px var(--volt);animation:sales-scan 3s linear infinite}
+.sales-decision{position:relative;z-index:2;grid-column:1/-1;margin-top:2px;padding:17px 19px;border-left:3px solid var(--red);background:rgba(244,242,236,.07);color:#F4F2EC}
+.sales-decision strong{display:block;font-size:clamp(17px,1.6vw,21px);line-height:1.3}.sales-decision span{display:block;margin-top:5px;font-size:13px;color:#BBB8AF}
+@keyframes sales-float{50%{transform:translateY(-8px) rotateX(1.5deg)}}@keyframes sales-scan{to{left:100%}}
+@media (max-width:760px){
+  .sales-check{grid-template-columns:1fr;min-height:0}.sales-gap{margin:-5px auto;order:2}.sales-card.store{order:3}.sales-decision{order:4}.sales-flow{display:none}
+  .sales-card{min-height:205px;animation:none}.sales-card .sales-number{margin-top:25px}
+}
+@media (prefers-reduced-motion:reduce){.sales-card,.sales-flow:after{animation:none}}
 .cell{border-radius:12px;padding:clamp(15px,1.8vw,21px)}
 .cell .ck{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:8px}
 .cell p,.cell li{font-size:clamp(14px,1.2vw,15.5px);line-height:1.6}
@@ -86,6 +108,7 @@ section{padding:clamp(22px,2.8vw,36px) 0}
 .ops .opsk{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.16em;margin-bottom:12px}
 .ops h2{font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.028em;line-height:1.12;max-width:24ch;margin-bottom:12px}
 .ops p:not(.opsk){font-size:clamp(15.5px,1.4vw,18px);max-width:62ch;line-height:1.6}
+.ops .morelink{display:inline-block;margin-top:18px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.07em;font-weight:700;color:var(--ink);text-underline-offset:4px}
 .close .quote{font-family:'Space Mono',monospace;font-size:clamp(13px,1.2vw,15px);letter-spacing:.04em;line-height:1.75;background:var(--dark);color:#DDE3D0;border-radius:12px;padding:15px 19px;margin:14px 0;max-width:72ch}
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(30px,4.2vw,54px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:clamp(20px,2.6vw,30px)}
 .ctaP h2{font-size:clamp(22px,2.7vw,33px);max-width:26ch;margin:0 auto 14px;color:#F4F2EC;letter-spacing:-.02em}
@@ -126,17 +149,14 @@ footer a{color:var(--soft);text-decoration:none}
 
     <div class="wf">
       <h2><span class="wl" aria-hidden="true">A</span>When your ad report and your store disagree</h2>
-      <div class="trio">
-        <div class="cell rec"><span class="ck">What gets missed</span>
-          <p>The ad platform says a campaign is working. The store shows different sales. Both reports look believable, so the team keeps making spending decisions without knowing which one to trust.</p>
-        </div>
-        <div class="cell why"><span class="ck">What it costs you</span>
-          <p>You may keep spending on the wrong campaign&mdash;or turn off one that was actually working.</p>
-        </div>
-        <div class="cell bld"><span class="ck">How the system fixes it</span>
-          <p>The system compares the same dates and the same definition of a sale in both tools. When the numbers drift, it shows the difference before the next spending decision.</p>
-        </div>
+      <div class="sales-check" role="img" aria-label="Illustrative comparison showing Meta Ads reporting 146 sales, Shopify showing 115 matching paid orders and a 31-order gap to review before spending more">
+        <span class="sales-flow" aria-hidden="true"></span>
+        <article class="sales-card meta"><div class="sales-source"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#meta"/></svg><span>Meta Ads says</span></div><strong class="sales-number">146</strong><p>sales attributed to the campaign during the approved date range.</p></article>
+        <div class="sales-gap"><strong>31</strong><span>sales not matched</span></div>
+        <article class="sales-card store"><div class="sales-source"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#shopify"/></svg><span>Shopify shows</span></div><strong class="sales-number">115</strong><p>matching paid orders during the same date range.</p></article>
+        <div class="sales-decision"><strong>Check the 31-order gap before adding more budget.</strong><span>The system puts both reports together. Your team checks duplicate attribution, refunds, date ranges and unmatched orders before deciding what to spend.</span></div>
       </div>
+      <p class="banner">Illustrative sample data. A real Build uses the exact sale definition and date range approved in the Build Plan.</p>
     </div>
 
     <div class="wf">
@@ -273,6 +293,7 @@ footer a{color:var(--soft);text-decoration:none}
     <p class="opsk">WHAT THIS ADDS UP TO</p>
     <h2>The system does the checking. Your team keeps the decision.</h2>
     <p>Your team uses it through the company AI account named in the Build Plan, such as Claude Team or ChatGPT Business. Client records never go into a personal AI account. It watches the approved records across the tools you already use and shows the right person what is late, missing or different from what should have happened&mdash;with the proof attached.</p>
+    <a class="morelink" href="how-it-connects.html">See how Claude reaches the approved company tools &rarr;</a>
   </div>
 
   <div class="ctaP">

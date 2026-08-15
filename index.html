@@ -168,6 +168,101 @@ section{padding:clamp(70px,9vw,150px) 0}
 .toolroll span{font-family:'Space Mono',monospace;font-size:clamp(14px,1.3vw,17px);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);white-space:nowrap;padding-right:2.2em}
 @keyframes roll{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.toolroll .track{animation:none}}
+/* CONNECTED TOOLS — concrete examples orbit the founder's business, not VNMSFX. */
+.tool-network{position:relative;min-height:650px;margin-top:clamp(26px,3vw,42px);overflow:hidden;border-radius:var(--r);
+              background:radial-gradient(circle at 50% 47%,rgba(247,220,100,.22),transparent 30%),var(--dark);
+              box-shadow:0 28px 70px rgba(17,17,16,.13);isolation:isolate}
+.tool-network:before{content:"";position:absolute;inset:0;z-index:-2;opacity:.18;
+                     background-image:radial-gradient(circle,rgba(244,242,236,.55) 1px,transparent 1.5px);
+                     background-size:32px 32px}
+.network-lines{position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible}
+.network-lines path{fill:none;stroke:rgba(244,242,236,.25);stroke-width:1.25;stroke-dasharray:3 8}
+.network-bar{position:absolute;top:17px;left:20px;right:20px;display:flex;justify-content:space-between;gap:14px;z-index:2;
+             font-family:'Space Mono',monospace;font-size:9px;line-height:1.4;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,242,236,.5)}
+.company-core{position:absolute;left:50%;top:50%;width:clamp(220px,24vw,320px);aspect-ratio:1;transform:translate(-50%,-50%);
+              display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px;border-radius:50%;
+              background:radial-gradient(circle at 31% 26%,#FFF4B6 0,#F7DC64 25%,#B79932 64%,#44360D 100%);
+              border:1px solid rgba(255,241,159,.84);box-shadow:0 0 0 15px rgba(247,220,100,.05),0 0 0 34px rgba(247,220,100,.025),0 34px 80px rgba(0,0,0,.48)}
+.company-core:after{content:"";position:absolute;inset:-17%;border:1px dashed rgba(247,220,100,.35);border-radius:50%;animation:core-spin 34s linear infinite}
+.core-kicker{font-family:'Space Mono',monospace;font-size:clamp(10px,1vw,12px);letter-spacing:.15em;text-transform:uppercase;color:rgba(17,17,16,.62)}
+.company-core strong{font-size:clamp(24px,2.7vw,38px);line-height:1.02;letter-spacing:-.045em;max-width:8ch;margin-top:12px}
+.source-card{position:absolute;width:min(27%,310px);min-height:126px;padding:17px 18px;border:1px solid rgba(244,242,236,.16);border-radius:13px;
+             background:linear-gradient(145deg,rgba(52,51,46,.96),rgba(25,25,22,.98));color:#F4F2EC;
+             box-shadow:0 20px 48px rgba(0,0,0,.33),inset 0 1px 0 rgba(255,255,255,.07);animation:network-float 5.5s ease-in-out infinite}
+.source-card .source-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.source-card svg{width:23px;height:23px;flex:0 0 auto;fill:currentColor}
+.source-card .source-name{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#C8C6BE}
+.source-card strong{display:block;color:#F4F2EC;font-size:clamp(15px,1.35vw,18px);line-height:1.28;letter-spacing:-.012em;font-weight:600}
+.source-card.shopify{left:4%;top:8%;color:#95BF47}.source-card.meta{right:4%;top:8%;color:#6FA8FF}
+.source-card.hubspot{left:3%;top:39%;color:#FF7A59}.source-card.gmail{right:3%;top:39%;color:#EA4335}
+.source-card.aftership{left:6%;bottom:7%;color:#F4F2EC}.source-card.quickbooks{right:6%;bottom:7%;color:#2CA01C}
+.source-card:nth-of-type(2){animation-delay:-.8s}.source-card:nth-of-type(3){animation-delay:-1.6s}.source-card:nth-of-type(4){animation-delay:-2.4s}
+.source-card:nth-of-type(5){animation-delay:-3.2s}.source-card:nth-of-type(6){animation-delay:-4s}
+.network-note{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:16px;font-family:'Space Mono',monospace;
+              font-size:12px;letter-spacing:.06em;color:var(--soft)}
+.network-note a{color:var(--ink);font-weight:700;text-decoration-thickness:1px;text-underline-offset:4px}
+.mechanism-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(36px,4vw,54px);border-top:1px solid var(--faint);border-bottom:1px solid var(--faint)}
+.mechanism-note{padding:clamp(22px,2.7vw,34px) clamp(18px,2.4vw,30px)}
+.mechanism-note+ .mechanism-note{border-left:1px solid var(--faint)}
+.mechanism-note .mini{display:block;margin-bottom:13px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.mechanism-note .sub{margin:0;font-size:clamp(16px,1.4vw,19px);line-height:1.58}
+@keyframes network-float{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-9px) rotateX(1.5deg)}}
+@keyframes core-spin{to{transform:rotate(360deg)}}
+@media (max-width:980px){
+  .tool-network{min-height:740px}.source-card{width:min(31%,270px)}
+  .source-card.hubspot{top:40%}.source-card.gmail{top:40%}
+}
+@media (max-width:760px){
+  .tool-network{display:grid;grid-template-columns:1fr 1fr;gap:10px;min-height:0;padding:18px;background:var(--dark)}
+  .network-bar{position:relative;inset:auto;grid-column:1/-1;order:-2;padding-bottom:10px;border-bottom:1px solid rgba(244,242,236,.12)}
+  .network-lines{display:none}.company-core{position:relative;left:auto;top:auto;transform:none;grid-column:1/-1;order:-1;width:min(68vw,270px);margin:22px auto 32px}
+  .source-card,.source-card.shopify,.source-card.meta,.source-card.hubspot,.source-card.gmail,.source-card.aftership,.source-card.quickbooks{
+    position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto;min-height:130px;padding:14px;animation:none}
+  .source-card strong{font-size:14px}
+  .mechanism-notes{grid-template-columns:1fr}.mechanism-note+ .mechanism-note{border-left:0;border-top:1px solid var(--faint)}
+}
+@media (max-width:330px){.tool-network{grid-template-columns:1fr}.company-core{grid-column:auto}.source-card{min-height:0}}
+
+/* FOUNDER VIEW — a Claude-style company workspace, kept inside VNMSFX typography and color semantics. */
+.founder-ai{margin-top:clamp(32px,4vw,54px);border:1px solid #292822;border-radius:18px;overflow:hidden;background:#F7F5EF;
+            box-shadow:0 34px 80px rgba(17,17,16,.18),0 2px 8px rgba(17,17,16,.08)}
+.ai-topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 18px;border-bottom:1px solid #DDD9CF;background:#FFFCF5}
+.ai-brand{display:flex;align-items:center;gap:11px}.ai-spark{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;background:#D97757;color:#FFF;font-size:18px}
+.ai-brand strong{display:block;font-size:14px;line-height:1.2}.ai-brand small{display:block;margin-top:2px;font-size:11px;color:#706E67}
+.ai-sample{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#74716A}
+.ai-body{min-height:510px;padding:clamp(18px,3vw,34px);background:linear-gradient(180deg,#F7F5EF 0,#EEEBE3 100%)}
+.ai-empty{display:flex;align-items:center;justify-content:center;gap:8px;height:26px;margin-bottom:16px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:#8B887F;text-transform:uppercase}
+.ai-empty:before,.ai-empty:after{content:"";width:38px;height:1px;background:#D2CEC3}
+.ai-response{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.founder-ai.is-sent .ai-response,.founder-ai.is-static .ai-response{opacity:1;transform:none}
+.ai-user-question{max-width:560px;margin-left:auto;padding:11px 15px;border-radius:16px 16px 5px 16px;background:#E4E0D7;color:#282722;
+                  font-size:15px;box-shadow:0 7px 18px rgba(17,17,16,.08)}
+.ai-answer-head{display:flex;align-items:flex-start;gap:12px;margin:24px 0 15px}.ai-answer-head .ai-spark{width:27px;height:27px;border-radius:8px;font-size:15px;flex:0 0 auto}
+.ai-answer-head p{font-size:clamp(16px,1.5vw,19px);line-height:1.45;max-width:60ch;color:#35342F}
+.attention-list{display:grid;gap:10px}
+.attention-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:15px 16px;border:1px solid #D8D3C8;border-radius:12px;background:#FFFCF7;
+                opacity:0;transform:translateY(10px);box-shadow:0 8px 24px rgba(17,17,16,.05)}
+.founder-ai.is-sent .attention-item,.founder-ai.is-static .attention-item{animation:attention-in .46s ease forwards}
+.founder-ai .attention-item:nth-child(2){animation-delay:.15s}.founder-ai .attention-item:nth-child(3){animation-delay:.3s}
+.attention-index{font-family:'Space Mono',monospace;font-size:11px;color:#77746C}
+.attention-copy strong{display:block;font-size:clamp(16px,1.55vw,20px);line-height:1.24;letter-spacing:-.015em}.attention-copy span{display:block;margin-top:5px;font-size:12px;color:#77746C}
+.attention-action{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:#514F49;white-space:nowrap}
+.ai-composer-wrap{padding:0 clamp(18px,3vw,34px) clamp(18px,3vw,30px);background:#EEEBE3}
+.ai-composer{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;min-height:64px;padding:10px 11px 10px 16px;
+             border:1px solid #C8C4BA;border-radius:17px;background:#FFFDF8;box-shadow:0 10px 30px rgba(17,17,16,.10),inset 0 1px 0 #FFF}
+.ai-plus{font-size:22px;color:#7C7971;line-height:1}.typed-question{font-size:15px;color:#34332F;min-height:1.5em}.typing-cursor{display:inline-block;width:1px;height:1.1em;margin-left:2px;background:#4B4943;vertical-align:-2px;animation:cursor-blink .72s steps(1) infinite}
+.founder-ai.is-sent .typing-cursor,.founder-ai.is-static .typing-cursor{display:none}.founder-ai.is-sent .typed-question{color:#AAA69C}
+.ai-send{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#2B2A26;color:#FFF;font-size:18px;box-shadow:0 6px 15px rgba(17,17,16,.18)}
+.founder-ai.is-typing .ai-send{animation:send-pulse 1.1s ease-in-out infinite}.founder-ai.is-sent .ai-send{background:#D97757}
+@keyframes attention-in{to{opacity:1;transform:none}}@keyframes cursor-blink{50%{opacity:0}}@keyframes send-pulse{50%{transform:translateY(-2px);box-shadow:0 9px 18px rgba(17,17,16,.24)}}
+@media (max-width:720px){
+  .ai-body{min-height:590px;padding:18px 14px}.ai-composer-wrap{padding:0 14px 16px}.ai-sample{display:none}
+  .attention-item{grid-template-columns:auto minmax(0,1fr)}.attention-action{grid-column:2;white-space:normal}.ai-user-question{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .company-core:after,.source-card,.typing-cursor,.founder-ai.is-typing .ai-send{animation:none}
+  .ai-response,.attention-item{opacity:1;transform:none;transition:none}
+}
 /* LIST */
 .list{margin-top:clamp(30px,3.4vw,50px);border-top:1px solid var(--faint)}
 .item{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);gap:clamp(16px,3vw,44px);padding:22px 0;border-bottom:1px solid var(--faint);align-items:baseline}
@@ -335,13 +430,47 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     <p class="lab"><span class="chip g">02</span>How it works</p>
     <div>
       <h2 class="say wide">One AI system keeps checking the process we audited and shows your team what needs attention.</h2>
-      <p class="sub">Your team uses the system through your company&rsquo;s AI account, such as Claude Team or ChatGPT Business&mdash;not anyone&rsquo;s personal account. We agree on the exact account before I build anything.</p>
-      <p class="sub">Behind the chat, the system uses only the business information you approve&mdash;for example, Shopify orders, HubSpot sales activity, Gmail messages or Notion project updates.</p>
-      <p class="sub">Before I build it, we agree on what the system should check. It then shows the person responsible anything late, missing or different from what was supposed to happen, along with the original order, email or file. Your team decides what to do. It does not change your books, orders, inventory or payments, and it does not contact customers or vendors on its own.</p>
     </div>
   </div>
-  <p class="sig">Examples of business tools and files the system may check</p>
-  <div class="toolroll" role="region" aria-label="Examples of business tools and files a project may check"><div class="track"><span>Shopify</span><span>QuickBooks</span><span>HubSpot</span><span>Notion</span><span>Apollo</span><span>Gmail</span><span>Spreadsheets</span><span>Order files</span><span>Shopify</span><span>QuickBooks</span><span>HubSpot</span><span>Notion</span><span>Apollo</span><span>Gmail</span><span>Spreadsheets</span><span>Order files</span></div></div>
+  <div class="tool-network" role="img" aria-label="Illustrative examples of possible business tools. A standard Build selects up to four approved tools or recurring files for one audited process.">
+    <div class="network-bar" aria-hidden="true"><span>Your business · Monday 7:41 AM</span><span>Examples shown · one Build uses up to 4</span></div>
+    <svg class="network-lines" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M260 105 C380 135 420 210 500 325"/><path d="M740 105 C620 135 580 210 500 325"/>
+      <path d="M250 325 C355 325 415 325 500 325"/><path d="M750 325 C645 325 585 325 500 325"/>
+      <path d="M270 545 C380 510 425 440 500 325"/><path d="M730 545 C620 510 575 440 500 325"/>
+    </svg>
+    <article class="source-card shopify">
+      <div class="source-head"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#shopify"/></svg><span class="source-name">Shopify</span></div>
+      <strong>14 paid orders missed their ship promise.</strong>
+    </article>
+    <article class="source-card meta">
+      <div class="source-head"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#meta"/></svg><span class="source-name">Meta Ads</span></div>
+      <strong>31 reported sales are missing from paid store orders.</strong>
+    </article>
+    <article class="source-card hubspot">
+      <div class="source-head"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#hubspot"/></svg><span class="source-name">HubSpot</span></div>
+      <strong>12 buyer conversations have no next step.</strong>
+    </article>
+    <article class="source-card gmail">
+      <div class="source-head"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#gmail"/></svg><span class="source-name">Gmail</span></div>
+      <strong>North Market has not replied in four days.</strong>
+    </article>
+    <article class="source-card aftership">
+      <div class="source-head"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#aftership"/></svg><span class="source-name">AfterShip</span></div>
+      <strong>8 paid orders still have no carrier scan.</strong>
+    </article>
+    <article class="source-card quickbooks">
+      <div class="source-head"><svg aria-hidden="true"><use href="/assets/tool-logos.svg#quickbooks"/></svg><span class="source-name">QuickBooks</span></div>
+      <strong>A $4,820 short-pay must be challenged by Friday.</strong>
+    </article>
+    <div class="company-core" aria-hidden="true"><span class="core-kicker">Your business</span><strong>3 things need attention today</strong></div>
+  </div>
+  <p class="network-note"><span>These six logos are examples. A Build uses up to four approved tools or recurring files for the process we audited.</span><a href="how-it-connects.html">See how the connection works &rarr;</a></p>
+  <div class="mechanism-notes">
+    <article class="mechanism-note"><span class="mini">How your team uses it</span><p class="sub">Your team uses the system through your company&rsquo;s AI account, such as Claude Team or ChatGPT Business&mdash;not anyone&rsquo;s personal account. We agree on the exact account before I build anything.</p></article>
+    <article class="mechanism-note"><span class="mini">What it checks</span><p class="sub">Behind the chat, the system uses only the business information you approve&mdash;for example, Shopify orders, HubSpot sales activity, Gmail messages or Notion project updates.</p></article>
+    <article class="mechanism-note"><span class="mini">What happens next</span><p class="sub">Before I build it, we agree on what the system should check. It then shows the person responsible anything late, missing or different from what was supposed to happen, along with the original order, email or file. Your team decides what to do. It does not change your books, orders, inventory or payments, and it does not contact customers or vendors on its own.</p></article>
+  </div>
   <div class="list">
     <div class="item"><h3>First — the Leak Audit</h3><p>On the free call, I choose the process in your business most worth checking. I send you a one-page Audit plan that says exactly what I will review and why. You approve it before paying. After you approve the plan, sign the agreement, pay and provide the agreed access, information and answers, I confirm the start date and deliver the Audit within five business days. The report shows what happened, whether anything was missed or delayed, what is still unknown and whether I recommend building a system. Nothing is installed or changed during the Audit.</p></div>
     <div class="item"><h3>Then — test the first working part of your system</h3><p>If the Audit shows there is a useful system to build and you continue, your team can test its first working part within 10 business days after the Build starts. It does one real job and shows the problem, the information behind it and the next step.</p></div>
@@ -389,17 +518,35 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
 </div></section>
 
-<section class="tint"><div class="w">
+<section class="tint" id="example-day"><div class="w">
   <div class="duo">
     <p class="lab"><span class="chip g">05</span>Example day</p>
-    <div><h2 class="say">Monday morning, without rebuilding the whole story.</h2></div>
+    <div><h2 class="say wide">Ask one question. See the three calls only you can make.</h2><p class="sub">The system does the checking. You decide what gets challenged, fixed or followed up.</p></div>
   </div>
-  <div class="tiles">
-    <div class="tile quote"><h3>The system did the checking.<br>Your team makes the call.</h3></div>
-    <div class="tile"><div><h3>7:40</h3><p>Coffee. “What changed since Friday?”</p></div><div style="margin-top:16px"><h3>7:41</h3><p>The system shows what is late, missing or different from what should have happened&mdash;with the original order, email or file behind each item.</p></div></div>
-    <div class="tile"><div><h3>7:45</h3><p>Your team reviews the items and assigns or approves the next step.</p></div><div style="margin-top:16px"><h3>8:00</h3><p>You are deciding&mdash;not chasing the answer.</p></div></div>
+  <div class="founder-ai" data-founder-ai>
+    <div class="ai-topbar">
+      <div class="ai-brand"><span class="ai-spark" aria-hidden="true">✦</span><span><strong>Claude Team</strong><small>Your company workspace</small></span></div>
+      <span class="ai-sample">Illustrative view · Monday 7:41 AM</span>
+    </div>
+    <div class="ai-body">
+      <div class="ai-empty">Company attention check</div>
+      <div class="ai-response" aria-live="polite">
+        <div class="ai-user-question">What needs my attention today?</div>
+        <div class="ai-answer-head"><span class="ai-spark" aria-hidden="true">✦</span><p>Three things need your call today. I checked the approved company tools and put the original information behind each one.</p></div>
+        <div class="attention-list">
+          <article class="attention-item"><span class="attention-index">01</span><div class="attention-copy"><strong>Challenge the $4,820 distributor short-pay by Friday.</strong><span>QuickBooks · Gmail · delivery receipt</span></div><span class="attention-action">Review proof &rarr;</span></article>
+          <article class="attention-item"><span class="attention-index">02</span><div class="attention-copy"><strong>Fourteen paid orders missed their ship promise.</strong><span>Shopify · AfterShip · promised dates</span></div><span class="attention-action">Assign recovery &rarr;</span></article>
+          <article class="attention-item"><span class="attention-index">03</span><div class="attention-copy"><strong>North Market is 13 days past its normal reorder window.</strong><span>Shopify · HubSpot · last Gmail conversation</span></div><span class="attention-action">Draft check-in &rarr;</span></article>
+        </div>
+      </div>
+    </div>
+    <div class="ai-composer-wrap">
+      <div class="ai-composer" role="img" aria-label="What needs my attention today? being typed into the company Claude workspace">
+        <span class="ai-plus" aria-hidden="true">+</span><span class="typed-question"><span data-typed-question></span><span class="typing-cursor" aria-hidden="true"></span></span><span class="ai-send" aria-hidden="true">↑</span>
+      </div>
+    </div>
   </div>
-  <p class="sig">Illustrative day. Before the Build starts, we agree on exactly what the system checks and how often it checks.</p>
+  <p class="sig">Illustrative day. Before the Build starts, we agree on exactly what the system checks, which company tools it can read and how often it checks.</p>
 </div></section>
 
 <section><div class="w">
@@ -510,6 +657,28 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.addEventListener('keydown', function(e){ if(e.key==='Escape'&&nav.getAttribute('data-open')==='true'){ set(false); btn.focus(); } });
   Array.prototype.forEach.call(nav.querySelectorAll('.pills a'), function(a){ a.addEventListener('click', function(){ set(false); }); });
   matchMedia('(min-width:761px)').addEventListener('change', function(m){ if(m.matches) set(false); });
+})();
+/* Type one real founder question when the example enters view, then reveal the checked items. */
+(function(){
+  var demo=document.querySelector('[data-founder-ai]'), typed=document.querySelector('[data-typed-question]');
+  if(!demo||!typed) return;
+  var question='What needs my attention today?', reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, started=false;
+  if(reduce){typed.textContent=question;demo.classList.add('is-static');return;}
+  function start(){
+    if(started) return;started=true;demo.classList.add('is-typing');
+    var index=0,timer=setInterval(function(){
+      index+=1;typed.textContent=question.slice(0,index);
+      if(index>=question.length){
+        clearInterval(timer);demo.classList.remove('is-typing');
+        setTimeout(function(){demo.classList.add('is-sent');},420);
+      }
+    },58);
+  }
+  if('IntersectionObserver' in window){
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){if(entry.isIntersecting){start();observer.disconnect();}});
+    },{threshold:.32});observer.observe(demo);
+  }else{start();}
 })();
 </script>
 <script>
