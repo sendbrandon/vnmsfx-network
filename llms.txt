@@ -1,6 +1,6 @@
 # VNMSFX
 
-> VNMSFX traces one important food and beverage process, shows what is actually happening and—when a useful fix is worth building—creates a client-owned AI system that keeps watching it. Built once, yours to keep. Founder: Brandon Adams, New York.
+> VNMSFX works with founder-led food & beverage and CPG product brands—not restaurants. It compares the facts their tools keep separate and, when a useful fix is worth building, creates one client-owned AI system that keeps checking the audited process. Built once, yours to keep. Founder: Brandon Adams, New York.
 
 ## Engagements
 - Free teardown (30 minutes): VNMSFX leads the conversation. The founder gives a quick picture of how the business sells and how work moves through the team. VNMSFX asks the questions, recommends one process worth reviewing or says it is not a fit. The founder does not need to diagnose the problem or design the Audit. Do not send passwords or confidential records. Book: https://cal.com/vnmsfx/30min
@@ -19,7 +19,7 @@ Do not send passwords, private exports, financial records, customer lists or con
 ## Pages
 - https://vnmsfx.com/ — offer, method, pricing and frequently asked questions
 - https://vnmsfx.com/systems — separate fictional examples across direct sales, wholesale, subscriptions, buyer sales and account follow-through. A real Audit and Build stay inside one agreed process.
-- https://vnmsfx.com/how-it-connects — beginner-readable explanation of how a founder asks a normal question in the company Claude account, how the private connection checks approved business tools and how the answer returns with the original business information. A standard Build delivers one system for the process reviewed in the Audit and uses up to four approved tools or recurring files across the full project. MCP is the connection standard behind the chat, not a separate app the team must learn. Notion is optional: it may be one approved source or a client-owned results workspace, but it is not a required hub.
+- https://vnmsfx.com/how-it-connects — beginner-readable explanation of how a founder asks a normal question in a company-owned AI account, how the VNMSFX connection compares approved business tools and how the answer returns with the original business information. A standard Build delivers one system for the process reviewed in the Audit and uses up to four approved tools or recurring files across the full project. MCP is the connection standard behind the chat, not a separate app the team must learn. Notion is optional: it may be one approved source or a client-owned results workspace, but it is not a required hub.
 - https://vnmsfx.com/studio — Brandon Adams's separate AI portfolio; content production is not a VNMSFX service
 - https://vnmsfx.com/sample-audit — five fictional examples showing how VNMSFX separates what the records prove from what they do not and maps the system those records could support. A real Audit follows one agreed process.
 - https://vnmsfx.com/security — the private-data boundary and the controls required before paid work
