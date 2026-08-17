@@ -170,6 +170,11 @@ mark{background:var(--yellow);color:var(--ink);padding:0 4px}
 .pcol.a p{color:var(--soft)}
 .pcol.b p{color:#D8D6CE}
 .pcol p+p{margin-top:9px}
+/* one human on the page that asks for money */
+.runby{display:flex;align-items:center;gap:14px;margin:0 0 16px;padding-bottom:16px;border-bottom:1px solid rgba(17,17,16,.13)}
+.runby img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:0 0 auto;display:block}
+.runby span{font-size:clamp(13.5px,1.15vw,15px);line-height:1.5;color:var(--soft)}
+.runby strong{display:block;color:var(--ink);font-size:clamp(14.5px,1.25vw,16px);letter-spacing:-.01em;margin-bottom:2px}
 .found{margin-top:clamp(16px,2vw,22px);font-family:'Space Mono',monospace;font-size:clamp(13px,1.15vw,15px);letter-spacing:.04em;line-height:1.65;color:var(--ink);background:var(--card);border-radius:var(--r);padding:16px 22px;max-width:84ch}
 
 .ctaP{background:var(--dark);border-radius:var(--r);padding:clamp(30px,4.2vw,54px) clamp(22px,3vw,44px);color:#F4F2EC;text-align:center;margin-top:clamp(8px,1.2vw,14px)}
@@ -366,6 +371,10 @@ footer a{color:var(--soft);text-decoration:none}
   <div class="pricebox">
     <div class="pcol a">
       <p class="amt">$750</p>
+      <div class="runby">
+        <img src="/assets/brandon.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Brandon Adams">
+        <span><strong>Brandon Adams runs it.</strong>Not a team, not a tool. The person who reads the answers is the person who writes the fix plan.</span>
+      </div>
       <h3>What it costs, what it takes</h3>
       <p>One brand per engagement. You confirm your brand facts&mdash;products, prices, policies&mdash;so wrong answers can be proven wrong. That takes you about 15 minutes.</p>
       <p>The audit uses public information only. No passwords, no exports, no customer data, nothing confidential. There is nothing to install and nothing changes on your site during the audit.</p>

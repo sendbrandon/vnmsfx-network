@@ -148,6 +148,44 @@ test('AI Visibility Audit page states the OFFER.md v2.4 unit without over-promis
   assert.equal(count('rv'), 8);
 });
 
+test('the signal fixes hold: a face on the money page, a visual audit link, the bio early', () => {
+  const home = read('index.html');
+  const audit = read('ai-visibility-audit.html');
+
+  // 1. A human appears on the page that asks for money.
+  assert.match(audit, /class="runby"/);
+  assert.match(audit, /assets\/brandon\.jpg/);
+  assert.match(audit, /Brandon Adams runs it\./);
+
+  // 2. The homepage audit link is a visual card, not a bare text line.
+  assert.match(home, /class="auditcard"/);
+  assert.doesNotMatch(home, /<p class="syslink"><a href="\/ai-visibility-audit">/);
+  const cells = home.match(/<span class="ac-grid"[^>]*>([\s\S]*?)<\/span>/);
+  assert.ok(cells, 'audit card should carry its score strip');
+  assert.equal((cells[1].match(/<b /g) || []).length, 25, 'strip is one full 25-question row');
+  // colours must beat the base cell rule, the specificity trap that greyed this out once
+  assert.match(home, /\.ac-grid b\.c\{background:var\(--volt\)\}/);
+
+  // 3. The bio runs early and the section numbering stayed in order.
+  const order = [...home.matchAll(/<span class="chip [rgy]">(\d\d)<\/span>([^<]+)</g)]
+    .map((m) => `${m[1]} ${m[2].trim()}`);
+  assert.deepEqual(order, [
+    '01 The problem',
+    '02 Who builds it',
+    '03 How it works',
+    '04 The method in practice',
+    '05 What you get',
+    '06 Example day',
+    '07 Ownership',
+    '08 Pricing',
+    '09 Questions',
+  ]);
+  // the alternating tint band must still alternate, or two same-colour zones collide
+  const sections = [...home.matchAll(/<section(\s[^>]*)?>/g)].map((m) => (m[1] || ''));
+  const tinted = sections.map((a) => a.includes('tint'));
+  assert.deepEqual(tinted, [true, false, true, false, true, false, true, false, true]);
+});
+
 test('AI Visibility Audit page is wired into the site, not an orphan', () => {
   const home = read('index.html');
   const sitemap = read('sitemap.xml');

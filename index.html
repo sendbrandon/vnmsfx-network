@@ -323,6 +323,23 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offse
 .syslink{margin-top:clamp(18px,2.2vw,28px)}
 .syslink a{font-family:'Space Mono',monospace;font-size:clamp(13px,1.2vw,15px);letter-spacing:.06em;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 .syslink a:hover{color:var(--ink)}
+/* AUDIT CARD — the front-rung product gets a picture, not a text link.
+   The cells are the same four scores the audit reports; colours must out-specify
+   the base .ac-grid b rule or every cell renders grey. */
+.auditcard{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);margin-top:clamp(18px,2.2vw,26px);
+           padding:clamp(16px,1.9vw,22px) clamp(18px,2.1vw,26px);border-radius:var(--r);background:var(--dark);
+           text-decoration:none;color:#F4F2EC;max-width:74ch;box-shadow:0 18px 44px rgba(17,17,16,.16)}
+.auditcard:hover{background:#1D1C18}
+.ac-grid{display:grid;grid-template-columns:repeat(5,10px);gap:3px;flex:0 0 auto}
+.ac-grid b{display:block;width:10px;height:15px;border-radius:2px;background:#2C2B27}
+.ac-grid b.c{background:var(--volt)}.ac-grid b.wr{background:var(--red)}
+.ac-grid b.a{background:#57554E}.ac-grid b.rv{background:var(--yellow)}
+.ac-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.ac-k{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--volt)}
+.ac-h{font-size:clamp(17px,1.6vw,21px);font-weight:600;letter-spacing:-.018em;line-height:1.25}
+.ac-go{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.06em;color:#B7B5AD}
+.auditcard:hover .ac-go{color:#F4F2EC}
+@media (max-width:600px){.auditcard{gap:14px;padding:15px 16px}.ac-grid{grid-template-columns:repeat(5,8px)}.ac-grid b{width:8px;height:12px}}
 .gut{max-width:920px;margin:clamp(28px,3.4vw,44px) 0 0;padding-left:clamp(18px,2.2vw,28px);border-left:4px solid var(--ink)}
 .gut h3{font-size:clamp(23px,2.7vw,36px);line-height:1.12;letter-spacing:-.028em;max-width:37ch}
 .gut p{font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:var(--soft);max-width:72ch;margin-top:10px}
@@ -412,7 +429,14 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
   <p class="syslink"><a href="/systems">See what VNMSFX builds &rarr;</a></p>
   <p class="syslink"><a href="/leak-check">Not sure if that&rsquo;s you? Take the 5-minute check &rarr;</a></p>
-  <p class="syslink"><a href="/ai-visibility-audit">New &mdash; the $750 AI Visibility Audit: see what AI tells your buyers &rarr;</a></p>
+  <a class="auditcard" href="/ai-visibility-audit">
+    <span class="ac-grid" aria-hidden="true"><b class="c"></b><b class="a"></b><b class="c"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b><b class="rv"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="rv"></b><b class="c"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b></span>
+    <span class="ac-copy">
+      <span class="ac-k">New &middot; $750 &middot; 3 business days</span>
+      <span class="ac-h">Your buyers are asking AI about you. See the answers.</span>
+      <span class="ac-go">The AI Visibility Audit &rarr;</span>
+    </span>
+  </a>
   <div class="gut">
     <h3>The problem is not that your team cannot fix it. The problem is that nobody sees it soon enough.</h3>
     <p>Any one mistake is easy to fix after you see it. VNMSFX is for the harder problem: your business still depends on you checking different people and tools, connecting the dots and sounding the alarm.</p>
@@ -422,9 +446,23 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
 </div></section>
 
-<section id="how"><div class="w">
+<section><div class="w">
   <div class="duo">
-    <p class="lab"><span class="chip g">02</span>How it works</p>
+    <p class="lab"><span class="chip y">02</span>Who builds it</p>
+    <div class="bio">
+      <div>
+        <h2 class="say">One person. On purpose.</h2>
+        <p class="sub">I'm Brandon Adams, based in New York. I design and build every VNMSFX system myself. My separate AI portfolio shows AI work I have produced. No juniors, no handoffs: the person on the call builds the project.</p>
+        <p class="sig"><a href="mailto:brandon@vnmsfx.com">brandon@vnmsfx.com</a><br><a href="https://www.linkedin.com/in/brandonalexanderadams/" target="_blank" rel="noopener">LinkedIn ↗</a><br><a href="/studio">Separate AI portfolio ↗</a></p>
+      </div>
+      <img src="assets/brandon.jpg" alt="Brandon Adams">
+    </div>
+  </div>
+</div></section>
+
+<section class="tint" id="how"><div class="w">
+  <div class="duo">
+    <p class="lab"><span class="chip g">03</span>How it works</p>
     <div>
       <h2 class="say wide">Meet SIGHT.</h2>
       <p class="sub">SIGHT is the AI system I build for you, inside your company&rsquo;s own ChatGPT or Claude account. It keeps checking the process we audited, compares what your tools each know separately, and shows your team what needs attention&mdash;with the order, email or file behind every answer.</p>
@@ -463,9 +501,9 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
   </div></section>
 
-<section class="tint" id="work"><div class="w">
+<section id="work"><div class="w">
   <div class="duo">
-    <p class="lab"><span class="chip y">03</span>The method in practice</p>
+    <p class="lab"><span class="chip y">04</span>The method in practice</p>
     <div><h2 class="say">A New York food brand ran its biggest annual campaign yet&mdash;with one system keeping the work visible.</h2></div>
   </div>
   <div class="case">
@@ -487,9 +525,9 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
 </div></section>
 
-<section><div class="w">
+<section class="tint"><div class="w">
   <div class="duo">
-    <p class="lab"><span class="chip r">04</span>What you get</p>
+    <p class="lab"><span class="chip r">05</span>What you get</p>
     <div><h2 class="say">The Audit shows what happened. The Build gives your team a system that keeps watching.</h2><p class="sub">These are examples of what that system can do. Your Build Plan names exactly what is included.</p></div>
   </div>
   <div class="list">
@@ -502,9 +540,9 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
 </div></section>
 
-<section class="tint" id="example-day"><div class="w">
+<section id="example-day"><div class="w">
   <div class="duo">
-    <p class="lab"><span class="chip g">05</span>Example day</p>
+    <p class="lab"><span class="chip g">06</span>Example day</p>
     <div><h2 class="say wide">Ask one question. See the three calls only you can make.</h2><p class="sub">The system does the checking. You decide what gets challenged, fixed or followed up.</p></div>
   </div>
   <div class="founder-ai" data-founder-ai>
@@ -531,20 +569,6 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     </div>
   </div>
   <p class="sig">Illustrative day. Before the Build starts, we agree on exactly what the system checks, which company tools it can read and how often it checks.</p>
-</div></section>
-
-<section><div class="w">
-  <div class="duo">
-    <p class="lab"><span class="chip y">06</span>Who builds it</p>
-    <div class="bio">
-      <div>
-        <h2 class="say">One person. On purpose.</h2>
-        <p class="sub">I'm Brandon Adams, based in New York. I design and build every VNMSFX system myself. My separate AI portfolio shows AI work I have produced. No juniors, no handoffs: the person on the call builds the project.</p>
-        <p class="sig"><a href="mailto:brandon@vnmsfx.com">brandon@vnmsfx.com</a><br><a href="https://www.linkedin.com/in/brandonalexanderadams/" target="_blank" rel="noopener">LinkedIn ↗</a><br><a href="/studio">Separate AI portfolio ↗</a></p>
-      </div>
-      <img src="assets/brandon.jpg" alt="Brandon Adams">
-    </div>
-  </div>
 </div></section>
 
 <section class="tint"><div class="w">
