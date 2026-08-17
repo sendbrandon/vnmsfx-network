@@ -103,15 +103,24 @@ h2.say{font-size:clamp(20px,2.3vw,28px);font-weight:600;letter-spacing:-.02em;ma
 @keyframes cursor-blink{50%{opacity:0}}
 
 /* ————— THE SCORE GRID — 25 questions × 3 assistants ————— */
-.gridwrap{margin-top:clamp(20px,2.6vw,30px);background:var(--dark);border-radius:var(--r);padding:clamp(18px,2.6vw,30px);color:#F4F2EC}
+.gridwrap{position:relative;margin-top:clamp(20px,2.6vw,30px);background:var(--dark);border-radius:var(--r);padding:clamp(18px,2.6vw,30px);color:#F4F2EC}
 .gridwrap .gk{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9C9A92;margin-bottom:14px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .scoregrid{display:grid;grid-template-columns:auto 1fr;gap:7px 10px;align-items:center}
 .scoregrid .rowlab{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9C9A92;white-space:nowrap}
 .cells{display:grid;grid-template-columns:repeat(25,minmax(0,1fr));gap:3px}
-.cells b{display:block;min-width:0;aspect-ratio:1/1.6;border-radius:2px;background:#2C2B27}
+.cells b{display:block;min-width:0;aspect-ratio:1/1.6;border-radius:2px;background:#2C2B27;cursor:pointer;transition:transform .14s ease}
+.cells b:hover{transform:scale(1.3);outline:1.5px solid rgba(244,242,236,.65);outline-offset:1px;position:relative;z-index:2}
 .cells b.c{background:var(--volt)}.cells b.wr{background:var(--red)}.cells b.a{background:#57554E}.cells b.rv{background:var(--yellow)}
+/* the wrong answers keep pulsing — they are the reason the audit exists */
+.cells b.wr{animation:wrongpulse 2.6s ease-in-out 1.2s infinite}
 .gridwrap.is-run .cells b{animation:cellin .3s ease both;animation-delay:calc(var(--i)*28ms)}
+.gridwrap.is-run .cells b.wr{animation:cellin .3s ease both,wrongpulse 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*28ms),calc(var(--i)*28ms + 1.4s)}
 @keyframes cellin{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes wrongpulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(142,31,18,0)}50%{opacity:.78;box-shadow:0 0 9px 2.5px rgba(142,31,18,.65)}}
+.gridtip{position:absolute;top:0;left:0;pointer-events:none;background:#FFFCF5;color:var(--ink);border-radius:8px;padding:9px 12px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.03em;line-height:1.55;box-shadow:0 14px 34px rgba(0,0,0,.4);max-width:300px;opacity:0;transform:translateY(5px);transition:opacity .14s ease,transform .14s ease;z-index:5}
+.gridtip.on{opacity:1;transform:none}
+.gridtip b{display:block;font-weight:700;margin-bottom:3px}
+.gridtip .gt-w{color:var(--red)}.gridtip .gt-c{color:#5F710F}.gridtip .gt-a{color:var(--soft)}.gridtip .gt-r{color:#7A6A12}
 .gridlegend{display:flex;gap:clamp(12px,2vw,24px);flex-wrap:wrap;margin-top:16px;font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.05em;color:#D8D6CE}
 .gridlegend em{font-style:normal;display:inline-flex;align-items:center;gap:7px}
 .gridlegend i{width:10px;height:14px;border-radius:2px;display:inline-block}
@@ -181,7 +190,8 @@ footer a{color:var(--soft);text-decoration:none}
 @media (prefers-reduced-motion:reduce){
   .avdemo.is-armed .ai-answer,.avdemo.is-armed .rival,.avdemo.is-armed .absent-stamp{opacity:1;transform:none}
   .avdemo.is-typing .typing-cursor{animation:none}
-  .gridwrap.is-run .cells b{animation:none}
+  .cells b.wr,.gridwrap.is-run .cells b,.gridwrap.is-run .cells b.wr{animation:none}
+  .cells b,.cells b:hover{transition:none;transform:none}
 }
 </style>
 </head>
@@ -244,7 +254,7 @@ footer a{color:var(--soft);text-decoration:none}
       <em><i class="la"></i>Brand absent &middot; 17</em>
       <em><i class="lr"></i>Rival recommended &middot; 8</em>
     </div>
-    <p class="gridnote">This is what one run looks like. Every cell is a real answer, screenshotted on a stated run date, scored one of four ways. The wrong answers, the absences and the rival recommendations become your gap list&mdash;and each one gets a plain-language fix.</p>
+    <p class="gridnote">Touch or hover any cell to see the buyer question behind it. Every cell is a real answer, screenshotted on a stated run date, scored one of four ways. The pulsing red cells are the wrong answers&mdash;those, the absences and the rival recommendations become your gap list, and each one gets a plain-language fix.</p>
   </div>
 </section>
 
@@ -417,6 +427,37 @@ footer a{color:var(--soft);text-decoration:none}
     var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){grid.classList.add('is-run');o.disconnect();}});},{threshold:.3});
     o.observe(grid);
   }else{grid.classList.add('is-run');}
+})();
+/* Touch or hover a cell: show which buyer question it is and how that answer scored.
+   Pointer enhancement only — the full question list and scores live in the sections below. */
+(function(){
+  var wrap=document.querySelector('[data-scoregrid]');
+  if(!wrap)return;
+  var qtexts=[];
+  [].slice.call(document.querySelectorAll('.qblocks .qb'),0,5).forEach(function(b){
+    [].forEach.call(b.querySelectorAll('ol li'),function(li){qtexts.push(li.textContent.replace(/\s+/g,' ').trim());});
+  });
+  if(qtexts.length!==25)return;
+  var names={c:['CORRECT','gt-c'],wr:['WRONG','gt-w'],a:['BRAND ABSENT','gt-a'],rv:['RIVAL RECOMMENDED','gt-r']};
+  var tip=document.createElement('div');tip.className='gridtip';tip.setAttribute('aria-hidden','true');wrap.appendChild(tip);
+  function show(cell){
+    var i=parseInt(cell.style.getPropertyValue('--i'),10);
+    if(isNaN(i))return;
+    var q=(i%25)+1,row=Math.floor(i/25)+1,s=names[cell.className.split(' ')[0]];
+    if(!s)return;
+    tip.innerHTML='<b class="'+s[1]+'">Q'+q+' · '+s[0]+'</b>“'+qtexts[q-1]+'” — assistant '+row;
+    var r=cell.getBoundingClientRect(),w=wrap.getBoundingClientRect();
+    tip.classList.add('on');
+    var left=r.left-w.left+r.width/2-tip.offsetWidth/2;
+    left=Math.max(8,Math.min(left,w.width-tip.offsetWidth-8));
+    var top=r.top-w.top-tip.offsetHeight-9;
+    if(top<4)top=r.bottom-w.top+9;
+    tip.style.left=left+'px';tip.style.top=top+'px';
+  }
+  function target(e){var t=e.target;return t&&t.closest?t.closest('.cells b'):null;}
+  wrap.addEventListener('mouseover',function(e){var c=target(e);if(c)show(c);});
+  wrap.addEventListener('click',function(e){var c=target(e);if(c)show(c);});
+  wrap.addEventListener('mouseleave',function(){tip.classList.remove('on');});
 })();
 </script>
 <script>

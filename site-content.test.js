@@ -123,6 +123,11 @@ test('AI Visibility Audit page states the OFFER.md v2.4 unit without over-promis
   // Visible without JavaScript: staged hiding only applies under the JS-added armed class.
   assert.match(html, /\.avdemo\.is-armed \.ai-answer/);
   assert.doesNotMatch(html, /\.ai-answer\{opacity:0/);
+  // The wrong cells pulse, the grid is touchable, and reduced-motion kills both.
+  assert.match(html, /wrongpulse/);
+  assert.match(html, /gridtip/);
+  assert.match(html, /Touch or hover any cell/);
+  assert.match(html, /\.cells b\.wr,\.gridwrap\.is-run \.cells b,\.gridwrap\.is-run \.cells b\.wr\{animation:none\}/);
   // Its JSON-LD parses and carries the price.
   const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   assert.equal(blocks.length, 1);
