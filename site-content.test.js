@@ -80,12 +80,77 @@ test('SIGHT is placed as one system identity without renaming unrelated pages', 
   assert.ok((sample.match(/\bSIGHT\b/g) || []).length <= 12, 'sample page should stay focused on the method');
 });
 
-test('machine-readable category copy stays direct without expanding the held offer', () => {
+test('machine-readable category copy stays direct and the released audit stays consistent', () => {
   const home = read('index.html');
   const llms = read('llms.txt');
   assert.match(home, /CPG product brands&mdash;not restaurants/);
   assert.match(llms, /CPG product brands—not restaurants/);
-  assert.doesNotMatch(llms, /AI Visibility Audit|\$750/);
+  // Brandon released the AI Visibility Audit for the site 2026-08-15 ($750 confirmed) and
+  // ordered the page built 2026-08-17. The old guard forbade it here while the offer was held;
+  // the guard now checks the released offer is stated consistently instead of absent.
+  assert.match(llms, /The AI Visibility Audit \(\$750\)/);
+  assert.match(llms, /https:\/\/vnmsfx\.com\/ai-visibility-audit/);
+  assert.match(llms, /no promise of future AI rankings/);
+  assert.match(llms, /credits in full toward a Leak Audit signed and paid within 60 calendar days/);
+});
+
+test('AI Visibility Audit page states the OFFER.md v2.4 unit without over-promising', () => {
+  const html = read('ai-visibility-audit.html');
+  const text = visibleText(html);
+  // The unit facts: price, clock, counts.
+  assert.match(text, /\$750/);
+  assert.match(text, /3 business days|three business days/i);
+  assert.match(text, /25 buyer questions/);
+  assert.match(text, /3 named assistants|three named AI assistants/);
+  assert.match(text, /75 screenshotted answers|75 answers/);
+  // The credit rule, both directions of the 60-day clock.
+  assert.match(text, /credits in full toward the \$2,500/);
+  assert.match(text, /60 calendar days/);
+  // The boundaries the offer requires stated on any public surface.
+  assert.match(text, /No promise of future AI rankings, recommendations, mentions, traffic or revenue/);
+  assert.match(text, /a later re-run is a new engagement, not a defect/);
+  assert.match(text, /no found-nothing refund/i);
+  assert.match(text, /public information only/i);
+  // The demonstration is invented and says so.
+  assert.match(text, /invented to show the method/);
+  assert.match(text, /Uncle Ott/);
+  // The CTA is a direct request, not a checkout; no payment surface exists for this page.
+  // (The shared attribution snippet's selector may name Stripe; an actual link may not.)
+  assert.match(html, /mailto:brandon@vnmsfx\.com\?subject=AI%20Visibility%20Audit/);
+  assert.doesNotMatch(html, /href="https:\/\/buy\.stripe\.com/);
+  // Front-rung page: SIGHT belongs two rungs later and stays off it.
+  assert.doesNotMatch(text, /\bSIGHT\b/);
+  // Visible without JavaScript: staged hiding only applies under the JS-added armed class.
+  assert.match(html, /\.avdemo\.is-armed \.ai-answer/);
+  assert.doesNotMatch(html, /\.ai-answer\{opacity:0/);
+  // Its JSON-LD parses and carries the price.
+  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.equal(blocks.length, 1);
+  const ld = JSON.parse(blocks[0][1]);
+  assert.equal(ld.offers.price, '750');
+  // Grid tallies stay arithmetically honest: 41+9+17+8 = 75.
+  assert.match(html, /Correct &middot; 41/);
+  assert.match(html, /Wrong &middot; 9/);
+  assert.match(html, /Brand absent &middot; 17/);
+  assert.match(html, /Rival recommended &middot; 8/);
+  const cellRows = [...html.matchAll(/<div class="cells"[^>]*>([\s\S]*?)<\/div>/g)];
+  assert.equal(cellRows.length, 3);
+  const all = cellRows.map((m) => m[1]).join('');
+  const count = (cls) => (all.match(new RegExp(`class="${cls}"`, 'g')) || []).length;
+  assert.equal(count('c'), 41);
+  assert.equal(count('wr'), 9);
+  assert.equal(count('a'), 17);
+  assert.equal(count('rv'), 8);
+});
+
+test('AI Visibility Audit page is wired into the site, not an orphan', () => {
+  const home = read('index.html');
+  const sitemap = read('sitemap.xml');
+  assert.match(home, /href="\/ai-visibility-audit"/);
+  assert.match(sitemap, /<loc>https:\/\/vnmsfx\.com\/ai-visibility-audit<\/loc>/);
+  // The page carries the same site-wide Apollo tracker as every other page.
+  const page = read('ai-visibility-audit.html');
+  assert.match(page, /66eda3fd04a18c066ea397ad/);
 });
 
 test('JSON-LD remains valid and the systems comparison stays semantic', () => {

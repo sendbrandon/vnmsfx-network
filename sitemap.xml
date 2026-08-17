@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://vnmsfx.com/</loc><lastmod>2026-08-15</lastmod><priority>1.0</priority></url>
+<url><loc>https://vnmsfx.com/</loc><lastmod>2026-08-17</lastmod><priority>1.0</priority></url>
 <url><loc>https://vnmsfx.com/studio</loc><lastmod>2026-08-07</lastmod><priority>0.7</priority></url>
 <url><loc>https://vnmsfx.com/sample-audit</loc><lastmod>2026-08-07</lastmod><priority>0.6</priority></url>
+<url><loc>https://vnmsfx.com/ai-visibility-audit</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority></url>
 <url><loc>https://vnmsfx.com/systems</loc><lastmod>2026-08-15</lastmod><priority>0.8</priority></url>
 <url><loc>https://vnmsfx.com/how-it-connects</loc><lastmod>2026-08-15</lastmod><priority>0.6</priority></url>
 <url><loc>https://vnmsfx.com/leak-check</loc><lastmod>2026-08-10</lastmod><priority>0.7</priority></url>
