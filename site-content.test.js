@@ -194,6 +194,15 @@ test('AI Visibility Audit page is wired into the site, not an orphan', () => {
   // The page carries the same site-wide Apollo tracker as every other page.
   const page = read('ai-visibility-audit.html');
   assert.match(page, /66eda3fd04a18c066ea397ad/);
+
+  // Its share card is the audit card, not the generic logo lockup — the image
+  // that appears wherever the link is pasted (Slack, iMessage, LinkedIn).
+  assert.match(page, /property="og:image" content="https:\/\/vnmsfx\.com\/og-audit\.jpg"/);
+  assert.match(page, /name="twitter:image" content="https:\/\/vnmsfx\.com\/og-audit\.jpg"/);
+  assert.doesNotMatch(page, /content="https:\/\/vnmsfx\.com\/og\.jpg"/);
+  assert.ok(fs.existsSync(path.join(root, 'og-audit.jpg')), 'og-audit.jpg must ship with the page');
+  // the alt text must describe the card, since the card is not the site's default image
+  assert.match(page, /og:image:alt" content="AI Visibility Audit\./);
 });
 
 test('JSON-LD remains valid and the systems comparison stays semantic', () => {
