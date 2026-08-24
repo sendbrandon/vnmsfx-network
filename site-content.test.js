@@ -214,3 +214,61 @@ test('JSON-LD remains valid and the systems comparison stays semantic', () => {
   assert.doesNotMatch(systems, /class="sales-check" role="img"/);
   assert.match(systems, /See how SIGHT reaches the approved tools/);
 });
+
+test('Leak Check has one honest 11-total / 10-scored contract', () => {
+  const html = read('leak-check.html');
+  const text = visibleText(html);
+  assert.match(text, /Eleven quick questions/);
+  assert.match(html, /<b>5 minutes<\/b>&nbsp;· result before email/);
+  assert.match(html, /<span id="total">11<\/span>/);
+  assert.match(html, /var SURVEY_VERSION='v4-2026-08-24'/);
+  assert.match(html, /answers:answers\.slice\(1\)/);
+  assert.doesNotMatch(html, /<span id="total">10<\/span>/);
+  assert.doesNotMatch(html, /\btopTheme\(/, 'the failure-path typo must not return');
+});
+
+test('homepage makes the operational check a first-choice path and separates public AI visibility', () => {
+  const html = read('index.html');
+  const nav = html.match(/<span class="pills" id="navmenu">([\s\S]*?)<\/span>/);
+  const hero = html.match(/<div class="hero-actions">([\s\S]*?)<\/div>/);
+  assert.ok(nav && hero);
+  assert.match(nav[1], /href="\/leak-check">5-Minute Check/);
+  assert.match(hero[1], /href="\/leak-check"><span>5 minutes &middot; result before email/);
+  const problemStart = html.indexOf('<section class="tint" id="leak">');
+  const nextSection = html.indexOf('<section>', problemStart);
+  const audit = html.indexOf('class="auditcard"');
+  const pricing = html.indexOf('<section id="pricing">');
+  assert.ok(audit > pricing, 'the AI audit must sit in its separate pricing block');
+  assert.ok(audit > nextSection, 'the AI audit must not remain in the operational problem section');
+  assert.match(html, /A separate public-visibility offer/);
+  assert.match(html, /This is not an operations check\./);
+  assert.match(html, /Not ready to talk\? Take the 5-minute check\. See your result before email/);
+});
+
+test('Hobby-safe funnel milestones and booking routes are wired on every analytics page', () => {
+  const events = read('assets/conversion-events.js');
+  [
+    'leak_check_start',
+    'leak_check_complete',
+    'leak_check_email_submit',
+    'teardown_click',
+    'teardown_booked',
+  ].forEach((name) => assert.match(events, new RegExp(`['"]${name}['"]`)));
+  assert.match(events, /\/book-teardown/);
+  assert.match(events, /Object\.assign\(\{\}, saved, found\)/);
+
+  const pages = fs.readdirSync(root).filter((name) => name.endsWith('.html'));
+  const analyticsPages = pages.filter((name) => /\/_vercel\/insights\/script\.js/.test(read(name)));
+  analyticsPages.forEach((name) => {
+    assert.match(read(name), /assets\/conversion-events\.js/, `${name} should load the shared funnel state`);
+  });
+
+  const click = read('book-teardown.html');
+  assert.match(click, /record\('teardown_click'/);
+  assert.match(click, /location\.replace\(destination\.toString\(\)\)/);
+  const booked = read('booking-confirmed.html');
+  assert.match(booked, /query\.get\('uid'\)/);
+  assert.match(booked, /record\('teardown_booked'/);
+  assert.match(booked, /history\.replaceState\(\{\},'',location\.pathname\)/);
+  assert.match(read('privacy.html'), /current Vercel plan counts page views but not custom events/);
+});

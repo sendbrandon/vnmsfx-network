@@ -118,6 +118,8 @@ const PROCESS = {
 };
 
 const THEME_ORDER = ["FULFILLMENT", "RECONCILIATION", "VISIBILITY", "OWNERSHIP"];
+const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref"];
+const LEAK_EVENT_KEYS = ["leak_check_start", "leak_check_complete", "leak_check_email_submit"];
 
 function bad(res, code, message) {
   res.status(code).json({ ok: false, error: message });
@@ -126,6 +128,25 @@ function bad(res, code, message) {
 function esc(text) {
   return String(text).replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function cleanMap(value, keys, maximum) {
+  const input = value && typeof value === "object" ? value : {};
+  const output = {};
+  keys.forEach((key) => {
+    const cleaned = String(input[key] == null ? "" : input[key]).trim().slice(0, maximum || 200);
+    if (cleaned) output[key] = cleaned;
+  });
+  return output;
+}
+
+function bookingUrl(attribution) {
+  const url = new URL("https://vnmsfx.com/book-teardown");
+  ATTRIBUTION_KEYS.forEach((key) => {
+    if (attribution[key]) url.searchParams.set(key, attribution[key]);
+  });
+  url.searchParams.set("placement", "leak_check_receipt");
+  return url.toString();
 }
 
 // ── Reply deadline: ONE source of truth ──────────────────────────────────────
@@ -182,7 +203,11 @@ module.exports = async function handler(req, res) {
   const key = process.env.RESEND_API_KEY;
 
   if (req.method === "GET" && req.query && req.query.probe === "vx-probe") {
-    if (!key) return res.status(200).json({ keyPresent: false });
+    if (!key) return res.status(200).json({
+      keyPresent: false,
+      leadStoreConfigured: leadStore.configured(),
+      leadStoreBackend: leadStore.backendKind(),
+    });
     try {
       const r = await fetch("https://api.resend.com/domains", { headers: { Authorization: "Bearer " + key } });
       const data = await r.json().catch(() => null);
@@ -190,9 +215,16 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({
         keyPresent: true, keyAccepted: r.ok, httpStatus: r.status,
         domains: Array.isArray(list) ? list.map((d) => ({ name: d.name, status: d.status })) : data,
+        leadStoreConfigured: leadStore.configured(),
+        leadStoreBackend: leadStore.backendKind(),
       });
     } catch (e) {
-      return res.status(200).json({ keyPresent: true, probeError: String(e && e.message) });
+      return res.status(200).json({
+        keyPresent: true,
+        probeError: String(e && e.message),
+        leadStoreConfigured: leadStore.configured(),
+        leadStoreBackend: leadStore.backendKind(),
+      });
     }
   }
 
@@ -220,6 +252,7 @@ module.exports = async function handler(req, res) {
   // Recompute everything from raw answers. Client-supplied scores are ignored.
   const flow = QUESTION_BANK.shared.concat(QUESTION_BANK[channel]);
   const answers = Array.isArray(body.answers) ? body.answers.slice(0, flow.length) : [];
+  if (answers.length !== flow.length) return bad(res, 400, "all 10 scored answers required");
   const themes = { VISIBILITY: 0, OWNERSHIP: 0, RECONCILIATION: 0, FULFILLMENT: 0 };
   // Points available per area, counted only over questions actually answered.
   // Without this, an area carrying one question could never outrank an area
@@ -228,16 +261,17 @@ module.exports = async function handler(req, res) {
   const worst = {};
   const noted = [];
   const transcript = [];
-  let points = 0, answered = 0, financeTouched = false;
+  let points = 0, answered = 0, financeTouched = false, invalidAnswer = false;
 
   flow.forEach((q, i) => {
     const a = answers[i];
     if (a === "na" || a === undefined || a === null) {
       if (q.na && a === "na") transcript.push({ q: q.q, a: "Doesn't apply (excluded)" });
+      else invalidAnswer = true;
       return;
     }
     const w = Number(a);
-    if (!Number.isInteger(w) || w < 0 || w > 2) return;
+    if (!Number.isInteger(w) || w < 0 || w > 2) { invalidAnswer = true; return; }
     answered++; points += w; themes[q.t] += w; themeMax[q.t] += 2;
     transcript.push({ q: q.q, a: q.opts[w] });
     if (w > 0) {
@@ -247,6 +281,7 @@ module.exports = async function handler(req, res) {
     }
   });
 
+  if (invalidAnswer) return bad(res, 400, "invalid scored answer");
   if (!answered) return bad(res, 400, "no scored answers");
 
   // Rank by share of each area's own available points, not raw totals.
@@ -297,29 +332,55 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify(payload),
     });
 
+  const attribution = cleanMap(body.attribution, ATTRIBUTION_KEYS, 200);
+  const rawEvents = cleanMap(body.funnelEvents, LEAK_EVENT_KEYS, 40);
+  const funnelEvents = {};
+  LEAK_EVENT_KEYS.forEach((keyName) => {
+    const value = rawEvents[keyName];
+    if (value && Number.isFinite(Date.parse(value))) funnelEvents[keyName] = new Date(value).toISOString();
+  });
+  const attributionText = ATTRIBUTION_KEYS
+    .map((keyName) => keyName + "=" + (attribution[keyName] || ""))
+    .join("\n");
+  const eventText = LEAK_EVENT_KEYS
+    .map((keyName) => keyName + "=" + (funnelEvents[keyName] || "NOT_RECORDED"))
+    .join("\n");
   const transcriptText = transcript.map((t) => "  Q: " + t.q + "\n  A: " + t.a).join("\n\n");
+  const storedAnswerText = transcriptText + "\n\nCAMPAIGN ATTRIBUTION\n" + attributionText +
+    "\n\nFUNNEL EVENTS\n" + eventText;
   const notedText = noted.length
     ? noted.map((n) => "- " + n.flag + " (" + n.severity + ")").join("\n")
     : "- none";
 
   // ── 1. Persist the lead FIRST. An email failure must never lose a prospect. ──
-  const attrib = (body.attribution && typeof body.attribution === "object") ? body.attribution : {};
   const str = (v) => String(v == null ? "" : v).slice(0, 200);
   let leadRecord = { persisted: false };
   try {
     leadRecord = await leadStore.createLead({
       submissionId, fingerprint: fingerprintHash, firstName, email, channelLabel,
       process: recommended ? recommended.name : "none indicated",
-      points, answered, financeTouched, notedText, transcriptText,
+      points, answered, financeTouched, notedText, transcriptText: storedAnswerText,
+      attributionText, eventText,
       replyDueIso, receivedIso: now.toISOString(),
-      source: str(attrib.utm_source || attrib.ref),
-      campaign: str(attrib.utm_campaign),
-      contentId: str(attrib.utm_content),
+      source: str(attribution.utm_source || attribution.ref || "direct"),
+      medium: str(attribution.utm_medium),
+      campaign: str(attribution.utm_campaign),
+      contentId: str(attribution.utm_content),
+      term: str(attribution.utm_term),
+      ref: str(attribution.ref),
+      page: str(body.page || "leak-check"),
       surveyVersion: str(body.surveyVersion),
     });
   } catch (e) {
     console.error("lead persist failed", e && e.message);
     leadRecord = { persisted: false, error: String(e && e.message).slice(0, 200) };
+  }
+
+  // The form promises a stored answer record and one owned reply task. Email
+  // alone is not that record, so fail closed into the honest mail-app fallback
+  // when the durable store is absent or unavailable.
+  if (!leadRecord.persisted) {
+    return res.status(503).json({ ok: false, error: "lead storage unavailable" });
   }
 
   // A retried submission already has a record and already had its emails sent.
@@ -343,6 +404,8 @@ module.exports = async function handler(req, res) {
       `Email:   ${email}\n` +
       `Sells:   ${channelLabel}\n` +
       `Received:${received}\n\n` +
+      `CAMPAIGN ATTRIBUTION\n${attributionText}\n\n` +
+      `FUNNEL EVENTS\n${eventText}\n\n` +
       (financeTouched ? `NOTE: a margin/cost answer was flagged — route that judgment to their finance owner.\n\n` : "") +
       // Their words come first. The scoring output sits at the bottom on
       // purpose: if the machine tells you what to think before you have read
@@ -383,7 +446,7 @@ follows up separately with one of three things:
 You can expect that reply by end of day ${deadline}.
 
 If you would rather just talk it through, the 30-minute teardown is free:
-https://cal.com/vnmsfx/30min
+${bookingUrl(attribution)}
 
 The check identifies areas worth examining. It does not prove that money was
 lost, and it is not a diagnosis of your business.
@@ -426,7 +489,7 @@ This automatic receipt does not add you to a newsletter.`;
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#3A3832;">
     Would you rather just talk it through? The 30-minute teardown is free &mdash;
-    <a href="https://cal.com/vnmsfx/30min" style="color:#111110;">pick a time here</a>.
+    <a href="${esc(bookingUrl(attribution))}" style="color:#111110;">pick a time here</a>.
   </td></tr>
   <tr><td style="padding:22px 32px 0 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F2EC;border:1px solid #E4E0D5;border-radius:8px;">

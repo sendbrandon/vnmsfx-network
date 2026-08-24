@@ -8,10 +8,10 @@
 // touching the handler:
 //   NOTION_TOKEN + NOTION_DATABASE_ID   -> Notion
 //   AIRTABLE_TOKEN + AIRTABLE_BASE_ID   -> Airtable
-//   neither                             -> not persisted (email still sends)
+//   neither                             -> not configured (intake fails closed)
 //
-// With no backend configured the caller still proceeds and the response says
-// the lead was not persisted, rather than implying a durable record exists.
+// With no backend configured the handler must not imply that the promised
+// stored answer record or reply task exists.
 
 const NOTION_VERSION = "2022-06-28";
 
@@ -42,7 +42,25 @@ function notionFetch(b, path, init) {
   }, init));
 }
 
+const REPLY_TASK = Object.freeze({
+  status: "NEW",
+  owner: "Brandon",
+  nextAction: "Send the personal reply",
+});
+
 const text = (v) => ({ rich_text: [{ text: { content: String(v == null ? "" : v).slice(0, 1900) } }] });
+
+// A Notion rich-text item is limited to 2,000 characters. Answer transcripts
+// can legitimately exceed that, so split them into multiple items instead of
+// silently cutting off the last questions or the campaign/event receipt.
+const longText = (v) => {
+  const value = String(v == null ? "" : v);
+  const chunks = [];
+  for (let index = 0; index < value.length; index += 1900) {
+    chunks.push({ text: { content: value.slice(index, index + 1900) } });
+  }
+  return { rich_text: chunks.length ? chunks : [{ text: { content: "" } }] };
+};
 
 // The reference number ends with a date-free hash of email+channel+answers.
 // Deduplicate on THAT, never on the whole reference number, which carries the
@@ -92,9 +110,9 @@ async function notionCreate(b, lead) {
     "First Name": text(lead.firstName),
     "Email": { email: lead.email },
     "Sells": text(lead.channelLabel),
-    "Status": { select: { name: "NEW" } },
-    "Owner": text("Brandon"),
-    "Next Action": text("Send the personal reply"),
+    "Status": { select: { name: REPLY_TASK.status } },
+    "Owner": text(REPLY_TASK.owner),
+    "Next Action": text(REPLY_TASK.nextAction),
     "Reply Due": { date: { start: lead.replyDueIso } },
     // Named a hint, not a recommendation: a questionnaire cannot rank
     // processes, and the column heading should not imply that it can.
@@ -103,7 +121,7 @@ async function notionCreate(b, lead) {
     "Answered": { number: lead.answered },
     "Finance Flagged": { checkbox: !!lead.financeTouched },
     "Areas Noted": text(lead.notedText),
-    "Answers": text(lead.transcriptText),
+    "Answers": longText(lead.transcriptText),
     "Source": text(lead.source),
     "Campaign": text(lead.campaign),
     "Content ID": text(lead.contentId),
@@ -156,8 +174,8 @@ async function airCreate(b, lead) {
   }
   const fields = {
     "Submission ID": lead.submissionId, "First Name": lead.firstName, "Email": lead.email,
-    "Sells": lead.channelLabel, "Status": "NEW", "Owner": "Brandon",
-    "Next Action": "Send the personal reply", "Reply Due": lead.replyDueIso,
+    "Sells": lead.channelLabel, "Status": REPLY_TASK.status, "Owner": REPLY_TASK.owner,
+    "Next Action": REPLY_TASK.nextAction, "Reply Due": lead.replyDueIso,
     "Routing Hint (unverified)": lead.process, "Score": lead.points, "Answered": lead.answered,
     "Finance Flagged": !!lead.financeTouched, "Areas Noted": lead.notedText,
     "Answers": lead.transcriptText, "Source": lead.source, "Campaign": lead.campaign,

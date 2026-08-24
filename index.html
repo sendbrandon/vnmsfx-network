@@ -339,6 +339,10 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offse
 .ac-h{font-size:clamp(17px,1.6vw,21px);font-weight:600;letter-spacing:-.018em;line-height:1.25}
 .ac-go{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.06em;color:#B7B5AD}
 .auditcard:hover .ac-go{color:#F4F2EC}
+.audit-separate{margin-top:clamp(28px,4vw,54px);padding-top:clamp(24px,3vw,38px);border-top:2px solid var(--ink)}
+.audit-separate .asep-k{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--soft)}
+.audit-separate h3{font-size:clamp(24px,3vw,40px);line-height:1.08;letter-spacing:-.03em;max-width:26ch;margin-top:10px}
+.audit-separate>p:not(.asep-k){font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:var(--soft);max-width:58ch;margin-top:10px}
 @media (max-width:600px){.auditcard{gap:14px;padding:15px 16px}.ac-grid{grid-template-columns:repeat(5,8px)}.ac-grid b{width:8px;height:12px}}
 .gut{max-width:920px;margin:clamp(28px,3.4vw,44px) 0 0;padding-left:clamp(18px,2.2vw,28px);border-left:4px solid var(--ink)}
 .gut h3{font-size:clamp(23px,2.7vw,36px);line-height:1.12;letter-spacing:-.028em;max-width:37ch}
@@ -375,7 +379,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 
 <nav>
   <button class="burger" id="menuBtn" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu"><span></span><span></span><span></span></button>
-  <span class="pills" id="navmenu"><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="/systems">What We Build</a><a class="pill" href="#pricing">Pricing</a></span>
+  <span class="pills" id="navmenu"><a class="pill" href="/leak-check">5-Minute Check</a><a class="pill" href="#work">Work</a><a class="pill" href="#how">Method</a><a class="pill" href="/systems">What We Build</a><a class="pill" href="#pricing">Pricing</a></span>
   <!-- CTA target: swap mailto for Calendly URL when live -->
   <a class="pill dk" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a>
 </nav>
@@ -402,7 +406,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
         <p class="hero-deck">Hidden problems cost you money. I build an AI-native system in your company&rsquo;s ChatGPT or Claude account, connected to your tools, to catch them sooner. Yours to keep.</p>
         <div class="hero-actions">
           <a class="cta" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a>
-          <a class="cta2" href="/sample-audit"><span>See a sample audit</span></a>
+          <a class="cta2" href="/leak-check"><span>5 minutes &middot; result before email</span></a>
         </div>
       </div>
       <figure class="hero-visual">
@@ -429,14 +433,6 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   </div>
   <p class="syslink"><a href="/systems">See what VNMSFX builds &rarr;</a></p>
   <p class="syslink"><a href="/leak-check">Not sure if that&rsquo;s you? Take the 5-minute check &rarr;</a></p>
-  <a class="auditcard" href="/ai-visibility-audit">
-    <span class="ac-grid" aria-hidden="true"><b class="c"></b><b class="a"></b><b class="c"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b><b class="rv"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="rv"></b><b class="c"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b></span>
-    <span class="ac-copy">
-      <span class="ac-k">New &middot; $750 &middot; 3 business days</span>
-      <span class="ac-h">Your buyers are asking AI about you. See the answers.</span>
-      <span class="ac-go">The AI Visibility Audit &rarr;</span>
-    </span>
-  </a>
   <div class="gut">
     <h3>The problem is not that your team cannot fix it. The problem is that nobody sees it soon enough.</h3>
     <p>Any one mistake is easy to fix after you see it. VNMSFX is for the harder problem: your business still depends on you checking different people and tools, connecting the dots and sounding the alarm.</p>
@@ -592,9 +588,22 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     <p>Founder-led food &amp; beverage and CPG product brands&mdash;not restaurants&mdash;four or more years in, with real sales and a small team. You sell direct, wholesale or subscriptions. You still have to chase updates and check several tools before you can tell what happened.<br><br>The business outgrew the spreadsheets. Everyone just worked harder.</p>
   </div>
   <div class="tiles price">
-    <div class="tile"><div><p class="amt">Free</p><h3>The teardown</h3><p>30 minutes, led by me. You give me the quick version of how you sell and how the team works. I ask the questions, choose the part of the business worth auditing or tell you it is not a fit. You do not need to diagnose the problem.</p><p class="samplelink"><a href="/ai-visibility-audit">Not ready to talk? Start with the $750 AI Visibility Audit &rarr;</a></p></div></div>
+    <div class="tile"><div><p class="amt">Free</p><h3>The teardown</h3><p>30 minutes, led by me. You give me the quick version of how you sell and how the team works. I ask the questions, choose the part of the business worth auditing or tell you it is not a fit. You do not need to diagnose the problem.</p><p class="samplelink"><a href="/leak-check">Not ready to talk? Take the 5-minute check. See your result before email &rarr;</a></p></div></div>
     <div class="tile"><div><p class="amt">$2,500</p><h3>The Leak Audit</h3><p>One important process in your business, checked from start to finish.</p><p>After the call, I send a one-page plan showing exactly what I will check, which orders, emails, reports or files I will use and which dates are covered. I explain why I chose it. You approve the plan before paying.</p><p>After you approve the plan, sign the agreement, pay and provide the agreed access, information and answers, I confirm the start date and deliver within five business days. You receive the report, the original information behind every finding, what needs attention and whether I recommend building a system, plus a 60-minute walkthrough. Nothing is installed or changed during the Audit.</p><p class="samplelink"><a href="/sample-audit">See a sample Audit &rarr;</a></p><a class="buy" href="https://cal.com/vnmsfx/30min" target="_blank" rel="noopener">Book a free teardown</a><p class="buynote">No checkout, passwords or confidential files on this page. I first make sure the Audit fits your business and explain exactly what I would review.</p></div></div>
     <div class="tile star"><div><p class="amt">$5,000/mo · 3 months</p><h3>The Build</h3><p><strong>SIGHT by VNMSFX.</strong> One AI system, owned by your company, for the process reviewed in the Audit. Across the Audit and Build, the project can use up to four included tools or recurring files.</p><p>Before you sign, the Build Plan lists exactly what I will build and how your team will test it.</p><p>Your team can test the first working part within 10 business days after the Build starts. Every promised part is ready for final testing by the end of week eight.</p><p>Month three covers final testing, training and handover. After you accept the finished system at handover, you get 30 days of no-cost fixes if it stops passing one of the written tests it passed at handover.</p></div></div>
+  </div>
+  <div class="audit-separate" id="ai-visibility">
+    <p class="asep-k">A separate public-visibility offer</p>
+    <h3>What does AI tell buyers about your brand?</h3>
+    <p>This is not an operations check. It looks only at public answers from named AI assistants.</p>
+    <a class="auditcard" href="/ai-visibility-audit">
+      <span class="ac-grid" aria-hidden="true"><b class="c"></b><b class="a"></b><b class="c"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b><b class="rv"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="rv"></b><b class="c"></b><b class="c"></b><b class="a"></b><b class="c"></b><b class="wr"></b><b class="c"></b><b class="c"></b></span>
+      <span class="ac-copy">
+        <span class="ac-k">$750 &middot; 3 business days</span>
+        <span class="ac-h">See what AI gets right, wrong or leaves out.</span>
+        <span class="ac-go">The AI Visibility Audit &rarr;</span>
+      </span>
+    </a>
   </div>
   <div class="sched">
     <p class="schedh">What you actually pay, in order</p>
@@ -699,12 +708,13 @@ var K='vx_attr',KEYS=['utm_source','utm_medium','utm_campaign','utm_content','ut
 q=new URLSearchParams(location.search),f={},s={};
 KEYS.forEach(function(k){var v=q.get(k);if(v)f[k]=String(v).slice(0,120);});
 try{s=JSON.parse(sessionStorage.getItem(K)||'{}');}catch(e){}
-if(Object.keys(f).length){s=f;try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
+if(Object.keys(f).length){s=Object.assign({},s,f);try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
 if(!Object.keys(s).length)return;
 Array.prototype.forEach.call(document.querySelectorAll('a[href*="cal.com/vnmsfx"],a[href*="buy.stripe.com"]'),function(a){
 try{var u=new URL(a.href);Object.keys(s).forEach(function(k){if(!u.searchParams.has(k))u.searchParams.set(k,s[k]);});a.href=u.toString();}catch(e){}});
 }catch(e){}})();
 </script>
+<script src="/assets/conversion-events.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

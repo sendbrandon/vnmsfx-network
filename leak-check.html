@@ -182,7 +182,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     <p class="sub">Eleven quick questions about how orders, follow-ups and records actually move through your business. At the end you&rsquo;ll see where I&rsquo;d look first and one check you can run yourself&mdash;before entering an email.</p>
     <p class="sub">Answer from your gut: how it <em>really</em> works, not how it&rsquo;s supposed to. Nothing to look up.</p>
     <div class="trustline">
-      <span><b>11 questions</b>&nbsp;· under five minutes</span>
+      <span><b>5 minutes</b>&nbsp;· result before email</span>
       <span><b>No logins</b>&nbsp;· no files, no confidential numbers</span>
     </div>
     <div class="startrow">
@@ -192,7 +192,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 
   <!-- PROGRESS — position only, never a running score -->
   <div class="meter" id="meter" aria-hidden="false">
-    <span><b id="done">0</b>&nbsp;/&nbsp;<span id="total">10</span></span>
+    <span><b id="done">0</b>&nbsp;/&nbsp;<span id="total">11</span></span>
     <span class="bar"><i id="fill"></i></span>
   </div>
 
@@ -297,7 +297,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
      can still be read against the survey it actually answered. v3 added a
      second fulfillment question (10 scored, was 9), reworded two flags, and
      switched ranking to share-of-own-maximum with ties reported. */
-  var SURVEY_VERSION='v3-2026-08-11';
+  var SURVEY_VERSION='v4-2026-08-24';
 
   var THEMES={
     VISIBILITY:{
@@ -409,7 +409,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     opts:["Direct online (our own store)","Wholesale / retail","Subscriptions","A mix"],
     keys:['direct','wholesale','subscription','mixed']};
 
-  var flow=[ROUTER], answers=[], idx=0, advanceTimer=null, channel=null;
+  var flow=[ROUTER], answers=[], idx=0, advanceTimer=null, channel=null, runEvents={};
 
   var intro=document.getElementById('intro'),
       meter=document.getElementById('meter'),
@@ -423,6 +423,13 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     channel=key;
     flow=[ROUTER].concat(SHARED, BY_CHANNEL[key]);
     total.textContent=flow.length;
+  }
+  function rememberEvent(name){
+    var item=window.vxFunnel&&window.vxFunnel.record
+      ? window.vxFunnel.record(name,{source:(window.vxFunnel.attribution().utm_source||window.vxFunnel.attribution().ref||''),campaign:(window.vxFunnel.attribution().utm_campaign||'')})
+      : null;
+    runEvents[name]=(item&&item.at)||new Date().toISOString();
+    return runEvents[name];
   }
   function refreshMeter(){
     var n=answers.filter(function(a){return a!==undefined&&a!==null;}).length;
@@ -522,6 +529,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
 
   function showResult(){
     var s=score(), tops=topThemes(s), top=tops[0], T=THEMES[top];
+    if(!runEvents.leak_check_complete) rememberEvent('leak_check_complete');
     stage.classList.add('hide');
     meter.classList.remove('on');
     result.classList.remove('hide');
@@ -579,13 +587,15 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   }
 
   document.getElementById('startBtn').addEventListener('click', function(){
+    if(!runEvents.leak_check_start) rememberEvent('leak_check_start');
     intro.classList.add('hide');
     meter.classList.add('on');
     refreshMeter();
     renderQuestion();
   });
   document.getElementById('retakeBtn').addEventListener('click', function(){
-    answers=[]; idx=0; flow=[ROUTER]; channel=null; total.textContent='11';
+    answers=[]; idx=0; flow=[ROUTER]; channel=null; runEvents={}; total.textContent='11';
+    rememberEvent('leak_check_start');
     result.classList.add('hide');
     document.getElementById('confirm').classList.add('hide');
     resetConfirmCopy();
@@ -616,11 +626,17 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
   function sellsLabel(){ return ROUTER.opts[answers[0]]||'Unstated'; }
 
   function mailtoFallback(name,email){
-    var s=score(), top=topTheme(s);
+    var s=score(), tops=topThemes(s), top=tops[0], attribution={};
+    try{attribution=window.vxFunnel?window.vxFunnel.attribution():JSON.parse(sessionStorage.getItem('vx_attr')||'{}');}catch(e){}
     var lines=['Name: '+name,'Sells: '+sellsLabel(),'Reply to: '+email,'',
                'First process to review: '+(s.points===0?'none indicated':THEMES[top].process),''];
     s.noted.forEach(function(l){ lines.push('- '+l.flag+(l.hot?' (worth checking)':' (keep an eye on)')); });
-    lines.push('','Please send my teardown prep.','','Found via vnmsfx.com/leak-check');
+    lines.push('','Please send my teardown prep.','','Found via vnmsfx.com/leak-check',
+      'Source: '+(attribution.utm_source||attribution.ref||'direct'),
+      'Medium: '+(attribution.utm_medium||''),
+      'Campaign: '+(attribution.utm_campaign||''),
+      'Content: '+(attribution.utm_content||''),
+      'Term: '+(attribution.utm_term||''));
     location.href='mailto:brandon@vnmsfx.com'
       +'?subject='+encodeURIComponent('Leak check — send my teardown prep')
       +'&body='+encodeURIComponent(lines.join('\n'));
@@ -640,13 +656,21 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
        so the scored answers start at index 1. */
     /* Carry the campaign that produced this lead so the source is never lost. */
     var attribution={};
-    try{ attribution=JSON.parse(sessionStorage.getItem('vx_attr')||'{}'); }catch(e){}
+    try{ attribution=window.vxFunnel?window.vxFunnel.attribution():JSON.parse(sessionStorage.getItem('vx_attr')||'{}'); }catch(e){}
+    /* The server's acceptance of this payload is the governing email-submit
+       event. If the request fails, no durable event is claimed. */
+    var submittedAt=new Date().toISOString();
     var payload={
       firstName:name,
       email:email,
       channel:channel,
       answers:answers.slice(1),
       attribution:attribution,
+      funnelEvents:{
+        leak_check_start:runEvents.leak_check_start||'',
+        leak_check_complete:runEvents.leak_check_complete||'',
+        leak_check_email_submit:submittedAt
+      },
       surveyVersion:SURVEY_VERSION,
       page:'leak-check'
     };
@@ -654,6 +678,7 @@ nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-5.8px) rot
     fetch('/api/leak-check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
       .then(function(r){ if(!r.ok) throw new Error('endpoint '+r.status); return r.json(); })
       .then(function(data){
+        rememberEvent('leak_check_email_submit');
         document.getElementById('payoff').classList.add('hide');
         document.getElementById('confirm').classList.remove('hide');
         /* State the exact deadline the server committed to, not a vague promise. */
@@ -691,12 +716,13 @@ var K='vx_attr',KEYS=['utm_source','utm_medium','utm_campaign','utm_content','ut
 q=new URLSearchParams(location.search),f={},s={};
 KEYS.forEach(function(k){var v=q.get(k);if(v)f[k]=String(v).slice(0,120);});
 try{s=JSON.parse(sessionStorage.getItem(K)||'{}');}catch(e){}
-if(Object.keys(f).length){s=f;try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
+if(Object.keys(f).length){s=Object.assign({},s,f);try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
 if(!Object.keys(s).length)return;
 Array.prototype.forEach.call(document.querySelectorAll('a[href*="cal.com/vnmsfx"],a[href*="buy.stripe.com"]'),function(a){
 try{var u=new URL(a.href);Object.keys(s).forEach(function(k){if(!u.searchParams.has(k))u.searchParams.set(k,s[k]);});a.href=u.toString();}catch(e){}});
 }catch(e){}})();
 </script>
+<script src="/assets/conversion-events.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

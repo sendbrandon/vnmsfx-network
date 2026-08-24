@@ -17,7 +17,7 @@ delete process.env.AIRTABLE_TOKEN;
 
 const store = require("./_lead-store.js");
 
-let DB = [];
+let DB = [], LAST_CREATE = null;
 global.fetch = async (url, opts) => {
   const body = opts && opts.body ? JSON.parse(opts.body) : {};
   if (String(url).endsWith("/query")) {
@@ -30,6 +30,7 @@ global.fetch = async (url, opts) => {
     return { ok: true, json: async () => ({ results: hit.slice(0, 1).map((r) => ({ id: "page-" + r.id })) }) };
   }
   const p = body.properties;
+  LAST_CREATE = body;
   DB.push({
     id: p["Submission ID"].title[0].text.content,
     email: p["Email"].email,
@@ -81,6 +82,22 @@ const CASES = [
   if (!ok) failed++;
   console.log(`  ${ok ? "PASS" : "FAIL"}  ${"hash not passed -> derived from the ID".padEnd(50)} rows=${DB.length}`);
 
-  console.log(failed ? `\n${failed} FAILING` : `\nAll ${CASES.length + 1} pass.`);
+  // A complete answer transcript must not be cut at Notion's single-item
+  // 2,000-character limit, and the record must carry exactly one clear task.
+  DB = []; LAST_CREATE = null;
+  const completeTranscript = "answer-receipt-".repeat(320);
+  await store.createLead(lead({ transcriptText: completeTranscript }));
+  const properties = LAST_CREATE && LAST_CREATE.properties;
+  const savedTranscript = properties && properties.Answers.rich_text
+    .map((item) => item.text.content).join("");
+  const taskOk = savedTranscript === completeTranscript &&
+    properties.Status.select.name === "NEW" &&
+    properties.Owner.rich_text[0].text.content === "Brandon" &&
+    properties["Next Action"].rich_text[0].text.content === "Send the personal reply" &&
+    Boolean(properties["Reply Due"].date.start);
+  if (!taskOk) failed++;
+  console.log(`  ${taskOk ? "PASS" : "FAIL"}  ${"complete transcript + one reply task".padEnd(50)} chars=${savedTranscript ? savedTranscript.length : 0}`);
+
+  console.log(failed ? `\n${failed} FAILING` : `\nAll ${CASES.length + 2} pass.`);
   process.exit(failed ? 1 : 0);
 })();

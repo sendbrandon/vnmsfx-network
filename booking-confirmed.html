@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Your teardown is booked | VNMSFX</title>
+<meta name="description" content="Your VNMSFX teardown is booked.">
+<meta name="theme-color" content="#141412">
+<style>
+:root{--bg:#141412;--ink:#F4F2EC;--soft:#B9B6AD;--card:#23231F;--volt:#DDFF3A}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}
+main{width:min(680px,100%);padding:clamp(28px,6vw,58px);border:1px solid #33322D;border-radius:16px;background:var(--card)}
+.mark{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--volt);color:#111110;font-weight:700;font-size:22px}
+h1{font-size:clamp(32px,7vw,58px);line-height:1.02;letter-spacing:-.045em;margin:22px 0 14px}p{font-size:clamp(17px,2vw,21px);line-height:1.65;color:var(--soft);max-width:48ch}
+.plain{font-size:14px;margin-top:28px;padding-top:22px;border-top:1px solid #3A3933}a{color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+  <span class="mark" aria-hidden="true">✓</span>
+  <h1 id="bookingHead">Your teardown is booked.</h1>
+  <p id="bookingBody">Bring the quick version of how you sell and where the team has to chase answers. You do not need to diagnose the problem before the call.</p>
+  <p class="plain">Cal sends the date, time and meeting details. If you need help, email <a href="mailto:brandon@vnmsfx.com">brandon@vnmsfx.com</a>.</p>
+</main>
+<script src="/assets/conversion-events.js"></script>
+<script>
+(function(){
+  var query=new URLSearchParams(location.search), uid=String(query.get('uid')||'').slice(0,120);
+  if(!uid){
+    document.getElementById('bookingHead').textContent='No booking was found on this page.';
+    document.getElementById('bookingBody').textContent='Use the date, time and meeting link in the confirmation Cal sent you, or email Brandon for help.';
+    return;
+  }
+  var once='vx_booked_'+uid, seen=false;
+  try{seen=sessionStorage.getItem(once)==='1';}catch(e){}
+  var values=window.vxFunnel.attribution();
+  if(!seen){
+    window.vxFunnel.record('teardown_booked',{
+      source:values.utm_source||values.ref||'',
+      campaign:values.utm_campaign||''
+    });
+    try{sessionStorage.setItem(once,'1');}catch(e){}
+  }
+  /* Cal forwards attendee fields to the success URL. Keep them out of the
+     analytics page view after the attribution and booking UID are read. */
+  history.replaceState({},'',location.pathname);
+  var analytics=document.createElement('script');
+  analytics.defer=true; analytics.src='/_vercel/insights/script.js';
+  document.head.appendChild(analytics);
+})();
+</script>
+</body>
+</html>

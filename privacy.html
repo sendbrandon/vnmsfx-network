@@ -92,6 +92,8 @@ footer a{color:var(--soft);text-decoration:none}
     <li>Google Fonts receives the IP address, browser details and page request needed to send the font file.</li>
     <li>Vercel Web Analytics counts page views without cookies. It stores anonymized page, referrer, general location, browser and device information for aggregate reports.</li>
     <li>If your link contains a campaign tag, this site keeps that tag in session storage for the current tab. If you click a Cal.com booking link or a Stripe payment link, the tag is added to that URL and sent to that provider so VNMSFX can see which outreach led to the booking or payment. The site does not use it to build an advertising profile. Closing the tab clears the stored tag.</li>
+    <li>The Leak Check keeps five plain funnel milestones in session storage: check started, check completed, email submitted, teardown clicked and teardown booked. If you submit the check, its first three milestone times are stored with the answers you chose. No name or email is added to the campaign tag or analytics event.</li>
+    <li>Because the current Vercel plan counts page views but not custom events, a teardown click briefly opens a VNMSFX route before Cal.com, and a completed Cal booking can return to a VNMSFX confirmation route. Those route views provide aggregate counts; the booking record and the VNMSFX prospect ledger remain the source for who booked.</li>
   </ul>
 </section>
 
@@ -132,12 +134,13 @@ var K='vx_attr',KEYS=['utm_source','utm_medium','utm_campaign','utm_content','ut
 q=new URLSearchParams(location.search),f={},s={};
 KEYS.forEach(function(k){var v=q.get(k);if(v)f[k]=String(v).slice(0,120);});
 try{s=JSON.parse(sessionStorage.getItem(K)||'{}');}catch(e){}
-if(Object.keys(f).length){s=f;try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
+if(Object.keys(f).length){s=Object.assign({},s,f);try{sessionStorage.setItem(K,JSON.stringify(s));}catch(e){}}
 if(!Object.keys(s).length)return;
 Array.prototype.forEach.call(document.querySelectorAll('a[href*="cal.com/vnmsfx"],a[href*="buy.stripe.com"]'),function(a){
 try{var u=new URL(a.href);Object.keys(s).forEach(function(k){if(!u.searchParams.has(k))u.searchParams.set(k,s[k]);});a.href=u.toString();}catch(e){}});
 }catch(e){}})();
 </script>
+<script src="/assets/conversion-events.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
