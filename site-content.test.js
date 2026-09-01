@@ -205,6 +205,29 @@ test('AI Visibility Audit page is wired into the site, not an orphan', () => {
   assert.match(page, /og:image:alt" content="AI Visibility Audit\./);
 });
 
+test('Tornado ships as a discoverable film page with an honest process archive', () => {
+  const page = read('tornado.html');
+  const studio = read('studio.html');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(page, /<h1 class="say">Tornado\.<\/h1>/);
+  assert.match(page, /<video controls playsinline preload="metadata" poster="tornado\/tornado-poster\.jpg"/);
+  assert.match(page, /<source src="tornado\/tornado-film-v12c\.mp4" type="video\/mp4">/);
+  assert.doesNotMatch(page, /<video[^>]*\sautoplay(?:\s|>)/);
+  assert.match(page, /Original production playbook\./);
+  assert.match(page, /earlier short-form cut/);
+  assert.equal((page.match(/tornado-playbook-page-\d{2}\.jpg/g) || []).length, 22);
+  assert.match(studio, /href="\/tornado"/);
+  assert.match(sitemap, /<loc>https:\/\/vnmsfx\.com\/tornado<\/loc>/);
+  assert.ok(fs.existsSync(path.join(root, 'tornado', 'tornado-film-v12c.mp4')));
+  assert.ok(fs.existsSync(path.join(root, 'tornado', 'tornado-containment-making-of-playbook.pdf')));
+  assert.ok(fs.existsSync(path.join(root, 'og-tornado.jpg')));
+
+  const blocks = [...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.equal(blocks.length, 1);
+  assert.equal(JSON.parse(blocks[0][1])['@type'], 'VideoObject');
+});
+
 test('JSON-LD remains valid and the systems comparison stays semantic', () => {
   const home = read('index.html');
   const systems = read('systems.html');
