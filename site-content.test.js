@@ -214,6 +214,11 @@ test('Tornado ships as a discoverable film page with an honest process archive',
   assert.match(page, /<video controls playsinline preload="metadata" poster="tornado\/tornado-poster\.jpg"/);
   assert.match(page, /<source src="tornado\/tornado-film-v12c\.mp4" type="video\/mp4">/);
   assert.doesNotMatch(page, /<video[^>]*\sautoplay(?:\s|>)/);
+  assert.match(page, /\.film\{[^}]*aspect-ratio:960\/451[^}]*overflow:hidden/);
+  assert.match(page, /\.film video\{[^}]*height:100%[^}]*object-fit:cover[^}]*object-position:50% 49\.44%/);
+  assert.doesNotMatch(page, /\.film\{[^}]*background:#050505/);
+  assert.match(page, /\.film-meta span\{white-space:nowrap\}/);
+  assert.match(page, /<span>2\.13:1<\/span>/);
   assert.match(page, /Original production playbook\./);
   assert.match(page, /earlier short-form cut/);
   assert.equal((page.match(/tornado-playbook-page-\d{2}\.jpg/g) || []).length, 22);
