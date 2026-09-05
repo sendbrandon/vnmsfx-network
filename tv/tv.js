@@ -2,7 +2,13 @@
   const videos = Array.from(document.querySelectorAll('video'));
   videos.forEach(video => {
     video.addEventListener('play', () => {
-      videos.forEach(other => { if (other !== video) other.pause(); });
+      videos.forEach(other => {
+        if (other === video) return;
+        other.pause();
+        // Abort paused downloads so a long viewing session cannot exhaust media connections.
+        // With preload="none", load() resets the short clip without downloading it again.
+        if (other.readyState > 0 || other.networkState === HTMLMediaElement.NETWORK_LOADING) other.load();
+      });
     });
     video.addEventListener('error', () => {
       const notice = video.parentElement.querySelector('.video-error');
