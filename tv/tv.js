@@ -88,9 +88,9 @@
     catch{$('#copy-status').textContent='Select and copy brandon@vnmsfx.com above.';}
   });
   const packages = {
-    spotlight: {name:'Product Spotlight',price:49,days:3,summary:'One finished product visual. Two additional layout variations. Ready for your feed and Stories.',items:['One polished hero image of your supplied product','Two layout variations using the same artwork','All three layouts in 4:5 and 9:16 — six finished image files','One consolidated minor revision']},
-    set: {name:'Product Set',price:99,days:3,summary:'Three coordinated product visuals, plus two layout variations of the hero image.',items:['Everything in Product Spotlight','Two additional compositions using the same product and visual direction','Five layouts in 4:5 and 9:16 — ten finished image files','One consolidated minor revision across the set']},
-    motion: {name:'Product Set + Motion',price:149,days:5,summary:'Three coordinated visuals, two hero layout variations and a six-second vertical motion loop.',items:['Everything in Product Set — ten finished image files','One 6-second 9:16 motion loop derived from the hero image','Controlled camera or background movement, preserving the product','One consolidated minor revision across the set']}
+    spotlight: {name:'Product Spotlight',price:49,days:3,summary:'One finished product image, with two alternate layouts of that same image.',math:'3 layouts × 2 sizes = 6 image files.',items:['One main product image','Two alternate layouts using that artwork','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One consolidated minor revision']},
+    set: {name:'Product Set',price:99,days:3,summary:'Three distinct product images in one coordinated look, with two alternate layouts of the main image.',math:'3 product images + 2 alternate layouts = 5 layouts. Each in 2 sizes = 10 image files.',items:['Three distinct images of the same supplied product','Two alternate layouts of the main image','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One consolidated minor revision across the set']},
+    motion: {name:'Product Set + Motion',price:149,days:5,summary:'The complete Product Set, plus a six-second vertical video made from the main image.',math:'5 layouts × 2 sizes = 10 image files, plus 1 video.',items:['Three distinct product images + two alternate layouts of the main image','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One 6-second vertical video with camera or background movement; product unchanged','One consolidated minor revision across the set; music excluded']}
   };
   // A signed-in account is not a working purchase link. Only verified live bindings expose Buy.
   function checkoutFor(key) {
@@ -122,6 +122,7 @@
     $('#pack-dialog-title').textContent=keepPair(pack.name);
     $('#pack-dialog-price').textContent=`$${pack.price} · one-time · USD`;
     $('#pack-dialog-summary').textContent=keepPair(pack.summary);
+    $('#pack-dialog-math').textContent=keepPair(pack.math);
     $('#pack-dialog-delivery').textContent=keepPair(`Delivery: ${pack.days} business days after usable assets and your complete brief arrive.`);
     const list=$('#pack-dialog-deliverables');list.replaceChildren(...pack.items.map(item=>{const li=document.createElement('li');li.textContent=keepPair(item);return li;}));
     const subject=`VNMSFX TV — ${pack.name} ($${pack.price})`;

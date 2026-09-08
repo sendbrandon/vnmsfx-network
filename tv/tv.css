@@ -44,9 +44,17 @@ dialog{color:var(--ink);border:0}dialog::backdrop{background:#000c}#film-dialog{
 @media(min-width:801px) and (max-width:950px){.starter-featured h3{font-size:20px;white-space:nowrap}}
 @media(max-width:600px){.cola-case-copy,.office-spread .spread-copy,.sweet-copy{align-self:stretch;width:100%;min-width:0}.contact-title h2 .type-line{font-size:20cqi}.hero-meta{grid-template-columns:1fr}.index-control{max-width:290px}.index-toggle{font-size:13px}.ticket-nav{display:grid;grid-template-columns:1fr auto 1fr;padding-inline:16px;gap:8px}.brand{position:static;transform:none}.brand img{width:70px}.brand>span{font-size:12px}.project-nav{justify-self:end;font-size:16px}.menu-toggle{justify-self:start;font-size:16px}.ticket-nav .project-nav>span{font-size:14px}.service-toggle>span:nth-child(2){font-size:5.6vw}}
 .statement-scene{grid-column:1/-1;min-width:0}.studio-grid h2 em{color:var(--ink);background:var(--acid);padding-inline:.025em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-@media(min-width:901px) and (prefers-reduced-motion:no-preference){.statement-scene{height:calc(37vw + 140px)}.statement-scene h2{position:sticky;top:95px}.studio-grid h2{font-size:16vw}}
+@media(min-width:901px){.studio-grid h2 em{display:inline-block;line-height:1.08;vertical-align:baseline;padding:.03em .025em .08em}}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){.statement-scene{min-height:calc(37vw + 140px);padding-bottom:80px}.statement-scene h2{position:sticky;top:95px}.studio-grid h2{font-size:16vw}}
 /* Live purchase controls appear only after a verified Stripe link is configured. */
 .pack-purchase+.pack-details-link{margin-top:10px;background:transparent;color:var(--ink);padding:8px 0;min-height:38px;font-weight:400;border-bottom:1px solid #777}.pack-purchase+.pack-details-link span{color:var(--ink)}
 #pack-checkout:not([hidden]){margin-bottom:12px}#pack-checkout:not([hidden])+#pack-email{background:#f2f2f2;color:var(--ink)}#pack-checkout:not([hidden])+#pack-email span{color:var(--ink)}
 
 .pack-delivery{font-size:13px;font-weight:600;margin:-8px 0 18px}.pack-delivery-note{font-size:14px;font-weight:600;margin:15px 0 22px;text-wrap:pretty}
+
+/* Keep the metric and its unit together, with its evidence directly underneath. */
+.reach-proof{justify-self:stretch;min-width:0;background:var(--acid);color:var(--ink);padding:clamp(18px,2vw,30px);container-type:inline-size}
+.reach-proof .reach-total{font:clamp(50px,22cqi,110px)/1.08 var(--display);letter-spacing:-.025em;white-space:nowrap}
+.reach-total .reach-number{font:inherit;margin:0}.reach-total .reach-unit{font:.45em/1 var(--display);margin:0 0 0 .12em;letter-spacing:0}
+.reach-proof .reach-context{font:11px/1.5 var(--mono);margin-top:12px}.reach-proof a{color:var(--ink);border-color:#10101088;line-height:1.5}
+.pack-math{font-size:14px;font-weight:600;padding:14px 0;margin:14px 0;border-block:1px solid var(--line);text-wrap:pretty}
