@@ -73,9 +73,31 @@
   player.addEventListener('loadedmetadata',()=>{dialog.dataset.orientation=player.videoHeight>player.videoWidth?'portrait':'landscape';});
   player.addEventListener('error',()=>{if(player.getAttribute('src'))$('.player-error').hidden=false;});
   $('#player-project').addEventListener('click',closePlayer);
+  // Native horizontal scrolling keeps touch and vertical page scrolling available.
+  const archive=$('#archive-gallery'), archiveControls=$('.archive-controls');
+  const archivePrev=$('#archive-prev'), archiveNext=$('#archive-next');
+  function updateArchiveControls(){
+    const max=archive.scrollWidth-archive.clientWidth;
+    archiveControls.hidden=max<=2;
+    archivePrev.disabled=archive.scrollLeft<=2;
+    archiveNext.disabled=archive.scrollLeft>=max-2;
+  }
+  function stepArchive(direction){
+    const card=archive.querySelector('.archive-film:not([hidden])');
+    if(!card)return;
+    const step=card.getBoundingClientRect().width+parseFloat(getComputedStyle(archive).columnGap);
+    archive.scrollBy({left:direction*step,behavior:reduced.matches?'instant':'smooth'});
+  }
+  archivePrev.addEventListener('click',()=>stepArchive(-1));
+  archiveNext.addEventListener('click',()=>stepArchive(1));
+  archive.addEventListener('scroll',updateArchiveControls,{passive:true});
+  addEventListener('resize',updateArchiveControls);
+  document.fonts?.ready.then(updateArchiveControls);
+  updateArchiveControls();
   document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
     document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
     document.querySelectorAll('.archive-film').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.category!==button.dataset.filter;});
+    archive.scrollTo({left:0,behavior:'instant'});requestAnimationFrame(updateArchiveControls);
   }));
   document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{$('#interest').value=link.dataset.interest;}));
   $('#brief-form').addEventListener('submit',e=>{

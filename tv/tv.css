@@ -62,3 +62,24 @@ dialog{color:var(--ink);border:0}dialog::backdrop{background:#000c}#film-dialog{
 .pack-math{font-size:14px;font-weight:600;padding:14px 0;margin:14px 0;border-block:1px solid var(--line);text-wrap:pretty}
 
 .sweet-copy .campaign-result{margin-block:28px;max-width:650px}.reach-proof .reach-attribution{font:11px/1.5 var(--body);margin-top:8px;text-wrap:pretty}
+
+/* On mobile, introduce the campaign, show its media, then show the result. */
+.sweet-project .chapter-inner{row-gap:28px}
+.sweet-copy{align-self:end}.sweet-copy>p:not(.eyebrow){margin-bottom:0}
+.sweet-project .sweet-visual{grid-row:1 / span 2;align-self:center}
+.sweet-outcome{grid-column:1;grid-row:2;align-self:start;min-width:0;width:100%}
+.sweet-outcome .campaign-result{margin:0 0 28px;max-width:650px}
+.archive-controls{display:none}.archive-grid:focus-visible{outline:2px solid var(--acid);outline-offset:6px}
+@media(max-width:800px){
+ .archive-controls:not([hidden]){display:flex;align-items:center;justify-content:space-between;gap:20px;margin:-5px 0 20px}
+ .archive-controls p{font:11px/1.5 var(--mono);color:#ccc}.archive-controls p span{color:var(--acid);margin-left:8px}
+ .archive-controls>div{display:flex;gap:8px}.archive-controls button{width:44px;height:44px;background:var(--acid);border:1px solid var(--acid);color:var(--ink);font:25px/1 var(--body)}
+ .archive-controls button:disabled{background:transparent;border-color:#666;color:#777;cursor:default}
+ .archive-grid{grid-template-columns:none;grid-template-rows:repeat(2,auto);grid-auto-flow:column;grid-auto-columns:clamp(170px,46vw,210px);gap:24px 16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-color:var(--acid) #303030;scrollbar-width:thin;padding:6px 0 18px}
+ .archive-film{min-width:0;scroll-snap-align:start}.archive-grid .archive-caption h3{font-size:14px;line-height:1.3;letter-spacing:-.02em}
+ .archive-grid .film-link:focus-visible{outline-offset:-4px;outline-color:var(--acid)}
+}
+@media(max-width:600px){
+ .sweet-copy{order:0;align-self:stretch}.sweet-project .sweet-visual{order:1;align-self:stretch}
+ .sweet-outcome{order:2;align-self:stretch}.sweet-outcome .campaign-result{margin:0 0 24px}
+}
