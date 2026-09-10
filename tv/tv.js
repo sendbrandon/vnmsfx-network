@@ -112,7 +112,8 @@
   const packages = {
     spotlight: {name:'Product Spotlight',price:49,days:3,summary:'One finished product image, with two alternate layouts of that same image.',math:'3 layouts × 2 sizes = 6 image files.',items:['One main product image','Two alternate layouts using that artwork','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One consolidated minor revision']},
     set: {name:'Product Set',price:99,days:3,summary:'Three distinct product images in one coordinated look, with two alternate layouts of the main image.',math:'3 product images + 2 alternate layouts = 5 layouts. Each in 2 sizes = 10 image files.',items:['Three distinct images of the same supplied product','Two alternate layouts of the main image','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One consolidated minor revision across the set']},
-    motion: {name:'Product Set + Motion',price:149,days:5,summary:'The complete Product Set, plus a six-second vertical video made from the main image.',math:'5 layouts × 2 sizes = 10 image files, plus 1 video.',items:['Three distinct product images + two alternate layouts of the main image','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One 6-second vertical video with camera or background movement; product unchanged','One consolidated minor revision across the set; music excluded']}
+    motion: {name:'Product Set + Motion',price:149,days:5,summary:'The complete Product Set, plus a six-second vertical video made from the main image.',math:'5 layouts × 2 sizes = 10 image files, plus 1 video.',items:['Three distinct product images + two alternate layouts of the main image','Every layout in feed (4:5) and Story/Reel (9:16) sizes','One 6-second vertical video with camera or background movement; product unchanged','One consolidated minor revision across the set; music excluded']},
+    launch: {name:'Launch Set',price:450,days:5,summary:'A coordinated launch set for one product and one agreed look, with feed images, motion and a Story cutdown.',math:'8 image files + 2 motion files + 1 Story cut.',items:['Eight image files in one coordinated look','Copy direction for the three ready-to-post feed images','Two 6-second motion loops: hero and alternate','One Story-format cutdown','Two rounds of minor revisions']}
   };
   // A signed-in account is not a working purchase link. Only verified live bindings expose Buy.
   function checkoutFor(key) {
@@ -133,7 +134,7 @@
     details.classList.add('pack-details-link');
   });
   const setupNote=$('.pack-checkout-note').textContent;
-  if(livePacks) $('.starter-status').textContent=livePacks===3
+  if(livePacks) $('.starter-status').textContent=livePacks===Object.keys(packages).length
     ? 'One-time payment through Stripe. Send your product photo and brief after payment.'
     : 'Packages with a Buy button accept one-time payment through Stripe. Other packages remain available by inquiry.';
   let packOpener=null;
@@ -152,7 +153,7 @@
     $('#pack-email').href=`mailto:brandon@vnmsfx.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     const checkout=checkoutFor(button.dataset.pack), checkoutLink=$('#pack-checkout');
     checkoutLink.hidden=!checkout;
-    if(checkout)checkoutLink.href=checkout;else checkoutLink.removeAttribute('href');
+    if(checkout){checkoutLink.href=checkout;checkoutLink.textContent=`Buy the $${pack.price} package →`;}else checkoutLink.removeAttribute('href');
     $('.pack-checkout-note').textContent=checkout
       ? 'Continue to Stripe to pay once for this package. After payment, Stripe shows how to send your product photo and brief to Brandon. No subscription.'
       : setupNote;

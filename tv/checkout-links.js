@@ -23,6 +23,13 @@ window.VNMSFX_CHECKOUT = Object.freeze({
       "currency": "usd",
       "mode": "live",
       "verified": true
+    },
+    "launch": {
+      "url": "https://buy.stripe.com/dRmfZj2nL1O7cd1dHl5Rm04",
+      "amount": 45000,
+      "currency": "usd",
+      "mode": "live",
+      "verified": true
     }
   }
 });
