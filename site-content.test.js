@@ -255,6 +255,34 @@ test('Leak Check has one honest 11-total / 10-scored contract', () => {
   assert.doesNotMatch(html, /\btopTheme\(/, 'the failure-path typo must not return');
 });
 
+test('TV film index leads with the nine newest portrait releases', () => {
+  const html = read('tv.html');
+  const cards = [...html.matchAll(/<article class="archive-film" id="([^"]+)" data-category="([^"]+)">[\s\S]*?<a class="film-link" data-film href="([^"]+)"[\s\S]*?data-poster="([^"]+)"/g)]
+    .map((match) => ({ id: match[1], category: match[2], video: match[3], poster: match[4] }));
+
+  assert.match(html, /THE FILM INDEX \/ 23&nbsp;FILMS/);
+  assert.equal(cards.length, 23);
+  assert.deepEqual(cards.slice(0, 9).map(({ id }) => id), [
+    'last-rites',
+    'final-take',
+    'he-said-it-was-hot-part-two',
+    'he-said-it-wasnt-hot',
+    'nobody-improvises',
+    'the-new-boss',
+    'hot-pursuit',
+    'nothing-to-see',
+    'wrong',
+  ]);
+  assert.deepEqual(cards.slice(0, 9).map(({ category }) => category), [
+    'brand', 'brand', 'brand', 'brand',
+    'original', 'original', 'original', 'original', 'original',
+  ]);
+  for (const { video, poster } of cards.slice(0, 9)) {
+    assert.ok(fs.existsSync(path.join(root, video)), `${video} must ship with the page`);
+    assert.ok(fs.existsSync(path.join(root, poster)), `${poster} must ship with the page`);
+  }
+});
+
 test('homepage makes the operational check a first-choice path and separates public AI visibility', () => {
   const html = read('index.html');
   const nav = html.match(/<span class="pills" id="navmenu">([\s\S]*?)<\/span>/);
