@@ -73,6 +73,21 @@
   player.addEventListener('loadedmetadata',()=>{dialog.dataset.orientation=player.videoHeight>player.videoWidth?'portrait':'landscape';});
   player.addEventListener('error',()=>{if(player.getAttribute('src'))$('.player-error').hidden=false;});
   $('#player-project').addEventListener('click',closePlayer);
+  // Both identity films start on request so the supplied reference images stay visible.
+  const identityVideos = [$('#identity-closeup'), $('#identity-boardroom')].filter(Boolean);
+  function pauseIdentity(){identityVideos.forEach(video => video.pause());}
+  identityVideos.forEach(video => {
+    if(video.id === 'identity-closeup') video.muted = true;
+    video.addEventListener('play', () => {
+      preview.pause();
+      identityVideos.forEach(other => {if(other !== video) other.pause();});
+    });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(entries => {if(!entries[0].isIntersecting) video.pause();}, {threshold:.1}).observe(video);
+    }
+  });
+  document.addEventListener('visibilitychange', () => {if(document.hidden) pauseIdentity();});
+  document.querySelectorAll('[data-film],[data-pack],.menu-toggle').forEach(control => control.addEventListener('click', pauseIdentity));
   // Native horizontal scrolling keeps touch and vertical page scrolling available.
   const archive=$('#archive-gallery'), archiveControls=$('.archive-controls');
   const archivePrev=$('#archive-prev'), archiveNext=$('#archive-next');
