@@ -118,7 +118,7 @@ html{scroll-padding-top:calc(var(--tv-header-height) + 16px)}
 .identity-heading{display:grid;grid-template-columns:1.15fr 1fr;gap:5vw;align-items:end;max-width:1500px;margin:0 auto 30px}
 .identity-heading .eyebrow{margin-bottom:16px;font-size:11px}
 .identity-heading h2{font-size:clamp(42px,6.3vw,96px);white-space:nowrap;letter-spacing:-.035em}
-.identity-heading h2 em{color:#687f13}
+.identity-heading h2 em{color:var(--ink);background:var(--acid);padding-inline:.06em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .identity-intro{max-width:510px;justify-self:end}
 .identity-intro>p{font-size:clamp(17px,1.65vw,23px);line-height:1.35;letter-spacing:-.02em}
 .identity-intro .text-link{font-weight:600;margin-top:13px;min-height:44px}
