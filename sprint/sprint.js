@@ -53,12 +53,25 @@
   const params = new URLSearchParams(location.search);
   const dropRate = params.get('rate') === 'drop' ? { rate: 'drop', drop: (params.get('drop') || '').slice(0, 60) } : null;
   if (dropRate) {
+    // Arrived from a drop page or Season Pass email: every price on the page reads
+    // the drop rate. The page itself is unchanged for anyone arriving normally.
+    document.title = document.title.replace('$2,000', '$1,500');
+    const hero = document.querySelector('.hero-price');
+    if (hero) hero.innerHTML = '<strong>$1,500</strong><span>SEASON PASS DROP RATE / USD</span>';
+    const price = document.querySelector('.price-ticket');
+    if (price) price.innerHTML = '<strong>$1,500</strong><span>SEASON PASS DROP RATE<br><s>$2,000</s> LIST · NO RETAINER</span>';
     const ticket = document.querySelector('.ticket-top strong');
     if (ticket) ticket.innerHTML = '$1,500 <small>USD · DROP RATE</small>';
     const note = document.querySelector('.ticket-top span');
     if (note) note.textContent = 'YOUR CREATIVE SPRINT · SEASON PASS';
     const start = document.querySelector('.start-copy > p:last-child');
-    if (start) start.textContent = 'Season Pass drop rate: $1,500 while the drop window is open. Send your brief; I’ll confirm the rate and the plan before you pay.';
+    if (start) start.textContent = 'Season Pass drop rate: $1,500 while the drop window is open. Send your brief; I’ll confirm the rate and send your invoice before you pay.';
+    // The Stripe link charges list price, so it is not the path here: the brief is.
+    document.querySelectorAll('.checkout-link').forEach(a => { a.href = '#start'; a.innerHTML = 'Send your brief — $1,500 <span aria-hidden="true">↗</span>'; });
+    const strip = document.createElement('div');
+    strip.className = 'drop-rate-strip'; strip.setAttribute('role', 'status');
+    strip.textContent = 'SEASON PASS DROP RATE APPLIED · CREATIVE SPRINT $1,500 · CONFIRMED BY EMAIL BEFORE YOU PAY';
+    document.body.prepend(strip);
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -75,7 +88,7 @@
     }
     const emailBody = [
       'Hi Brandon,',
-      'I’m interested in the $2,000 Creative Sprint.',
+      'I’m interested in the ' + (dropRate ? '$1,500 Season Pass drop-rate' : '$2,000') + ' Creative Sprint.',
       'Email: ' + data.email,
       'Brand / product:\n' + data.product,
       'Audience / goal:\n' + data.goal,

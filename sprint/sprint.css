@@ -37,3 +37,5 @@ footer{padding:35px var(--gutter) 24px;background:var(--ink);color:white}.footer
 .price-ticket{flex-direction:row;align-items:center;gap:20px;padding-top:16px;margin-top:20px}.price-ticket>strong{font-size:48px;margin:0}.price-ticket>span{font-size:9px}.steps h3{font-size:21px}.steps p{line-height:1.45}.start-copy>p:not(.eyebrow){font-size:18px}.start .brief-ticket textarea{min-height:90px}@media(max-width:700px){.problem h2{font-size:35px}.problem-copy .problem-loop{font-size:18px}.problem-copy p{font-size:14px}.problem{gap:15px}.price-ticket>strong{font-size:41px}.price-ticket{gap:20px}.steps{gap:16px}.steps li{padding-top:10px}.steps h3{font-size:20px}.steps p{font-size:13px}.process .section-heading{margin-bottom:16px}.process h2{font-size:27px}.rush-note p{font-size:12px}.start-copy>p:not(.eyebrow){font-size:16px}.start{gap:20px}.brief-ticket label{font-size:13px}.brief-ticket input,.brief-ticket textarea{font-size:14px}}
 
 .footer-brand img{width:170px;height:auto;filter:brightness(0) invert(1)}
+
+.drop-rate-strip{background:var(--acid);color:var(--ink);font:11px/1.5 var(--mono);letter-spacing:.06em;text-align:center;padding:10px 16px}

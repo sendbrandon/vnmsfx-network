@@ -35,7 +35,7 @@ What the pass gets you:
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
 ${rateOpen ? `
-The drop rate is open now and closes ${close}. If one of your products has a truth worth a 15-second spot, start the brief here:
+The drop rate is open now and closes ${close}. Your rate is applied on the page — you'll see $1,500, and I confirm it by email before you pay. If one of your products has a truth worth a 15-second spot, start the brief here:
 https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
 ` : ""}
 The menu — one spot, a launch, or a standing creative partner. Every way to work with VNMSFX is on one page: Campaign Pilot, Campaign Launch, Brand World, product images and motion, and the retainer.
@@ -63,7 +63,7 @@ function welcomeHtml(firstName, drop, rateOpen) {
       <tr><td style="padding:20px 22px;">
         <div style="${mono}font-size:11px;color:${ink};">DROP RATE · OPEN UNTIL ${close}</div>
         <div style="${display}font-size:30px;line-height:1.05;color:${ink};margin-top:8px;">CREATIVE SPRINT&nbsp;${money(drops.DROP_RATE)}.</div>
-        <div style="${body}font-size:15px;line-height:1.5;color:${ink};margin-top:10px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price is ${money(drops.LIST_RATE)}. The drop rate closes when the drop does.</div>
+        <div style="${body}font-size:15px;line-height:1.5;color:${ink};margin-top:10px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price is ${money(drops.LIST_RATE)}. Your rate is applied on the page — you'll see ${money(drops.DROP_RATE)}, confirmed by email before you pay.</div>
         <a href="https://vnmsfx.com/creative-sprint?rate=drop&amp;drop=${esc(drop.id)}" style="${body}display:inline-block;margin-top:16px;background:${ink};color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 18px;">Start a Sprint at the drop rate &nbsp;↗</a>
       </td></tr>
     </table>
