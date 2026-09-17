@@ -29,8 +29,8 @@ function welcomeText(firstName, drop, rateOpen) {
 You're on the Season Pass.
 
 What the pass gets you:
-  - Every new spot, 24 hours before it's public — with the brief it answered.
-  - What it took: shots, days, and what the client actually got.
+  - Every spot, 24 hours before it's public.
+  - The sauce behind it, one drop at a time — starting with the idea and the prompt stack that built it.
   - First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
@@ -82,8 +82,8 @@ function welcomeHtml(firstName, drop, rateOpen) {
     Hey ${name} — three things the pass gets you:
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
-    <span style="color:${acid};">01</span>&nbsp; Every new spot, 24 hours before it's public — with the brief it answered.<br>
-    <span style="color:${acid};">02</span>&nbsp; What it took: shots, days, and what the client actually got.<br>
+    <span style="color:${acid};">01</span>&nbsp; Every spot, 24 hours before it's public.<br>
+    <span style="color:${acid};">02</span>&nbsp; The sauce behind it, one drop at a time — starting with the idea and the prompt stack that built it.<br>
     <span style="color:${acid};">03</span>&nbsp; First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
   </td></tr>
   <tr><td style="padding:26px 32px 0 32px;">

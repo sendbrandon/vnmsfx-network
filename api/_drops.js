@@ -24,6 +24,16 @@ const DROPS = [
     cards: ["/tv/drops/card-1-ramp.jpg", "/tv/drops/card-2-backseat.jpg", "/tv/drops/card-3-coming-soon.jpg"],
     // Season Pass promises 01 + 02 — the brief the spot answered, and what it took. DRAFT, pending Brandon's sign-off.
     brief: "Every fragrance ad shows you the bottle. So nobody looks. We shot this one like something you’re not supposed to have: never named, never explained, logo on the last frame only. You look.",
+    // THE SAUCE — what pass holders get with this drop. Placeholders block the send (see _drop-mail.js ready()).
+    sauce: {
+      label: "DROP 01 · THE IDEA AND THE PROMPT STACK",
+      lines: [
+        "TBD — the idea in one line, in Brandon's words",
+        "TBD — prompt 1: the world (camera, stock, light, the rule that nothing is named)",
+        "TBD — prompt 2: the three scenes as written to the model",
+        "TBD — prompt 3: the handoff beat and the last-frame reveal",
+      ],
+    },
     took: "Fifteen seconds usually buys one room and a product shot. This one needed a cargo plane, a back seat and a hotel bathroom. One week, three actors, one line of dialogue, and the house look on top: 35mm grain, halation, anamorphic squeeze.",
   },
 ];
