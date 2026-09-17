@@ -14,7 +14,7 @@ const DROPS = [
     id: "the-recipient",
     title: "The Recipient",
     tagline: "Package is inbound.",
-    liveFrom: "2026-09-18T00:00:00Z",   // countdown + drop rate open  (Wed 9/17 8:00 PM ET)
+    liveFrom: "2026-09-17T12:00:00Z",   // countdown + drop rate open  (Thu 9/17 8:00 AM ET)
     early:    "2026-09-20T16:00:00Z",   // pass holders emailed the film (Sun 9/20 12:00 PM ET)
     release:  "2026-09-21T16:00:00Z",   // public                        (Mon 9/21 12:00 PM ET)
     close:    "2026-09-23T16:00:00Z",   // drop rate closes              (Wed 9/23 12:00 PM ET)

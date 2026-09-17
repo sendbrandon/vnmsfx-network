@@ -6,6 +6,7 @@
 // per subscriber per drop, so a re-run never double-sends.
 "use strict";
 const drops = require("../api/_drops.js");
+const money = (n) => "$" + n.toLocaleString("en-US");
 const [,, dropId, flag] = process.argv;
 const drop = drops.byId(dropId);
 if (!drop) { console.error("unknown drop:", dropId, "— known:", drops.DROPS.map((d) => d.id).join(", ")); process.exit(1); }
@@ -29,7 +30,7 @@ ${filmUrl}
 
 It goes public ${publicAt}. Until then it's just the list.
 
-The drop rate is open until ${close}: Creative Sprint at $${drops.DROP_RATE} instead of $${drops.LIST_RATE}. If one of your products has a truth worth a 15-second spot, start the brief:
+The drop rate is open until ${close}: Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}. If one of your products has a truth worth a 15-second spot, start the brief:
 https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
 
 Brandon
@@ -41,7 +42,7 @@ const html = (name) => `<!doctype html><html><body style="margin:0;padding:0;bac
 <tr><td style="padding:28px 32px 0 32px;"><div style="${mono}font-size:11px;color:${grey};">SEASON PASS · 24 HOURS EARLY</div><div style="${display}font-size:44px;line-height:1.02;color:#fff;margin-top:10px;">${drop.title.toUpperCase()}<span style="color:${acid};">.</span></div></td></tr>
 <tr><td style="padding:18px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#ddd;">Hey ${name} — it's yours a day before anyone else. Public ${publicAt}. Until then it's just the list.</td></tr>
 <tr><td style="padding:22px 32px 0 32px;"><a href="${filmUrl}" style="${body}display:inline-block;background:${acid};color:${ink};text-decoration:none;font-weight:700;font-size:14px;padding:16px 20px;">Watch with sound &nbsp;↗</a></td></tr>
-<tr><td style="padding:28px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333;"><tr><td style="padding:18px 0 0 0;"><div style="${mono}font-size:11px;color:${grey};">DROP RATE · OPEN UNTIL ${close.toUpperCase()}</div><div style="${display}font-size:30px;line-height:1.05;color:#fff;margin-top:8px;">CREATIVE SPRINT $${drops.DROP_RATE}<span style="color:${acid};">.</span></div><div style="${body}font-size:15px;line-height:1.5;color:#ddd;margin-top:8px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price $${drops.LIST_RATE}. Closes when the drop does.</div><a href="https://vnmsfx.com/creative-sprint?rate=drop&amp;drop=${drop.id}" style="${body}display:inline-block;margin-top:14px;color:${acid};font-weight:700;font-size:14px;">Start a Sprint at the drop rate ↗</a></td></tr></table></td></tr>
+<tr><td style="padding:28px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333;"><tr><td style="padding:18px 0 0 0;"><div style="${mono}font-size:11px;color:${grey};">DROP RATE · OPEN UNTIL ${close.toUpperCase()}</div><div style="${display}font-size:30px;line-height:1.05;color:#fff;margin-top:8px;">CREATIVE SPRINT ${money(drops.DROP_RATE)}<span style="color:${acid};">.</span></div><div style="${body}font-size:15px;line-height:1.5;color:#ddd;margin-top:8px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price ${money(drops.LIST_RATE)}. Closes when the drop does.</div><a href="https://vnmsfx.com/creative-sprint?rate=drop&amp;drop=${drop.id}" style="${body}display:inline-block;margin-top:14px;color:${acid};font-weight:700;font-size:14px;">Start a Sprint at the drop rate ↗</a></td></tr></table></td></tr>
 <tr><td style="padding:28px 32px 30px 32px;${body}font-size:14px;line-height:1.6;color:#fff;"><strong>Brandon Adams</strong><br><span style="color:${grey};">VNMSFX TV — New York</span><br><a href="${pageUrl}" style="color:${grey};">${pageUrl.replace("https://", "")}</a></td></tr>
 </table><div style="max-width:600px;${body}font-size:12px;line-height:1.7;color:#777;padding:16px 8px 0 8px;">You're getting this because you're on the Season Pass. One email per drop. Reply &ldquo;stop&rdquo; and you're off.</div></td></tr></table></body></html>`;
 

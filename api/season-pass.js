@@ -7,6 +7,7 @@
 
 const leadStore = require("./_lead-store.js");
 const drops = require("./_drops.js");
+const money = (n) => "$" + n.toLocaleString("en-US");
 
 const ORIGINS = new Set(["https://vnmsfx.com", "https://www.vnmsfx.com"]);
 
@@ -30,7 +31,7 @@ You're on the Season Pass.
 What that means:
   - Every drop, 24 hours before it's public.
   - The frames that didn't make it, and the cuts that lost.
-  - The drop rate on the Creative Sprint: $${drops.DROP_RATE} instead of $${drops.LIST_RATE}, open only while a drop is live.
+  - The drop rate on the Creative Sprint: ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, open only while a drop is live.
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
 ${rateOpen ? `
@@ -60,8 +61,8 @@ function welcomeHtml(firstName, drop, rateOpen) {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${acid};">
       <tr><td style="padding:20px 22px;">
         <div style="${mono}font-size:11px;color:${ink};">DROP RATE · OPEN UNTIL ${close}</div>
-        <div style="${display}font-size:30px;line-height:1.05;color:${ink};margin-top:8px;">CREATIVE SPRINT&nbsp;$${drops.DROP_RATE}.</div>
-        <div style="${body}font-size:15px;line-height:1.5;color:${ink};margin-top:10px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price is $${drops.LIST_RATE}. The drop rate closes when the drop does.</div>
+        <div style="${display}font-size:30px;line-height:1.05;color:${ink};margin-top:8px;">CREATIVE SPRINT&nbsp;${money(drops.DROP_RATE)}.</div>
+        <div style="${body}font-size:15px;line-height:1.5;color:${ink};margin-top:10px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price is ${money(drops.LIST_RATE)}. The drop rate closes when the drop does.</div>
         <a href="https://vnmsfx.com/creative-sprint?rate=drop&amp;drop=${esc(drop.id)}" style="${body}display:inline-block;margin-top:16px;background:${ink};color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 18px;">Start a Sprint at the drop rate &nbsp;↗</a>
       </td></tr>
     </table>
@@ -71,7 +72,7 @@ function welcomeHtml(firstName, drop, rateOpen) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#000000;">
 <tr><td align="center" style="padding:28px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:${ink};">
-  <tr><td style="padding:0;"><img src="https://vnmsfx.com/tv/drops/email-header.jpg" width="600" alt="Package is inbound." style="display:block;width:100%;height:auto;border:0;"></td></tr>
+  <tr><td style="padding:0;"><img src="https://vnmsfx.com/tv/drops/email-header.jpg" width="600" alt="VNMSFX TV" style="display:block;width:100%;height:auto;border:0;"></td></tr>
   <tr><td style="padding:28px 32px 0 32px;">
     <div style="${mono}font-size:11px;color:${grey};">VNMSFX TV / SEASON PASS</div>
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
@@ -82,7 +83,7 @@ function welcomeHtml(firstName, drop, rateOpen) {
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
     <span style="color:${acid};">01</span>&nbsp; Every drop, 24 hours before it's public.<br>
     <span style="color:${acid};">02</span>&nbsp; The frames that didn't make it, and the cuts that lost.<br>
-    <span style="color:${acid};">03</span>&nbsp; The drop rate on the Creative Sprint — $${drops.DROP_RATE} instead of $${drops.LIST_RATE}, only while a drop is live.
+    <span style="color:${acid};">03</span>&nbsp; The drop rate on the Creative Sprint — ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
   </td></tr>
   <tr><td style="padding:26px 32px 0 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333333;">
