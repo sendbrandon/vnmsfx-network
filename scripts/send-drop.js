@@ -29,7 +29,7 @@ ${filmUrl}
 
 It goes public ${publicAt}. Until then it's just the list.
 
-The drop rate is open until ${close}: Creative Sprint at $${drops.DROP_RATE} instead of $${drops.LIST_RATE}. If one of your products has a truth worth a film, start the brief:
+The drop rate is open until ${close}: Creative Sprint at $${drops.DROP_RATE} instead of $${drops.LIST_RATE}. If one of your products has a truth worth a 15-second spot, start the brief:
 https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
 
 Brandon

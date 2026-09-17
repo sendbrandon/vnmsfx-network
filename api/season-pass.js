@@ -34,7 +34,7 @@ What that means:
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
 ${rateOpen ? `
-The drop rate is open now and closes ${close}. If one of your products has a truth worth a 15-second film, start the brief here:
+The drop rate is open now and closes ${close}. If one of your products has a truth worth a 15-second spot, start the brief here:
 https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
 ` : ""}
 Watch the last one while you wait: https://vnmsfx.com/tv
