@@ -6,7 +6,7 @@
 <meta name="description" content="Package is inbound. The Recipient, a VNMSFX TV spot, drops Monday, September 21 at 12:00 PM ET. Season Pass holders get it 24 hours early.">
 <link rel="canonical" href="https://vnmsfx.com/drops/the-recipient"><meta name="theme-color" content="#101010">
 <meta property="og:type" content="website"><meta property="og:site_name" content="VNMSFX TV"><meta property="og:url" content="https://vnmsfx.com/drops/the-recipient">
-<meta property="og:title" content="The Recipient — drops Monday 12 PM ET"><meta property="og:description" content="Package is inbound. Season Pass holders get it 24 hours early.">
+<meta property="og:title" content="The Recipient — drops Monday 12 PM ET"><meta property="og:description" content="Package is inbound. Brands on the Season Pass see it 24 hours early and get the drop rate.">
 <meta property="og:image" content="https://vnmsfx.com/tv/drops/share-the-recipient.jpg"><meta property="og:image:secure_url" content="https://vnmsfx.com/tv/drops/share-the-recipient.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Recipient — drops Monday 12 PM ET. A figure on the ramp of a cargo plane."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The Recipient — drops Monday 12 PM ET"><meta name="twitter:description" content="Package is inbound. Season Pass holders get it 24 hours early."><meta name="twitter:image" content="https://vnmsfx.com/tv/drops/share-the-recipient.jpg">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png"><link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,18 +37,19 @@
 <section class="pass" id="pass" aria-labelledby="pass-title">
   <a class="card pass-card" href="/tv/drops/card-1-ramp.jpg" data-card><img src="/tv/drops/card-1-ramp.jpg" width="1080" height="1920" alt="Package is inbound. A figure stands on the ramp of a cargo plane." loading="eager"></a>
   <div class="pass-copy">
-    <p class="eyebrow">SEASON PASS · FREE</p>
-    <h2 id="pass-title">SEE IT <em>FIRST.</em></h2>
+    <p class="eyebrow">SEASON PASS · FREE · FOR BRANDS</p>
+    <h2 id="pass-title">SEE THE WORK <em>FIRST.</em></h2>
     <ol class="promises">
-      <li><span>01</span><p>Every drop, 24 hours before it's public.</p></li>
-      <li><span>02</span><p>The frames that didn't make it, and the cuts that lost.</p></li>
-      <li><span>03</span><p>The drop rate on the Creative Sprint — <strong>$1,500</strong> instead of $2,000, only while a drop is live.</p></li>
+      <li><span>01</span><p>Every new spot, 24 hours before it's public — with the brief it answered.</p></li>
+      <li><span>02</span><p>What it took: shots, days, and what the client actually got.</p></li>
+      <li><span>03</span><p>First claim on the drop rate — the Creative Sprint at <strong>$1,500</strong> instead of $2,000, only while a drop is live.</p></li>
     </ol>
     <p class="rate-line" id="rate-line"><strong>Drop rate open</strong> · closes in <span id="rate-countdown">--:--:--</span>. Then $2,000 until the next countdown.</p>
   </div>
   <form class="pass-form" id="pass-form" action="/api/season-pass" method="post">
     <div class="form-trap" aria-hidden="true"><label for="company-website">Leave this empty</label><input id="company-website" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>
     <label for="firstName">First name</label><input id="firstName" name="firstName" type="text" maxlength="60" autocomplete="given-name" placeholder="Optional">
+    <label for="brand">Brand</label><input id="brand" name="brand" type="text" maxlength="80" autocomplete="organization" placeholder="Optional">
     <label for="email">Email <span>Required</span></label><input id="email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="you@brand.com">
     <button class="button-acid" type="submit">Join the Season Pass <span aria-hidden="true">↗</span></button>
     <p class="form-note">One email per drop. Nothing else. Reply "stop" and you're off.</p>

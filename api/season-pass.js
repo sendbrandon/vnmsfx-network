@@ -28,17 +28,18 @@ function welcomeText(firstName, drop, rateOpen) {
 
 You're on the Season Pass.
 
-What that means:
-  - Every drop, 24 hours before it's public.
-  - The frames that didn't make it, and the cuts that lost.
-  - The drop rate on the Creative Sprint: ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, open only while a drop is live.
+What the pass gets your brand:
+  - Every new spot, 24 hours before it's public — with the brief it answered.
+  - What it took: shots, days, and what the client actually got.
+  - First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
 ${rateOpen ? `
 The drop rate is open now and closes ${close}. If one of your products has a truth worth a 15-second spot, start the brief here:
 https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
 ` : ""}
-Watch the last one while you wait: https://vnmsfx.com/tv
+The menu — one spot, a launch, or a standing creative partner. Every way to work with VNMSFX is on one page: Campaign Pilot, Campaign Launch, Brand World, product images and motion, and the retainer.
+https://vnmsfx.com/tv#services
 
 Brandon Adams
 VNMSFX TV — New York
@@ -78,12 +79,12 @@ function welcomeHtml(firstName, drop, rateOpen) {
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
-    Hey ${name} — three things the pass gets you:
+    Hey ${name} — three things the pass gets your brand:
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
-    <span style="color:${acid};">01</span>&nbsp; Every drop, 24 hours before it's public.<br>
-    <span style="color:${acid};">02</span>&nbsp; The frames that didn't make it, and the cuts that lost.<br>
-    <span style="color:${acid};">03</span>&nbsp; The drop rate on the Creative Sprint — ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
+    <span style="color:${acid};">01</span>&nbsp; Every new spot, 24 hours before it's public — with the brief it answered.<br>
+    <span style="color:${acid};">02</span>&nbsp; What it took: shots, days, and what the client actually got.<br>
+    <span style="color:${acid};">03</span>&nbsp; First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
   </td></tr>
   <tr><td style="padding:26px 32px 0 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333333;">
@@ -95,8 +96,15 @@ function welcomeHtml(firstName, drop, rateOpen) {
     </table>
   </td></tr>
   ${rateBlock}
-  <tr><td style="padding:26px 32px 0 32px;${body}font-size:15px;line-height:1.6;color:#dddddd;">
-    While you wait, the last one is up: <a href="https://vnmsfx.com/tv" style="color:${acid};">vnmsfx.com/tv</a>
+  <tr><td style="padding:26px 32px 0 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333333;">
+      <tr><td style="padding:18px 0 0 0;">
+        <div style="${mono}font-size:11px;color:${grey};">THE MENU</div>
+        <div style="${display}font-size:30px;line-height:1.05;color:#ffffff;margin-top:6px;">ONE IDEA. MANY WAYS <span style="color:${acid};">IN.</span></div>
+        <div style="${body}font-size:15px;line-height:1.6;color:#dddddd;margin-top:8px;">One spot, a launch, or a standing creative partner. Every way to work with VNMSFX is on one page — Campaign Pilot, Campaign Launch, Brand World, product images and motion, and the retainer.</div>
+        <a href="https://vnmsfx.com/tv#services" style="${body}display:inline-block;margin-top:14px;color:${acid};font-weight:700;font-size:14px;">See the menu ↗</a>
+      </td></tr>
+    </table>
   </td></tr>
   <tr><td style="padding:28px 32px 30px 32px;${body}font-size:14px;line-height:1.6;color:#ffffff;">
     <strong>Brandon Adams</strong><br><span style="color:${grey};">VNMSFX TV — New York</span><br><a href="https://vnmsfx.com/tv" style="color:${grey};">vnmsfx.com/tv</a>
@@ -126,6 +134,7 @@ module.exports = async function handler(req, res) {
   const email = String(body.email || "").trim().toLowerCase().slice(0, 254);
   if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]{2,}$/.test(email)) return reply(400, { ok: false, error: "That email doesn't look right." });
   const firstName = String(body.firstName || "").trim().slice(0, 60).replace(/[<>\r\n]/g, "");
+  const brand = String(body.brand || "").trim().slice(0, 80).replace(/[<>\r\n]/g, "");
   const dropId = String(body.drop || "").trim().slice(0, 60);
   const drop = drops.byId(dropId) || drops.DROPS[drops.DROPS.length - 1];
   const now = new Date();
@@ -144,8 +153,8 @@ module.exports = async function handler(req, res) {
       submissionId, fingerprint, firstName: firstName || "—", email,
       channelLabel: "Season Pass", process: "Send the drop email " + et(drop.early, { month: "short", day: "numeric", hour: "numeric" }) + " ET",
       points: 0, answered: 0, financeTouched: false,
-      notedText: "Season Pass · joined during " + drop.id + (rateOpen ? " · DROP RATE OPEN at join" : " · outside a drop window"),
-      transcriptText: "Joined the Season Pass from " + String(body.page || "/drops") + "\nDrop: " + drop.id + "\nRate open at join: " + (rateOpen ? "yes" : "no"),
+      notedText: "Season Pass" + (brand ? " · " + brand : "") + " · joined during " + drop.id + (rateOpen ? " · DROP RATE OPEN at join" : " · outside a drop window"),
+      transcriptText: "Joined the Season Pass from " + String(body.page || "/drops") + "\nBrand: " + (brand || "—") + "\nDrop: " + drop.id + "\nRate open at join: " + (rateOpen ? "yes" : "no"),
       replyDueIso: drop.early, receivedIso: now.toISOString(),
       source: String(body.source || "drops").slice(0, 200), campaign: "season-pass", contentId: drop.id, surveyVersion: "season-pass-v1",
     });
@@ -173,8 +182,8 @@ module.exports = async function handler(req, res) {
   try {
     await send({
       from: "VNMSFX Season Pass <brandon@vnmsfx.com>", to: ["brandon@vnmsfx.com"], reply_to: email,
-      subject: "[Season Pass] " + (firstName || email) + (rateOpen ? " · drop rate open" : ""),
-      text: `New Season Pass subscriber\n\nName: ${firstName || "—"}\nEmail: ${email}\nDrop: ${drop.id}\nRate open at join: ${rateOpen ? "yes" : "no"}\nFrom: ${String(body.page || "/drops")}\nReference: ${submissionId}\n\nWelcome email: ${welcomeOk ? "sent" : "FAILED — send by hand"}`,
+      subject: "[Season Pass] " + (firstName || email) + (brand ? " · " + brand : "") + (rateOpen ? " · drop rate open" : ""),
+      text: `New Season Pass subscriber\n\nName: ${firstName || "—"}\nBrand: ${brand || "—"}\nEmail: ${email}\nDrop: ${drop.id}\nRate open at join: ${rateOpen ? "yes" : "no"}\nFrom: ${String(body.page || "/drops")}\nReference: ${submissionId}\n\nWelcome email: ${welcomeOk ? "sent" : "FAILED — send by hand"}`,
     }, fingerprint + "/notify");
   } catch (e) { console.error("notify send failed", e && e.message); }
 

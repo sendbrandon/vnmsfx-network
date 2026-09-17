@@ -75,7 +75,7 @@
     e.preventDefault();
     const button = form.querySelector('button[type=submit]');
     status.textContent = 'Adding you…'; button.disabled = true;
-    const payload = { email: form.email.value.trim(), firstName: form.firstName.value.trim(), company_website: form.company_website.value, drop: body.dataset.drop, page: location.pathname, source: new URLSearchParams(location.search).get('utm_source') || document.referrer.replace(/^https?:\/\//, '').split('/')[0] || 'direct' };
+    const payload = { email: form.email.value.trim(), firstName: form.firstName.value.trim(), brand: form.brand.value.trim(), company_website: form.company_website.value, drop: body.dataset.drop, page: location.pathname, source: new URLSearchParams(location.search).get('utm_source') || document.referrer.replace(/^https?:\/\//, '').split('/')[0] || 'direct' };
     try {
       const r = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const d = await r.json().catch(() => ({}));
