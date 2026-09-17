@@ -20,7 +20,7 @@
     film.src = body.dataset.film; film.poster = body.dataset.poster; film.hidden = false;
     eyebrow.textContent = 'VNMSFX TV · NOW SHOWING';
     label.textContent = 'OUT NOW'; countdown.textContent = '00:00:00'; countdown.hidden = true;
-    releaseLine.textContent = 'Released Monday, September 22 · 12:00 PM ET';
+    releaseLine.textContent = 'Released Monday, September 21 · 12:00 PM ET';
     actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button><a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>';
     $('#play-film').addEventListener('click', () => { film.muted = false; film.play().catch(() => {}); film.scrollIntoView({ block: 'center' }); });
   }
@@ -56,14 +56,18 @@
 
   // The last drop plays in the same dialog pattern as /tv.
   const filmDialog = $('#film-dialog'), player = $('#film-player');
-  document.querySelectorAll('[data-film]').forEach((a) => a.addEventListener('click', (e) => {
+  // Only anchors: <body> also carries data-film for the release flip, and matching it
+  // made every click on the page (including CLOSE) open this dialog.
+  document.querySelectorAll('a[data-film]').forEach((a) => a.addEventListener('click', (e) => {
     if (!filmDialog.showModal) return; e.preventDefault();
     $('#film-dialog-title').textContent = a.dataset.title || ''; player.poster = a.dataset.poster || ''; player.src = a.href;
     filmDialog.showModal(); player.play().catch(() => {});
   }));
-  const closePlayer = () => { player.pause(); player.removeAttribute('src'); player.load(); filmDialog.close(); };
+  const closePlayer = () => { if (filmDialog.open) filmDialog.close(); };
+  filmDialog.addEventListener('close', () => { player.pause(); player.removeAttribute('src'); player.load(); });
   $('#close-player').addEventListener('click', closePlayer);
-  filmDialog.addEventListener('cancel', (e) => { e.preventDefault(); closePlayer(); });
+  filmDialog.addEventListener('click', (e) => { if (e.target === filmDialog) closePlayer(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closePlayer(); if (cardDialog.open) cardDialog.close(); } });
 
   // Season Pass: store first, then the welcome email — the API owns both.
   const form = $('#pass-form'), status = $('#pass-status'), after = $('#pass-after');

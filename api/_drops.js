@@ -15,9 +15,9 @@ const DROPS = [
     title: "The Recipient",
     tagline: "Package is inbound.",
     liveFrom: "2026-09-18T00:00:00Z",   // countdown + drop rate open  (Wed 9/17 8:00 PM ET)
-    early:    "2026-09-21T16:00:00Z",   // pass holders emailed the film (Sun 9/21 12:00 PM ET)
-    release:  "2026-09-22T16:00:00Z",   // public                        (Mon 9/22 12:00 PM ET)
-    close:    "2026-09-24T16:00:00Z",   // drop rate closes              (Wed 9/24 12:00 PM ET)
+    early:    "2026-09-20T16:00:00Z",   // pass holders emailed the film (Sun 9/20 12:00 PM ET)
+    release:  "2026-09-21T16:00:00Z",   // public                        (Mon 9/21 12:00 PM ET)
+    close:    "2026-09-23T16:00:00Z",   // drop rate closes              (Wed 9/23 12:00 PM ET)
     film: "/tv/drops/r-7423688ff693.mp4",
     poster: "/tv/drops/the-recipient-poster.jpg",
     tease: "/tv/drops/the-recipient-tease.mp4",
