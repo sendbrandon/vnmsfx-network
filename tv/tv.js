@@ -164,6 +164,12 @@
     document.querySelectorAll('.archive-film').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.category!==button.dataset.filter;});
     archive.scrollTo({left:0,behavior:'instant'});requestAnimationFrame(updateArchiveControls);
   }));
+  // Next-drop bar: live clock to the release; the bar removes itself once the drop is out.
+  const dropBar=$('.next-drop-bar');
+  if(dropBar){const release=Date.parse(dropBar.dataset.release), clockEl=dropBar.querySelector('[data-next-drop-clock]');
+    const pad=n=>String(n).padStart(2,'0');
+    const tickBar=()=>{const ms=release-Date.now(); if(ms<=0){dropBar.remove();return;} const s=Math.floor(ms/1000); clockEl.textContent=pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);};
+    tickBar(); setInterval(tickBar,1000);}
   document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{$('#interest').value=link.dataset.interest;}));
   $('#brief-form').addEventListener('submit',e=>{
     e.preventDefault(); const interest=$('#interest').value, brief=$('#brief').value.trim();

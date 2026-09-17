@@ -2,7 +2,8 @@
 
 const { createHash } = require('node:crypto');
 const leadStore = require('./_lead-store.js');
-const FIELDS = { name: 80, email: 254, product: 200, goal: 1400, deadline: 150 };
+const drops = require('./_drops.js');
+const FIELDS = { name: 80, email: 254, product: 200, goal: 1400, deadline: 150, rate: 20, drop: 60 };
 const ORIGINS = new Set(['https://vnmsfx.com', 'https://www.vnmsfx.com']);
 
 module.exports = async function handler(req, res) {
@@ -33,7 +34,7 @@ module.exports = async function handler(req, res) {
   if (body.company_website) return reply(400, { ok: false, error: 'Unable to accept this submission.' });
   const data = {};
   for (const [key, max] of Object.entries(FIELDS)) {
-    const value = body[key] === undefined && ['name', 'deadline'].includes(key) ? '' : body[key];
+    const value = body[key] === undefined && ['name', 'deadline', 'rate', 'drop'].includes(key) ? '' : body[key];
     if (typeof value !== 'string' || value.length > max) {
       return reply(400, { ok: false, error: 'Please check the form fields and their lengths.' });
     }
@@ -49,8 +50,14 @@ module.exports = async function handler(req, res) {
   const hash = createHash('sha256').update(JSON.stringify(data)).digest('hex').slice(0, 24).toUpperCase();
   const submissionId = 'CS-' + hash;
   const now = new Date();
+  // The drop rate is decided HERE by the clock, never by the browser: a "rate=drop"
+  // request outside a window is recorded as a list-price inquiry that asked.
+  const askedDropRate = data.rate === 'drop';
+  const windowOpen = drops.rateOpen(now);
+  const dropRate = askedDropRate && windowOpen;
+  const price = dropRate ? drops.DROP_RATE : drops.LIST_RATE;
   const text = [
-    'CREATIVE SPRINT INQUIRY — $2,000',
+    'CREATIVE SPRINT INQUIRY — $' + price.toLocaleString('en-US') + (dropRate ? ' (DROP RATE — window open, ' + (drops.current(now) || {}).id + ')' : askedDropRate ? ' (asked for the drop rate OUTSIDE a window — list price applies)' : ''),
     'Reference: ' + submissionId,
     'Name: ' + (data.name || 'Not provided') + '\nEmail: ' + data.email,
     'Brand / product:\n' + data.product,
@@ -63,8 +70,8 @@ module.exports = async function handler(req, res) {
   try {
     saved = await leadStore.createLead({
       submissionId, fingerprint: hash, firstName: data.name, email: data.email,
-      channelLabel: 'Creative Sprint', process: 'Review creative brief', points: 0, answered: 0,
-      financeTouched: false, notedText: 'Creative Sprint inquiry — not a paid booking', transcriptText: text,
+      channelLabel: dropRate ? 'Creative Sprint · DROP RATE $' + drops.DROP_RATE : 'Creative Sprint', process: 'Review creative brief', points: 0, answered: 0,
+      financeTouched: false, notedText: (dropRate ? 'DROP RATE $' + drops.DROP_RATE + ' — window open at submission. ' : askedDropRate ? 'Asked for drop rate outside a window — list price. ' : '') + 'Creative Sprint inquiry — not a paid booking', transcriptText: text,
       // An internal follow-up task, not a promised customer response SLA.
       replyDueIso: new Date(now.getTime() + 24 * 60 * 60 * 1000).toISOString(),
       receivedIso: now.toISOString(), source: 'creative-sprint', campaign: 'creative-sprint-20260914',
@@ -90,7 +97,7 @@ module.exports = async function handler(req, res) {
       signal: AbortSignal.timeout(10000),
       body: JSON.stringify({
         from: 'VNMSFX Creative Sprint <brandon@vnmsfx.com>', to: ['brandon@vnmsfx.com'],
-        reply_to: data.email, subject: '[Creative Sprint] ' + (data.name || data.email), text
+        reply_to: data.email, subject: '[Creative Sprint' + (dropRate ? ' · DROP RATE $' + drops.DROP_RATE : '') + '] ' + (data.name || data.email), text
       })
     });
     const result = await sent.json().catch(() => null);
@@ -104,6 +111,6 @@ module.exports = async function handler(req, res) {
     note: notificationSent ? 'Creative brief saved; Brandon notification accepted by email provider.' : 'Creative brief saved; check the lead record because the notification was not confirmed.'
   }).catch(() => false);
   return reply(notificationSent ? 200 : 202, {
-    ok: true, persisted: true, notificationSent, submissionId
+    ok: true, persisted: true, notificationSent, submissionId, price, dropRate
   });
 };

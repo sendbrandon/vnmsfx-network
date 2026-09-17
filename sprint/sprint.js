@@ -47,6 +47,19 @@
   const status = document.getElementById('brief-status');
   const fallback = document.getElementById('brief-fallback');
   let sending = false;
+
+  // Drop rate: arrived from a drop page or a Season Pass email. The browser only
+  // carries the request; the server decides by the clock whether the window is open.
+  const params = new URLSearchParams(location.search);
+  const dropRate = params.get('rate') === 'drop' ? { rate: 'drop', drop: (params.get('drop') || '').slice(0, 60) } : null;
+  if (dropRate) {
+    const ticket = document.querySelector('.ticket-top strong');
+    if (ticket) ticket.innerHTML = '$1,500 <small>USD · DROP RATE</small>';
+    const note = document.querySelector('.ticket-top span');
+    if (note) note.textContent = 'YOUR CREATIVE SPRINT · SEASON PASS';
+    const start = document.querySelector('.start-copy > p:last-child');
+    if (start) start.textContent = 'Season Pass drop rate: $1,500 while the drop window is open. Send your brief; I’ll confirm the rate and the plan before you pay.';
+  }
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (sending || !form.reportValidity()) return;
@@ -54,6 +67,7 @@
     ['email', 'product', 'goal', 'company_website'].forEach(key => {
       data[key] = form.elements[key].value.trim();
     });
+    if (dropRate) { data.rate = dropRate.rate; data.drop = dropRate.drop; }
     if (!data.email || !data.product || !data.goal) {
       status.textContent = 'Please add your email, product and what the ad should do.';
       status.dataset.state = 'error';
@@ -84,7 +98,10 @@
       });
       const result = await response.json();
       if (!response.ok || !result.ok || !result.persisted) throw new Error('not-confirmed');
-      status.textContent = 'Your brief is in. Brandon will review it and follow up by email to agree the project details and delivery date. No payment or booking has been made.';
+      status.textContent = (result.dropRate
+        ? 'Your brief is in at the $1,500 drop rate. '
+        : dropRate ? 'Your brief is in. The drop window has closed, so this is at the $2,000 list price — Brandon will confirm. ' : 'Your brief is in. ')
+        + 'Brandon will review it and follow up by email to agree the project details and delivery date. No payment or booking has been made.';
       status.dataset.state = 'success';
       status.focus({ preventScroll: true });
       form.reset();

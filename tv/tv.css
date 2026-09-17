@@ -183,3 +183,11 @@ html{scroll-padding-top:calc(var(--tv-header-height) + 16px)}
 @media(max-width:1100px){.spots-heading{grid-template-columns:1fr;gap:22px}.spots-intro{justify-self:start;max-width:640px}}
 @media(max-width:800px){.spots-section{padding:52px 0 45px}.spots-heading{margin-bottom:26px}.spot-card{width:clamp(190px,46vw,240px)}.spots-track{gap:14px}}
 @media(max-width:600px){.spots-heading .eyebrow{font-size:9px;margin-bottom:14px}.spots-intro>p{font-size:17px}.spots-hint{font-size:11px}.spots-intro .text-link{font-size:14px}.spot-card{width:clamp(170px,56vw,220px)}.spot-card .archive-caption h3{font-size:14px}.spot-card .archive-caption>span{font-size:10px}}
+
+/* Next-drop bar: one line above the hero, links to the drop page. Hidden once the drop is out. */
+.next-drop-bar{display:flex;align-items:center;gap:18px;padding:12px var(--gutter);background:var(--acid);color:var(--ink);margin-top:var(--tv-header-height);font-size:14px}
+.next-drop-bar strong{font:24px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}.next-drop-bar strong em{color:var(--ink)}
+.next-drop-bar .next-drop-when{font:12px/1.5 var(--mono);margin-left:auto;white-space:nowrap}.next-drop-bar .next-drop-when b{font-weight:400;font-variant-numeric:tabular-nums}
+.next-drop-bar .next-drop-arrow{font-size:22px}.next-drop-bar:hover{background:#fff}
+.next-drop-bar+.cinema-hero{padding-top:0}
+@media(max-width:600px){.next-drop-bar{gap:10px;padding:10px 16px;font-size:12px}.next-drop-bar strong{font-size:19px}.next-drop-bar .ticket-tiny{display:none}}
