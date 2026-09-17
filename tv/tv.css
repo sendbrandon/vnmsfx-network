@@ -151,3 +151,35 @@ html{scroll-padding-top:calc(var(--tv-header-height) + 16px)}
 .identity-founder>span{display:block;margin-top:5px;font:11px/1.4 var(--body)}
 .identity-founder-mobile{display:none}
 @media(max-width:600px){.identity-founder{display:none}.identity-founder-mobile{display:block;margin:2px 0 3px}.identity-founder-mobile strong{display:block;font-size:16px}.identity-founder-mobile>span{display:block;font-size:12px;color:var(--muted)}}
+
+/* Two identity panels now: the reference beside the one performance with sound. */
+.identity-grid-pair{grid-template-columns:repeat(2,minmax(0,1fr));max-width:700px}
+@media(min-width:1101px){.identity-grid-pair{max-width:640px}}
+@media(max-width:600px){.identity-grid-pair{grid-template-columns:1fr;max-width:420px;margin:0}.identity-grid-pair .identity-reference{grid-column:auto}}
+
+/* Blockbuster ads: a self-advancing strip of muted spots. Any card opens the full ad with sound. */
+.ads-section{background:#101010;color:#fff;padding:70px 0 55px;border-top:1px solid #ffffff2a;overflow:hidden;scroll-margin-top:var(--tv-header-height)}
+.ads-heading{display:grid;grid-template-columns:1.25fr 1fr;gap:30px 5vw;align-items:end;padding:0 var(--gutter);margin-bottom:38px;container-type:inline-size}
+.ads-heading .eyebrow{color:#aaa;margin-bottom:22px}
+.ads-heading h2 .type-line{font-size:9.4cqi}
+.ads-heading h2 em{color:var(--acid)}
+.ads-intro{max-width:520px;justify-self:end}
+.ads-intro>p{font-size:clamp(17px,1.5vw,22px);line-height:1.35;letter-spacing:-.02em;color:#ddd}
+.ads-hint{margin-top:14px;font:12px/1.5 var(--mono);color:#aaa}.ads-hint strong{color:var(--acid);font-weight:400}
+.ads-intro .text-link{color:#fff;border-color:#fff;font-weight:600;margin-top:18px;min-height:44px}
+.ads-marquee{position:relative;width:100%}
+.ads-track{display:flex;gap:18px;padding:0 var(--gutter);width:max-content;will-change:transform}
+.ad-card{flex:0 0 auto;width:clamp(210px,17vw,300px);min-width:0}
+.ad-card>a{display:block;position:relative;aspect-ratio:9/16;background:#202020;overflow:hidden}
+.ad-card video{width:100%;height:100%;object-fit:cover;transition:filter .3s}
+.ad-card>a:hover video{filter:brightness(.8)}
+.ad-card>a:hover .play-badge{transform:rotate(45deg)}
+.ad-card>a:focus-visible{outline-offset:-4px;outline-color:var(--acid)}
+.ads-note{padding:0 var(--gutter);margin-top:26px}
+/* Without motion (or without JS), the strip is a plain native scroller with posters. */
+.ads-marquee.is-static{overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-color:var(--acid) #303030;scrollbar-width:thin;padding-bottom:12px}
+.ads-marquee.is-static .ads-track{transform:none!important}
+.ads-marquee.is-static .ad-card{scroll-snap-align:start}
+@media(max-width:1100px){.ads-heading{grid-template-columns:1fr;gap:22px}.ads-intro{justify-self:start;max-width:640px}}
+@media(max-width:800px){.ads-section{padding:52px 0 45px}.ads-heading{margin-bottom:26px}.ad-card{width:clamp(190px,46vw,240px)}.ads-track{gap:14px}}
+@media(max-width:600px){.ads-heading .eyebrow{font-size:9px;margin-bottom:14px}.ads-intro>p{font-size:17px}.ads-hint{font-size:11px}.ads-intro .text-link{font-size:14px}.ad-card{width:clamp(170px,56vw,220px)}.ad-card .archive-caption h3{font-size:14px}.ad-card .archive-caption>span{font-size:10px}}

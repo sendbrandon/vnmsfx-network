@@ -73,11 +73,10 @@
   player.addEventListener('loadedmetadata',()=>{dialog.dataset.orientation=player.videoHeight>player.videoWidth?'portrait':'landscape';});
   player.addEventListener('error',()=>{if(player.getAttribute('src'))$('.player-error').hidden=false;});
   $('#player-project').addEventListener('click',closePlayer);
-  // Both identity films start on request so the supplied reference images stay visible.
-  const identityVideos = [$('#identity-closeup'), $('#identity-boardroom')].filter(Boolean);
+  // The identity film starts on request so the supplied reference image stays visible.
+  const identityVideos = [$('#identity-boardroom')].filter(Boolean);
   function pauseIdentity(){identityVideos.forEach(video => video.pause());}
   identityVideos.forEach(video => {
-    if(video.id === 'identity-closeup') video.muted = true;
     video.addEventListener('play', () => {
       preview.pause();
       identityVideos.forEach(other => {if(other !== video) other.pause();});
@@ -88,6 +87,57 @@
   });
   document.addEventListener('visibilitychange', () => {if(document.hidden) pauseIdentity();});
   document.querySelectorAll('[data-film],[data-pack],.menu-toggle').forEach(control => control.addEventListener('click', pauseIdentity));
+  // Blockbuster ads: the strip advances on its own and rotates cards to the end, so no card is
+  // duplicated and at most a viewport's worth of muted previews decode at once. Hover, focus,
+  // an open dialog or a hidden tab all pause it; reduced motion turns it into a native scroller.
+  const marquee=$('#ads-marquee'), adsTrack=$('#ads-track');
+  if(marquee && adsTrack){
+    const adVideos=[...adsTrack.querySelectorAll('video')];
+    let offset=0, last=0, raf=0, held=false, inView=false;
+    const speed=42; // px per second
+    const gap=()=>parseFloat(getComputedStyle(adsTrack).gap)||0;
+    const autoplay=()=>!reduced.matches;
+    function loadNear(){
+      const bounds=marquee.getBoundingClientRect();
+      adVideos.forEach(video=>{
+        const r=video.getBoundingClientRect();
+        const near=r.right>bounds.left-r.width && r.left<bounds.right+r.width;
+        if(near && !video.getAttribute('src')){video.src=video.dataset.src;}
+        const shouldPlay=near && inView && autoplay() && !document.hidden && !dialog.open && !packDialog.open && menu.hidden;
+        if(shouldPlay){if(video.paused) video.play().catch(()=>{});}
+        else if(!video.paused) video.pause();
+      });
+    }
+    function step(now){
+      raf=0;
+      if(!inView || held || !autoplay() || document.hidden || dialog.open || packDialog.open || !menu.hidden){last=0;return;}
+      if(last){offset+=(now-last)/1000*speed;}
+      last=now;
+      const first=adsTrack.firstElementChild;
+      const w=first.getBoundingClientRect().width+gap();
+      if(offset>=w){offset-=w;adsTrack.appendChild(first);}
+      adsTrack.style.transform=`translate3d(${-offset}px,0,0)`;
+      raf=requestAnimationFrame(step);
+    }
+    function run(){ if(!raf && autoplay()) raf=requestAnimationFrame(step); loadNear(); }
+    function setStatic(){
+      const isStatic=!autoplay();
+      marquee.classList.toggle('is-static',isStatic);
+      if(isStatic){offset=0;adsTrack.style.transform='';adVideos.forEach(v=>v.pause());}
+      else run();
+    }
+    ['mouseenter','focusin','touchstart','pointerdown'].forEach(ev=>marquee.addEventListener(ev,()=>{held=true;},{passive:true}));
+    ['mouseleave','focusout','touchend','touchcancel','pointerup','pointercancel'].forEach(ev=>marquee.addEventListener(ev,()=>{held=false;run();},{passive:true}));
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;run();},{threshold:.05}).observe(marquee);
+    } else {inView=true;run();}
+    setInterval(loadNear,400);
+    document.addEventListener('visibilitychange',run);
+    dialog.addEventListener('close',run);packDialog.addEventListener('close',run);
+    menuButton.addEventListener('click',()=>setTimeout(run,0));
+    reduced.addEventListener('change',setStatic);
+    setStatic();
+  }
   // Native horizontal scrolling keeps touch and vertical page scrolling available.
   const archive=$('#archive-gallery'), archiveControls=$('.archive-controls');
   const archivePrev=$('#archive-prev'), archiveNext=$('#archive-next');
