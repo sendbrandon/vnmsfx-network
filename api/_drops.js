@@ -23,7 +23,7 @@ const DROPS = [
     tease: "/tv/drops/the-recipient-tease.mp4",
     cards: ["/tv/drops/card-1-ramp.jpg", "/tv/drops/card-2-backseat.jpg", "/tv/drops/card-3-coming-soon.jpg"],
     // Season Pass promises 01 + 02 — the brief the spot answered, and what it took. DRAFT, pending Brandon's sign-off.
-    brief: "Every drink ad shows you the drink. So nobody looks. We shot this one like contraband: never named, never explained, logo on the last frame only. You look.",
+    brief: "Every drink ad shows you the drink. So nobody looks. We shot this one like something you’re not supposed to have: never named, never explained, logo on the last frame only. You look.",
     took: "Fifteen seconds usually buys one room and a product shot. This one needed a cargo plane, a back seat and a hotel bathroom. One week, three actors, one line of dialogue, and the house look on top: 35mm grain, halation, anamorphic squeeze.",
   },
 ];
