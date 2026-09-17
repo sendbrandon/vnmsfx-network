@@ -90,16 +90,16 @@
   // Blockbuster ads: the strip advances on its own and rotates cards to the end, so no card is
   // duplicated and at most a viewport's worth of muted previews decode at once. Hover, focus,
   // an open dialog or a hidden tab all pause it; reduced motion turns it into a native scroller.
-  const marquee=$('#ads-marquee'), adsTrack=$('#ads-track');
-  if(marquee && adsTrack){
-    const adVideos=[...adsTrack.querySelectorAll('video')];
+  const marquee=$('#spots-marquee'), spotsTrack=$('#spots-track');
+  if(marquee && spotsTrack){
+    const spotVideos=[...spotsTrack.querySelectorAll('video')];
     let offset=0, last=0, raf=0, held=false, inView=false;
     const speed=42; // px per second
-    const gap=()=>parseFloat(getComputedStyle(adsTrack).gap)||0;
+    const gap=()=>parseFloat(getComputedStyle(spotsTrack).gap)||0;
     const autoplay=()=>!reduced.matches;
     function loadNear(){
       const bounds=marquee.getBoundingClientRect();
-      adVideos.forEach(video=>{
+      spotVideos.forEach(video=>{
         const r=video.getBoundingClientRect();
         const near=r.right>bounds.left-r.width && r.left<bounds.right+r.width;
         if(near && !video.getAttribute('src')){video.src=video.dataset.src;}
@@ -113,17 +113,17 @@
       if(!inView || held || !autoplay() || document.hidden || dialog.open || packDialog.open || !menu.hidden){last=0;return;}
       if(last){offset+=(now-last)/1000*speed;}
       last=now;
-      const first=adsTrack.firstElementChild;
+      const first=spotsTrack.firstElementChild;
       const w=first.getBoundingClientRect().width+gap();
-      if(offset>=w){offset-=w;adsTrack.appendChild(first);}
-      adsTrack.style.transform=`translate3d(${-offset}px,0,0)`;
+      if(offset>=w){offset-=w;spotsTrack.appendChild(first);}
+      spotsTrack.style.transform=`translate3d(${-offset}px,0,0)`;
       raf=requestAnimationFrame(step);
     }
     function run(){ if(!raf && autoplay()) raf=requestAnimationFrame(step); loadNear(); }
     function setStatic(){
       const isStatic=!autoplay();
       marquee.classList.toggle('is-static',isStatic);
-      if(isStatic){offset=0;adsTrack.style.transform='';adVideos.forEach(v=>v.pause());}
+      if(isStatic){offset=0;spotsTrack.style.transform='';spotVideos.forEach(v=>v.pause());}
       else run();
     }
     ['mouseenter','focusin','touchstart','pointerdown'].forEach(ev=>marquee.addEventListener(ev,()=>{held=true;},{passive:true}));
