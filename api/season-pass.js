@@ -28,7 +28,7 @@ function welcomeText(firstName, drop, rateOpen) {
 
 You're on the Season Pass.
 
-What the pass gets your brand:
+What the pass gets you:
   - Every new spot, 24 hours before it's public — with the brief it answered.
   - What it took: shots, days, and what the client actually got.
   - First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
@@ -79,7 +79,7 @@ function welcomeHtml(firstName, drop, rateOpen) {
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
-    Hey ${name} — three things the pass gets your brand:
+    Hey ${name} — three things the pass gets you:
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
     <span style="color:${acid};">01</span>&nbsp; Every new spot, 24 hours before it's public — with the brief it answered.<br>
