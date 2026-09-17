@@ -22,6 +22,9 @@ const DROPS = [
     poster: "/tv/drops/the-recipient-poster.jpg",
     tease: "/tv/drops/the-recipient-tease.mp4",
     cards: ["/tv/drops/card-1-ramp.jpg", "/tv/drops/card-2-backseat.jpg", "/tv/drops/card-3-coming-soon.jpg"],
+    // Season Pass promises 01 + 02 — the brief the spot answered, and what it took. DRAFT, pending Brandon's sign-off.
+    brief: "Make a bottle feel like contraband. One product, no logo until the last second, and nobody in the spot allowed to say what it is.",
+    took: "15 seconds. Three locations — a cargo ramp, the back seat of a car, a hotel bathroom — three actors, one word of dialogue. Shot, graded and delivered in a week, on the house look (35mm grain, halation, anamorphic squeeze).",
   },
 ];
 
