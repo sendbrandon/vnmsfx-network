@@ -171,6 +171,17 @@
     const tickBar=()=>{const ms=release-Date.now(); if(ms<=0){dropBar.remove();return;} const s=Math.floor(ms/1000); clockEl.textContent=pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);};
     tickBar(); setInterval(tickBar,1000);}
   document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{$('#interest').value=link.dataset.interest;}));
+  const passForm=$('#tv-pass-form');
+  if(passForm){passForm.addEventListener('submit',async e=>{
+    e.preventDefault(); const status=$('#tv-pass-status'), after=$('#tv-pass-after'), button=passForm.querySelector('button[type=submit]');
+    status.textContent='Adding you…'; button.disabled=true;
+    const payload={email:passForm.email.value.trim(), firstName:passForm.firstName.value.trim(), brand:passForm.brand.value.trim(), company_website:passForm.company_website.value, drop:'the-recipient', page:'/tv', source:new URLSearchParams(location.search).get('utm_source')||document.referrer.replace(/^https?:\/\//,'').split('/')[0]||'direct'};
+    try{const r=await fetch(passForm.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const d=await r.json().catch(()=>({}));
+      if(!r.ok||!d.ok) throw new Error(d.error||'Something went wrong.');
+      status.textContent=d.duplicate?'You were already on the list — nothing changed.':''; passForm.querySelectorAll('input, button').forEach(el=>{el.disabled=true;}); after.hidden=false; after.focus?.();
+      if(window.vnmsfxRecord) window.vnmsfxRecord('season_pass_join');
+    }catch(err){status.textContent=err.message+' Or email brandon@vnmsfx.com and I\'ll add you by hand.'; button.disabled=false;}
+  });}
   $('#brief-form').addEventListener('submit',e=>{
     e.preventDefault(); const interest=$('#interest').value, brief=$('#brief').value.trim();
     const body=`Hi Brandon,\n\nI'm interested in ${interest.toLowerCase()}.\n\n${brief || 'Brand / idea:'}\n\nWhere it will run:\nTiming (if known):\n`;
