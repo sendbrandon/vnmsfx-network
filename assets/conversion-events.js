@@ -122,6 +122,9 @@
   routeTeardownLinks(currentAttribution);
 
   window.vnmsfxRecord = function (name, details) { return record(name, details); };
+  // Mirror funnel milestones to GA4 when its tag is present (no personal data is passed).
+  var baseRecord = record;
+  record = function (name, details) { var r = baseRecord(name, details); if (r && typeof window.gtag === 'function') { try { window.gtag('event', name, Object.assign({}, details || {})); } catch (e) {} } return r; };
   window.vxFunnel = {
     names: EVENT_NAMES.slice(),
     record: record,
