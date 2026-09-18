@@ -28,9 +28,9 @@ function welcomeText(firstName, drop, rateOpen) {
 
 You're on the Season Pass.
 
-Every studio shows you the finished spot. Nobody shows you how it got made. The pass does — one drop at a time, for nothing.
+Every studio shows you the finished spot. Plenty of people will show you prompts. Nobody shows you where the idea came from. The pass does — one drop at a time, for nothing.
   - You see each spot 24 hours before anyone else.
-  - You see how it was made: the idea, then the prompt stack that built it — the part you'd normally pay a studio to figure out.
+  - You see how the idea got made — the thinking before any prompt, then the stack that built it. The part you'd normally pay a studio for.
   - You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.
   - You get a read on your own product. Reply to any drop email with what you sell and I'll tell you, in two lines, whether it has a spot in it.
 
@@ -76,15 +76,15 @@ function welcomeHtml(firstName, drop, rateOpen) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:${ink};">
   <tr><td style="padding:0;"><img src="https://vnmsfx.com/tv/drops/email-header.jpg" width="600" alt="VNMSFX TV" style="display:block;width:100%;height:auto;border:0;"></td></tr>
   <tr><td style="padding:28px 32px 0 32px;">
-    <div style="${mono}font-size:11px;color:${grey};">HOW WE MAKE BLOCKBUSTER ADS / SEASON PASS</div>
+    <div style="${mono}font-size:11px;color:${grey};">WHERE THE BIG IDEA COMES FROM / SEASON PASS</div>
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
-    Hey ${name} — Every studio shows you the finished spot. Nobody shows you how it got made. The pass does — one drop at a time, for nothing.
+    Hey ${name} — Every studio shows you the finished spot. Plenty of people will show you prompts. Nobody shows you where the idea came from. The pass does — one drop at a time, for nothing.
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
     <span style="color:${acid};">01</span>&nbsp; You see each spot 24 hours before anyone else.<br>
-    <span style="color:${acid};">02</span>&nbsp; You see how it was made: the idea, then the prompt stack that built it — the part you'd normally pay a studio to figure out.<br>
+    <span style="color:${acid};">02</span>&nbsp; You see how the idea got made — the thinking before any prompt, then the stack that built it. The part you'd normally pay a studio for.<br>
     <span style="color:${acid};">03</span>&nbsp; You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.<br>
     <span style="color:${acid};">04</span>&nbsp; You get a read on your own product. Reply to any drop email with what you sell and I'll tell you, in two lines, whether it has a spot in it.
   </td></tr>

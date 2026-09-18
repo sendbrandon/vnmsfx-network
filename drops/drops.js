@@ -18,7 +18,7 @@
     stage.classList.add('is-live');
     tease.pause(); tease.hidden = true;
     film.src = body.dataset.film; film.poster = body.dataset.poster; film.hidden = false;
-    eyebrow.textContent = 'HOW WE MAKE BLOCKBUSTER ADS · DROP 01 · OUT NOW';
+    eyebrow.textContent = 'WHERE THE BIG IDEA COMES FROM · DROP 01 · OUT NOW';
     label.textContent = 'OUT NOW'; countdown.textContent = '00:00:00'; countdown.hidden = true;
     releaseLine.textContent = 'Released Monday, September 21 · 12:00 PM ET';
     actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button><a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>';
