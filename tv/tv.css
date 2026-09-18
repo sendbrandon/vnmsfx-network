@@ -222,3 +222,9 @@ html{scroll-padding-top:calc(var(--tv-header-height) + 16px)}
 .proof-two{grid-template-columns:1.2fr 1fr 1fr}
 .spot-card .archive-caption span{display:block;font:11px/1.5 var(--mono);color:#c9c9c9;letter-spacing:.06em;margin-top:4px}
 @media(max-width:800px){.proof-two{grid-template-columns:repeat(2,minmax(0,1fr))}.proof-two>p{grid-column:1/-1}}
+/* Long statements wrap; no headline may force horizontal scroll. */
+.statement-scene h2,.contact-title h2{white-space:normal}
+.statement-scene h2 .type-line,.contact-title h2 .type-line{display:inline;white-space:normal;font-size:inherit}
+.statement-scene h2{font-size:clamp(38px,5.4vw,96px);line-height:1.02}
+.contact-title h2{font-size:clamp(40px,6.4vw,110px);line-height:1.02}
+@media(max-width:800px){.statement-scene h2{font-size:clamp(34px,10.5vw,52px)}.contact-title h2{font-size:clamp(36px,11vw,56px)}}
