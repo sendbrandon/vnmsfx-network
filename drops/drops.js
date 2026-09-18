@@ -16,13 +16,21 @@
   function goLive() {
     if (live) return; live = true;
     stage.classList.add('is-live');
-    tease.pause(); tease.hidden = true;
-    film.src = body.dataset.film; film.poster = body.dataset.poster; film.hidden = false;
+    // Same stage as the countdown: the spot runs full-bleed and muted under the copy.
+    // "Play with sound" opens it in the player dialog at its real aspect.
+    tease.hidden = false; tease.loop = true; tease.muted = true; tease.poster = body.dataset.poster;
+    if (tease.getAttribute('src') !== body.dataset.film) { tease.innerHTML = ''; tease.src = body.dataset.film; tease.load(); }
+    tease.play().catch(() => {});
     eyebrow.textContent = body.dataset.liveEyebrow || 'WHERE THE BIG IDEA COMES FROM · DROP 01 · OUT NOW';
     label.textContent = 'OUT NOW'; countdown.textContent = '00:00:00'; countdown.hidden = true;
     releaseLine.textContent = body.dataset.releasedLine || 'Released Monday, September 21 · 12:00 PM ET';
     actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button>' + (body.dataset.noRate ? '<a class="button-dark" href="#pass">Join the Season Pass <span aria-hidden="true">↗</span></a>' : '<a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>');
-    $('#play-film').addEventListener('click', () => { film.muted = false; film.play().catch(() => {}); film.scrollIntoView({ block: 'center' }); });
+    $('#play-film').addEventListener('click', () => {
+      const dialog = $('#film-dialog'), player = $('#film-player');
+      if (!dialog || !dialog.showModal) { film.hidden = false; film.src = body.dataset.film; film.muted = false; film.play().catch(() => {}); return; }
+      $('#film-dialog-title').textContent = document.title.split(' — ')[0]; player.poster = body.dataset.poster || ''; player.src = body.dataset.film;
+      dialog.showModal(); player.muted = false; player.play().catch(() => {});
+    });
   }
   function tick() {
     const now = Date.now();
@@ -42,7 +50,7 @@
 
   // The tease loop is muted and inline, so autoplay is allowed; nudge it anyway,
   // and again on the first touch for browsers that hold muted video until a gesture.
-  const nudge = () => { if (!live && tease.paused) tease.play().catch(() => {}); };
+  const nudge = () => { if (tease.paused && !tease.hidden) tease.play().catch(() => {}); };
   nudge(); document.addEventListener('visibilitychange', nudge);
   ['pointerdown', 'touchstart', 'keydown'].forEach((ev) => document.addEventListener(ev, nudge, { once: true, passive: true }));
 
