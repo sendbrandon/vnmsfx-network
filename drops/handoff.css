@@ -1,0 +1,60 @@
+/* THE HANDOFF — game styles. Tokens come from /drops/drops.css; nothing here
+   changes an existing rule. */
+
+.handoff{position:relative;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;touch-action:manipulation;user-select:none;-webkit-user-select:none;outline:none}
+.handoff-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.handoff-eyebrow,.handoff-round{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);margin:0;font:12px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--acid);z-index:2;pointer-events:none}
+.handoff-eyebrow{left:20px;right:34%;text-wrap:balance}
+.handoff-round{right:20px;color:#fff;opacity:.72;font-variant-numeric:tabular-nums}
+
+/* Title and game over sit on the same stack: centred column, low weight. */
+.handoff-screen{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;padding:24px 22px calc(env(safe-area-inset-bottom,0px) + 30px);text-align:left}
+.handoff-screen[hidden]{display:none}
+
+.handoff-title,.handoff-score{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:-.02em;line-height:.96;margin:0}
+.handoff-title{font-size:clamp(52px,15vw,120px)}
+.handoff-score{font-size:clamp(46px,11vw,104px);text-wrap:balance}
+.handoff-beat,.handoff-instruction,.handoff-told,.handoff-best{margin:0;font:12px/1.6 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.handoff-beat{color:var(--acid)}
+.handoff-instruction{color:var(--muted)}
+.handoff-told{color:var(--acid)}
+.handoff-best{color:var(--muted)}
+
+.handoff-screen .button-acid,.handoff-screen .button-dark{align-self:flex-start;min-height:52px;min-width:44px;justify-content:space-between}
+.handoff-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.handoff-actions button{align-self:auto}
+
+/* The only conversion element in the game. */
+.handoff-pass{border-top:1px solid var(--line);padding-top:16px;margin-top:6px;display:grid;gap:10px;max-width:520px}
+.handoff-pass p:not(.eyebrow){margin:0;font-size:15px;line-height:1.4;color:#ddd}
+.handoff-pass .button-acid{margin-top:4px}
+
+.handoff-live{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.handoff-toast{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 56px);transform:translateX(-50%);z-index:4;margin:0;background:var(--acid);color:var(--ink);font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* The dialog on the drop page: full screen, one CLOSE control. */
+#handoff-dialog{width:100vw;max-width:100vw;height:100svh;max-height:100svh;padding:0;background:#000;border:0}
+#handoff-dialog::backdrop{background:#000}
+#handoff-stage{width:100%;height:100%}
+#close-handoff{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;z-index:6;background:#000c;color:#fff;border:1px solid #666;font:11px var(--mono);padding:12px 14px;min-height:44px;min-width:44px;cursor:pointer}
+
+/* The section that opens it, between the stage and the pass. */
+.play-strip{padding:44px var(--gutter) 50px;border-top:1px solid var(--line);background:#000;display:grid;gap:10px;justify-items:start}
+.play-strip h2{font-size:clamp(36px,6vw,72px)}
+.play-strip p{margin:0;max-width:540px;color:#ddd;font-size:clamp(16px,1.6vw,19px)}
+.play-strip .button-acid{margin-top:12px}
+
+/* Standalone /drops/handoff: the game is the page. */
+.handoff-page{min-height:100svh;display:flex;flex-direction:column;background:#000}
+.handoff-page .drop-header{position:static;background:none}
+.handoff-page main{flex:1;display:flex}
+.handoff-page #handoff-stage{flex:1;min-height:70svh}
+
+@media (max-width:800px){
+  .handoff-eyebrow{right:40%}
+  .handoff-page .drop-header nav{gap:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .card img,.handoff-screen{transition:none}
+}

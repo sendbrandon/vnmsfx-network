@@ -28,10 +28,10 @@ function welcomeText(firstName, drop, rateOpen) {
 
 You're on the Season Pass.
 
-What the pass gets you:
-  - Every spot, 24 hours before it's public.
-  - The sauce behind it, one drop at a time — starting with the idea and the prompt stack that built it.
-  - First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
+Every studio shows you the finished spot. Nobody shows you how it got made. The pass does — one drop at a time.
+  - You see each spot 24 hours before anyone else.
+  - You see how it was made: the idea first, then the prompt stack that built it.
+  - You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
 ${rateOpen ? `
@@ -79,12 +79,12 @@ function welcomeHtml(firstName, drop, rateOpen) {
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
-    Hey ${name} — three things the pass gets you:
+    Hey ${name} — Every studio shows you the finished spot. Nobody shows you how it got made. The pass does — one drop at a time.
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
-    <span style="color:${acid};">01</span>&nbsp; Every spot, 24 hours before it's public.<br>
-    <span style="color:${acid};">02</span>&nbsp; The sauce behind it, one drop at a time — starting with the idea and the prompt stack that built it.<br>
-    <span style="color:${acid};">03</span>&nbsp; First claim on the drop rate — the Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}, only while a drop is live.
+    <span style="color:${acid};">01</span>&nbsp; You see each spot 24 hours before anyone else.<br>
+    <span style="color:${acid};">02</span>&nbsp; You see how it was made: the idea first, then the prompt stack that built it.<br>
+    <span style="color:${acid};">03</span>&nbsp; You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.
   </td></tr>
   <tr><td style="padding:26px 32px 0 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333333;">

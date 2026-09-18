@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:wght@400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/drops/drops.css">
+<link rel="stylesheet" href="/drops/handoff.css">
 </head>
 <body class="drop-page" data-drop="the-recipient" data-live-from="2026-09-17T12:00:00Z" data-early="2026-09-20T16:00:00Z" data-release="2026-09-21T16:00:00Z" data-close="2026-09-23T16:00:00Z" data-film="/tv/drops/r-7423688ff693.mp4" data-poster="/tv/drops/the-recipient-poster.jpg">
 <a class="skip" href="#main">Skip to content</a>
@@ -34,15 +35,23 @@
   </div>
 </section>
 
+<section class="play-strip" id="play" aria-labelledby="play-title">
+  <p class="eyebrow">PLAY</p>
+  <h2 id="play-title">THE HANDOFF<span class="acid">.</span></h2>
+  <p>One tap. The marker crosses the bar; let it go clean or the recipient gets told.</p>
+  <button class="button-acid" type="button" data-handoff-open>PLAY <span aria-hidden="true">↗</span></button>
+</section>
+
 <section class="pass" id="pass" aria-labelledby="pass-title">
   <a class="card pass-card" href="/tv/drops/card-1-ramp.jpg" data-card><img src="/tv/drops/card-1-ramp.jpg" width="1080" height="1920" alt="Package is inbound. A figure stands on the ramp of a cargo plane." loading="eager"></a>
   <div class="pass-copy">
     <p class="eyebrow">SEASON PASS · FREE · FOR BRANDS</p>
     <h2 id="pass-title">SEE THE WORK <em>FIRST.</em></h2>
+    <p class="pass-intro">Every studio shows you the finished spot. Nobody shows you how it got made. The pass does — one drop at a time.</p>
     <ol class="promises">
-      <li><span>01</span><p>Every spot, 24 hours before it's public.</p></li>
-      <li><span>02</span><p>The sauce behind it, one drop at a time — starting with the idea and the prompt stack that built it.</p></li>
-      <li><span>03</span><p>First claim on the drop rate — the Creative Sprint at <strong>$1,500</strong> instead of $2,000, only while a drop is live.</p></li>
+      <li><span>01</span><p>You see each spot 24 hours before anyone else.</p></li>
+      <li><span>02</span><p>You see how it was made: the idea first, then the prompt stack that built it.</p></li>
+      <li><span>03</span><p>You get the drop rate: <strong>$1,500</strong>, not $2,000, while a drop is live.</p></li>
     </ol>
     <p class="rate-line" id="rate-line"><strong>Drop rate open</strong> · closes in <span id="rate-countdown">--:--:--</span>. Then $2,000 until the next countdown.</p>
   </div>
@@ -74,7 +83,9 @@
 
 <dialog id="card-dialog" aria-label="Teaser card"><button type="button" id="close-card" aria-label="Close">CLOSE ×</button><img id="card-full" src="" alt=""></dialog>
 <dialog id="film-dialog" aria-labelledby="film-dialog-title"><div class="player-header"><p id="film-dialog-title"></p><button type="button" id="close-player" aria-label="Close spot">CLOSE ×</button></div><video id="film-player" controls playsinline preload="none"></video></dialog>
+<dialog id="handoff-dialog" aria-label="The Handoff — a timing game"><button type="button" id="close-handoff" aria-label="Close the game">CLOSE ×</button><div id="handoff-stage" tabindex="-1"></div></dialog>
 <script src="/drops/drops.js" defer></script>
+<script src="/drops/handoff.js" defer></script>
 <script src="/assets/conversion-events.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body></html>
