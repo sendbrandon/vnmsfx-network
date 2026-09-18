@@ -28,10 +28,10 @@ const DROPS = [
     sauce: {
       label: "DROP 01 · WHERE THE IDEA CAME FROM",
       lines: [
-        "TBD — the observation that started it (what everyone in the category does)",
-        "TBD — the tension we found in it (why that stops people looking)",
-        "TBD — the idea in one line, and the rule that protected it (nothing named until the last frame)",
-        "TBD — the stack that built it, excerpted (world, scenes, the handoff beat)",
+        "TBD — What we noticed. (Every fragrance ad does the same thing.)",
+        "TBD — Why it doesn't work. (So nobody looks.)",
+        "TBD — The idea, in one line. (And the one rule we never broke.)",
+        "TBD — How we built it. (The stack, the short version.)",
       ],
     },
     took: "Fifteen seconds usually buys one room and a product shot. This one needed a cargo plane, a back seat and a hotel bathroom. One week, three actors, one line of dialogue, and the house look on top: 35mm grain, halation, anamorphic squeeze.",
