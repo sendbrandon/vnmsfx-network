@@ -21,7 +21,7 @@
     tease.hidden = false; tease.loop = true; tease.muted = true; tease.poster = body.dataset.poster;
     if (tease.getAttribute('src') !== body.dataset.film) { tease.innerHTML = ''; tease.src = body.dataset.film; tease.load(); }
     tease.play().catch(() => {});
-    eyebrow.textContent = body.dataset.liveEyebrow || 'WHERE THE BIG IDEA COMES FROM · DROP 01 · OUT NOW';
+    eyebrow.textContent = body.dataset.liveEyebrow || 'WHERE THE BIG IDEA COMES FROM · DROP 02 · OUT NOW';
     label.textContent = 'OUT NOW'; countdown.textContent = '00:00:00'; countdown.hidden = true;
     releaseLine.textContent = body.dataset.releasedLine || 'Released Monday, September 21 · 12:00 PM ET';
     actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button>' + (body.dataset.noRate ? '<a class="button-dark" href="#pass">Join the Season Pass <span aria-hidden="true">↗</span></a>' : '<a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>');

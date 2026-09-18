@@ -26,7 +26,7 @@ const DROPS = [
     brief: "Every fragrance ad shows you the bottle. So nobody looks. We shot this one like something you’re not supposed to have: never named, never explained, logo on the last frame only. You look.",
     // THE SAUCE — what pass holders get with this drop. Placeholders block the send (see _drop-mail.js ready()).
     sauce: {
-      label: "DROP 01 · THE IDEA, THEN WHY",
+      label: "DROP 02 · THE IDEA, THEN WHY",
       lines: [
         "TBD — The idea. One line, the way you'd say it to a client. Example shape: Shoot the bottle like contraband.",
         "TBD — Why it works. One reason, stated as fact. Example shape: Fragrance ads all show the bottle, so nobody looks. Hide it and they do.",
