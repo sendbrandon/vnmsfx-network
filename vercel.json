@@ -16,6 +16,11 @@
   ],
   "redirects": [
     {
+      "source": "/tv",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
