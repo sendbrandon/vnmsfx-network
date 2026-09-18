@@ -28,11 +28,11 @@ function welcomeText(firstName, drop, rateOpen) {
 
 You're on the Season Pass.
 
-Most ads look like everyone else's now, and that's why they get scrolled. Not the footage, not the prompt — the idea. Anyone can generate a beautiful spot in an afternoon. What you can't generate is the idea people remember. That's the only thing we do differently, and every drop shows you exactly how we did it — for nothing.
+Most ads look like everyone else's now. That's why they get scrolled. Anyone can generate the footage. Nobody can generate the idea. Every drop shows you ours — for nothing.
   - You see each blockbuster ad 24 hours before anyone else.
-  - You see the idea underneath it — where it came from and why it works — so the next ad your team makes has one.
+  - You see the idea underneath it — where it came from, why it works.
   - You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.
-  - You get a read on your own product. Reply to any drop email with what you sell and I'll tell you, in two lines, whether it has a spot in it.
+  - You get a read on your product. Reply with what you sell; I'll tell you in two lines if it has a spot in it.
 
 Next: ${drop.title}. Public ${release}. You'll get it ${early}.
 ${rateOpen ? `
@@ -80,13 +80,13 @@ function welcomeHtml(firstName, drop, rateOpen) {
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
-    Hey ${name} — Most ads look like everyone else's now, and that's why they get scrolled. Not the footage, not the prompt — the idea. Anyone can generate a beautiful spot in an afternoon. What you can't generate is the idea people remember. That's the only thing we do differently, and every drop shows you exactly how we did it — for nothing.
+    Hey ${name} — Most ads look like everyone else's now. That's why they get scrolled. Anyone can generate the footage. Nobody can generate the idea. Every drop shows you ours — for nothing.
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
     <span style="color:${acid};">01</span>&nbsp; You see each blockbuster ad 24 hours before anyone else.<br>
-    <span style="color:${acid};">02</span>&nbsp; You see the idea underneath it — where it came from and why it works — so the next ad your team makes has one.<br>
+    <span style="color:${acid};">02</span>&nbsp; You see the idea underneath it — where it came from, why it works.<br>
     <span style="color:${acid};">03</span>&nbsp; You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.<br>
-    <span style="color:${acid};">04</span>&nbsp; You get a read on your own product. Reply to any drop email with what you sell and I'll tell you, in two lines, whether it has a spot in it.
+    <span style="color:${acid};">04</span>&nbsp; You get a read on your product. Reply with what you sell; I'll tell you in two lines if it has a spot in it.
   </td></tr>
   <tr><td style="padding:26px 32px 0 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333333;">
