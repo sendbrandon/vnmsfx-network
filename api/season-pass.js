@@ -77,7 +77,7 @@ function welcomeHtml(firstName, drop, rateOpen, email) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:${ink};">
   <tr><td style="padding:0;"><img src="https://vnmsfx.com/tv/drops/email-header.jpg" width="600" alt="VNMSFX TV" style="display:block;width:100%;height:auto;border:0;"></td></tr>
   <tr><td style="padding:28px 32px 0 32px;">
-    <div style="${mono}font-size:11px;color:${grey};">WHERE THE BIG IDEA COMES FROM / SEASON PASS</div>
+    <div style="${mono}font-size:11px;color:${grey};">SEASON PASS / BEHIND THE SCENES OF HOW WE MAKE OUR ADS</div>
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
