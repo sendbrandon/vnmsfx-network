@@ -18,7 +18,10 @@
     'leak_check_complete',
     'leak_check_email_submit',
     'teardown_click',
-    'teardown_booked'
+    'teardown_booked',
+    'handoff_play',
+    'handoff_over',
+    'handoff_share'
   ];
 
   function read(key, fallback) {
