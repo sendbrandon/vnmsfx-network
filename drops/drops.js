@@ -18,15 +18,16 @@
     stage.classList.add('is-live');
     tease.pause(); tease.hidden = true;
     film.src = body.dataset.film; film.poster = body.dataset.poster; film.hidden = false;
-    eyebrow.textContent = 'WHERE THE BIG IDEA COMES FROM · DROP 01 · OUT NOW';
+    eyebrow.textContent = body.dataset.liveEyebrow || 'WHERE THE BIG IDEA COMES FROM · DROP 01 · OUT NOW';
     label.textContent = 'OUT NOW'; countdown.textContent = '00:00:00'; countdown.hidden = true;
-    releaseLine.textContent = 'Released Monday, September 21 · 12:00 PM ET';
-    actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button><a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>';
+    releaseLine.textContent = body.dataset.releasedLine || 'Released Monday, September 21 · 12:00 PM ET';
+    actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button>' + (body.dataset.noRate ? '<a class="button-dark" href="#pass">Join the Season Pass <span aria-hidden="true">↗</span></a>' : '<a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>');
     $('#play-film').addEventListener('click', () => { film.muted = false; film.play().catch(() => {}); film.scrollIntoView({ block: 'center' }); });
   }
   function tick() {
     const now = Date.now();
     if (now >= t.release) goLive(); else countdown.textContent = clock(t.release - now);
+    if (!rateLine) return;
     if (now < t.close && now >= t.liveFrom) {
       rateCountdown.textContent = clock(t.close - now);
     } else {

@@ -36,6 +36,20 @@ const DROPS = [
     },
     took: "Fifteen seconds usually buys one room and a product shot. This one needed a cargo plane, a back seat and a hotel bathroom. One week, three actors, one line of dialogue, and the house look on top: 35mm grain, halation, anamorphic squeeze.",
   },
+  {
+    id: "youre-up",
+    title: "You're Up.",
+    tagline: "Frozen fries get a classified extraction.",
+    liveFrom: "2026-09-17T08:00:00Z",   // posted Thu 9/17 ~4 AM ET; no rate window on this one
+    early:    "2026-09-17T08:00:00Z",
+    release:  "2026-09-17T08:00:00Z",
+    close:    "2026-09-17T08:00:00Z",
+    film: "/tv/spots/fries.mp4",
+    poster: "/tv/spots/fries.jpg",
+    tease: "/tv/spots/fries.mp4",
+    cards: ["/tv/drops/youre-up-frame.jpg"],
+    brief: "", took: "", sauce: { label: "", lines: [] },
+  },
 ];
 
 const DROP_RATE = 1500;
