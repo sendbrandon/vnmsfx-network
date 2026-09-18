@@ -28,9 +28,9 @@ function welcomeText(firstName, drop, rateOpen) {
 
 You're on the Season Pass.
 
-A better prompt won't save a weak idea. Every studio shows you the finished spot; we show you the idea underneath it — one blockbuster ad at a time, for nothing.
-  - You see each spot 24 hours before anyone else.
-  - You see the idea underneath it — where it came from and why it works. That's the part you'd pay a studio for. The prompt isn't.
+Most ads look like everyone else's now, and that's why they get scrolled. Not the footage, not the prompt — the idea. Anyone can generate a beautiful spot in an afternoon. What you can't generate is the idea people remember. That's the only thing we do differently, and every drop shows you exactly how we did it — for nothing.
+  - You see each blockbuster ad 24 hours before anyone else.
+  - You see the idea underneath it — where it came from and why it works — so the next ad your team makes has one.
   - You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.
   - You get a read on your own product. Reply to any drop email with what you sell and I'll tell you, in two lines, whether it has a spot in it.
 
@@ -80,11 +80,11 @@ function welcomeHtml(firstName, drop, rateOpen) {
     <div style="${display}font-size:44px;line-height:1.02;color:#ffffff;margin-top:10px;">YOU'RE ON<br>THE <span style="color:${acid};">LIST.</span></div>
   </td></tr>
   <tr><td style="padding:20px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#dddddd;">
-    Hey ${name} — A better prompt won't save a weak idea. Every studio shows you the finished spot; we show you the idea underneath it — one blockbuster ad at a time, for nothing.
+    Hey ${name} — Most ads look like everyone else's now, and that's why they get scrolled. Not the footage, not the prompt — the idea. Anyone can generate a beautiful spot in an afternoon. What you can't generate is the idea people remember. That's the only thing we do differently, and every drop shows you exactly how we did it — for nothing.
   </td></tr>
   <tr><td style="padding:14px 32px 0 32px;${body}font-size:16px;line-height:1.7;color:#ffffff;">
-    <span style="color:${acid};">01</span>&nbsp; You see each spot 24 hours before anyone else.<br>
-    <span style="color:${acid};">02</span>&nbsp; You see the idea underneath it — where it came from and why it works. That's the part you'd pay a studio for. The prompt isn't.<br>
+    <span style="color:${acid};">01</span>&nbsp; You see each blockbuster ad 24 hours before anyone else.<br>
+    <span style="color:${acid};">02</span>&nbsp; You see the idea underneath it — where it came from and why it works — so the next ad your team makes has one.<br>
     <span style="color:${acid};">03</span>&nbsp; You get the drop rate: ${money(drops.DROP_RATE)}, not ${money(drops.LIST_RATE)}, while a drop is live.<br>
     <span style="color:${acid};">04</span>&nbsp; You get a read on your own product. Reply to any drop email with what you sell and I'll tell you, in two lines, whether it has a spot in it.
   </td></tr>
