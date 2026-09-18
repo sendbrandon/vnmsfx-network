@@ -89,10 +89,10 @@
       const r = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const d = await r.json().catch(() => ({}));
       if (!r.ok || !d.ok) throw new Error(d.error || 'Something went wrong.');
-      status.textContent = d.duplicate ? 'You were already on the list — nothing changed.' : '';
+      status.textContent = ''; const mail = $('#pass-after-mail'); if (mail) mail.textContent = ((d) => d.duplicate ? 'You were already on the list — nothing changed.' : d.welcomeSent ? 'Welcome email is on its way.' : 'You’re saved. The welcome email didn’t go out — I’ll send it by hand.')(d);
       form.querySelectorAll('input, button').forEach((el) => { el.disabled = true; });
       after.hidden = false; after.focus?.();
-      if (window.vnmsfxRecord) window.vnmsfxRecord('season_pass_join');
+      if (!d.duplicate && window.vxFunnel) window.vxFunnel.record('season_pass_join', { drop: body.dataset.drop, page: location.pathname });
     } catch (err) {
       status.textContent = err.message + ' Or email brandon@vnmsfx.com and I\'ll add you by hand.'; button.disabled = false;
     }

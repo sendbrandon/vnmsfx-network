@@ -21,7 +21,12 @@
     'teardown_booked',
     'handoff_play',
     'handoff_over',
-    'handoff_share'
+    'handoff_share',
+    'season_pass_join',
+    'sprint_view',
+    'sprint_click',
+    'brief_submit_success',
+    'work_play'
   ];
 
   function read(key, fallback) {
@@ -116,6 +121,7 @@
   var currentAttribution = captureAttribution();
   routeTeardownLinks(currentAttribution);
 
+  window.vnmsfxRecord = function (name, details) { return record(name, details); };
   window.vxFunnel = {
     names: EVENT_NAMES.slice(),
     record: record,

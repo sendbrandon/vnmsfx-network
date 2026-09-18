@@ -2,6 +2,7 @@
 // (api/send-drop.js) and the by-hand script (scripts/send-drop.js).
 "use strict";
 const drops = require("./_drops.js");
+const unsub = require("./_unsub.js");
 const money = (n) => "$" + n.toLocaleString("en-US");
 
 function build(drop) {
@@ -15,7 +16,7 @@ const pageUrl = "https://vnmsfx.com/drops/" + drop.id;
 const close = et(drop.close, { weekday: "long", month: "long", day: "numeric", hour: "numeric" }) + " ET";
 const publicAt = et(drop.release, { weekday: "long", hour: "numeric" }) + " ET";
 const subject = drop.title + " — yours 24 hours early";
-const text = (name) => `Hey ${name} —
+const text = (name, email) => `Hey ${name} —
 
 ${drop.title} is yours a day before anyone else. Direct link, sound on:
 ${filmUrl}
@@ -35,8 +36,8 @@ https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
 Brandon
 VNMSFX TV — ${pageUrl}
 
-You're getting this because you're on the Season Pass. One email per drop. Reply "stop" and you're off.`;
-const html = (name) => `<!doctype html><html><body style="margin:0;padding:0;background:#000;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#000;"><tr><td align="center" style="padding:28px 12px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:${ink};">
+You're getting this because you're on the Season Pass. One email per drop. Unsubscribe: ${unsub.url(email)}`;
+const html = (name, email) => `<!doctype html><html><body style="margin:0;padding:0;background:#000;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#000;"><tr><td align="center" style="padding:28px 12px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:${ink};">
 <tr><td><a href="${filmUrl}"><img src="https://vnmsfx.com${drop.cards[2]}" width="600" alt="${drop.title}" style="display:block;width:100%;height:auto;border:0;"></a></td></tr>
 <tr><td style="padding:28px 32px 0 32px;"><div style="${mono}font-size:11px;color:${grey};">WHERE THE BIG IDEA COMES FROM · DROP 02 · 24 HOURS EARLY</div><div style="${display}font-size:44px;line-height:1.02;color:#fff;margin-top:10px;">${drop.title.toUpperCase()}<span style="color:${acid};">.</span></div></td></tr>
 <tr><td style="padding:18px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#ddd;">Hey ${name} — it's yours a day before anyone else. Public ${publicAt}. Until then it's just the list.</td></tr>
@@ -45,7 +46,7 @@ const html = (name) => `<!doctype html><html><body style="margin:0;padding:0;bac
 <tr><td style="padding:26px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid ${acid};"><tr><td style="padding:18px 20px;"><div style="${mono}font-size:11px;color:${acid};">THE SAUCE · ${drop.sauce.label}</div>${drop.sauce.lines.map((l, i) => `<div style="${body}font-size:15px;line-height:1.6;color:#fff;margin-top:${i ? 8 : 12}px;"><span style="color:${acid};">${String(i + 1).padStart(2, "0")}</span>&nbsp; ${l}</div>`).join("")}</td></tr></table></td></tr>
 <tr><td style="padding:28px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333;"><tr><td style="padding:18px 0 0 0;"><div style="${mono}font-size:11px;color:${grey};">DROP RATE · OPEN UNTIL ${close.toUpperCase()}</div><div style="${display}font-size:30px;line-height:1.05;color:#fff;margin-top:8px;">WANT ONE FOR YOUR PRODUCT<span style="color:${acid};">?</span></div><div style="${body}font-size:15px;line-height:1.5;color:#fff;margin-top:8px;">Creative Sprint at <strong>${money(drops.DROP_RATE)}</strong> until ${close}. The rate is applied on the page and confirmed by email before you pay.</div><div style="${body}font-size:15px;line-height:1.5;color:#ddd;margin-top:8px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price ${money(drops.LIST_RATE)}. Closes when the drop does.</div><a href="https://vnmsfx.com/creative-sprint?rate=drop&amp;drop=${drop.id}" style="${body}display:inline-block;margin-top:14px;color:${acid};font-weight:700;font-size:14px;">Start a Sprint at the drop rate ↗</a></td></tr></table></td></tr>
 <tr><td style="padding:28px 32px 30px 32px;${body}font-size:14px;line-height:1.6;color:#fff;"><strong>Brandon Adams</strong><br><span style="color:${grey};">VNMSFX TV — New York</span><br><a href="${pageUrl}" style="color:${grey};">${pageUrl.replace("https://", "")}</a></td></tr>
-</table><div style="max-width:600px;${body}font-size:12px;line-height:1.7;color:#777;padding:16px 8px 0 8px;">You're getting this because you're on the Season Pass. One email per drop. Reply &ldquo;stop&rdquo; and you're off.</div></td></tr></table></body></html>`;
+</table><div style="max-width:600px;${body}font-size:12px;line-height:1.7;color:#777;padding:16px 8px 0 8px;">You're getting this because you're on the Season Pass. One email per drop. <a href="${unsub.url(email)}" style="color:#aaa;">Unsubscribe</a>.</div></td></tr></table></body></html>`;
   return { subject, text, html };
 }
 
@@ -56,7 +57,7 @@ async function subscribers({ NOTION_TOKEN, NOTION_DATABASE_ID }) {
       body: JSON.stringify({ page_size: 100, start_cursor: cursor, filter: { property: "Sells", rich_text: { equals: "Season Pass" } } }) });
     if (!r.ok) throw new Error("notion " + r.status + " " + (await r.text()).slice(0, 200));
     const d = await r.json();
-    d.results.forEach((p) => { const email = p.properties.Email && p.properties.Email.email; const fn = ((p.properties["First Name"] || {}).rich_text || []).map((t) => t.plain_text).join(""); if (email) out.push({ email, name: fn && fn !== "—" ? fn : "there" }); });
+    d.results.forEach((p) => { const status = ((p.properties.Status || {}).select || {}).name || ""; if (/UNSUBSCRIBED|BOUNCED/i.test(status)) return; const email = p.properties.Email && p.properties.Email.email; const fn = ((p.properties["First Name"] || {}).rich_text || []).map((t) => t.plain_text).join(""); if (email) out.push({ email, name: fn && fn !== "—" ? fn : "there" }); });
     cursor = d.has_more ? d.next_cursor : null;
   } while (cursor);
   const seen = new Set(); return out.filter((s) => (seen.has(s.email) ? false : seen.add(s.email)));
@@ -79,7 +80,7 @@ async function sendDrop({ drop, dry, env, log = () => {} }) {
   for (const s of list) {
     if (dry) { log("  would send → " + s.email); continue; }
     const r = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: "Bearer " + RESEND_API_KEY, "Content-Type": "application/json", "Idempotency-Key": "drop/" + drop.id + "/" + s.email },
-      body: JSON.stringify({ from: "Brandon Adams <brandon@vnmsfx.com>", to: [s.email], reply_to: "brandon@vnmsfx.com", subject, text: text(s.name), html: html(s.name) }) });
+      body: JSON.stringify({ from: "Brandon Adams <brandon@vnmsfx.com>", to: [s.email], reply_to: "brandon@vnmsfx.com", subject, text: text(s.name, s.email), html: html(s.name, s.email), headers: { "List-Unsubscribe": "<" + unsub.url(s.email) + ">" } }) });
     if (r.ok) sent++; else { failed++; const t = (await r.text()).slice(0, 120); failures.push(s.email + " " + r.status + " " + t); log("  failed → " + s.email + " " + r.status + " " + t); }
     await new Promise((res) => setTimeout(res, 600)); // Resend rate limit: 2/s
   }

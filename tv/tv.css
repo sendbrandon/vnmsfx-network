@@ -210,7 +210,7 @@ html{scroll-padding-top:calc(var(--tv-header-height) + 16px)}
 .tv-pass-form .button-acid{margin-top:20px;display:flex;justify-content:space-between;align-items:center;background:var(--acid);color:var(--ink);font:600 14px var(--body);padding:16px 20px;min-height:52px;border:0;cursor:pointer}.tv-pass-form .button-acid:hover{background:#fff}
 .tv-pass-form .form-note{color:#aaa;margin-top:12px}#tv-pass-status{margin-top:12px;font-size:14px}
 .tv-pass-after{margin-top:22px;border:1px solid var(--acid);padding:20px}.tv-pass-after p+p{margin-top:8px;font-size:15px;color:#ddd}.tv-pass-after a{color:var(--acid)}
-.spot-drop .archive-caption span{display:block;font:11px/1.5 var(--mono);color:var(--muted);letter-spacing:.06em;margin-top:4px}
+.spot-drop .archive-caption span{display:block;font:11px/1.5 var(--mono);color:#c9c9c9;letter-spacing:.06em;margin-top:4px}
 .spots-heading .eyebrow a{color:inherit;border-bottom:1px solid}
 /* One door. */
 .one-door .door{display:grid;grid-template-columns:auto 1fr;gap:30px 6vw;align-items:start;margin-top:40px;padding-top:30px;border-top:1px solid var(--line)}

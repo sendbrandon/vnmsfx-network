@@ -7,6 +7,7 @@
 
 const leadStore = require("./_lead-store.js");
 const drops = require("./_drops.js");
+const unsub = require("./_unsub.js");
 const money = (n) => "$" + n.toLocaleString("en-US");
 
 const ORIGINS = new Set(["https://vnmsfx.com", "https://www.vnmsfx.com"]);
@@ -19,7 +20,7 @@ function et(iso, opts) {
   return new Intl.DateTimeFormat("en-US", Object.assign({ timeZone: "America/New_York" }, opts)).format(new Date(iso));
 }
 
-function welcomeText(firstName, drop, rateOpen) {
+function welcomeText(firstName, drop, rateOpen, email) {
   const name = firstName || "there";
   const release = et(drop.release, { weekday: "long", month: "long", day: "numeric", hour: "numeric" }) + " ET";
   const early = et(drop.early, { weekday: "long", hour: "numeric" }) + " ET";
@@ -46,10 +47,10 @@ Brandon Adams
 VNMSFX TV — New York
 vnmsfx.com/tv
 
-You're getting this because you joined the Season Pass at vnmsfx.com/drops. One email per drop, nothing else. Reply "stop" and you're off the list.`;
+You're getting this because you joined the Season Pass at vnmsfx.com/drops. One email per drop, nothing else. Unsubscribe: ${unsub.url(email)}`;
 }
 
-function welcomeHtml(firstName, drop, rateOpen) {
+function welcomeHtml(firstName, drop, rateOpen, email) {
   const name = esc(firstName || "there");
   const release = esc(et(drop.release, { weekday: "long", month: "long", day: "numeric", hour: "numeric" }) + " ET");
   const early = esc(et(drop.early, { weekday: "long", hour: "numeric" }) + " ET");
@@ -113,7 +114,7 @@ function welcomeHtml(firstName, drop, rateOpen) {
   </td></tr>
 </table>
 <div style="max-width:600px;${body}font-size:12px;line-height:1.7;color:#777777;padding:16px 8px 0 8px;text-align:left;">
-  You're getting this because you joined the Season Pass at vnmsfx.com/drops. One email per drop, nothing else. Reply &ldquo;stop&rdquo; and you're off the list.
+  You're getting this because you joined the Season Pass at vnmsfx.com/drops. One email per drop, nothing else. <a href="${unsub.url(email)}" style="color:#777777;">Unsubscribe</a>.
 </div>
 </td></tr></table></body></html>`;
 }
@@ -176,7 +177,8 @@ module.exports = async function handler(req, res) {
     const r = await send({
       from: "Brandon Adams <brandon@vnmsfx.com>", to: [email], reply_to: "brandon@vnmsfx.com",
       subject: "You're on the Season Pass — " + drop.title + " drops " + et(drop.release, { weekday: "long" }),
-      text: welcomeText(firstName, drop, rateOpen), html: welcomeHtml(firstName, drop, rateOpen),
+      text: welcomeText(firstName, drop, rateOpen, email), html: welcomeHtml(firstName, drop, rateOpen, email),
+      headers: { "List-Unsubscribe": "<" + unsub.url(email) + ">" },
     }, fingerprint + "/welcome");
     const d = await r.json().catch(() => null); welcomeOk = r.ok && !!(d && d.id); welcomeId = welcomeOk ? d.id : null;
   } catch (e) { console.error("welcome send failed", e && e.message); }

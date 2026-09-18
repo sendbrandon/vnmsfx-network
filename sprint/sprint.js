@@ -51,9 +51,10 @@
   // Drop rate: arrived from a drop page or a Season Pass email. The browser only
   // carries the request; the server decides by the clock whether the window is open.
   const params = new URLSearchParams(location.search);
-  const dropRate = params.get('rate') === 'drop' ? { rate: 'drop', drop: (params.get('drop') || '').slice(0, 60) } : null;
-  if (dropRate) {
-    // Arrived from a drop page or Season Pass email: every price on the page reads
+  const wanted = params.get('rate') === 'drop' ? { rate: 'drop', drop: (params.get('drop') || '').slice(0, 60) } : null;
+  let dropRate = null; // set only once the server confirms the window is open
+  function applyDropRate() {
+    // Arrived from a drop page or Season Pass email and the window is open: every price on the page reads
     // the drop rate. The page itself is unchanged for anyone arriving normally.
     document.title = document.title.replace('$2,000', '$1,500');
     const hero = document.querySelector('.hero-price');
@@ -66,12 +67,21 @@
     if (note) note.textContent = 'YOUR CREATIVE SPRINT · SEASON PASS';
     const start = document.querySelector('.start-copy > p:last-child');
     if (start) start.textContent = 'Season Pass drop rate: $1,500 while the drop window is open. Send your brief; I’ll confirm the rate and send your invoice before you pay.';
-    // The Stripe link charges list price, so it is not the path here: the brief is.
     document.querySelectorAll('.checkout-link').forEach(a => { a.href = '#start'; a.innerHTML = 'Send your brief — $1,500 <span aria-hidden="true">↗</span>'; });
-    const strip = document.createElement('div');
-    strip.className = 'drop-rate-strip'; strip.setAttribute('role', 'status');
-    strip.textContent = 'SEASON PASS DROP RATE APPLIED · CREATIVE SPRINT $1,500 · CONFIRMED BY EMAIL BEFORE YOU PAY';
-    document.body.prepend(strip);
+  }
+  function strip(text) {
+    const el = document.createElement('div'); el.className = 'drop-rate-strip'; el.setAttribute('role', 'status'); el.textContent = text; document.body.prepend(el);
+  }
+  if (wanted) {
+    fetch('/api/offer-status', { cache: 'no-store' }).then(r => r.json()).then(s => {
+      if (s && s.ok && s.rateOpen && (!wanted.drop || (s.drop && s.drop.id === wanted.drop))) {
+        dropRate = wanted; applyDropRate();
+        const closes = new Date(s.drop.closes).toLocaleString('en-US', { timeZone: 'America/New_York', weekday: 'long', hour: 'numeric' });
+        strip('SEASON PASS DROP RATE APPLIED · CREATIVE SPRINT $1,500 UNTIL ' + closes.toUpperCase() + ' ET · CONFIRMED BY EMAIL BEFORE YOU PAY');
+      } else {
+        strip('THE DROP WINDOW HAS CLOSED · THE CREATIVE SPRINT IS $2,000 · THE NEXT DROP OPENS IT AGAIN');
+      }
+    }).catch(() => { /* No status, no discount: the list price stands. */ });
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();

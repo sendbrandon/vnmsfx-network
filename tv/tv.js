@@ -178,8 +178,8 @@
     const payload={email:passForm.email.value.trim(), firstName:passForm.firstName.value.trim(), brand:passForm.brand.value.trim(), company_website:passForm.company_website.value, drop:'the-recipient', page:'/tv', source:new URLSearchParams(location.search).get('utm_source')||document.referrer.replace(/^https?:\/\//,'').split('/')[0]||'direct'};
     try{const r=await fetch(passForm.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const d=await r.json().catch(()=>({}));
       if(!r.ok||!d.ok) throw new Error(d.error||'Something went wrong.');
-      status.textContent=d.duplicate?'You were already on the list — nothing changed.':''; passForm.querySelectorAll('input, button').forEach(el=>{el.disabled=true;}); after.hidden=false; after.focus?.();
-      if(window.vnmsfxRecord) window.vnmsfxRecord('season_pass_join');
+      status.textContent=''; const mail=$('#tv-pass-after-mail'); if(mail) mail.textContent=((d) => d.duplicate ? 'You were already on the list — nothing changed.' : d.welcomeSent ? 'Welcome email is on its way.' : 'You’re saved. The welcome email didn’t go out — I’ll send it by hand.')(d); passForm.querySelectorAll('input, button').forEach(el=>{el.disabled=true;}); after.hidden=false; after.focus?.();
+      if(!d.duplicate&&window.vxFunnel) window.vxFunnel.record('season_pass_join',{drop:'the-recipient',page:'/tv'});
     }catch(err){status.textContent=err.message+' Or email brandon@vnmsfx.com and I\'ll add you by hand.'; button.disabled=false;}
   });}
   $('#brief-form').addEventListener('submit',e=>{
