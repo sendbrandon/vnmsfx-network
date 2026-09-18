@@ -26,12 +26,12 @@ const DROPS = [
     brief: "Every fragrance ad shows you the bottle. So nobody looks. We shot this one like something you’re not supposed to have: never named, never explained, logo on the last frame only. You look.",
     // THE SAUCE — what pass holders get with this drop. Placeholders block the send (see _drop-mail.js ready()).
     sauce: {
-      label: "DROP 01 · WHERE THE IDEA CAME FROM",
+      label: "DROP 01 · THE IDEA, THEN WHY",
       lines: [
-        "TBD — What we noticed. (Every fragrance ad does the same thing.)",
-        "TBD — Why it doesn't work. (So nobody looks.)",
-        "TBD — The idea, in one line. (And the one rule we never broke.)",
-        "TBD — How we built it. (The stack, the short version.)",
+        "TBD — The idea. One line, the way you'd say it to a client. Example shape: Shoot the bottle like contraband.",
+        "TBD — Why it works. One reason, stated as fact. Example shape: Fragrance ads all show the bottle, so nobody looks. Hide it and they do.",
+        "TBD — What we protected. The one rule. Example shape: Nothing named until the last frame. Every cut got tested against that.",
+        "TBD — How we built it. Three facts, no process talk. Example shape: Three scenes. One line of dialogue. The house look on top.",
       ],
     },
     took: "Fifteen seconds usually buys one room and a product shot. This one needed a cargo plane, a back seat and a hotel bathroom. One week, three actors, one line of dialogue, and the house look on top: 35mm grain, halation, anamorphic squeeze.",
