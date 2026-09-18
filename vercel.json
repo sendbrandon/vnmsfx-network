@@ -16,6 +16,41 @@
   ],
   "redirects": [
     {
+      "source": "/li",
+      "destination": "/?utm_source=linkedin&utm_medium=dm&utm_campaign=recipient",
+      "permanent": false
+    },
+    {
+      "source": "/x",
+      "destination": "/?utm_source=x&utm_medium=dm&utm_campaign=recipient",
+      "permanent": false
+    },
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=instagram&utm_medium=dm&utm_campaign=recipient",
+      "permanent": false
+    },
+    {
+      "source": "/mail",
+      "destination": "/?utm_source=email&utm_medium=pitch&utm_campaign=recipient",
+      "permanent": false
+    },
+    {
+      "source": "/li-sprint",
+      "destination": "/creative-sprint?utm_source=linkedin&utm_medium=dm&utm_campaign=sprint",
+      "permanent": false
+    },
+    {
+      "source": "/x-sprint",
+      "destination": "/creative-sprint?utm_source=x&utm_medium=dm&utm_campaign=sprint",
+      "permanent": false
+    },
+    {
+      "source": "/mail-sprint",
+      "destination": "/creative-sprint?utm_source=email&utm_medium=pitch&utm_campaign=sprint",
+      "permanent": false
+    },
+    {
       "source": "/tv",
       "destination": "/",
       "permanent": true
