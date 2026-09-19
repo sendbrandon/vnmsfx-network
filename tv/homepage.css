@@ -259,6 +259,14 @@ html{scroll-behavior:smooth}body{margin:0}.preview-header{position:absolute;inse
 @media(max-width:700px){.journey-section,.journey-projects,.journey-secondary{padding-block:55px}.journey-section,.journey-secondary{grid-template-columns:1fr;gap:28px}.journey-section h2{font-size:clamp(36px,9.3vw,56px)}.journey-section p{font-size:17px}.journey-section .journey-lead{font-size:20px}.hero-lengths{font-size:13px;max-width:300px}.reel-copy{padding-top:180px}.journey-section-top{display:block}.journey-section-top p{margin-top:15px}.project-proof-grid{grid-template-columns:1fr;gap:48px}.client-case-portrait .client-case-media{max-width:290px;margin-inline:auto}.project-proof-grid h3{font-size:34px}.project-proof-grid .case-story{font-size:16px}.project-proof-grid .case-result>strong{font-size:58px}.project-proof-grid .eyebrow{margin-bottom:16px}.form-pair{grid-template-columns:1fr;gap:0}.journey-section .package-price{font-size:40px}.journey-section .package-discount,.journey-section .scope-note{font-size:14px}.journey-section .form-explanation{font-size:13px}.journey-section details p{font-size:16px}.journey-section .eyebrow{font-size:10px}.process-list p{font-size:16px}}
 
 .home-footer{display:flex;justify-content:space-between;gap:20px;padding:24px var(--gutter);background:var(--paper);color:var(--ink);font:12px/1.5 var(--body);border-top:1px solid var(--line)}.home-footer a{text-decoration:underline;text-underline-offset:3px}
+.workshop-invite{grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding-block:64px}
+.workshop-invite .eyebrow{font:11px/1.5 var(--mono);margin:0 0 18px;max-width:none}
+.workshop-invite h2{font-size:clamp(38px,4.2vw,64px);line-height:1.08;margin:0}
+.workshop-invite p{font-size:18px;max-width:530px}
+.workshop-invite .workshop-invite-note{font:11px/1.5 var(--mono);margin-top:17px}
+.workshop-invite .workshop-invite-link{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:52px;margin-top:24px;padding:16px 20px;background:var(--ink);color:white;text-decoration:none;font:600 14px/1.4 var(--body)}
+.workshop-invite-link:hover{background:#333}
+@media(max-width:700px){.workshop-invite{grid-template-columns:1fr;gap:25px;padding-block:50px}.workshop-invite h2{font-size:clamp(38px,10vw,54px)}.workshop-invite p{font-size:17px}}
 
 /* Client cases: one story per row, with native-shape media beside its evidence. */
 @media(min-width:901px){
