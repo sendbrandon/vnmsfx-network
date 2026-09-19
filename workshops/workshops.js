@@ -106,3 +106,71 @@
   observer.observe(hero);
   showState();
 })();
+
+/* Play the four silent excerpts only while their cards are visible. */
+(() => {
+  'use strict';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const clips = Array.from(document.querySelectorAll('.ws-work-clip')).map(video => {
+    const control = video.parentElement.querySelector('.ws-clip-control');
+    const state = {video, control, visible: false, wantsPlay: !reduced.matches, pending: false};
+    control.hidden = false;
+    const showState = () => {
+      const playing = !video.paused && !video.ended;
+      control.classList.toggle('is-playing', playing);
+      control.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${control.dataset.clipLabel} clip`);
+    };
+    state.sync = async () => {
+      if (!state.wantsPlay || !state.visible || document.hidden) {
+        video.pause();
+        showState();
+        return;
+      }
+      if (state.pending || !video.paused) return;
+      state.pending = true;
+      if (!video.src) video.src = video.dataset.src;
+      if (video.error) video.load();
+      video.muted = true;
+      video.defaultMuted = true;
+      try {
+        await video.play();
+        if (!state.wantsPlay || !state.visible || document.hidden) video.pause();
+      } catch {
+        video.classList.remove('is-playing');
+      } finally {
+        state.pending = false;
+        showState();
+      }
+    };
+    control.addEventListener('click', () => {
+      state.wantsPlay = video.paused;
+      state.sync();
+    });
+    video.addEventListener('playing', () => {
+      video.classList.add('is-playing');
+      showState();
+    });
+    video.addEventListener('pause', showState);
+    video.addEventListener('error', () => {
+      video.classList.remove('is-playing');
+      state.wantsPlay = false;
+      showState();
+    });
+    showState();
+    return state;
+  });
+  const byVideo = new Map(clips.map(state => [state.video, state]));
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const state = byVideo.get(entry.target);
+      state.visible = entry.isIntersecting && entry.intersectionRatio >= 0.15;
+      state.sync();
+    });
+  }, {threshold: [0, 0.15]});
+  clips.forEach(state => observer.observe(state.video));
+  document.addEventListener('visibilitychange', () => clips.forEach(state => state.sync()));
+  reduced.addEventListener('change', () => clips.forEach(state => {
+    state.wantsPlay = !reduced.matches;
+    state.sync();
+  }));
+})();
