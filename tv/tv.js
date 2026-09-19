@@ -165,6 +165,14 @@
     archive.scrollTo({left:0,behavior:'instant'});requestAnimationFrame(updateArchiveControls);
   }));
   // Next-drop bar: live clock to the release; the bar removes itself once the drop is out.
+  // THE PROOF counts up once, when it scrolls into view. Reduced motion: the final number, no animation.
+  const counters=[...document.querySelectorAll('.proof-item [data-count]')];
+  if(counters.length && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    counters.forEach(el=>{el.textContent='0';});
+    const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return; io.unobserve(entry.target); const el=entry.target, target=Number(el.dataset.count), t0=performance.now(), dur=1300;
+      const step=now=>{const p=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-p,3); el.textContent=String(Math.round(target*e)); if(p<1) requestAnimationFrame(step);}; requestAnimationFrame(step);});},{threshold:.35});
+    counters.forEach(el=>io.observe(el));
+  }
   const dropBar=$('.next-drop-bar');
   if(dropBar){const release=Date.parse(dropBar.dataset.release), clockEl=dropBar.querySelector('[data-next-drop-clock]');
     const pad=n=>String(n).padStart(2,'0');
