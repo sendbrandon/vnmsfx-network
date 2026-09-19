@@ -3,51 +3,36 @@
 "use strict";
 const drops = require("./_drops.js");
 const unsub = require("./_unsub.js");
-const money = (n) => "$" + n.toLocaleString("en-US");
 
+const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 function build(drop) {
-const et = (iso, o) => new Intl.DateTimeFormat("en-US", Object.assign({ timeZone: "America/New_York" }, o)).format(new Date(iso));
-const acid = "#d9ff5d", ink = "#101010", grey = "#aaaaaa";
-const display = "font-family:Anton,'Arial Narrow',Impact,'Helvetica Neue',Arial,sans-serif;text-transform:uppercase;letter-spacing:-0.01em;";
-const mono = "font-family:'Space Mono','Courier New',Courier,monospace;letter-spacing:0.08em;text-transform:uppercase;";
-const body = "font-family:Archivo,'Helvetica Neue',Helvetica,Arial,sans-serif;";
-const filmUrl = "https://vnmsfx.com" + drop.film;
-const pageUrl = "https://vnmsfx.com/drops/" + drop.id;
-const close = et(drop.close, { weekday: "long", month: "long", day: "numeric", hour: "numeric" }) + " ET";
-const publicAt = et(drop.release, { weekday: "long", hour: "numeric" }) + " ET";
-const subject = drop.title + " — yours 24 hours early";
-const text = (name, email) => `Hey ${name} —
+  const filmUrl = "https://vnmsfx.com" + drop.film;
+  const publicAt = new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'long',month:'long',day:'numeric',hour:'numeric'}).format(new Date(drop.release)) + ' ET';
+  const notes = drop.notes || [];
+  const subject = drop.title + " — watch it 24 hours early";
+  const offer = 'First-time client? Your Season Pass saves $500 on an eligible 15-second commercial: $1,500 instead of $2,000. Scope, eligibility and delivery date are agreed before payment.';
+  const text = (name,email) => `Hi ${name || 'there'},
 
-${drop.title} is yours a day before anyone else. Direct link, sound on:
-${filmUrl}
+${drop.title} is ready for you, 24 hours before the public release.
+Watch with sound: ${filmUrl}
+Public release: ${publicAt}.
 
-It goes public ${publicAt}. Until then it's just the list.
+${drop.noteTitle}
 
-The brief: ${drop.brief}
+${notes.map(note => note.heading.toUpperCase()+'\n'+note.text).join('\n\n')}
 
-What it took: ${drop.took}
+${drop.takeaway}
 
-THE SAUCE — ${drop.sauce.label}
-${drop.sauce.lines.map((l) => "  - " + l).join("\n")}
+WANT AN AD FOR YOUR PRODUCT?
+${offer}
+https://vnmsfx.com/#project-inquiry
 
-Want one for your product? The drop rate is open until ${close}: Creative Sprint at ${money(drops.DROP_RATE)} instead of ${money(drops.LIST_RATE)}. The rate is applied on the page and confirmed by email before you pay. Start the brief:
-https://vnmsfx.com/creative-sprint?rate=drop&drop=${drop.id}
+Brandon Adams
+Founder, VNMSFX
 
-Brandon
-VNMSFX TV — ${pageUrl}
-
-You're getting this because you're on the Season Pass. One email per drop. Unsubscribe: ${unsub.url(email)}`;
-const html = (name, email) => `<!doctype html><html><body style="margin:0;padding:0;background:#000;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#000;"><tr><td align="center" style="padding:28px 12px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:${ink};">
-<tr><td><a href="${filmUrl}"><img src="https://vnmsfx.com${drop.cards[2]}" width="600" alt="${drop.title}" style="display:block;width:100%;height:auto;border:0;"></a></td></tr>
-<tr><td style="padding:28px 32px 0 32px;"><div style="${mono}font-size:11px;color:${grey};">SEASON PASS · BEHIND THE SCENES · DROP 02 · 24 HOURS EARLY</div><div style="${display}font-size:44px;line-height:1.02;color:#fff;margin-top:10px;">${drop.title.toUpperCase()}<span style="color:${acid};">.</span></div></td></tr>
-<tr><td style="padding:18px 32px 0 32px;${body}font-size:16px;line-height:1.6;color:#ddd;">Hey ${name} — it's yours a day before anyone else. Public ${publicAt}. Until then it's just the list.</td></tr>
-<tr><td style="padding:22px 32px 0 32px;"><a href="${filmUrl}" style="${body}display:inline-block;background:${acid};color:${ink};text-decoration:none;font-weight:700;font-size:14px;padding:16px 20px;">Watch with sound &nbsp;↗</a></td></tr>
-<tr><td style="padding:26px 32px 0 32px;"><div style="${mono}font-size:11px;color:${grey};">THE BRIEF</div><div style="${body}font-size:15px;line-height:1.6;color:#fff;margin-top:6px;">${drop.brief}</div><div style="${mono}font-size:11px;color:${grey};margin-top:16px;">WHAT IT TOOK</div><div style="${body}font-size:15px;line-height:1.6;color:#fff;margin-top:6px;">${drop.took}</div></td></tr>
-<tr><td style="padding:26px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid ${acid};"><tr><td style="padding:18px 20px;"><div style="${mono}font-size:11px;color:${acid};">THE SAUCE · ${drop.sauce.label}</div>${drop.sauce.lines.map((l, i) => `<div style="${body}font-size:15px;line-height:1.6;color:#fff;margin-top:${i ? 8 : 12}px;"><span style="color:${acid};">${String(i + 1).padStart(2, "0")}</span>&nbsp; ${l}</div>`).join("")}</td></tr></table></td></tr>
-<tr><td style="padding:28px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #333;"><tr><td style="padding:18px 0 0 0;"><div style="${mono}font-size:11px;color:${grey};">DROP RATE · OPEN UNTIL ${close.toUpperCase()}</div><div style="${display}font-size:30px;line-height:1.05;color:#fff;margin-top:8px;">WANT ONE FOR YOUR PRODUCT<span style="color:${acid};">?</span></div><div style="${body}font-size:15px;line-height:1.5;color:#fff;margin-top:8px;">Creative Sprint at <strong>${money(drops.DROP_RATE)}</strong> until ${close}. The rate is applied on the page and confirmed by email before you pay.</div><div style="${body}font-size:15px;line-height:1.5;color:#ddd;margin-top:8px;">One finished ad, two alternate hooks, two campaign images, one round of changes. List price ${money(drops.LIST_RATE)}. Closes when the drop does.</div><a href="https://vnmsfx.com/creative-sprint?rate=drop&amp;drop=${drop.id}" style="${body}display:inline-block;margin-top:14px;color:${acid};font-weight:700;font-size:14px;">Start a Sprint at the drop rate ↗</a></td></tr></table></td></tr>
-<tr><td style="padding:28px 32px 30px 32px;${body}font-size:14px;line-height:1.6;color:#fff;"><strong>Brandon Adams</strong><br><span style="color:${grey};">VNMSFX TV — New York</span><br><a href="${pageUrl}" style="color:${grey};">${pageUrl.replace("https://", "")}</a></td></tr>
-</table><div style="max-width:600px;${body}font-size:12px;line-height:1.7;color:#777;padding:16px 8px 0 8px;">You're getting this because you're on the Season Pass. One email per drop. <a href="${unsub.url(email)}" style="color:#aaa;">Unsubscribe</a>.</div></td></tr></table></body></html>`;
-  return { subject, text, html };
+New ads and production notes by email. Unsubscribe: ${unsub.url(email)}`;
+  const html = (name,email) => `<!doctype html><html><body style="margin:0;background:#101010;color:#fff;font-family:Arial,sans-serif"><div style="max-width:560px;margin:auto;padding:32px 24px"><p style="font-size:14px;color:#d9ff5d">SEASON PASS / 24 HOURS EARLY</p><h1 style="font-size:38px;margin:14px 0">${esc(drop.title)}</h1><p style="font-size:17px;line-height:1.5">Hi ${esc(name || 'there')}, the ad is ready for you. Public release: ${esc(publicAt)}.</p><a href="${filmUrl}" style="display:inline-block;background:#d9ff5d;color:#101010;font-weight:bold;text-decoration:none;padding:16px 20px">Watch with sound ↗</a><h2 style="font-size:28px;line-height:1.15;margin:32px 0 20px">${esc(drop.noteTitle)}</h2>${notes.map(note=>`<section style="border-top:1px solid #444;padding-top:18px;margin-top:20px"><h3 style="font-size:21px;margin:0 0 8px">${esc(note.heading)}</h3><p style="font-size:16px;line-height:1.5;color:#ddd;margin:0">${esc(note.text)}</p></section>`).join('')}<p style="font-size:20px;line-height:1.4;color:#d9ff5d;margin:26px 0">${esc(drop.takeaway)}</p><section style="border-top:1px solid #444;padding-top:24px"><h2 style="font-size:23px;margin:0 0 10px">Want an ad for your product?</h2><p style="font-size:16px;line-height:1.5;color:#ddd">${offer}</p><a href="https://vnmsfx.com/#project-inquiry" style="color:#d9ff5d;font-weight:bold">Tell me about your product ↗</a></section><p style="font-size:16px;line-height:1.5;margin-top:28px"><strong>Brandon Adams</strong><br>Founder, VNMSFX</p><p style="font-size:13px;color:#aaa;margin-top:32px">New ads and production notes by email. <a href="${unsub.url(email)}" style="color:#aaa">Unsubscribe</a>.</p></div></body></html>`;
+  return {subject,text,html};
 }
 
 async function subscribers({ NOTION_TOKEN, NOTION_DATABASE_ID }) {
@@ -63,16 +48,17 @@ async function subscribers({ NOTION_TOKEN, NOTION_DATABASE_ID }) {
   const seen = new Set(); return out.filter((s) => (seen.has(s.email) ? false : seen.add(s.email)));
 }
 
-// Refuse to send while any sauce line is still a placeholder.
+// Refuse to send incomplete production notes.
 function ready(drop) {
-  const lines = (drop.sauce && drop.sauce.lines) || [];
-  return lines.length > 0 && !lines.some((l) => /TBD|TODO|XXX/i.test(l)) && !/TBD/i.test(drop.brief || "") && !/TBD/i.test(drop.took || "");
+  const notes = drop.notes || [];
+  const fields = [drop.noteTitle, drop.takeaway, ...notes.flatMap(note => [note.heading,note.text])];
+  return notes.length >= 3 && fields.every(value => typeof value === 'string' && value.trim() && !/TBD|TODO|XXX/i.test(value));
 }
 
 async function sendDrop({ drop, dry, env, log = () => {} }) {
   const { NOTION_TOKEN, NOTION_DATABASE_ID, RESEND_API_KEY } = env;
   if (!NOTION_TOKEN || !NOTION_DATABASE_ID || !RESEND_API_KEY) throw new Error("need NOTION_TOKEN, NOTION_DATABASE_ID, RESEND_API_KEY");
-  if (!dry && !ready(drop)) throw new Error("drop " + drop.id + " still has placeholder copy (sauce/brief/took) — not sending");
+  if (!dry && !ready(drop)) throw new Error("drop " + drop.id + " still has incomplete production notes — not sending");
   const { subject, text, html } = build(drop);
   const list = await subscribers({ NOTION_TOKEN, NOTION_DATABASE_ID });
   log((dry ? "[dry] " : "") + list.length + " subscribers for " + drop.id);

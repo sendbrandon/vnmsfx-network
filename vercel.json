@@ -16,6 +16,11 @@
   ],
   "redirects": [
     {
+      "source": "/creative-sprint",
+      "destination": "/#commercial-options",
+      "permanent": false
+    },
+    {
       "source": "/li",
       "destination": "/?utm_source=linkedin&utm_medium=dm&utm_campaign=recipient",
       "permanent": false

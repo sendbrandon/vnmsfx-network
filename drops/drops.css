@@ -63,3 +63,9 @@ dialog{border:0;padding:0;background:#000;color:#fff}dialog::backdrop{background
 
 @media(max-width:800px){.pass{grid-template-columns:1fr;gap:30px;padding-block:50px}.pass-card{grid-column:1;grid-row:auto;position:static;width:min(100%,300px)}.pass-copy,.pass-form{grid-column:1}.last-drop{grid-template-columns:120px minmax(0,1fr);gap:4px 18px;padding-block:40px}.last-drop h2{font-size:32px}.drop-header nav{gap:14px}.drop-header nav a:first-child{display:none}.stage-copy{padding-top:100px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card img{transition:none}}
+
+/* Short, self-contained signals for readers scanning between sections. */
+.pass-copy h2{font-size:clamp(42px,5.3vw,76px);line-height:1.08}.promises h3{font:600 clamp(20px,1.9vw,26px)/1.2 var(--body);margin:0 0 7px;letter-spacing:-.02em}.promises p{font:400 17px/1.45 var(--body);color:#ddd}.form-heading{font:600 24px/1.2 var(--body);margin:0 0 8px}.early-line{font:500 17px/1.4 var(--body);color:var(--acid);margin-top:8px}.release-line{font:400 16px/1.4 var(--body);letter-spacing:0;text-transform:none;color:#ddd}.form-note{font:400 14px/1.5 var(--body)}.index-hero .button-acid{margin-top:24px}.pass{scroll-margin-top:72px}
+@media(max-width:800px){.pass-card{display:none}.pass-copy h2{font-size:clamp(40px,10vw,60px)}.pass-copy{grid-row:1}.pass-form{grid-row:2}.promises h3{font-size:22px}}
+
+.note-sample{margin-top:20px;border-left:2px solid var(--acid);padding-left:16px}.note-sample summary{font:600 16px/1.4 var(--body);cursor:pointer}.note-sample p{font:400 16px/1.5 var(--body);color:#ddd;margin-top:12px}.note-sample strong{display:block;color:#fff;margin-bottom:8px}

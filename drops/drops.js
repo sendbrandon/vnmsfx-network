@@ -3,7 +3,6 @@
   const $ = (s) => document.querySelector(s);
   const body = document.body;
   const stage = $('#stage'), countdown = $('#countdown'), label = $('#countdown-label'), releaseLine = $('#release-line');
-  const rateLine = $('#rate-line'), rateCountdown = $('#rate-countdown');
   const tease = $('#tease'), film = $('#film'), actions = $('#stage-actions'), eyebrow = $('#stage-eyebrow');
   const t = { release: Date.parse(body.dataset.release), close: Date.parse(body.dataset.close), early: Date.parse(body.dataset.early), liveFrom: Date.parse(body.dataset.liveFrom) };
   const pad = (n) => String(n).padStart(2, '0');
@@ -21,10 +20,12 @@
     tease.hidden = false; tease.loop = true; tease.muted = true; tease.poster = body.dataset.poster;
     if (tease.getAttribute('src') !== body.dataset.film) { tease.innerHTML = ''; tease.src = body.dataset.film; tease.load(); }
     tease.play().catch(() => {});
-    eyebrow.textContent = body.dataset.liveEyebrow || 'SEASON PASS · BEHIND THE SCENES OF HOW WE MAKE OUR ADS · DROP 02 · OUT NOW';
+    eyebrow.textContent = body.dataset.liveEyebrow || 'VNMSFX / WATCH NOW';
     label.textContent = 'OUT NOW'; countdown.textContent = '00:00:00'; countdown.hidden = true;
     releaseLine.textContent = body.dataset.releasedLine || 'Released Monday, September 21 · 12:00 PM ET';
-    actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Play with sound <span aria-hidden="true">↗</span></button>' + (body.dataset.noRate ? '<a class="button-dark" href="#pass">Join the Season Pass <span aria-hidden="true">↗</span></a>' : '<a class="button-dark" href="/creative-sprint?rate=drop&drop=' + body.dataset.drop + '">Start a Sprint at $1,500 <span aria-hidden="true">↗</span></a>');
+    $('.stage-deck').textContent = body.dataset.drop === 'the-recipient' && !body.dataset.noRate ? 'Watch The Recipient. Join the free Season Pass for future ads 24 hours early and a look at how I make them.' : 'Frozen fries get a classified extraction. Watch the ad, then join for early access to the next one.';
+    const earlyLine = $('#early-line'); if (earlyLine) earlyLine.hidden = true;
+    actions.innerHTML = '<button class="button-acid" type="button" id="play-film">Watch with sound <span aria-hidden="true">↗</span></button><a class="button-dark" href="#pass">Join free <span aria-hidden="true">↗</span></a>';
     $('#play-film').addEventListener('click', () => {
       const dialog = $('#film-dialog'), player = $('#film-player');
       if (!dialog || !dialog.showModal) { film.hidden = false; film.src = body.dataset.film; film.muted = false; film.play().catch(() => {}); return; }
@@ -35,16 +36,7 @@
   function tick() {
     const now = Date.now();
     if (now >= t.release) goLive(); else countdown.textContent = clock(t.release - now);
-    if (!rateLine) return;
-    if (now < t.close && now >= t.liveFrom) {
-      rateCountdown.textContent = clock(t.close - now);
-    } else {
-      rateLine.classList.add('is-closed');
-      rateLine.innerHTML = '<strong>Drop rate closed</strong> · $2,000 until the next countdown.';
-      const after = $('#pass-after-rate'), cta = $('#pass-after-cta');
-      if (after) after.textContent = 'The drop rate opens with the next countdown — you\'ll be first to know.';
-      if (cta) cta.hidden = true;
-    }
+
   }
   tick(); setInterval(tick, 1000);
 
@@ -83,13 +75,13 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const button = form.querySelector('button[type=submit]');
-    status.textContent = 'Adding you…'; button.disabled = true;
+    status.textContent = 'Joining…'; button.disabled = true;
     const payload = { email: form.email.value.trim(), firstName: form.firstName.value.trim(), brand: form.brand.value.trim(), company_website: form.company_website.value, drop: body.dataset.drop, page: location.pathname, source: new URLSearchParams(location.search).get('utm_source') || document.referrer.replace(/^https?:\/\//, '').split('/')[0] || 'direct' };
     try {
       const r = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const d = await r.json().catch(() => ({}));
       if (!r.ok || !d.ok) throw new Error(d.error || 'Something went wrong.');
-      status.textContent = ''; const mail = $('#pass-after-mail'); if (mail) mail.textContent = ((d) => d.duplicate ? 'You were already on the list — nothing changed.' : d.welcomeSent ? 'Welcome email is on its way.' : 'You’re saved. The welcome email didn’t go out — I’ll send it by hand.')(d);
+      status.textContent = ''; const mail = $('#pass-after-mail'); if (mail) mail.textContent = ((d) => d.duplicate ? 'You’re already on the list. You’re all set.' : d.welcomeSent ? 'Check your inbox for your welcome email.' : 'You’re saved. The welcome email didn’t go out — I’ll send it by hand.')(d);
       form.querySelectorAll('input, button').forEach((el) => { el.disabled = true; });
       after.hidden = false; after.focus?.();
       if (!d.duplicate && window.vxFunnel) window.vxFunnel.record('season_pass_join', { drop: body.dataset.drop, page: location.pathname });

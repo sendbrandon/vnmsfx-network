@@ -7,8 +7,12 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
   const dialog = document.querySelector('#preview-player');
   const player = document.querySelector('#preview-full-spot');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const media = hero.querySelector('.hero-media');
+  const cover = document.createElement('img');
+  cover.className = 'hero-poster'; cover.alt = '';
+  media.append(cover);
   let index = 0, slot = 0, wanted = !reduced.matches, visible = true, changing = false;
-  let generation = 0, prepared = -1, returnFocus = null;
+  let generation = 0, playRequest = 0, prepared = -1, returnFocus = null;
   const url = p => new URL(p,location.href).href;
   const allowed = () => wanted && visible && !document.hidden && !dialog.open;
   function label() {
@@ -17,20 +21,62 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
     caption.textContent = `${String(index+1).padStart(2,'0')} / ${REEL_ITEMS[index].title}`;
   }
   function assign(video, n) {
+    video.classList.remove('has-frame');
     video.poster = url(REEL_ITEMS[n].poster);
+    video.muted = true; video.defaultMuted = true; video.playsInline = true;
+    video.setAttribute('muted',''); video.setAttribute('playsinline','');
     video.src = url(REEL_ITEMS[n].src);
-    video.preload = 'auto'; video.muted = true; video.load();
+    video.preload = 'auto'; video.load();
+  }
+  // Keep an independent still above the video until a decoded frame is ready.
+  // A native video poster can disappear as soon as play() is requested on iOS.
+  function showCover(n = index) {
+    cover.src = url(REEL_ITEMS[n].poster); cover.classList.remove('is-hidden');
+  }
+  function frameReady(video, playing) {
+    return new Promise((resolve,reject)=>{
+      let callback;
+      const timer = setTimeout(()=>finish(new Error('preview timeout')),12000);
+      const events = ['loadeddata','playing','timeupdate','seeked'];
+      function finish(error) {
+        clearTimeout(timer); events.forEach(e=>video.removeEventListener(e,check));
+        video.removeEventListener('error',fail);
+        if(callback !== undefined) video.cancelVideoFrameCallback?.(callback);
+        error ? reject(error) : resolve();
+      }
+      function check() {
+        if(video.readyState >= 2 && (!playing || (!video.paused && video.currentTime > .02))) finish();
+      }
+      function fail() { finish(new Error('preview unavailable')); }
+      events.forEach(e=>video.addEventListener(e,check));
+      video.addEventListener('error',fail);
+      if(playing && video.requestVideoFrameCallback) callback = video.requestVideoFrameCallback(()=>finish());
+      check();
+    });
   }
   function prepare() {
     const n=(index+1)%REEL_ITEMS.length;
     if(prepared!==n && allowed() && !changing){assign(videos[1-slot],n);prepared=n;}
   }
   function sync() {
+    const request = ++playRequest;
     if(allowed()){
       const current=videos[slot];
       if(!current.getAttribute('src')) assign(current,index);
-      current.play().then(prepare).catch(()=>{wanted=false;label();});
-    } else videos.forEach(v=>v.pause());
+      if(current.paused) showCover();
+      // Invoke play immediately so a tap retains the browser's user activation.
+      current.play().then(()=>frameReady(current,true)).then(()=>{
+        if(request!==playRequest || current!==videos[slot] || !allowed()) return;
+        current.classList.add('has-frame'); cover.classList.add('is-hidden'); prepare();
+      }).catch(error=>{
+        // Scrolling away or closing the tab can interrupt play; that is not a user pause.
+        if(request!==playRequest || !allowed() || error.name==='AbortError') return;
+        wanted=false; current.pause(); showCover(); label();
+      });
+    } else {
+      ++generation; changing=false;
+      videos.forEach(v=>v.pause());
+    }
     label();
   }
   async function advance(step=1) {
@@ -41,35 +87,39 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
     if(prepared!==next) assign(incoming,next);
     if(incoming.currentTime>.02) incoming.currentTime=0;
     try {
-      if(incoming.readyState<2) await new Promise((resolve,reject)=>{
-        const timer=setTimeout(()=>{clean();reject(new Error('preview timeout'));},10000);
-        function clean(){clearTimeout(timer);['loadeddata','canplay','seeked'].forEach(e=>incoming.removeEventListener(e,ready));incoming.removeEventListener('error',fail);}
-        function ready(){if(incoming.readyState>=2){clean();resolve();}} function fail(){clean();reject(new Error('preview unavailable'));}
-        ['loadeddata','canplay','seeked'].forEach(e=>incoming.addEventListener(e,ready));incoming.addEventListener('error',fail,{once:true});
-      });
-      if(token!==generation) return;
-      if(allowed()) incoming.play().catch(()=>{wanted=false;label();});
+      if(allowed()) {
+        await incoming.play();
+        await frameReady(incoming,true);
+      } else await frameReady(incoming,false);
+      if(token!==generation) { if(incoming!==videos[slot]) incoming.pause(); return; }
+      if(wanted && !allowed()) { incoming.pause(); changing=false; return; }
+      incoming.classList.add('has-frame');
       incoming.classList.add('is-active');outgoing.classList.remove('is-active');
       index=next;slot=1-slot;prepared=-1;label();
-      setTimeout(()=>{outgoing.pause();changing=false;prepare();if(!allowed())incoming.pause();},reduced.matches?0:600);
-    } catch {
-      incoming.pause();changing=false;wanted=false;label();
+      if(allowed()) cover.classList.add('is-hidden'); else showCover();
+      setTimeout(()=>{if(token!==generation)return;outgoing.pause();changing=false;prepare();if(!allowed())incoming.pause();},reduced.matches?0:600);
+    } catch(error) {
+      if(token!==generation) return;
+      incoming.pause();changing=false;
+      if(error.name==='AbortError' || !allowed()) return;
+      // Do not replace the working frame with a failed or blocked next video.
+      wanted=false; outgoing.pause(); showCover(); label();
     }
   }
   videos.forEach(v=>{
     v.addEventListener('loadedmetadata',()=>v.classList.toggle('is-portrait',v.videoHeight>v.videoWidth));
     v.addEventListener('timeupdate',()=>{if(v===videos[slot] && allowed() && !changing && v.currentTime>=(REEL_ITEMS[index].hold==='full'?v.duration-.05:Math.min(REEL_ITEMS[index].hold||8,v.duration)-.55))advance();});
     v.addEventListener('ended',()=>{if(v===videos[slot] && allowed())advance();});
-    v.addEventListener('error',()=>{if(v===videos[slot]){wanted=false;label();}});
+    v.addEventListener('error',()=>{if(v===videos[slot]){wanted=false;showCover();label();}});
   });
   pause.addEventListener('click',()=>{wanted=!wanted;sync();});
   document.querySelector('#next-spot').addEventListener('click',()=>advance());
   document.querySelector('#previous-spot').addEventListener('click',()=>advance(-1));
   document.addEventListener('visibilitychange',sync);
   reduced.addEventListener('change',()=>{wanted=!reduced.matches;sync();});
-  new IntersectionObserver(e=>{visible=e[0].isIntersecting;sync();},{threshold:.15}).observe(hero);
+  new IntersectionObserver(e=>{const next=e[0].isIntersecting;if(visible!==next){visible=next;sync();}},{threshold:.15}).observe(hero);
   function openAd(src,title,poster,opener){
-    returnFocus=opener;videos.forEach(v=>v.pause());
+    returnFocus=opener;++playRequest;++generation;changing=false;videos.forEach(v=>v.pause());
     dialog.dataset.clientShape=opener?.dataset.playerShape||'';
     document.querySelector('#player-title').textContent=title;
     document.querySelector('#direct-spot').href=src;
@@ -82,7 +132,7 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
   }));
   document.querySelector('#close-spot').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close',()=>{player.pause();player.removeAttribute('src');player.load();returnFocus?.focus({preventScroll:true});sync();});
-  label();
+  showCover(); sync();
 })();
 
 (() => {

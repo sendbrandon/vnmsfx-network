@@ -1,13 +1,13 @@
 // The drop calendar — ONE source of truth for the server, the page and the
 // drop-day script. Times are UTC instants; the page renders them in ET.
 //
-// A drop has three moments:
+// Release moments (close is retained for legacy Sprint API compatibility):
 //   early    pass holders get the film by email (24h before public)
 //   release  the page flips from countdown to film for everyone
 //   close    the drop rate closes (48h after release)
 //
-// The drop rate is honoured only between the countdown going live and `close`.
-// Outside a window the Sprint is list price, and the page says so.
+// Current Season Pass copy uses the first-time-client saving, not this legacy
+// rate window. Public buying links lead to /#commercial-options.
 
 const DROPS = [
   {
@@ -22,19 +22,27 @@ const DROPS = [
     poster: "/tv/drops/the-recipient-poster.jpg",
     tease: "/tv/drops/the-recipient-tease.mp4",
     cards: ["/tv/drops/card-1-ramp.jpg", "/tv/drops/card-2-backseat.jpg", "/tv/drops/card-3-coming-soon.jpg"],
-    // Season Pass promises 01 + 02 — the brief the spot answered, and what it took. DRAFT, pending Brandon's sign-off.
-    brief: "Every fragrance ad shows you the bottle. So nobody looks. We shot this one like something you’re not supposed to have: never named, never explained, logo on the last frame only. You look.",
-    // THE SAUCE — what pass holders get with this drop. Placeholders block the send (see _drop-mail.js ready()).
-    sauce: {
-      label: "DROP 02 · THE IDEA, THEN WHY",
-      lines: [
-        "TBD — The idea. One line, the way you'd say it to a client. Example shape: Shoot the bottle like contraband.",
-        "TBD — Why it works. One reason, stated as fact. Example shape: Fragrance ads all show the bottle, so nobody looks. Hide it and they do.",
-        "TBD — What we protected. The one rule. Example shape: Nothing named until the last frame. Every cut got tested against that.",
-        "TBD — How we built it. Three facts, no process talk. Example shape: Three scenes. One line of dialogue. The house look on top.",
-      ],
-    },
-    took: "Fifteen seconds usually buys one room and a product shot. This one needed a cargo plane, a back seat and a hotel bathroom. One week, three actors, one line of dialogue, and the house look on top: 35mm grain, halation, anamorphic squeeze.",
+    // Based on Brandon's account and the finished 15-second spec ad; no production-cost claim.
+    noteTitle: "A whole operation. One bottle of cologne.",
+    notes: [
+      {
+            "heading": "The brief",
+            "text": "Make a 15-second cologne ad feel like a major action movie. This is a VNMSFX spec ad, built around that ambition."
+      },
+      {
+            "heading": "Make the arrival matter",
+            "text": "The cargo plane opens before the delivery is explained. All that scale raises one question: what needs this much attention?"
+      },
+      {
+            "heading": "Give the product a role",
+            "text": "The bottle travels with the characters before the final close-up. It is part of the journey, not just a logo added at the end."
+      },
+      {
+            "heading": "Build the look first",
+            "text": "I started with the visual direction, then generated the image assets. Dark clothes, wet streets and warm hotel light make the scenes feel part of one world."
+      }
+],
+    takeaway: "A product feels important when the story treats it that way.",
   },
   {
     id: "youre-up",
@@ -48,7 +56,7 @@ const DROPS = [
     poster: "/tv/spots/fries.jpg",
     tease: "/tv/spots/fries.mp4",
     cards: ["/tv/drops/youre-up-frame.jpg"],
-    brief: "", took: "", sauce: { label: "", lines: [] },
+    noteTitle: "", notes: [], takeaway: "",
   },
 ];
 
