@@ -107,19 +107,13 @@
   showState();
 })();
 
-/* Play the four silent excerpts only while their cards are visible. */
+/* Silent excerpts share one motion control below the grid. */
 (() => {
   'use strict';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const control = document.querySelector('#workshop-clips-motion');
   const clips = Array.from(document.querySelectorAll('.ws-work-clip')).map(video => {
-    const control = video.parentElement.querySelector('.ws-clip-control');
-    const state = {video, control, visible: false, wantsPlay: !reduced.matches, pending: false};
-    control.hidden = false;
-    const showState = () => {
-      const playing = !video.paused && !video.ended;
-      control.classList.toggle('is-playing', playing);
-      control.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${control.dataset.clipLabel} clip`);
-    };
+    const state = {video, visible: false, wantsPlay: !reduced.matches, pending: false};
     state.sync = async () => {
       if (!state.wantsPlay || !state.visible || document.hidden) {
         video.pause();
@@ -137,15 +131,12 @@
         if (!state.wantsPlay || !state.visible || document.hidden) video.pause();
       } catch {
         video.classList.remove('is-playing');
+        if (state.visible && !document.hidden) state.wantsPlay = false;
       } finally {
         state.pending = false;
         showState();
       }
     };
-    control.addEventListener('click', () => {
-      state.wantsPlay = video.paused;
-      state.sync();
-    });
     video.addEventListener('playing', () => {
       video.classList.add('is-playing');
       showState();
@@ -156,8 +147,18 @@
       state.wantsPlay = false;
       showState();
     });
-    showState();
     return state;
+  });
+  function previewsEnabled() {
+    return clips.some(state => state.wantsPlay);
+  }
+  function showState() {
+    control.textContent = previewsEnabled() ? 'Pause previews' : 'Play previews';
+  }
+  control.hidden = false;
+  control.addEventListener('click', () => {
+    const wantsPlay = !previewsEnabled();
+    clips.forEach(state => { state.wantsPlay = wantsPlay; state.sync(); });
   });
   const byVideo = new Map(clips.map(state => [state.video, state]));
   const observer = new IntersectionObserver(entries => {
@@ -173,4 +174,5 @@
     state.wantsPlay = !reduced.matches;
     state.sync();
   }));
+  showState();
 })();
