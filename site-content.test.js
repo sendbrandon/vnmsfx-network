@@ -391,3 +391,28 @@ test('the Production Bible page is wired into the site, not an orphan', () => {
   assert.match(events, /'bible_view'/);
   assert.match(events, /'bible_checkout'/);
 });
+
+test('the Production Bible page opens with the homepage film and the price in view', () => {
+  const html = read('hard-to-ignore.html');
+  const css = read('tv/bible.css');
+  const js = read('tv/bible.js');
+  // Same film as the vnmsfx.com hero, so it is already cached for anyone arriving from there.
+  assert.match(js, /'\/tv\/hero\/hero\.mp4'/);
+  assert.match(html, /id="bible-film"/);
+  assert.match(html, /poster="\/tv\/hero\/hero\.jpg"/);
+  assert.match(html, /<video[^>]*\bloop\b/);
+  assert.match(html, /<video[^>]*\bmuted\b/);
+  // A skimmer who leaves in three seconds must still have seen the price and a way to buy.
+  assert.match(html, /<p class="hero-price">\$1,199\.99/);
+  assert.match(html, /class="reel-copy"[\s\S]*?data-bible-checkout[\s\S]*?<\/section>/);
+  // The decision follows the reader down the page, because people jump around.
+  assert.match(css, /\.bible-buy\{position:sticky/);
+  assert.match(html, /id="bible-sticky"/);
+  // The headline makes the same promise as the homepage, in the same type treatment.
+  assert.match(html, /HARD TO&nbsp;IGNORE\.<\/em>/);
+  assert.match(css, /\.reel-copy h1 em\{font-style:normal;color:var\(--acid\)\}/);
+  // Motion is never forced on someone who asked for less of it.
+  assert.match(js, /prefers-reduced-motion/);
+  // The nav rides on the film instead of following the reader into the sticky bar.
+  assert.match(css, /\.bible-page \.site-header\{position:absolute/);
+});
