@@ -1,4 +1,4 @@
-const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film", "poster": "/tv/hero/hero.jpg", "hold": "full", "source_file": "kling_20260920_VIDEO_give_me_a__5611_0.mp4"}];
+const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film", "poster": "/tv/hero/hero.jpg", "hold": "full", "source_file": "kling_20260920_VIDEO_give_me_a__5611_0.mp4"}, {"src": "/tv/hero/pizza.mp4", "title": "VNMSFX · Pizza spot", "poster": "/tv/hero/pizza.jpg", "hold": "full", "source_file": "kling_20260921_VIDEO_give_me_a__313_0.mp4"}];
 (() => {
   const hero = document.querySelector('.hero-reel');
   const videos = [...hero.querySelectorAll('video')];
@@ -12,6 +12,9 @@ const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film
   cover.className = 'hero-poster'; cover.alt = '';
   media.append(cover);
   const SINGLE = REEL_ITEMS.length === 1;
+  // One clip loops natively; two alternate with the built-in crossfade. Neither is
+  // an index worth stepping through, so the arrows only appear above that.
+  const BROWSABLE = REEL_ITEMS.length > 2;
   let index = 0, slot = 0, wanted = !reduced.matches, visible = true, changing = false;
   let generation = 0, playRequest = 0, prepared = -1, returnFocus = null;
   const url = p => new URL(p,location.href).href;
@@ -19,7 +22,7 @@ const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film
   function label() {
     pause.textContent = wanted ? 'Pause' : 'Play';
     pause.setAttribute('aria-label', wanted ? 'Pause previews' : 'Play previews');
-    caption.textContent = SINGLE ? REEL_ITEMS[index].title : `${String(index+1).padStart(2,'0')} / ${REEL_ITEMS[index].title}`;
+    caption.textContent = !BROWSABLE ? REEL_ITEMS[index].title : `${String(index+1).padStart(2,'0')} / ${REEL_ITEMS[index].title}`;
   }
   function assign(video, n) {
     video.classList.remove('has-frame');
@@ -100,7 +103,7 @@ const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film
       incoming.classList.add('is-active');outgoing.classList.remove('is-active');
       index=next;slot=1-slot;prepared=-1;label();
       if(allowed()) cover.classList.add('is-hidden'); else showCover();
-      setTimeout(()=>{if(token!==generation)return;outgoing.pause();changing=false;prepare();if(!allowed())incoming.pause();},reduced.matches?0:600);
+      setTimeout(()=>{if(token!==generation)return;outgoing.pause();changing=false;prepare();if(!allowed())incoming.pause();},0);   // hard cut: nothing to wait for, so the outgoing clip stops at once
     } catch(error) {
       if(token!==generation) return;
       incoming.pause();changing=false;
@@ -117,7 +120,7 @@ const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film
   });
   pause.addEventListener('click',()=>{wanted=!wanted;sync();});
   // With one film there is nowhere to step to, so the arrows are removed rather than left inert.
-  if(SINGLE){ document.querySelector('#next-spot').remove(); document.querySelector('#previous-spot').remove(); }
+  if(!BROWSABLE){ document.querySelector('#next-spot').remove(); document.querySelector('#previous-spot').remove(); }
   else {
     document.querySelector('#next-spot').addEventListener('click',()=>advance());
     document.querySelector('#previous-spot').addEventListener('click',()=>advance(-1));
