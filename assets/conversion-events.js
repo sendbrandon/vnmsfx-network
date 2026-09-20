@@ -26,7 +26,9 @@
     'sprint_view',
     'sprint_click',
     'brief_submit_success',
-    'work_play'
+    'work_play',
+    'bible_view',
+    'bible_checkout'
   ];
 
   function read(key, fallback) {
