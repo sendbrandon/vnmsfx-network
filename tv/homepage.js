@@ -1,4 +1,4 @@
-const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Recipient · Preview", "poster": "/tv/drops/the-recipient-poster.jpg", "hold": "full"}, {"src": "/tv/hero/night-drive.mp4", "title": "VNMSFX · Night drive", "poster": "/tv/hero/night-drive.jpg", "hold": "full", "source_file": "3134-FINAL-LOGO-1080.mp4"}, {"src": "/tv/hero/race.mp4", "title": "Race", "poster": "/tv/hero/race.jpg", "hold": "full", "source_file": "RACE-1-GRADED.mp4"}, {"src": "/tv/hero/after-dark.mp4", "title": "VNMSFX · After dark", "poster": "/tv/hero/after-dark.jpg", "hold": "full", "source_file": "6922-FINAL-LOGO-1080.mp4"}, {"src": "/tv/stills/office-rivalry-film.mp4", "title": "Office Rivalry — Original Comedy", "poster": "/tv/stills/office-rivalry-poster.jpg", "hold": 8}, {"src": "/tv/recent/he-said-it-was-hot-part-two.mp4", "title": "He Said It Was Hot — Part Two", "poster": "/tv/covers/he-said-it-was-hot-part-two.jpg", "hold": "full"}, {"src": "/tv/spots/cold-brew.mp4", "title": "Visual Confirmed.", "poster": "/tv/spots/cold-brew.jpg", "hold": 8}, {"src": "/tv/spots/midnight-noodles.mp4", "title": "Extraction at Midnight.", "poster": "/tv/spots/midnight-noodles.jpg", "hold": 8}, {"src": "/tv/spots/mullet-technician.mp4", "title": "Grid Restored. Can I Have One?", "poster": "/tv/spots/mullet-technician.jpg", "hold": 8}, {"src": "/tv/spots/spike-paste.mp4", "title": "Deploy the Spikes.", "poster": "/tv/spots/spike-paste.jpg", "hold": 8}, {"src": "/tv/spots/hand-wash.mp4", "title": "Package Is Moving.", "poster": "/tv/spots/hand-wash.jpg", "hold": 8}, {"src": "/tv/spots/fries.mp4", "title": "You’re Up.", "poster": "/tv/spots/fries.jpg", "hold": 8}];
+const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film", "poster": "/tv/hero/hero.jpg", "hold": "full", "source_file": "kling_20260920_VIDEO_give_me_a__5611_0.mp4"}];
 (() => {
   const hero = document.querySelector('.hero-reel');
   const videos = [...hero.querySelectorAll('video')];
@@ -11,6 +11,7 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
   const cover = document.createElement('img');
   cover.className = 'hero-poster'; cover.alt = '';
   media.append(cover);
+  const SINGLE = REEL_ITEMS.length === 1;
   let index = 0, slot = 0, wanted = !reduced.matches, visible = true, changing = false;
   let generation = 0, playRequest = 0, prepared = -1, returnFocus = null;
   const url = p => new URL(p,location.href).href;
@@ -18,13 +19,14 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
   function label() {
     pause.textContent = wanted ? 'Pause' : 'Play';
     pause.setAttribute('aria-label', wanted ? 'Pause previews' : 'Play previews');
-    caption.textContent = `${String(index+1).padStart(2,'0')} / ${REEL_ITEMS[index].title}`;
+    caption.textContent = SINGLE ? REEL_ITEMS[index].title : `${String(index+1).padStart(2,'0')} / ${REEL_ITEMS[index].title}`;
   }
   function assign(video, n) {
     video.classList.remove('has-frame');
     video.poster = url(REEL_ITEMS[n].poster);
     video.muted = true; video.defaultMuted = true; video.playsInline = true;
     video.setAttribute('muted',''); video.setAttribute('playsinline','');
+    video.loop = SINGLE;
     video.src = url(REEL_ITEMS[n].src);
     video.preload = 'auto'; video.load();
   }
@@ -55,6 +57,7 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
     });
   }
   function prepare() {
+    if(SINGLE) return;   // nothing to pre-buffer; a second copy would double the download
     const n=(index+1)%REEL_ITEMS.length;
     if(prepared!==n && allowed() && !changing){assign(videos[1-slot],n);prepared=n;}
   }
@@ -108,13 +111,17 @@ const REEL_ITEMS=[{"src": "/tv/drops/the-recipient-tease.mp4", "title": "The Rec
   }
   videos.forEach(v=>{
     v.addEventListener('loadedmetadata',()=>v.classList.toggle('is-portrait',v.videoHeight>v.videoWidth));
-    v.addEventListener('timeupdate',()=>{if(v===videos[slot] && allowed() && !changing && v.currentTime>=(REEL_ITEMS[index].hold==='full'?v.duration-.05:Math.min(REEL_ITEMS[index].hold||8,v.duration)-.55))advance();});
-    v.addEventListener('ended',()=>{if(v===videos[slot] && allowed())advance();});
+    v.addEventListener('timeupdate',()=>{if(!SINGLE && v===videos[slot] && allowed() && !changing && v.currentTime>=(REEL_ITEMS[index].hold==='full'?v.duration-.05:Math.min(REEL_ITEMS[index].hold||8,v.duration)-.55))advance();});
+    v.addEventListener('ended',()=>{if(!SINGLE && v===videos[slot] && allowed())advance();});
     v.addEventListener('error',()=>{if(v===videos[slot]){wanted=false;showCover();label();}});
   });
   pause.addEventListener('click',()=>{wanted=!wanted;sync();});
-  document.querySelector('#next-spot').addEventListener('click',()=>advance());
-  document.querySelector('#previous-spot').addEventListener('click',()=>advance(-1));
+  // With one film there is nowhere to step to, so the arrows are removed rather than left inert.
+  if(SINGLE){ document.querySelector('#next-spot').remove(); document.querySelector('#previous-spot').remove(); }
+  else {
+    document.querySelector('#next-spot').addEventListener('click',()=>advance());
+    document.querySelector('#previous-spot').addEventListener('click',()=>advance(-1));
+  }
   document.addEventListener('visibilitychange',sync);
   reduced.addEventListener('change',()=>{wanted=!reduced.matches;sync();});
   new IntersectionObserver(e=>{const next=e[0].isIntersecting;if(visible!==next){visible=next;sync();}},{threshold:.15}).observe(hero);
