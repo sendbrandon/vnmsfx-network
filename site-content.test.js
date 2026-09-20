@@ -328,3 +328,91 @@ test('Hobby-safe funnel milestones and booking routes are wired on every analyti
   assert.match(booked, /history\.replaceState\(\{\},'',location\.pathname\)/);
   assert.match(read('privacy.html'), /current Vercel plan counts page views but not custom events/);
 });
+
+test('the Production Bible page prices one product and hands off honestly', () => {
+  const html = read('hard-to-ignore.html');
+  const text = visibleText(html);
+  // One price, stated identically wherever it appears.
+  assert.match(text, /\$1,199\.99/);
+  assert.doesNotMatch(text, /\$1,499/); // no invented anchor price on our own surface
+  assert.match(text, /ONE-TIME · USD/);
+  // Whop delivers access to a course, so the page must not promise a file download.
+  assert.match(text, /INSTANT(?:&nbsp;|\s)ACCESS/);
+  assert.doesNotMatch(text, /INSTANT(?:&nbsp;|\s)DOWNLOAD/);
+  // The buyer is told where checkout happens before they click, not after they land there.
+  assert.match(text, /Checkout and access run on(?:&nbsp;|\s)Whop/);
+  // Limits are stated before payment, not after.
+  assert.match(text, /Tool subscriptions and generation credits are separate/);
+  assert.match(text, /Licensed CineGrain plates are not bundled/);
+  assert.match(text, /reported by Brandon Adams/);
+  // No payment URL is hardcoded in markup: the button is armed at runtime by the guard.
+  assert.doesNotMatch(html, /href="https:\/\/whop\.com/);
+  assert.doesNotMatch(html, /href="https:\/\/buy\.stripe\.com/);
+  assert.match(html, /data-bible-checkout hidden/);
+  assert.match(html, /tv\/bible\.js/);
+  // The email route always works, so the page is never a dead end.
+  assert.match(html, /mailto:brandon@vnmsfx\.com\?subject=The%20VNMSFX%20Production%20Bible/);
+  // There is a live link now, so the page must stop asking people to request one.
+  assert.doesNotMatch(text, /Ask for the payment link/);
+});
+
+test('the Production Bible checkout points at Whop and refuses anything else', () => {
+  const source = read('tv/bible.js');
+  // The configured link must be a real Whop checkout link for a plan.
+  const found = source.match(/https:\/\/whop\.com\/checkout\/plan_[A-Za-z0-9]{8,}/);
+  assert.ok(found, 'no Whop checkout URL configured in tv/bible.js');
+  // The price the guard reports must equal the price printed on the page.
+  assert.match(source, /PRICE_CENTS\s*=\s*119999/);
+  // The guard must pin the host and the path shape, not merely check for "whop".
+  assert.match(source, /hostname\s*!==\s*'whop\.com'/);
+  assert.match(source, /\^\\\/checkout\\\/plan_/);
+  assert.match(source, /protocol\s*!==\s*'https:'/);
+  // Stripe is for services; this product must not reach into that config.
+  assert.doesNotMatch(source, /VNMSFX_CHECKOUT/);
+  assert.doesNotMatch(read('hard-to-ignore.html'), /checkout-links\.js/);
+  // The service package links stay untouched by this product.
+  const links = read('tv/checkout-links.js');
+  const sandbox = {};
+  new Function('window', links)(sandbox);
+  assert.deepEqual(Object.keys(sandbox.VNMSFX_CHECKOUT.packages), ['spotlight', 'set', 'motion', 'launch']);
+});
+
+test('the Production Bible page is wired into the site, not an orphan', () => {
+  const sitemap = read('sitemap.xml');
+  assert.match(sitemap, /https:\/\/vnmsfx\.com\/hard-to-ignore/);
+  const vercel = JSON.parse(read('vercel.json'));
+  const short = vercel.redirects.find((r) => r.source === '/bible');
+  assert.ok(short, '/bible short link is missing');
+  assert.equal(short.destination, '/hard-to-ignore');
+  // Master's own redirects must survive the addition.
+  assert.ok(vercel.redirects.find((r) => r.source === '/creative-sprint'), 'existing redirect lost');
+  // Its funnel events are declared, or conversion-events.js will drop them silently.
+  const events = read('assets/conversion-events.js');
+  assert.match(events, /'bible_view'/);
+  assert.match(events, /'bible_checkout'/);
+});
+
+test('the Production Bible page opens with the homepage film and the price in view', () => {
+  const html = read('hard-to-ignore.html');
+  const css = read('tv/bible.css');
+  const js = read('tv/bible.js');
+  // Same film as the vnmsfx.com hero, so it is already cached for anyone arriving from there.
+  assert.match(js, /'\/tv\/hero\/hero\.mp4'/);
+  assert.match(html, /id="bible-film"/);
+  assert.match(html, /poster="\/tv\/hero\/hero\.jpg"/);
+  assert.match(html, /<video[^>]*\bloop\b/);
+  assert.match(html, /<video[^>]*\bmuted\b/);
+  // A skimmer who leaves in three seconds must still have seen the price and a way to buy.
+  assert.match(html, /<p class="hero-price">\$1,199\.99/);
+  assert.match(html, /class="reel-copy"[\s\S]*?data-bible-checkout[\s\S]*?<\/section>/);
+  // The decision follows the reader down the page, because people jump around.
+  assert.match(css, /\.bible-buy\{position:sticky/);
+  assert.match(html, /id="bible-sticky"/);
+  // The headline makes the same promise as the homepage, in the same type treatment.
+  assert.match(html, /HARD TO&nbsp;IGNORE\.<\/em>/);
+  assert.match(css, /\.reel-copy h1 em\{font-style:normal;color:var\(--acid\)\}/);
+  // Motion is never forced on someone who asked for less of it.
+  assert.match(js, /prefers-reduced-motion/);
+  // The nav rides on the film instead of following the reader into the sticky bar.
+  assert.match(css, /\.bible-page \.site-header\{position:absolute/);
+});

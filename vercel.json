@@ -16,6 +16,11 @@
   ],
   "redirects": [
     {
+      "source": "/bible",
+      "destination": "/hard-to-ignore",
+      "permanent": false
+    },
+    {
       "source": "/creative-sprint",
       "destination": "/#commercial-options",
       "permanent": false
