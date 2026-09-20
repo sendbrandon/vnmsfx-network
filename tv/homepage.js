@@ -1,4 +1,4 @@
-const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Original film", "poster": "/tv/hero/hero.jpg", "hold": "full", "source_file": "kling_20260920_VIDEO_give_me_a__5611_0.mp4"}, {"src": "/tv/hero/pizza.mp4", "title": "VNMSFX · Pizza spot", "poster": "/tv/hero/pizza.jpg", "hold": "full", "source_file": "kling_20260921_VIDEO_give_me_a__313_0.mp4"}];
+const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Selected work", "poster": "/tv/hero/hero.jpg", "hold": "full", "source_file": "kling 5611 + 970 + 640, cut and graded 2026-09-21"}];
 (() => {
   const hero = document.querySelector('.hero-reel');
   const videos = [...hero.querySelectorAll('video')];
