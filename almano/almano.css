@@ -18,6 +18,7 @@
 .almano-situation .form-note a{color:var(--acid)}
 
 .almano-enroll{border-top:1px solid #2a2a2a}
+.almano-questions{border-top:1px solid #2a2a2a}
 .enroll-copy{max-width:640px}
 .almano-form{margin-top:36px;display:grid;gap:18px}
 .almano-form label{display:grid;gap:8px;font:11px/1.4 var(--mono);color:#aaa;text-transform:uppercase;letter-spacing:.04em}

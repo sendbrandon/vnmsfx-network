@@ -6,31 +6,8 @@
 const leadStore = require("./_lead-store.js");
 const ORIGINS = new Set(["https://vnmsfx.com", "https://www.vnmsfx.com"]);
 
-function confirmation({ name, applicationId, kin, day }) {
-  const first = String(name || "").split(/\s+/)[0] || "Applicant";
-  const subject = "Almano — Application " + applicationId + " received";
-  const text = [
-    "Dear " + first + ",",
-    "",
-    "Almano has received your enrollment application.",
-    "Application: " + applicationId,
-    "Next of kin on file: " + (kin || "—"),
-    "",
-    "A Steward will contact you when capacity becomes available. Please do not travel to the facility until you are contacted.",
-    "",
-    "Almano thanks you for your patience.",
-    "",
-    "— The Steward",
-    "Almano Life Extension · Est. 1998",
-    "",
-    "Day " + (day || "—") + " of county review. Follow the review at https://vnmsfx.com/almano",
-    "",
-    "Almano is a fictional company from an original VNMSFX series. This email is part of the story; no service is offered.",
-  ].join("\n");
-  const html = "<div style=\"font:15px/1.6 Arial,sans-serif;color:#111\"><p>Dear " + esc(first) + ",</p><p>Almano has received your enrollment application.</p><p><strong>Application:</strong> " + esc(applicationId) + "<br><strong>Next of kin on file:</strong> " + esc(kin || "—") + "</p><p>A Steward will contact you when capacity becomes available. Please do not travel to the facility until you are contacted.</p><p>Almano thanks you for your patience.</p><p>— The Steward<br>Almano Life Extension · Est. 1998</p><p style=\"color:#666;font-size:13px\">Day " + esc(day || "—") + " of county review. <a href=\"https://vnmsfx.com/almano\">Follow the review.</a></p><p style=\"color:#999;font-size:12px\">Almano is a fictional company from an original VNMSFX series. This email is part of the story; no service is offered.</p></div>";
-  return { subject, text, html };
-}
-function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c])); }
+const { confirmation } = require("./_almano-copy.js");
+const unsub = require("./_unsub.js");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
@@ -85,8 +62,8 @@ module.exports = async function handler(req, res) {
     signal: AbortSignal.timeout(10000),
     body: JSON.stringify(payload),
   });
-  const m = confirmation({ name, applicationId, kin, day });
-  try { await send({ from: "Almano <brandon@vnmsfx.com>", to: [email], reply_to: "brandon@vnmsfx.com", subject: m.subject, text: m.text, html: m.html }, fingerprint + "/confirm"); }
+  const m = confirmation({ name, applicationId, kin, birthYear, day, unsubscribeUrl: unsub.url(email) });
+  try { await send({ from: "Almano <brandon@vnmsfx.com>", to: [email], reply_to: "brandon@vnmsfx.com", subject: m.subject, text: m.text, html: m.html, headers: { "List-Unsubscribe": "<" + unsub.url(email) + ">" } }, fingerprint + "/confirm"); }
   catch (e) { console.error("almano confirm send failed", e && e.message); }
   try { await send({ from: "Almano <brandon@vnmsfx.com>", to: ["brandon@vnmsfx.com"], subject: "Almano enrollment · " + applicationId + " · " + name, text: "New Almano application\n\n" + name + " (" + email + ")\nBorn " + birthYear + "\nNext of kin: " + kin + "\nDay " + (day || "—") + "\n" + applicationId }, fingerprint + "/note"); }
   catch (e) { console.error("almano note send failed", e && e.message); }
