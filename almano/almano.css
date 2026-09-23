@@ -1,0 +1,72 @@
+/* Almano enrollment page. Inherits tokens, header, hero and form from /tv/homepage.css. */
+.almano-page{background:var(--ink);color:var(--paper)}
+.almano-hero .hero-media video.is-active{opacity:1}
+.almano-hero .hero-media{background:#101311 url('/almano/media/salute-poster.jpg') center/cover}
+.almano-hero .reel-copy{padding-bottom:110px}
+.almano-hero .assurance{font:11px/1.5 var(--mono);color:#bbb;margin:14px 0 0}
+
+.almano-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2a2a2a;border-top:1px solid #2a2a2a;border-bottom:1px solid #2a2a2a}
+.almano-numbers div{background:var(--ink);padding:28px var(--gutter);display:flex;flex-direction:column;gap:6px}
+.almano-numbers strong{font-family:var(--display);font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1;color:var(--acid);letter-spacing:-.01em}
+.almano-numbers span{font:11px/1.4 var(--mono);color:#aaa;text-transform:uppercase;letter-spacing:.04em}
+
+.almano-situation,.almano-enroll,.almano-questions,.almano-vnmsfx{padding:96px var(--gutter)}
+.almano-page h2{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.4vw,84px);line-height:1.04;letter-spacing:-.02em;margin:0;text-wrap:balance;max-width:900px}
+.almano-page .eyebrow{font:11px/1.5 var(--mono);color:#aaa;margin:0 0 18px}
+.almano-page .deck{color:#ddd;text-shadow:none}
+
+.almano-episodes{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:ep}
+.almano-episodes a{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:20px;border:1px solid #2e2e2e;color:var(--paper);text-decoration:none;background:linear-gradient(180deg,#151515,#0e0e0e);transition:border-color .2s,transform .2s}
+.almano-episodes a:hover{border-color:var(--acid);transform:translateY(-2px)}
+.almano-episodes .day{font:11px/1 var(--mono);color:var(--acid);letter-spacing:.06em}
+.almano-episodes strong{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.05}
+.almano-episodes .line{font:14px/1.45 var(--body);color:#bbb;margin-top:auto}
+.almano-situation .form-note a{color:var(--acid)}
+
+.almano-enroll{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:56px;align-items:start;border-top:1px solid #2a2a2a}
+.steward-watch{position:relative;aspect-ratio:3/4;background:#0c0c0c;border:1px solid #2e2e2e;overflow:hidden}
+.steward-watch canvas,.steward-watch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.steward-watch img{transition:transform .12s ease-out;will-change:transform}
+.steward-watch canvas{display:none}
+.steward-watch.has-depth canvas{display:block}
+.steward-watch.has-depth img{opacity:0}
+.steward-watch .caption{position:absolute;left:14px;bottom:12px;margin:0;font:10px/1 var(--mono);color:#ccc;letter-spacing:.08em;background:#000a;padding:6px 8px}
+.enroll-copy{max-width:640px}
+.almano-form{margin-top:36px;display:grid;gap:18px}
+.almano-form label{display:grid;gap:8px;font:11px/1.4 var(--mono);color:#aaa;text-transform:uppercase;letter-spacing:.04em}
+.almano-form input{background:#0c0c0c;border:1px solid #333;color:var(--paper);padding:14px 14px;font:16px/1.3 var(--body);border-radius:0;outline:none}
+.almano-form input:focus{border-color:var(--acid)}
+.almano-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.almano-form button.primary{justify-self:start;border:1px solid var(--acid);padding:14px 20px;font:600 15px var(--body);cursor:pointer}
+.almano-form button[disabled]{opacity:.6;cursor:wait}
+.form-error{color:#ff8a8a;font:13px/1.4 var(--body);margin:0}
+.almano-confirm .app-id{font:14px/1.5 var(--mono);color:#aaa;margin:18px 0 0}
+.almano-confirm .app-id strong{color:var(--acid)}
+.almano-confirm .reel-actions{margin-top:26px}
+
+.almano-questions details{border-top:1px solid #2a2a2a;padding:18px 0}
+.almano-questions details:last-of-type{border-bottom:1px solid #2a2a2a}
+.almano-questions summary{cursor:pointer;font:600 18px/1.3 var(--body);list-style:none;display:flex;justify-content:space-between;gap:20px}
+.almano-questions summary::after{content:"+";font-family:var(--mono);color:var(--acid)}
+.almano-questions details[open] summary::after{content:"–"}
+.almano-questions p{margin:12px 0 0;color:#bbb;max-width:560px;font:16px/1.5 var(--body)}
+.almano-questions h2{margin-bottom:28px}
+
+.almano-vnmsfx{background:var(--paper);color:var(--ink);border-top:1px solid var(--line)}
+.almano-vnmsfx .eyebrow{color:var(--muted)}
+.almano-vnmsfx .deck{color:var(--ink)}
+.almano-vnmsfx .reel-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.almano-vnmsfx .ghost{padding:14px 20px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font:600 15px var(--body)}
+.almano-page .primary{text-decoration:none;display:inline-block;padding:14px 20px;font:600 15px var(--body)}
+
+@media (max-width:900px){
+  .almano-numbers{grid-template-columns:repeat(2,1fr)}
+  .almano-episodes{grid-template-columns:repeat(2,1fr)}
+  .almano-enroll{grid-template-columns:1fr;gap:32px}
+  .steward-watch{max-width:360px}
+  .almano-situation,.almano-enroll,.almano-questions,.almano-vnmsfx{padding:64px var(--gutter)}
+}
+@media (max-width:560px){
+  .almano-episodes{grid-template-columns:1fr}
+  .almano-numbers strong{font-size:38px}
+}
