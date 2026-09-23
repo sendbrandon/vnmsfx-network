@@ -1,6 +1,6 @@
 /* Almano enrollment page. Inherits tokens, header, hero and form from /tv/homepage.css. */
 .almano-page{background:var(--ink);color:var(--paper)}
-.almano-hero .hero-media video.is-active{opacity:1}
+.almano-hero .hero-media video.is-active{opacity:1;object-position:50% 12%}
 .almano-hero .hero-media{background:#101311 url('/almano/media/salute-poster.jpg') center/cover}
 .almano-hero .reel-copy{padding-bottom:110px}
 .almano-hero .assurance{font:11px/1.5 var(--mono);color:#bbb;margin:14px 0 0}
@@ -15,22 +15,9 @@
 .almano-page .eyebrow{font:11px/1.5 var(--mono);color:#aaa;margin:0 0 18px}
 .almano-page .deck{color:#ddd;text-shadow:none}
 
-.almano-episodes{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:ep}
-.almano-episodes a{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:20px;border:1px solid #2e2e2e;color:var(--paper);text-decoration:none;background:linear-gradient(180deg,#151515,#0e0e0e);transition:border-color .2s,transform .2s}
-.almano-episodes a:hover{border-color:var(--acid);transform:translateY(-2px)}
-.almano-episodes .day{font:11px/1 var(--mono);color:var(--acid);letter-spacing:.06em}
-.almano-episodes strong{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.05}
-.almano-episodes .line{font:14px/1.45 var(--body);color:#bbb;margin-top:auto}
 .almano-situation .form-note a{color:var(--acid)}
 
-.almano-enroll{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:56px;align-items:start;border-top:1px solid #2a2a2a}
-.steward-watch{position:relative;aspect-ratio:3/4;background:#0c0c0c;border:1px solid #2e2e2e;overflow:hidden}
-.steward-watch canvas,.steward-watch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.steward-watch img{transition:transform .12s ease-out;will-change:transform}
-.steward-watch canvas{display:none}
-.steward-watch.has-depth canvas{display:block}
-.steward-watch.has-depth img{opacity:0}
-.steward-watch .caption{position:absolute;left:14px;bottom:12px;margin:0;font:10px/1 var(--mono);color:#ccc;letter-spacing:.08em;background:#000a;padding:6px 8px}
+.almano-enroll{border-top:1px solid #2a2a2a}
 .enroll-copy{max-width:640px}
 .almano-form{margin-top:36px;display:grid;gap:18px}
 .almano-form label{display:grid;gap:8px;font:11px/1.4 var(--mono);color:#aaa;text-transform:uppercase;letter-spacing:.04em}
@@ -61,12 +48,12 @@
 
 @media (max-width:900px){
   .almano-numbers{grid-template-columns:repeat(2,1fr)}
-  .almano-episodes{grid-template-columns:repeat(2,1fr)}
   .almano-enroll{grid-template-columns:1fr;gap:32px}
-  .steward-watch{max-width:360px}
-  .almano-situation,.almano-enroll,.almano-questions,.almano-vnmsfx{padding:64px var(--gutter)}
+    .almano-situation,.almano-enroll,.almano-questions,.almano-vnmsfx{padding:64px var(--gutter)}
 }
 @media (max-width:560px){
-  .almano-episodes{grid-template-columns:1fr}
   .almano-numbers strong{font-size:38px}
 }
+
+.almano-logline{max-width:720px;margin-top:36px;display:grid;gap:18px}
+.almano-logline p{margin:0;font:400 clamp(17px,1.4vw,20px)/1.55 var(--body);color:#ddd}
