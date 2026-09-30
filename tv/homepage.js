@@ -187,6 +187,7 @@ const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Selected work
     const values = new FormData(form);
     const length = select.options[select.selectedIndex].textContent;
     const body = `Brand / product: ${values.get('brand')}\nReply email: ${values.get('email')}\nPreferred length: ${length}\nLaunch date: ${values.get('deadline') || 'To be agreed'}\n\nProject brief:\n${values.get('message')}`;
+    if (window.vxFunnel) window.vxFunnel.record('inquiry_draft_open', { placement: 'homepage_brief' });
     window.location.href = `mailto:brandon@vnmsfx.com?subject=${encodeURIComponent('Commercial inquiry — '+values.get('brand'))}&body=${encodeURIComponent(body)}`;
   });
 })();
