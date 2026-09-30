@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Opening the free teardown | VNMSFX</title>
-<meta name="description" content="Opening the VNMSFX free teardown calendar.">
+<title>Opening your calendar | VNMSFX</title>
+<meta name="description" content="Opening the VNMSFX booking calendar.">
 <meta name="theme-color" content="#F0EFEA">
 <style>
 :root{--bg:#F0EFEA;--ink:#111110;--soft:#5E5D57;--card:#E4E2DB;--volt:#DDFF3A}
@@ -21,25 +21,20 @@ a{color:var(--ink);font-weight:700}small{display:block;margin-top:24px;color:var
 <body>
 <main>
   <span class="mark" aria-hidden="true">→</span>
-  <h1>Opening the free teardown.</h1>
-  <p>You are going to Brandon&rsquo;s 30-minute calendar. If it does not open, <a id="continueLink" data-direct-cal href="https://cal.com/vnmsfx/30min">continue here</a>.</p>
+  <h1>Opening your calendar.</h1>
+  <p>You are going to Brandon&rsquo;s booking calendar. If it does not open, <a id="continueLink" data-direct-cal href="https://cal.com/vnmsfx/30min">continue here</a>.</p>
   <small>No form answers or private records are sent to the calendar.</small>
 </main>
 <script src="/assets/conversion-events.js"></script>
 <script>
 (function(){
   var query=new URLSearchParams(location.search), values=window.vxFunnel.attribution();
-  var destination=new URL('https://cal.com/vnmsfx/30min');
-  window.vxFunnel.addAttribution(destination, values);
-  destination.searchParams.set('vx_event','teardown_click');
-  destination.searchParams.set('vx_click_at',new Date().toISOString());
-  destination.searchParams.set('vx_placement',String(query.get('placement')||'unknown').slice(0,60));
-  var item=window.vxFunnel.record('teardown_click',{
+  var destination=window.vxFunnel.bookingDestination(query.get('to'), values);
+  window.vxFunnel.record('teardown_click',{
     placement:query.get('placement')||'unknown',
     source:values.utm_source||values.ref||'',
     campaign:values.utm_campaign||''
   });
-  if(item) destination.searchParams.set('vx_click_id',item.at);
   document.getElementById('continueLink').href=destination.toString();
   /* Let Vercel's ordinary page-view request leave before the cross-site move. */
   window.addEventListener('load',function(){setTimeout(function(){location.replace(destination.toString());},350);});

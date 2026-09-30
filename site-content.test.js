@@ -308,10 +308,10 @@ test('Hobby-safe funnel milestones and booking routes are wired on every analyti
     'leak_check_complete',
     'leak_check_email_submit',
     'teardown_click',
-    'teardown_booked',
+    'booking_click',
   ].forEach((name) => assert.match(events, new RegExp(`['"]${name}['"]`)));
   assert.match(events, /\/book-teardown/);
-  assert.match(events, /Object\.assign\(\{\}, saved, found\)/);
+  assert.match(events, /hasCampaign \? found : read\(ATTR_KEY/);
 
   const pages = fs.readdirSync(root).filter((name) => name.endsWith('.html'));
   const analyticsPages = pages.filter((name) => /\/_vercel\/insights\/script\.js/.test(read(name)));
@@ -323,8 +323,8 @@ test('Hobby-safe funnel milestones and booking routes are wired on every analyti
   assert.match(click, /record\('teardown_click'/);
   assert.match(click, /location\.replace\(destination\.toString\(\)\)/);
   const booked = read('booking-confirmed.html');
-  assert.match(booked, /query\.get\('uid'\)/);
-  assert.match(booked, /record\('teardown_booked'/);
+  assert.doesNotMatch(booked, /record\('teardown_booked'/);
+  assert.match(booked, /return page cannot verify/);
   assert.match(booked, /history\.replaceState\(\{\},'',location\.pathname\)/);
   assert.match(read('privacy.html'), /current Vercel plan counts page views but not custom events/);
 });

@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<script>
+/* Cal may put attendee fields in this return URL. Remove the entire query and
+   fragment before any analytics script runs. A uid in a URL is not verification. */
+history.replaceState({},'',location.pathname);
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Your teardown is booked | VNMSFX</title>
-<meta name="description" content="Your VNMSFX teardown is booked.">
+<title>Check your booking | VNMSFX</title>
+<meta name="description" content="Check the confirmation from Cal.com for your booking status.">
 <meta name="theme-color" content="#141412">
 <style>
 :root{--bg:#141412;--ink:#F4F2EC;--soft:#B9B6AD;--card:#23231F;--volt:#DDFF3A}
@@ -20,37 +26,14 @@ h1{font-size:clamp(32px,7vw,58px);line-height:1.02;letter-spacing:-.045em;margin
 </head>
 <body>
 <main>
-  <span class="mark" aria-hidden="true">✓</span>
-  <h1 id="bookingHead">Your teardown is booked.</h1>
-  <p id="bookingBody">Bring the quick version of how you sell and where the team has to chase answers. You do not need to diagnose the problem before the call.</p>
+  <span class="mark" aria-hidden="true">→</span>
+  <h1 id="bookingHead">Check your booking.</h1>
+  <p id="bookingBody">Check the confirmation Cal sent you for the date, time and meeting details. This return page cannot verify whether a booking was completed.</p>
   <p class="plain">Cal sends the date, time and meeting details. If you need help, email <a href="mailto:brandon@vnmsfx.com">brandon@vnmsfx.com</a>.</p>
 </main>
 <script src="/assets/conversion-events.js"></script>
-<script>
-(function(){
-  var query=new URLSearchParams(location.search), uid=String(query.get('uid')||'').slice(0,120);
-  if(!uid){
-    document.getElementById('bookingHead').textContent='No booking was found on this page.';
-    document.getElementById('bookingBody').textContent='Use the date, time and meeting link in the confirmation Cal sent you, or email Brandon for help.';
-    return;
-  }
-  var once='vx_booked_'+uid, seen=false;
-  try{seen=sessionStorage.getItem(once)==='1';}catch(e){}
-  var values=window.vxFunnel.attribution();
-  if(!seen){
-    window.vxFunnel.record('teardown_booked',{
-      source:values.utm_source||values.ref||'',
-      campaign:values.utm_campaign||''
-    });
-    try{sessionStorage.setItem(once,'1');}catch(e){}
-  }
-  /* Cal forwards attendee fields to the success URL. Keep them out of the
-     analytics page view after the attribution and booking UID are read. */
-  history.replaceState({},'',location.pathname);
-  var analytics=document.createElement('script');
-  analytics.defer=true; analytics.src='/_vercel/insights/script.js';
-  document.head.appendChild(analytics);
-})();
-</script>
+<!-- A visit (even with a uid) is not a booking conversion. Use the Cal
+     booking record and its stored UTMs; no attendee or booking ID is sent to analytics. -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
