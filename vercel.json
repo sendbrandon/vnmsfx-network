@@ -16,8 +16,58 @@
   ],
   "redirects": [
     {
+      "source": "/booking-confirmed",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/operations",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/systems",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-visibility-audit",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sample-audit",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/leak-check",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-connects",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/security",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/book-teardown",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/creative-sprint",
-      "destination": "/#commercial-options",
+      "destination": "/#pilot",
       "permanent": false
     },
     {
