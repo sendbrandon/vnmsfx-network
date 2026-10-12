@@ -17,7 +17,7 @@ fetch('/api/saints?action=config').then(r=>r.json()).then(c=>{if(c.salesEnabled)
 if(!['localhost','127.0.0.1'].includes(location.hostname)){
 const freeButtons=[...document.querySelectorAll('[data-video="episode"]')];
 function playbackAvailability(ready){document.querySelector('header .small-cta').textContent=ready?'Watch free ↗':'Episodes ↗';document.querySelector('#watch .section-heading>p').textContent=ready?'The complete first episode is yours. No sign-in required.':'Five minutes. Free when streaming opens. No sign-up required.';freeButtons.forEach(b=>{b.disabled=!ready;if(!b.classList.contains('episode-image'))b.textContent=ready?'Watch Episode 1 free':'Free premiere · coming soon';else{b.setAttribute('aria-label',ready?'Watch Episode 1 free':'Episode 1 — streaming coming soon');b.querySelector('.pill').textContent=ready?'FREE TO WATCH':'COMING SOON';}});}
-playbackAvailability(false);fetch('/api/saints?action=config').then(r=>r.json()).then(c=>playbackAvailability(!!c.playbackReady)).catch(()=>{});
+playbackAvailability(false);Promise.all([fetch('/assets/saints/press-video.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({})),fetch('/api/saints?action=config').then(r=>r.json()).catch(()=>({}))]).then(([video,c])=>playbackAvailability(/^[A-Za-z0-9_-]{11}$/.test(video.youtubeId||'')||!!c.playbackReady));
 }
 
 // Section shortcuts keep mobile browsing direct without hiding either episode.
