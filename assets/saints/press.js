@@ -18,3 +18,9 @@ fullscreen.addEventListener('click',async()=>{const film=document.querySelector(
   film.addEventListener('error',()=>{film.hidden=true;placeholder.hidden=false;fullscreen.disabled=true;status.textContent='Playback is temporarily unavailable. Please try again shortly.'});
  }catch{status.textContent='The film player is not connected yet. Please check back shortly.'}
 })();
+
+// Reveal only supporting content; never animate or obscure the film player.
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+ const reveal=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('press-enter');reveal.unobserve(entry.target);}}},{threshold:.12});
+ document.querySelectorAll('.intro>div,.intro>aside,.artwork>div,.artwork>a').forEach(el=>reveal.observe(el));
+}
