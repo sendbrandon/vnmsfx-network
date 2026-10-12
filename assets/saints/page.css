@@ -168,3 +168,17 @@ body{-webkit-font-smoothing:antialiased}
 .hero-bottom{isolation:isolate}.hero-bottom:before{content:'';position:absolute;inset:-45px 0 -35px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 25% 0%,rgba(129,94,66,.09),transparent 70%)}
 .hero-actions .button,.small-cta{background:#e8e3d9;text-shadow:none}.watch-promise{color:#ded8cd}.hero-bottom .eyebrow{color:#c0b7a9}
 @media(prefers-contrast:more){:root{--paper:#fff;--muted:#eee}.hero-line,.hero-line span,.section-heading h2,.faq>h2,.episode-copy h3,.dossier h3,.hero-premise,.section-heading>p,.episode-copy p:not(.eyebrow),.watch-promise{color:#fff;text-shadow:none}}
+
+/* Optical integration: relaxed type proportions and a narrow photographic edge. */
+.hero-line{letter-spacing:-.022em;line-height:1.08}
+.hero-line span{letter-spacing:-.025em}
+.section-heading h2,.faq>h2{letter-spacing:-.032em;line-height:1.1}
+.episode-copy h3,.dossier h3{letter-spacing:-.022em;line-height:1.12}
+.hero-premise,.section-heading>p,.episode-copy p:not(.eyebrow),.dossier-copy p{letter-spacing:0;line-height:1.55}
+.portrait img,.episode-image img{
+-webkit-mask-image:linear-gradient(to right,transparent,#000 2px,#000 calc(100% - 2px),transparent),linear-gradient(to bottom,transparent,#000 2px,#000 calc(100% - 2px),transparent);
+-webkit-mask-composite:source-in;
+mask-image:linear-gradient(to right,transparent,#000 2px,#000 calc(100% - 2px),transparent),linear-gradient(to bottom,transparent,#000 2px,#000 calc(100% - 2px),transparent);
+mask-composite:intersect;
+}
+@media(prefers-contrast:more){.portrait img,.episode-image img{-webkit-mask-image:none;mask-image:none}}
