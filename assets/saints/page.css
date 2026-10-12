@@ -121,3 +121,16 @@ header{height:62px}.brand-image{width:100px;height:48px}.small-cta{font-size:12p
 button,a,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}button:not(:disabled),.small-cta,summary{transition:transform .16s,background .16s,color .16s}button:not(:disabled):active,.small-cta:active,summary:active{transform:scale(.975)}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Keep each character name centered within its selection pill. */
+.character-tabs button{display:inline-flex;align-items:center;justify-content:center;text-align:center}
+
+/* Carry the compact rhythm and responsive controls into desktop. */
+@media(min-width:751px){
+header nav a{padding:9px 13px;border-radius:8px;transition:background .18s,color .18s}header nav{gap:8px}header nav a[aria-current=true]{background:rgba(214,185,141,.12);color:var(--paper)}
+.hero-bottom{padding-bottom:32px}.hero-actions{display:flex;align-items:center;gap:22px}
+#watch,.characters,.access,.faq{padding-top:42px;padding-bottom:42px}.section-heading{margin-bottom:22px}.episode-grid{gap:24px}.episode-copy{padding-top:15px}.character-tabs{margin-top:18px;margin-bottom:18px}.dossier{gap:20px}.dossier-copy{gap:0 5vw}.pricing{gap:4vw}.membership.price-card{padding-left:4vw}.pricing-note{padding-top:16px}.faq details{padding-block:16px}
+}
+@media(hover:hover){.character-tabs button:not([aria-selected=true]):hover,.billing button:not([aria-pressed=true]):hover,header nav a:hover{background:rgba(214,185,141,.12);color:var(--paper)}.faq summary:hover{color:var(--acid)}}
+.character-tabs button,.billing button,header nav a,.faq summary{transition:background .18s,color .18s,transform .16s}.character-tabs button:active,.billing button:active{transform:scale(.975)}
+@media(prefers-reduced-motion:reduce){.character-tabs button,.billing button,header nav a,.faq summary{transition:none}}
