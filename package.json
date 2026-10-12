@@ -1,0 +1,36 @@
+{
+  "name": "vnmsfx-network",
+  "version": "1.0.0",
+  "description": "",
+  "main": "site-content.test.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node scripts/build-saints.js",
+    "dev": "node scripts/dev-saints.js",
+    "test": "node --test tests/saints.test.js",
+    "test:site": "node --test site-content.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sendbrandon/vnmsfx-network.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sendbrandon/vnmsfx-network/issues"
+  },
+  "homepage": "https://github.com/sendbrandon/vnmsfx-network#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.3",
+    "hls.js": "^1.7.3",
+    "stripe": "^23.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "private": true
+}

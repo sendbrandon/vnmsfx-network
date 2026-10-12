@@ -1,0 +1,10 @@
+const film=document.querySelector('#film'),cinema=document.querySelector('#cinema'),message=document.querySelector('#watch-message');
+const trailer=new URLSearchParams(location.search).get('video')==='trailer';
+document.querySelector('#watch-title').textContent=trailer?'Saints of Bad Luck · Trailer':'Episode 1 · Get Her Back';
+let hideTimer;function controls(){document.body.classList.add('show-controls');clearTimeout(hideTimer);hideTimer=setTimeout(()=>document.body.classList.remove('show-controls'),2600)}
+cinema.addEventListener('pointermove',controls);cinema.addEventListener('pointerdown',controls);document.addEventListener('keydown',controls);
+film.addEventListener('playing',()=>{message.hidden=true;document.body.classList.add('playing');controls()});film.addEventListener('pause',()=>document.body.classList.remove('playing'));
+film.addEventListener('loadedmetadata',()=>{message.hidden=true;film.play().catch(()=>{message.textContent='Press play to begin.';message.hidden=false})});
+film.addEventListener('error',()=>{message.textContent='The film could not load. Please go back and try again.';message.hidden=false});
+document.querySelector('#fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if(film.webkitEnterFullscreen)film.webkitEnterFullscreen();else if(cinema.requestFullscreen)await cinema.requestFullscreen();else{message.textContent='Use the video player’s full-screen control.';message.hidden=false}}catch{message.textContent='Use the video player’s full-screen control.';message.hidden=false}});
+(async()=>{try{if(trailer)film.src='/assets/saints/trailer.mp4';else if(['localhost','127.0.0.1'].includes(location.hostname))film.src='/assets/saints/episode-01-opening-2.mp4';else{const r=await fetch('/api/saints?action=playback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({episode:'saints-01'})});const data=await r.json();if(!r.ok)throw Error(data.error);window.SaintsPlayback.attach(film,data.url)}}catch(e){message.textContent=e.message||'Streaming is temporarily unavailable.';message.hidden=false}})();
