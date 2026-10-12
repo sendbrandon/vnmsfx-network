@@ -16,6 +16,11 @@ fetch('/api/saints?action=config').then(r=>r.json()).then(c=>{if(c.salesEnabled)
 // Never advertise working public playback until the streaming connection exists.
 if(!['localhost','127.0.0.1'].includes(location.hostname)){
 const freeButtons=[...document.querySelectorAll('[data-video="episode"]')];
-function playbackAvailability(ready){freeButtons.forEach(b=>{b.disabled=!ready;if(!b.classList.contains('episode-image'))b.textContent=ready?'Watch free':'Free episode · streaming coming soon';else{b.setAttribute('aria-label',ready?'Watch Episode 1 free':'Episode 1 — streaming coming soon');b.querySelector('.pill').textContent=ready?'FREE TO WATCH':'STREAMING COMING SOON';}});}
+function playbackAvailability(ready){document.querySelector('header .small-cta').textContent=ready?'Watch free ↗':'Episodes ↗';document.querySelector('#watch .section-heading>p').textContent=ready?'The complete first episode is yours. No sign-in required.':'Episode 1 will stream free. Hosting is being connected.';freeButtons.forEach(b=>{b.disabled=!ready;if(!b.classList.contains('episode-image'))b.textContent=ready?'Watch free':'Streaming coming soon';else{b.setAttribute('aria-label',ready?'Watch Episode 1 free':'Episode 1 — streaming coming soon');b.querySelector('.pill').textContent=ready?'FREE TO WATCH':'COMING SOON';}});}
 playbackAvailability(false);fetch('/api/saints?action=config').then(r=>r.json()).then(c=>playbackAvailability(!!c.playbackReady)).catch(()=>{});
 }
+
+// Section shortcuts keep mobile browsing direct without hiding either episode.
+const mobileNav=document.createElement('nav');mobileNav.className='mobile-sections';mobileNav.setAttribute('aria-label','Browse this show');mobileNav.innerHTML='<a href="#watch">Episodes</a><a href="#characters">Characters</a><a href="#access">Membership</a>';document.querySelector('header').after(mobileNav);
+if('IntersectionObserver' in window){const sections=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)mobileNav.querySelectorAll('a').forEach(a=>a.setAttribute('aria-current',String(a.hash==='#'+e.target.id)))})},{rootMargin:'-110px 0px -45% 0px',threshold:0});['watch','characters','access'].forEach(id=>sections.observe(document.getElementById(id)));}
+tabs.forEach(b=>b.addEventListener('click',()=>{if(!reduced.matches){document.querySelector('.dossier-copy').animate([{opacity:.35,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,easing:'ease-out'});}}));
