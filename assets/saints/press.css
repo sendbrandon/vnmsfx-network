@@ -21,3 +21,16 @@ a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}.butt
 @keyframes press-settle{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:none}}.press-enter{animation:press-settle .5s var(--ease) both}
 @media(max-width:650px){header{height:64px}header img{width:105px}.intro{padding-block:26px;gap:24px}.intro aside{padding:22px 0 0;border-left:0;border-top:1px solid #ffffff14}h2{font-size:32px;padding-left:14px}.artwork{margin:0;padding-block:28px;gap:22px}.artwork>a:before{inset:-12px -2%}.player-bar{gap:10px}.player-bar button{font-size:12px}.credit{margin-top:16px}footer{font-size:11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.button:hover,.button:active,.artwork>a:hover img,.button:hover span{transform:none}}
+
+
+/* Press hero (2026-10-12): the film-finished garage line-up, full screen, before the press layout. Media untouched. */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#0b0c0c;isolation:isolate}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%;display:block}
+.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,transparent 18%,transparent 84%,rgba(36,38,40,.35) 94%,rgba(36,38,40,.8) 100%);pointer-events:none}
+.hero-logo,.hero-scroll{z-index:1}
+.hero-logo{position:absolute;top:clamp(18px,3.2vw,40px);right:var(--gutter);width:clamp(150px,15vw,250px);height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6));pointer-events:none}
+.hero-scroll{position:absolute;right:var(--gutter);bottom:clamp(18px,3vw,34px);display:flex;gap:10px;align-items:center;font-size:11px;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:11px 4px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.hero-scroll span:last-child{font-size:15px;animation:hero-nudge 2.4s var(--ease) infinite}
+@keyframes hero-nudge{0%,100%{transform:none}50%{transform:translateY(4px)}}
+.hero-scroll:focus-visible{outline:2px solid #d8c99a;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.hero-scroll span:last-child{animation:none}}
