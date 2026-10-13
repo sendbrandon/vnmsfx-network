@@ -1,0 +1,6 @@
+.git
+node_modules
+.env*
+tests
+docs
+assets/saints/episode-01-opening-2.mp4

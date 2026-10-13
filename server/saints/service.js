@@ -40,13 +40,32 @@ function createService({db,stripe,env,sign,now=()=>Math.floor(Date.now()/1000)})
  async function checkout(user,sku,requestId){
   if(env.SAINTS_SALES_ENABLED!=='true')throw new AccessError(409,'Purchases are not open yet.');
   const p=Object.hasOwn(products,sku)?products[sku]:null;if(!p)throw new AccessError(400,'Unknown product.');
+  if(p.mode==='subscription'&&env.SAINTS_MEMBERSHIPS_ENABLED!=='true')throw new AccessError(409,'Memberships are not available yet.');
   const episode=episodes.find(e=>e.id===p.episode);const preorder=!!(episode&&!episode.released&&episode.preorder&&env.SAINTS_PREORDERS_ENABLED==='true');
   if(p.episode&&!episode?.released&&!preorder)throw new AccessError(409,'Preorders are not open yet.');
   if(!priceFor(sku))throw new AccessError(503,'This purchase option is not configured.');
   const ent=await access(user.id);if((p.episode&&(ent.owned.has(p.episode)||ent.member))||(!p.episode&&ent.member))throw new AccessError(409,'You already have access.');
   const price=await stripe.prices.retrieve(priceFor(sku));if(!price.active||!checkLine({quantity:1,price},p,priceFor(sku)))throw new AccessError(503,'The purchase price needs review.');
   const metadata={saints_user:user.id,saints_sku:sku,...(preorder?{saints_preorder:'true'}:{})};
-  const session=await stripe.checkout.sessions.create({mode:p.mode,line_items:[{price:price.id,quantity:1}],client_reference_id:user.id,...(ent.customers.size===1?{customer:[...ent.customers][0]}:{customer_email:user.email,...(p.mode==='payment'?{customer_creation:'always'}:{})}),...(p.mode==='subscription'?{subscription_data:{metadata}}:{}),metadata,...(preorder?{custom_text:{submit:{message:'Preorder: charged $2.99 now. Episode 2 unlocks when released. Release date is not yet announced.'}}}:{}),success_url:env.SITE_ORIGIN+'/saints-library?checkout=complete',cancel_url:env.SITE_ORIGIN+'/saints-library?checkout=cancelled',payment_method_types:['card']},{idempotencyKey:`saints:${user.id}:${requestId}`});return {url:session.url};
+  const params={mode:p.mode,line_items:[{price:price.id,quantity:1}],client_reference_id:user.id,...(ent.customers.size===1?{customer:[...ent.customers][0]}:{customer_email:user.email,...(p.mode==='payment'?{customer_creation:'always'}:{})}),...(p.mode==='subscription'?{subscription_data:{metadata}}:{}),metadata,...(preorder?{custom_text:{submit:{message:'Preorder: charged $2.99 now. Episode 2 unlocks when released. Release date is not yet announced.'}}}:{}),success_url:env.SITE_ORIGIN+'/saints-library?checkout=complete',cancel_url:env.SITE_ORIGIN+'/saints-library?checkout=cancelled',payment_method_types:['card']};
+  // The database chooses one persistent attempt per account/product. Different
+  // browser request IDs and different Vercel instances share its Stripe key.
+  const attempt=await db.reserveCheckout(user.id,sku,params);
+  if(!attempt?.id||!attempt.params||!Number.isFinite(attempt.expires_at))throw new AccessError(503,'Checkout is temporarily unavailable.');
+  const session=attempt.session_id
+   ?await stripe.checkout.sessions.retrieve(attempt.session_id)
+   :await stripe.checkout.sessions.create({...attempt.params,expires_at:attempt.expires_at},{idempotencyKey:`saints:${attempt.id}`});
+  if(!attempt.session_id)await db.saveCheckout(attempt.id,session.id);
+  if(session.status==='complete'){
+   await fulfill(session.id);
+   throw new AccessError(409,'This checkout is complete. Refresh your library to see the payment status.');
+  }
+  if(session.status==='expired'){
+   await db.retireCheckout(attempt.id);
+   throw new AccessError(409,'This checkout has expired. Please try again.');
+  }
+  if(!session.url)throw new AccessError(503,'Checkout is temporarily unavailable.');
+  return {url:session.url};
  }
  async function library(user){const a=await access(user.id),progress=await db.progress(user.id);return {email:user.email,membership:a.member,episodes:episodes.map(e=>({id:e.id,title:e.title,number:e.number,free:e.free,released:e.released,preorder:!!(e.preorder&&env.SAINTS_SALES_ENABLED==='true'&&env.SAINTS_PREORDERS_ENABLED==='true'),poster:e.poster,duration:e.duration,accessible:e.released&&(e.free||a.member||a.owned.has(e.id)),purchased:a.owned.has(e.id),position:progress.find(p=>p.episode_id===e.id)?.position||0}))};}
  async function playback(user,id){const e=episodes.find(e=>e.id===id);if(!e||!e.released)throw new AccessError(404,'Episode is not available.');if(!e.free){if(!user)throw new AccessError(401,'Sign in to watch this episode.');const a=await access(user.id);if(!a.member&&!a.owned.has(id))throw new AccessError(403,'Purchase this episode or a membership to watch.');}const playbackId=env[e.playbackEnv];if(!playbackId)throw new AccessError(503,'This video is not ready for streaming yet.');const expires=now()+900;return {url:`https://stream.mux.com/${playbackId}.m3u8?token=${sign(playbackId,expires)}`,expires,title:e.title,duration:e.duration};}
