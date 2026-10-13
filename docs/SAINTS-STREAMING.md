@@ -61,6 +61,8 @@ Observed: existing Supabase project olltrmfxwzvrsxlcyvhu resumed and Saints priv
 - Library header now uses the supplied VNMSFX Originals and Saints logo artwork.
 - Regular page episode purchase controls are wired to the library checkout route and remain disabled unless server configuration permits the released episode or preorder. Membership checkout remains disabled.
 - Preview configuration confirms authentication and playback readiness with sales off. Production is unchanged.
-- Resend's original domain-owning team is `pushto6`; its existing vnmsfx.com domain has failed DKIM/SPF verification. Repair authoritative Namecheap DNS before enabling customer login emails. Do not transfer the domain to another Resend team.
+- The `pushto6` Resend account contains a failed historical vnmsfx.com domain entry. On restart, Resend reported that another team claimed it. An approved attempted DKIM correction was rolled back to the exact original value; SPF, MX and Private Email records were untouched. Resolve the current owner account or approve a separate login-email subdomain before SMTP setup. Do not transfer the root domain.
 - A preview-only signature verification secret is for synthetic deployed API tests. It is not a registered Stripe webhook endpoint secret. Register and verify the actual Stripe delivery endpoint before production sales.
 - Before launch: confirm Episode 2 content/release or approved preorder terms, connect live Stripe price/key and actual webhook signing secret, verify customer email delivery and full browser login/checkout/library flow, then enable sales.
+
+Deployed POST verification exposed Vercel’s lazy parsed req.body helper. The handler now reads the restored original stream before touching that property; 42 tests pass including a lazy-body regression. Re-run deployed signed/invalid webhook and playback checks against the updated preview before launch.
