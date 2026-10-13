@@ -52,3 +52,15 @@ The private saints_checkouts table owns one pending attempt per user/SKU. The sa
 Verification: both added regression checks failed before the repair (membership checkout was permitted; two request IDs created two Sessions). 41 unit/handler tests now pass, including concurrency across service instances, completed-checkout reconciliation and confirmed-expiration handling. External end-to-end testing remains pending.
 
 Observed: existing Supabase project olltrmfxwzvrsxlcyvhu resumed and Saints private schema applied successfully; Stripe test product prod_VQzkiR8NuPWyuQ with one-time price price_1UQ7knP2E4gRJNvGgPRrHGL7 at USD 2.99 created; Mux organization qjcduv and Saints development environment nvdkj1 prepared. A video-only setup token and signing key were approved by Brandon and created. Secret values are not recorded here. Paid sales remain off.
+
+### October 13 verification and remaining launch gates
+
+- Stripe sandbox browser purchase: USD 2.99 paid successfully. Repeated fulfillment creates one receipt; another account cannot use the receipt; refund revokes access.
+- Paid playback fixture used Episode 1's signed Mux asset with Episode 2 released only inside an isolated test process. The deployed Episode 2 remains unreleased.
+- Supabase receipt, progress and checkout tables allow server access and deny anonymous access. Dedicated test viewer authentication succeeds.
+- Library header now uses the supplied VNMSFX Originals and Saints logo artwork.
+- Regular page episode purchase controls are wired to the library checkout route and remain disabled unless server configuration permits the released episode or preorder. Membership checkout remains disabled.
+- Preview configuration confirms authentication and playback readiness with sales off. Production is unchanged.
+- Resend's original domain-owning team is `pushto6`; its existing vnmsfx.com domain has failed DKIM/SPF verification. Repair authoritative Namecheap DNS before enabling customer login emails. Do not transfer the domain to another Resend team.
+- A preview-only signature verification secret is for synthetic deployed API tests. It is not a registered Stripe webhook endpoint secret. Register and verify the actual Stripe delivery endpoint before production sales.
+- Before launch: confirm Episode 2 content/release or approved preorder terms, connect live Stripe price/key and actual webhook signing secret, verify customer email delivery and full browser login/checkout/library flow, then enable sales.
