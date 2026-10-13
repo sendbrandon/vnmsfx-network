@@ -2,7 +2,14 @@
 const {createService,AccessError}=require('../server/saints/service');
 const {createProviders,need}=require('../server/saints/providers');
 const crypto=require('node:crypto');
-async function rawBody(req){if(Buffer.isBuffer(req.body)||typeof req.body==='string'){const b=Buffer.from(req.body);if(b.length>262144)throw new AccessError(413,'Request too large.');return b;}if(req.body&&typeof req.body==='object')throw new AccessError(400,'Raw request body required.');const chunks=[];let size=0;for await(const c of req){const b=Buffer.from(c);size+=b.length;if(size>262144)throw new AccessError(413,'Request too large.');chunks.push(b);}return Buffer.concat(chunks);}
+async function rawBody(req){
+ // Vercel restores the original byte stream alongside a lazy parsed req.body.
+ // Read the stream without touching that getter so webhook signatures stay exact.
+ if(typeof req.on==='function')return new Promise((resolve,reject)=>{const chunks=[];let size=0;req.on('data',c=>{const b=Buffer.from(c);size+=b.length;if(size>262144){reject(new AccessError(413,'Request too large.'));return;}chunks.push(b);});req.on('end',()=>resolve(Buffer.concat(chunks)));req.on('error',reject);});
+ if(Buffer.isBuffer(req.body)||typeof req.body==='string'){const b=Buffer.from(req.body);if(b.length>262144)throw new AccessError(413,'Request too large.');return b;}
+ if(req.body&&typeof req.body==='object')throw new AccessError(400,'Raw request body required.');
+ const chunks=[];let size=0;for await(const c of req){const b=Buffer.from(c);size+=b.length;if(size>262144)throw new AccessError(413,'Request too large.');chunks.push(b);}return Buffer.concat(chunks);
+}
 function createHandler(env=process.env,providerFactory=createProviders){return async(req,res)=>{
  res.setHeader('Cache-Control','private, no-store');res.setHeader('Vary','Authorization');res.setHeader('X-Content-Type-Options','nosniff');const requestId=crypto.randomUUID();res.setHeader('X-Request-Id',requestId);
  try{

@@ -72,3 +72,5 @@ test('only a Stripe-confirmed expired session retires the reservation',async()=>
  await assert.rejects(f.service.checkout({id:uid,email:'viewer@example.test'},'saints-02','another-request'),{status:409});
  assert.equal(retired,'expired-attempt');
 });
+
+ test('raw webhook bytes survive a Vercel-style lazy parsed body getter',async()=>{const {Readable}=require('node:stream');const {rawBody}=require('../api/saints');const bytes=Buffer.from('{ "spacing" : true }\n');const req=Readable.from([bytes]);Object.defineProperty(req,'body',{get(){throw new Error('Parsed body must not be touched');}});assert.deepEqual(await rawBody(req),bytes);});
