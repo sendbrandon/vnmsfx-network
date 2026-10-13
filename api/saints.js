@@ -2,7 +2,14 @@
 const {createService,AccessError}=require('../server/saints/service');
 const {createProviders,need}=require('../server/saints/providers');
 const crypto=require('node:crypto');
-async function rawBody(req){if(Buffer.isBuffer(req.body)||typeof req.body==='string'){const b=Buffer.from(req.body);if(b.length>262144)throw new AccessError(413,'Request too large.');return b;}if(req.body&&typeof req.body==='object')throw new AccessError(400,'Raw request body required.');const chunks=[];let size=0;for await(const c of req){const b=Buffer.from(c);size+=b.length;if(size>262144)throw new AccessError(413,'Request too large.');chunks.push(b);}return Buffer.concat(chunks);}
+async function rawBody(req){
+ // Vercel restores the original byte stream alongside a lazy parsed req.body.
+ // Read the stream without touching that getter so webhook signatures stay exact.
+ if(typeof req.on==='function')return new Promise((resolve,reject)=>{const chunks=[];let size=0;req.on('data',c=>{const b=Buffer.from(c);size+=b.length;if(size>262144){reject(new AccessError(413,'Request too large.'));return;}chunks.push(b);});req.on('end',()=>resolve(Buffer.concat(chunks)));req.on('error',reject);});
+ if(Buffer.isBuffer(req.body)||typeof req.body==='string'){const b=Buffer.from(req.body);if(b.length>262144)throw new AccessError(413,'Request too large.');return b;}
+ if(req.body&&typeof req.body==='object')throw new AccessError(400,'Raw request body required.');
+ const chunks=[];let size=0;for await(const c of req){const b=Buffer.from(c);size+=b.length;if(size>262144)throw new AccessError(413,'Request too large.');chunks.push(b);}return Buffer.concat(chunks);
+}
 function createHandler(env=process.env,providerFactory=createProviders){return async(req,res)=>{
  res.setHeader('Cache-Control','private, no-store');res.setHeader('Vary','Authorization');res.setHeader('X-Content-Type-Options','nosniff');const requestId=crypto.randomUUID();res.setHeader('X-Request-Id',requestId);
  try{
@@ -12,7 +19,7 @@ function createHandler(env=process.env,providerFactory=createProviders){return a
   if(req.method!==methods[action]){res.setHeader('Allow',methods[action]);throw new AccessError(405,'Method not allowed.');}
   const origin=env.SITE_ORIGIN||'https://vnmsfx.com';
   if(action!=='webhook'&&req.method==='POST'&&req.headers.origin!==origin)throw new AccessError(403,'Invalid request origin.');
-  if(action==='config')return res.status(200).json({playbackReady:!!(env.MUX_SAINTS_01_PLAYBACK_ID&&env.MUX_SIGNING_KEY_ID&&env.MUX_SIGNING_PRIVATE_KEY_BASE64),authReady:!!(env.SUPABASE_URL&&env.SUPABASE_ANON_KEY),supabaseUrl:env.SUPABASE_URL||null,supabaseKey:env.SUPABASE_ANON_KEY||null,salesEnabled:env.SAINTS_SALES_ENABLED==='true',preordersEnabled:env.SAINTS_SALES_ENABLED==='true'&&env.SAINTS_PREORDERS_ENABLED==='true',siteOrigin:origin});
+  if(action==='config')return res.status(200).json({playbackReady:!!(env.MUX_SAINTS_01_PLAYBACK_ID&&env.MUX_SIGNING_KEY_ID&&env.MUX_SIGNING_PRIVATE_KEY_BASE64),authReady:!!(env.SUPABASE_URL&&env.SUPABASE_ANON_KEY),episode2Released:require('../server/saints/catalog').episodes.find(e=>e.id==='saints-02').released,supabaseUrl:env.SUPABASE_URL||null,supabaseKey:env.SUPABASE_ANON_KEY||null,salesEnabled:env.SAINTS_SALES_ENABLED==='true',preordersEnabled:env.SAINTS_SALES_ENABLED==='true'&&env.SAINTS_PREORDERS_ENABLED==='true',siteOrigin:origin});
   const p=providerFactory(env),service=createService({...p,env:{...env,SITE_ORIGIN:origin}});
   if(action==='webhook'){
    const raw=await rawBody(req);let event;try{event=p.stripe.webhooks.constructEvent(raw,req.headers['stripe-signature'],need(env,'STRIPE_WEBHOOK_SECRET'));}catch(e){if(e instanceof AccessError)throw e;throw new AccessError(400,'Invalid webhook signature.');}
