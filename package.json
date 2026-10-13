@@ -10,7 +10,7 @@
   "scripts": {
     "build": "node scripts/build-saints.js",
     "dev": "node scripts/dev-saints.js",
-    "test": "node --test tests/saints.test.js",
+    "test": "node --test tests/saints*.test.js",
     "test:site": "node --test site-content.test.js"
   },
   "repository": {

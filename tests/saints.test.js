@@ -76,3 +76,24 @@ test('only a Stripe-confirmed expired session retires the reservation',async()=>
  test('raw webhook bytes survive a Vercel-style lazy parsed body getter',async()=>{const {Readable}=require('node:stream');const {rawBody}=require('../api/saints');const bytes=Buffer.from('{ "spacing" : true }\n');const req=Readable.from([bytes]);Object.defineProperty(req,'body',{get(){throw new Error('Parsed body must not be touched');}});assert.deepEqual(await rawBody(req),bytes);});
 
 test('a fully refunded completed checkout can retire so the viewer can buy again',async()=>{const f=fixture();f.env.SAINTS_PREORDERS_ENABLED='true';f.session.mode='payment';f.session.metadata.saints_sku='saints-02';f.session.payment_status='paid';f.session.payment_intent=f.pi;f.session.line_items.data[0].price={id:'price_ep',currency:'usd',unit_amount:299};f.pi.latest_charge.refunded=true;f.pi.latest_charge.amount_refunded=299;f.stripe.prices.retrieve=async()=>({id:'price_ep',currency:'usd',unit_amount:299,active:true});f.db.reserveCheckout=async()=>({id:'refunded-attempt',params:{},expires_at:999,session_id:'cs_ok'});let retired;f.db.retireCheckout=async id=>{retired=id};await assert.rejects(f.service.checkout({id:uid,email:'viewer@example.test'},'saints-02','repurchase'),{status:409});assert.equal(retired,'refunded-attempt');assert.equal((await f.service.access(uid)).owned.size,0);});
+
+test('monthly, six-month and annual recurring prices enforce the approved intervals',()=>{
+ for(const [sku,amount,interval,count]of [['monthly',799,'month',1],['six',3999,'month',6],['annual',6999,'year',1]]){
+  const product=require('../server/saints/catalog').products[sku];assert.equal(checkLine({quantity:1,price:{id:'price',currency:'usd',unit_amount:amount,recurring:{interval,interval_count:count}}},product,'price'),true);
+  assert.equal(checkLine({quantity:1,price:{id:'price',currency:'usd',unit_amount:amount,recurring:{interval:'week',interval_count:count}}},product,'price'),false);
+ }
+});
+test('membership Checkout displays renewal and cancellation terms and shares one reservation across plans',async()=>{
+ const f=fixture();f.rows.length=0;let reservationKey,params;
+ f.db.reserveCheckout=async(uid,sku,p)=>{reservationKey=sku;params=p;return {id:'member-attempt',params:p,expires_at:4600}};
+ await f.service.checkout({id:uid,email:'viewer@example.test'},'monthly','request');assert.equal(reservationKey,'membership');assert.match(params.custom_text.submit.message,/Automatic renewal/);assert.match(params.custom_text.submit.message,/end of your paid period/);
+});
+test('a competing membership plan cannot open a second checkout',async()=>{
+ const f=fixture();f.rows.length=0;f.env.STRIPE_SAINTS_SIX_MONTH_PRICE='price_six';f.stripe.prices.retrieve=async()=>({id:'price_six',currency:'usd',unit_amount:3999,recurring:{interval:'month',interval_count:6},active:true});
+ f.db.reserveCheckout=async()=>({id:'member-attempt',params:{metadata:{saints_sku:'monthly'}},expires_at:4600,session_id:'cs_pending'});
+ f.stripe.checkout.sessions.retrieve=async()=>({id:'cs_pending',status:'open',url:'https://checkout.stripe.com/pending'});
+ await assert.rejects(f.service.checkout({id:uid,email:'viewer@example.test'},'six','request'),{status:409});
+});
+test('billing portal uses the dedicated Saints configuration and canonical library return',async()=>{
+ const f=fixture();f.env.STRIPE_SAINTS_PORTAL_CONFIGURATION='bpc_saints';let p;f.stripe.billingPortal.sessions.create=async args=>{p=args;return {url:'https://billing.stripe.com/manage'}};await f.service.portal({id:uid});assert.equal(p.configuration,'bpc_saints');assert.equal(p.return_url,'https://vnmsfx.com/saints-library');
+});
