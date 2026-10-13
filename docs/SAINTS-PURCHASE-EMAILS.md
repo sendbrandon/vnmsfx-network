@@ -13,3 +13,7 @@ Slices: (1) verified email delivery with durable duplicate suppression and rende
 Professional success: one confirmed purchase yields one branded email to its verified owner; replays do not resend; missing email delivery does not remove paid access; an active paid subscriber can watch released episodes and schedule cancellation without losing the paid remainder.
 
 References: https://resend.com/docs/dashboard/emails/idempotency-keys ; https://docs.stripe.com/checkout/fulfillment ; https://docs.stripe.com/payments/checkout/build-subscriptions ; https://docs.stripe.com/customer-management
+
+Recovery: a PurchaseEmailNeedsReview log means an ambiguous delivery exceeded the provider idempotency window. Inspect the private row and Resend logs before changing it: if delivered, save its provider ID/sent timestamp; if definitively unsent, reset the attempt and replay the verified Stripe event. Do not blindly replay after clearing the sent checkpoint.
+
+Verification: 56 server tests and build pass. Sandbox browser episode and monthly subscription payments succeeded; the deployed sender delivered both branded confirmations to the named setup inbox, repeated callbacks produced no additional messages, and portal cancellation retains the paid remainder. Higher-period prices match the approved six-month/year intervals. Setup emails are explicitly labeled as sandbox tests.

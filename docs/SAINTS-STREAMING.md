@@ -3,7 +3,7 @@
 Status: local implementation, external services/configuration and live acceptance pending. Existing advertising site and free marketing Season Pass are separate products and remain unchanged.
 
 ## Product
-Episode 1 is the complete Opening 2 film, free without login. Episode 2 is unreleased, paid at USD 2.99 when enabled. Viewers sign in by email, choose a purchase, pay through Stripe, and return to My Library. Subscription options are draft USD 7.99/month, 39.99/6 months, 69.99/year; do not enable sales until renewal/access terms and cadence are approved. Downloads are outside this first implementation.
+Episode 1 is the complete Opening 2 film, free without login. Episode 2 is unreleased, paid at USD 2.99 when enabled. Viewers sign in by email, choose a purchase, pay through Stripe, and return to My Library. Approved subscriptions are USD 7.99/month, 39.99 every six months, and 69.99/year: automatic renewal, all released Saints episodes while active, cancellation at paid-period end. All sales remain off until Episode 2 is ready. Downloads are outside this first implementation.
 
 ## Architecture / trust boundary
 Static storefront and library → Vercel `api/saints.js` → Supabase verified user and service-role purchase records → Stripe authoritative payment/subscription status → short-lived Mux RS256 playback JWT. The browser cannot write purchase records, choose prices, authorize itself or supply a playback ID. Browser return URLs never grant access. Signed Stripe webhooks persist checkout-session receipts idempotently; playback rechecks current Stripe objects, including refunds and disputes, so a stale receipt is not entitlement. Failure of a dependency denies new paid playback.
@@ -13,7 +13,7 @@ Static storefront and library → Vercel `api/saints.js` → Supabase verified u
 - server/saints/service.js: user-owned receipt validation, checkout, entitlement and library orchestration; injected adapters for tests.
 - server/saints/providers.js: Supabase, Stripe, Mux signing adapters.
 - api/saints.js: method/origin/body/auth gates and error translation.
-- src/saints-account.js: PKCE email sign-in, library, playback, checkout, portal and resume position.
+- src/saints-account.js: TokenHash email sign-in, library, playback, checkout, portal and resume position.
 - scripts/build-saints.js: deterministic local browser bundles, no CDN SDK dependency.
 - docs/saints-schema.sql: private receipt and progress tables, no client write policies.
 
@@ -78,3 +78,11 @@ Actual browser playback also exposed Chrome native-HLS failure despite reported 
 
 
 Final launch decision: user approved live Stripe connection with sales kept off and selected sales closed until Episode 2’s finished video is ready. Remove October 16 preorder promises from the regular page. No automatic preorder launch or recurring memberships. Actual Stripe sandbox webhook delivery, receipt creation and refund revocation verified on vnmsfx.com; evidence in setup outputs/real-webhook-verification.json.
+
+## Purchase emails and memberships — October 13 final setup
+
+Three live and sandbox recurring prices are configured. A dedicated Saints Stripe portal supports payment-method updates, invoice history, and cancellation at paid-period end; plan switching is disabled. Membership checkout shares one persistent reservation across terms to prevent parallel subscriptions. The billing portal prefers the verified membership customer when simultaneous purchases created more than one customer.
+
+Branded episode and initial membership confirmations use the existing website Resend credential. They send only after canonical settled payment verification, to the confirmed Supabase account email, with real brand artwork and a token-free https://vnmsfx.com/saints-library button. Stripe sends payment/renewal/refund receipts separately. Email delivery failures retain the purchase and return a retryable webhook status. The additive private email schema is docs/saints-email-schema.sql; sent checkpoints plus Resend idempotency suppress duplicate notifications. See docs/SAINTS-PURCHASE-EMAILS.md for failure recovery.
+
+Sales, preorders and memberships remain disabled; Episode 2 remains unreleased. At release, upload Episode 2 with signed Mux playback, set MUX_SAINTS_02_PLAYBACK_ID and duration, mark it released, test playback and purchase access, then enable the approved sales/membership flags. No automatic launch or preorder is scheduled.
