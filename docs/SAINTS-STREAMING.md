@@ -66,3 +66,8 @@ Observed: existing Supabase project olltrmfxwzvrsxlcyvhu resumed and Saints priv
 - Before launch: confirm Episode 2 content/release or approved preorder terms, connect live Stripe price/key and actual webhook signing secret, verify customer email delivery and full browser login/checkout/library flow, then enable sales.
 
 Deployed POST verification exposed Vercel’s lazy parsed req.body helper. The handler now reads the restored original stream before touching that property; 42 tests pass including a lazy-body regression. Re-run deployed signed/invalid webhook and playback checks against the updated preview before launch.
+
+
+Completed email setup: `brandon@vnmsfx.com` signs into the current `vnmsfx` Resend team, whose vnmsfx.com domain is verified. The exact original Namecheap DKIM record remains in place. A sending-only key restricted to vnmsfx.com is saved in Supabase SMTP (smtp.resend.com, TLS port 465, username resend, sender VNMSFX Originals <brandon@vnmsfx.com>). An actual browser-requested signup email was delivered successfully to brandon@vnmsfx.com. The unused initial setup key was revoked with explicit approval.
+
+Deployed preview verification now succeeds: authenticated library 200, anonymous free playback 200 with signed stream 200, unreleased Episode 2 returns 404, sales-disabled Checkout returns 409, a correctly signed synthetic webhook returns 200 and an invalid signature returns 400. Test result evidence is saved in the setup task outputs/preview-verification.json. Actual Stripe webhook endpoint delivery remains a separate launch gate.
