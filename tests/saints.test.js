@@ -97,3 +97,10 @@ test('a competing membership plan cannot open a second checkout',async()=>{
 test('billing portal uses the dedicated Saints configuration and canonical library return',async()=>{
  const f=fixture();f.env.STRIPE_SAINTS_PORTAL_CONFIGURATION='bpc_saints';let p;f.stripe.billingPortal.sessions.create=async args=>{p=args;return {url:'https://billing.stripe.com/manage'}};await f.service.portal({id:uid});assert.equal(p.configuration,'bpc_saints');assert.equal(p.return_url,'https://vnmsfx.com/saints-library');
 });
+
+test('a concurrent episode purchase on another owned customer cannot strand membership cancellation',async()=>{
+ const f=fixture(),episode=structuredClone(f.session);episode.id='cs_episode';episode.customer='cus_episode';episode.mode='payment';episode.metadata.saints_sku='saints-02';episode.line_items.data[0].price={id:'price_ep',currency:'usd',unit_amount:299};episode.payment_status='paid';episode.payment_intent=f.pi;
+ f.rows.push({session_id:'cs_episode'});f.stripe.checkout.sessions.retrieve=async id=>id==='cs_episode'?episode:f.session;
+ let portalCustomer;f.stripe.billingPortal.sessions.create=async p=>{portalCustomer=p.customer;return {url:'https://billing.stripe.com/member'}};
+ const access=await f.service.access(uid);assert.equal(access.customers.size,2);assert.equal(access.member,true);await f.service.portal({id:uid});assert.equal(portalCustomer,'cus_ok');
+});

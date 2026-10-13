@@ -17,21 +17,23 @@ function createService({db,stripe,env,sign,mailer,now=()=>Math.floor(Date.now()/
    const sub=await stripe.subscriptions.retrieve(s.subscription,{expand:['latest_invoice']});
    const item=sub.items?.data?.[0],invoice=sub.latest_invoice;
    if(sub.customer!==s.customer||sub.metadata?.saints_user!==userId||sub.items?.data?.length!==1||!checkLine({quantity:item?.quantity,price:item?.price},p,priceFor(sku)))return null;
-   if(sub.status!=='active'||!Number.isFinite(item?.current_period_end)||item.current_period_end<=now()||invoice?.status!=='paid'||invoice.amount_paid<p.amount||invoice.paid_out_of_band)return null;
+   if(sub.status!=='active'||!Number.isFinite(item?.current_period_end)||item.current_period_end<=now()||invoice?.status!=='paid'||invoice.amount_paid<p.amount||invoice.paid_out_of_band)return {sub,invoice,item,settled:false};
    // Require a real settled invoice payment; a manually marked paid invoice cannot grant access.
    const payments=await stripe.invoicePayments.list({invoice:invoice.id,status:'paid',limit:10});
    let settled=false;
    for(const payment of payments.data){const piId=payment.payment?.payment_intent;if(typeof piId==='string'){const pi=await stripe.paymentIntents.retrieve(piId,{expand:['latest_charge']});if(paidCharge(pi)&&pi.amount_received>=p.amount){settled=true;break;}}}
-  return settled?{sub,invoice,item}:null;
+  return {sub,invoice,item,settled};
  }
  async function access(userId){
-  const owned=new Set(),customers=new Set();let member=false;
+  const owned=new Set(),customers=new Set(),membershipCustomers=new Set(),activeMembershipCustomers=new Set();let member=false;
   for(const row of await db.receipts(userId)){
    const v=await verifiedSession(row.session_id,userId);if(!v)continue;const {s,p}=v;if(typeof s.customer==='string')customers.add(s.customer);
    if(p.mode==='payment'){if(s.payment_status==='paid'&&paidCharge(s.payment_intent))owned.add(p.episode);continue;}
-   if(await settledMembership(s,p,v.sku,userId))member=true;
+   const membership=await settledMembership(s,p,v.sku,userId);
+   if(membership&&typeof s.customer==='string'){membershipCustomers.add(s.customer);if(membership.settled){member=true;activeMembershipCustomers.add(s.customer);}}
   }
-  return {owned,member,customers};
+  const billing=activeMembershipCustomers.size?activeMembershipCustomers:membershipCustomers.size?membershipCustomers:customers;
+  return {owned,member,customers,billingCustomer:billing.size===1?[...billing][0]:null};
  }
  async function fulfill(sessionId){
   const s=await stripe.checkout.sessions.retrieve(sessionId);const uid=s.metadata?.saints_user;
@@ -44,7 +46,7 @@ function createService({db,stripe,env,sign,mailer,now=()=>Math.floor(Date.now()/
    if(v.s.payment_status==='paid'&&paidCharge(v.s.payment_intent))await mailer.confirm(v,uid);
   }else{
    const membership=await settledMembership(v.s,v.p,v.sku,uid);
-   if(membership)await mailer.confirm(v,uid,membership.item.current_period_end);
+   if(membership?.settled)await mailer.confirm(v,uid,membership.item.current_period_end);
   }
  }
  async function checkout(user,sku,requestId){
@@ -57,7 +59,7 @@ function createService({db,stripe,env,sign,mailer,now=()=>Math.floor(Date.now()/
   const ent=await access(user.id);if((p.episode&&(ent.owned.has(p.episode)||ent.member))||(!p.episode&&ent.member))throw new AccessError(409,'You already have access.');
   const price=await stripe.prices.retrieve(priceFor(sku));if(!price.active||!checkLine({quantity:1,price},p,priceFor(sku)))throw new AccessError(503,'The purchase price needs review.');
   const metadata={saints_user:user.id,saints_sku:sku,...(preorder?{saints_preorder:'true'}:{})};
-  const params={mode:p.mode,line_items:[{price:price.id,quantity:1}],client_reference_id:user.id,...(ent.customers.size===1?{customer:[...ent.customers][0]}:{customer_email:user.email,...(p.mode==='payment'?{customer_creation:'always'}:{})}),...(p.mode==='subscription'?{subscription_data:{metadata}}:{}),metadata,...(p.mode==='subscription'?{custom_text:{submit:{message:'Automatic renewal. Access to all released Saints episodes while subscribed. Cancel through Manage billing in your library; access continues until the end of your paid period.'}}}:{}),...(preorder?{custom_text:{submit:{message:'Preorder: charged $2.99 now. Episode 2 unlocks when released. Release date is not yet announced.'}}}:{}),success_url:env.SITE_ORIGIN+'/saints-library?checkout=complete',cancel_url:env.SITE_ORIGIN+'/saints-library?checkout=cancelled'};
+  const params={mode:p.mode,line_items:[{price:price.id,quantity:1}],client_reference_id:user.id,...(ent.billingCustomer?{customer:ent.billingCustomer}:{customer_email:user.email,...(p.mode==='payment'?{customer_creation:'always'}:{})}),...(p.mode==='subscription'?{subscription_data:{metadata}}:{}),metadata,...(p.mode==='subscription'?{custom_text:{submit:{message:'Automatic renewal. Access to all released Saints episodes while subscribed. Cancel through Manage billing in your library; access continues until the end of your paid period.'}}}:{}),...(preorder?{custom_text:{submit:{message:'Preorder: charged $2.99 now. Episode 2 unlocks when released. Release date is not yet announced.'}}}:{}),success_url:env.SITE_ORIGIN+'/saints-library?checkout=complete',cancel_url:env.SITE_ORIGIN+'/saints-library?checkout=cancelled'};
   // The database chooses one persistent attempt per account/product. Different
   // browser request IDs and different Vercel instances share its Stripe key.
   const attempt=await db.reserveCheckout(user.id,p.mode==='subscription'?'membership':sku,params);
@@ -89,7 +91,7 @@ function createService({db,stripe,env,sign,mailer,now=()=>Math.floor(Date.now()/
  }
  async function library(user){const a=await access(user.id),progress=await db.progress(user.id);return {email:user.email,membership:a.member,episodes:episodes.map(e=>({id:e.id,title:e.title,number:e.number,free:e.free,released:e.released,preorder:!!(e.preorder&&env.SAINTS_SALES_ENABLED==='true'&&env.SAINTS_PREORDERS_ENABLED==='true'),poster:e.poster,duration:e.duration,accessible:e.released&&(e.free||a.member||a.owned.has(e.id)),purchased:a.owned.has(e.id),position:progress.find(p=>p.episode_id===e.id)?.position||0}))};}
  async function playback(user,id){const e=episodes.find(e=>e.id===id);if(!e||!e.released)throw new AccessError(404,'Episode is not available.');if(!e.free){if(!user)throw new AccessError(401,'Sign in to watch this episode.');const a=await access(user.id);if(!a.member&&!a.owned.has(id))throw new AccessError(403,'Purchase this episode or a membership to watch.');}const playbackId=env[e.playbackEnv];if(!playbackId)throw new AccessError(503,'This video is not ready for streaming yet.');const expires=now()+900;return {url:`https://stream.mux.com/${playbackId}.m3u8?token=${sign(playbackId,expires)}`,expires,title:e.title,duration:e.duration};}
- async function portal(user){const a=await access(user.id);if(a.customers.size!==1)throw new AccessError(409,'Contact support to manage billing for this account.');return {url:(await stripe.billingPortal.sessions.create({customer:[...a.customers][0],configuration:env.STRIPE_SAINTS_PORTAL_CONFIGURATION||undefined,return_url:env.SITE_ORIGIN+'/saints-library'})).url};}
+ async function portal(user){const a=await access(user.id);if(!a.billingCustomer)throw new AccessError(409,'Contact support to manage billing for this account.');return {url:(await stripe.billingPortal.sessions.create({customer:a.billingCustomer,configuration:env.STRIPE_SAINTS_PORTAL_CONFIGURATION||undefined,return_url:env.SITE_ORIGIN+'/saints-library'})).url};}
  async function saveProgress(user,id,position){const e=episodes.find(e=>e.id===id);if(!e?.released||!Number.isFinite(position)||position<0||position>(e.duration||0))throw new AccessError(400,'Invalid playback position.');if(!e.free){const a=await access(user.id);if(!a.member&&!a.owned.has(id))throw new AccessError(403,'No access.');}await db.saveProgress({user_id:user.id,episode_id:id,position});return {ok:true};}
  return {access,checkout,fulfill,library,playback,portal,saveProgress};
 }
