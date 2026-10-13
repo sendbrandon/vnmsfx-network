@@ -58,6 +58,11 @@ function createService({db,stripe,env,sign,now=()=>Math.floor(Date.now()/1000)})
   if(!attempt.session_id)await db.saveCheckout(attempt.id,session.id);
   if(session.status==='complete'){
    await fulfill(session.id);
+   const previous=await verifiedSession(session.id,user.id),charge=previous?.s.payment_intent?.latest_charge;
+   if(previous?.p.mode==='payment'&&charge?.refunded===true&&!charge.disputed&&charge.amount_refunded>=previous.p.amount){
+    await db.retireCheckout(attempt.id);
+    throw new AccessError(409,'Your previous purchase was refunded. Please try again to make a new purchase.');
+   }
    throw new AccessError(409,'This checkout is complete. Refresh your library to see the payment status.');
   }
   if(session.status==='expired'){
