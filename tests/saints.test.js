@@ -86,7 +86,7 @@ test('monthly, six-month and annual recurring prices enforce the approved interv
 test('membership Checkout displays renewal and cancellation terms and shares one reservation across plans',async()=>{
  const f=fixture();f.rows.length=0;let reservationKey,params;
  f.db.reserveCheckout=async(uid,sku,p)=>{reservationKey=sku;params=p;return {id:'member-attempt',params:p,expires_at:4600}};
- await f.service.checkout({id:uid,email:'viewer@example.test'},'monthly','request');assert.equal(reservationKey,'membership');assert.match(params.custom_text.submit.message,/Automatic renewal/);assert.match(params.custom_text.submit.message,/end of your paid period/);
+ await f.service.checkout({id:uid,email:'viewer@example.test'},'monthly','request');assert.equal(reservationKey,'membership');assert.match(params.custom_text.submit.message,/Episode 1 is free/);assert.match(params.custom_text.submit.message,/Episode 2 is coming soon/);assert.match(params.custom_text.submit.message,/Automatic renewal/);assert.match(params.custom_text.submit.message,/end of your paid period/);
 });
 test('a competing membership plan cannot open a second checkout',async()=>{
  const f=fixture();f.rows.length=0;f.env.STRIPE_SAINTS_SIX_MONTH_PRICE='price_six';f.stripe.prices.retrieve=async()=>({id:'price_six',currency:'usd',unit_amount:3999,recurring:{interval:'month',interval_count:6},active:true});
