@@ -19,6 +19,7 @@ function createProviders(env){
    const email=v.s.livemode?data.user.email:env.SAINTS_TEST_EMAIL_TO;
    if(!email){return;}
    const payload=purchaseEmail({sku:v.sku,email,renewalDate});
+   if(!v.s.livemode){payload.subject='[Setup test] '+payload.subject;payload.text='SANDBOX TEST — No real payment was made. This email previews the customer confirmation.\n\n'+payload.text;payload.html=payload.html.replace(/(<body[^>]*>)/,'$1<p style="padding:12px;text-align:center;color:#c6a576;font-family:Arial,sans-serif">SANDBOX TEST — No real payment was made.</p>');}
    const claim=await result(getSupabase().rpc('saints_claim_purchase_email',{p_session_id:v.s.id,p_payload:payload}));
    if(claim.state==='sent')return;
    if(claim.state!=='claimed'){const e=new AccessError(503,'Purchase confirmation is pending.');e.name=claim.state==='needs_review'?'PurchaseEmailNeedsReview':'PurchaseEmailBusy';throw e;}
