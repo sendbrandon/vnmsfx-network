@@ -1,6 +1,6 @@
 # Saints purchase confirmations and memberships
 
-Product: paid viewers receive a branded VNMSFX email linking to their library. All three approved recurring plans cover released Saints episodes while active: $7.99/month, $39.99 every six months, $69.99/year. Renew automatically; cancel at paid-period end. Episode 2 and all sales stay closed until the film is ready.
+Product: paid viewers receive a branded VNMSFX email linking to their library. All three approved recurring plans cover released Saints episodes while active: $7.99/month, $39.99 every six months, $69.99/year. Renew automatically; cancel at paid-period end. Updated user launch decision: open all three memberships now; keep Episode 2 purchases and preorders closed until the film is ready. Checkout must disclose that Episode 1 is free and Episode 2 is coming soon with no announced release date.
 
 Architecture: signed Stripe Checkout webhook → canonical payment verification → existing purchase receipt → durable immutable email record → Resend → sent checkpoint. A failed send returns a retryable webhook response after preserving the purchase. Supabase account email determines recipient, not Stripe form data. Stripe continues sending financial receipts separately. Initial membership confirmation includes price, renewal date and a library link to Manage billing. Renewal receipts remain Stripe's responsibility.
 
