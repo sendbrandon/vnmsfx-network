@@ -146,47 +146,64 @@ const REEL_ITEMS=[{"src": "/tv/hero/hero.mp4", "title": "VNMSFX · Selected work
 })();
 
 (() => {
-  const options = {
-    '15': {name:'One 15-second commercial', price:'$2,000', usd:true, lines:['A 30-minute call and written creative direction for approval.','Two alternate openings and two campaign images.','One round of feedback on the ad, within the approved direction.'], cta:'Start a 15-second project ↗'},
-    '30': {name:'One 30-second commercial', price:'Quoted after brief review', lines:['Two rounds of feedback on the ad, within the approved direction.','Versions, images and final formats agreed in your project scope.'], cta:'Start a 30-second project ↗'},
-    '60': {name:'One 60-second commercial', price:'Quoted after brief review', lines:['Three rounds of feedback on the ad, within the approved direction.','Versions, images and final formats agreed in your project scope.'], cta:'Start a 60-second project ↗'},
-    'custom': {name:'A longer or custom commercial', price:'Quoted after brief review', lines:['Length, deliverables and revisions agreed for your project.'], cta:'Discuss a custom commercial ↗'}
+  const rungs = {
+    pilot: {name:'One finished ad. See how I work.', price:'$2,000', unit:'USD', proof:'Made the same way as the 5× Easter campaign.', lead:'A real 15-second commercial you can run, not a sample. Idea, direction, production, editing, sound and music licensing. Most clients start here.', lines:['A 30-minute call and written creative direction for approval.','Two alternate openings and two campaign images.','One round of feedback on the ad, within the approved direction.'], note:'First-time client? <a href="/drops/the-recipient#pass">Join the free Season Pass</a> and save $500 on your first eligible 15-second commercial: <strong>$1,500 instead of $2,000.</strong> Book a Launch Pack within 30 days and the pilot fee comes off.', cta:'Start a Pilot ↗'},
+    launch: {name:'One idea. Five ads to test.', price:'$7,500', unit:'USD', proof:'Made the same way as the 5× Easter campaign.', lead:'For a launch or a paid-social push. Five versions go out and the results pick the winner, not a hunch.', lines:['One 15-second hero commercial.','Four cutdowns and test versions with different openings.','Vertical and square, ready for Meta, TikTok and YouTube.','Two rounds of feedback.'], note:'Keep it going: add three months of Monthly and save $3,000.', cta:'Start a Launch Pack ↗'},
+    monthly: {name:'New ads before the old ones burn out.', price:'from $5,000', unit:'/ month', lead:'For brands running ads every month. Fresh versions land before the last ones fade, and we look at the numbers together.', lines:['Starter, $5,000: six new versions a month.','Growth, $8,000: ten versions in two drops.','Scale, $12,000: sixteen versions, plus a 30-second hero every quarter.','A results review every month. Three months to start, then month to month.'], note:'Run the Pilot first. If it beats the ad you’re running now, the $2,000 comes off month one.', cta:'Start Monthly ↗'},
+    hero: {name:'The one your whole campaign hangs on.', price:'from $18,000', unit:'quoted after your brief', proof:'Made the same way as the Dreamina film: 60,000 views in 12 hours.', lead:'A 30 or 60-second film for the big launch, connected TV or the brand story, cut into every length you’ll need.', lines:['One 30 or 60-second hero commercial.','The 15-second version and six cutdowns.','Licensed music and full sound design.','Three rounds of feedback.'], note:'You approve the idea and the look before I produce a frame. Scope and price in writing first.', cta:'Discuss a Hero Campaign ↗'},
+    agencies: {name:'Your client. Your name. My production.', price:'$5,000 to $15,000', unit:'per project', lead:'Overflow AI production when the calendar’s full. Fixed scope, fixed price, under NDA.', lines:['Spots to your brief, in your client’s look.','Scope and price fixed before work starts.','Two rounds of feedback.','Agency Bench: five prepaid projects, $45,000, used within six months.'], note:'NDA and no-poach, both directions. Standard.', cta:'Talk about agency work ↗'}
   };
-  const select = document.querySelector('#brief-length');
-  const buttons = [...document.querySelectorAll('[data-duration]')];
-  function showPackage(key, syncForm) {
-    const option = options[key]; if (!option) return;
-    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.duration === key)));
-    document.querySelector('#package-name').textContent = option.name;
-    const price = document.querySelector('#package-price');
-    price.textContent = option.price;
-    if (option.usd) { const unit = document.createElement('span'); unit.textContent = ' USD'; price.append(unit); }
-    const list = document.querySelector('#package-inclusions');
-    list.replaceChildren(...option.lines.map(line => { const item = document.createElement('li'); item.textContent = line; return item; }));
-    document.querySelector('#package-discount').hidden = key !== '15';
-    document.querySelector('#package-inquiry').textContent = option.cta;
+  const HASHES = {'#pilot':'pilot', '#launch-pack':'launch', '#monthly':'monthly', '#hero':'hero', '#agencies':'agencies'};
+  const el = id => document.querySelector(id);
+  const select = el('#brief-length');
+  const buttons = [...document.querySelectorAll('[data-rung]')];
+  function showRung(key, syncForm) {
+    const rung = rungs[key]; if (!rung) return;
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.rung === key)));
+    el('#package-name').textContent = rung.name;
+    const price = el('#package-price');
+    price.textContent = rung.price;
+    if (rung.unit) { const unit = document.createElement('span'); unit.textContent = ' ' + rung.unit; price.append(unit); }
+    const proof = el('#package-proof');
+    proof.textContent = rung.proof || ''; proof.hidden = !rung.proof;
+    el('#package-lead').textContent = rung.lead;
+    el('#package-inclusions').replaceChildren(...rung.lines.map(line => { const item = document.createElement('li'); item.textContent = line; return item; }));
+    const note = el('#package-discount');
+    note.innerHTML = rung.note; note.hidden = false;   // static site copy only, never user input
+    el('#package-inquiry').textContent = rung.cta;
     if (syncForm) select.value = key;
   }
-  buttons.forEach(button => button.addEventListener('click', () => showPackage(button.dataset.duration, true)));
-  document.querySelector('#package-inquiry').addEventListener('click', () => { const selected = buttons.find(button => button.getAttribute('aria-pressed') === 'true'); select.value = selected ? selected.dataset.duration : 'unsure'; });
+  buttons.forEach(button => button.addEventListener('click', () => showRung(button.dataset.rung, true)));
+  el('#package-inquiry').addEventListener('click', () => { const selected = buttons.find(button => button.getAttribute('aria-pressed') === 'true'); select.value = selected ? selected.dataset.rung : 'unsure'; });
   select.addEventListener('change', () => {
-    if (options[select.value]) showPackage(select.value, false);
+    if (rungs[select.value]) showRung(select.value, false);
     else {
       buttons.forEach(button => button.setAttribute('aria-pressed','false'));
-      document.querySelector('#package-name').textContent = 'Commercial length to be agreed';
-      document.querySelector('#package-price').textContent = 'Quoted after brief review';
-      document.querySelector('#package-inclusions').replaceChildren();
-      document.querySelector('#package-discount').hidden = true;
-      document.querySelector('#package-inquiry').textContent = 'Discuss your commercial ↗';
+      el('#package-name').textContent = 'Tell me what you need.';
+      el('#package-price').textContent = 'Quoted after your brief';
+      el('#package-proof').hidden = true;
+      el('#package-lead').textContent = 'Send the brief and I’ll point you to the right one.';
+      el('#package-inclusions').replaceChildren();
+      el('#package-discount').hidden = true;
+      el('#package-inquiry').textContent = 'Discuss your commercial ↗';
     }
   });
-  document.querySelector('#preview-brief').addEventListener('submit', event => {
+  // Deep links from outreach land on a specific rung: /#pilot, /#launch-pack, /#monthly, /#hero, /#agencies.
+  function fromHash() {
+    const key = HASHES[location.hash]; if (!key) return false;
+    showRung(key, true);
+    el('#commercial-options').scrollIntoView({block:'start'});
+    return true;
+  }
+  window.addEventListener('hashchange', fromHash);
+  if (!fromHash()) showRung('launch', false);
+  el('#preview-brief').addEventListener('submit', event => {
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
     const values = new FormData(form);
-    const length = select.options[select.selectedIndex].textContent;
-    const body = `Brand / product: ${values.get('brand')}\nReply email: ${values.get('email')}\nPreferred length: ${length}\nLaunch date: ${values.get('deadline') || 'To be agreed'}\n\nProject brief:\n${values.get('message')}`;
+    const need = select.options[select.selectedIndex].textContent;
+    const body = `Brand / product: ${values.get('brand')}\nReply email: ${values.get('email')}\nWhat you need: ${need}\nLaunch date: ${values.get('deadline') || 'To be agreed'}\n\nProject brief:\n${values.get('message')}`;
     window.location.href = `mailto:brandon@vnmsfx.com?subject=${encodeURIComponent('Commercial inquiry — '+values.get('brand'))}&body=${encodeURIComponent(body)}`;
   });
 })();
