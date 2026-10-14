@@ -1,0 +1,45 @@
+/* Companion layout only. All brand tokens and shared components come from page.css. */
+.club-page [hidden]{display:none!important}
+.club-section{position:relative;padding-block:48px}
+.club-section:after,.club-invite:after{content:'';position:absolute;top:0;left:var(--gutter);right:var(--gutter);height:1px;background:linear-gradient(90deg,transparent,rgba(214,185,141,.28) 14%,rgba(242,236,226,.18) 68%,transparent);pointer-events:none}
+.club-intro{max-width:76ch;margin:0 0 35px 18px;color:var(--muted);font-size:16px;line-height:1.65}
+.club-intro em{font-style:italic;color:var(--paper)}
+.club-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4vw;padding-top:10px}
+.club-benefits article+article{border-left:1px solid var(--line);padding-left:3vw}
+.club-benefits h3,.club-aside h3{font-size:24px;font-weight:500;letter-spacing:-.022em;line-height:1.12;color:var(--paper)}
+.club-benefits p:not(.eyebrow),.club-aside>p:not(.eyebrow){font-size:14px;line-height:1.65;color:var(--muted);max-width:38ch}
+.club-benefits .eyebrow,.club-aside .eyebrow{color:#c8b79e}
+.club-scene .portrait{aspect-ratio:2.296;overflow:hidden}
+.club-scene .portrait img{object-fit:cover;object-position:center}
+.club-scene-copy{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6vw;margin-top:28px}
+.club-scene h2,.club-success h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(32px,3.2vw,46px);font-weight:400;letter-spacing:-.032em;line-height:1.1;color:#e6ded0;text-shadow:0 0 .4px rgba(231,212,185,.18);margin:10px 0}
+.club-scene-copy>p{font-size:15px;line-height:1.65;color:var(--muted);max-width:45ch}
+.club-apply-grid{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(0,1.35fr);gap:7vw;align-items:start;margin-top:36px}
+.club-aside{padding-top:4px}.club-aside>p+p{margin-top:20px}.club-aside .hero-youtube{margin-top:10px}
+.club-form-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.club-field{margin-bottom:26px;min-width:0}
+.club-field>label,.club-choices legend{display:block;margin-bottom:9px;font-size:14px;font-weight:500;color:var(--paper)}
+.club-field input,.club-field textarea{display:block;width:100%;border:1px solid #d8cab538;border-radius:7px;background:#ffffff04;color:var(--paper);padding:13px 15px;font:inherit;font-size:16px;line-height:1.5;box-shadow:none;transition:border-color .18s,background .18s}
+.club-field textarea{resize:vertical;min-height:115px;max-height:360px}
+.club-field input:hover,.club-field textarea:hover{border-color:#d8cab565}
+.club-field input:focus-visible,.club-field textarea:focus-visible,.club-choices input:focus-visible,.club-consent input:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+.club-field input:focus,.club-field textarea:focus{background:#ffffff08;border-color:var(--acid)}
+.club-hint{font-size:12px!important;line-height:1.6;color:var(--muted);margin:0 0 12px;max-width:68ch}
+.club-hint a{text-decoration:underline;text-underline-offset:3px}.club-optional{font-size:11px;font-weight:400;color:var(--muted);margin-left:9px}
+.club-choices{border:0;padding:0;margin:0 0 26px;min-width:0}.club-choices legend{padding:0}
+.club-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.club-choice-grid>label{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid var(--line);border-radius:7px;cursor:pointer;font-size:14px;line-height:1.4;transition:background .18s,border-color .18s}
+.club-choice-grid>label:hover{background:#d6b98d0c}.club-choice-grid>label:has(input:checked){border-color:#d6b98d80;background:#d6b98d0e}
+.club-choice-grid input,.club-consent input{flex-shrink:0;width:17px;height:17px;margin:2px 0 0;accent-color:var(--acid);cursor:pointer}
+.club-choice-detail{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:5px}
+.club-consent{display:flex;align-items:flex-start;gap:12px;font-size:12px;color:var(--paper);line-height:1.6;margin:6px 0 18px;cursor:pointer}
+.club-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.club-submit{border-radius:30px;font-size:14px;padding:15px 24px;min-width:235px;margin-top:10px}
+.club-error{border-left:2px solid var(--acid);padding:10px 14px;color:var(--paper);font-size:14px;background:#d6b98d0b}
+.club-error a{text-decoration:underline}.club-success{border-top:1px solid var(--line);padding-top:25px;scroll-margin-top:110px}.club-success>p:not(.eyebrow){max-width:48ch;color:var(--muted)}.club-success .button{margin-top:18px;border-radius:30px}
+.club-page #apply,.club-page #inside{scroll-margin-top:90px}
+.club-invite{position:relative}.club-invite .section-heading{align-items:center;margin:0}.club-invite .section-heading>div>p{font-size:14px;color:var(--muted);max-width:52ch;margin-bottom:0}.club-invite .button{border-radius:30px;white-space:nowrap;flex-shrink:0;font-size:14px;padding:15px 24px}
+@media(max-width:1000px){.club-apply-grid{gap:4vw;grid-template-columns:minmax(160px,.6fr) minmax(0,1.4fr)}.club-page .hero-bottom>div:first-child{max-width:none}}
+@media(max-width:750px){.club-section{padding-block:30px}.club-intro{margin-left:14px;margin-bottom:26px;font-size:14px}.club-benefits{grid-template-columns:1fr;gap:22px;padding-top:0}.club-benefits article+article{border-left:0;border-top:1px solid var(--line);padding:22px 0 0}.club-benefits h3,.club-aside h3{font-size:22px}.club-benefits p:not(.eyebrow){max-width:48ch;margin-bottom:0}.club-scene-copy{grid-template-columns:1fr;gap:8px;margin-top:22px}.club-scene h2{font-size:32px}.club-scene-copy>p{font-size:14px}.club-apply-grid{grid-template-columns:1fr;gap:24px;margin-top:22px}.club-aside{padding-bottom:20px;border-bottom:1px solid var(--line)}.club-aside>p:not(.eyebrow){max-width:48ch}.club-form-row{grid-template-columns:1fr;gap:0}.club-choice-grid{grid-template-columns:1fr 1fr;gap:10px}.club-choice-grid>label{padding:13px 10px;gap:9px;font-size:13px}.club-choice-detail{font-size:11px}.club-submit{width:100%;min-width:0;justify-content:center}.club-field{margin-bottom:23px}.club-invite .section-heading{display:block}.club-invite .button{margin-top:24px;width:100%;justify-content:center}.club-page footer{gap:18px}.club-page footer>a:not(.brand){font-size:11px}.club-page #apply,.club-page #inside{scroll-margin-top:75px}}
+@media(max-width:350px){.club-choice-grid{grid-template-columns:1fr}}
+@media(prefers-contrast:more){.club-field input,.club-field textarea,.club-choice-grid>label{border-color:var(--paper)}.club-scene h2,.club-success h2{color:#fff;text-shadow:none}}
