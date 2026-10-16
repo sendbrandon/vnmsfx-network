@@ -38,7 +38,7 @@ function selectPerson(b){
   document.querySelector('.character-more').open=false;
   tabs.forEach(t=>{t.setAttribute('aria-selected',String(t===b));t.tabIndex=t===b?0:-1});
   document.querySelector('#dossier').setAttribute('aria-labelledby',b.id);
-  document.querySelector('#portrait').src=root+'film-finish/v1/'+key+'-cast-film-v1.png';
+  document.querySelector('#portrait').src=root+'film-finish/v2/'+key+'-cast-film-v2.png';
   document.querySelector('#portrait').alt=p.name+' character portrait';
   document.querySelector('.portrait').classList.toggle('vernon',key==='vernon');
   for(const [id,val]of Object.entries({'character-name':p.name,'character-role':p.role,'character-deck':p.deck,'character-bio':p.bio}))document.getElementById(id).textContent=val;
