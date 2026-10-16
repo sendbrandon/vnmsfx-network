@@ -2,7 +2,7 @@
 
 ## Ready to prepare locally
 
-- Keep the existing film-led character dossier and original on-page stills.
+- Keep the original film-led dossier and stills on the dedicated cast page. The landing page uses the owner-requested name-only cast shelf, compact episode cards, show facts and an honest Clips placeholder.
 - Add real collectible front/back images, phone wallpapers, print PDF and a complete ZIP only after the final files and their manifest have been verified.
 - Preserve accessible tab selection and provide ordinary download links that do not need an account, email address or successful analytics call.
 - Keep an unobtrusive character next step below the player, including when the YouTube API is blocked or the film has not ended.

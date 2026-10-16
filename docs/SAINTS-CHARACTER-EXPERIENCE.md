@@ -2,9 +2,9 @@
 
 ## Scope and story
 
-This extends the existing four-character dossier at `#characters`, with a permanent character next step below the player and a quiet footer link to the existing press page. It does not add a second card grid, quiz, account requirement or email gate. Prices, payment eligibility, member access, release facts and existing character-story copy remain unchanged.
+The landing page now has a name-only Cast shelf at `#characters`. Each portrait links to its matching dossier on `/saints-cast?character=KEY#characters`; descriptions and free downloads live on that dedicated page. A permanent character next step remains below the player and the footer links to the existing press page. No quiz, account requirement or email gate is added. Prices, payment eligibility, member access, release facts and existing character-story copy remain unchanged.
 
-The heading is **Pick your accomplice.** Supporting text: **Choose a character. Take their card. Watch the trouble.**
+The landing heading is **Cast**. The dedicated page heading is **Meet the cast.** Supporting text: **Get to know Nix, Rook, Brick and Vernon. Take their card with you.** See [SAINTS-SHOW-FORMAT.md](SAINTS-SHOW-FORMAT.md) for the October 16 format revision.
 
 The story is a rescue built around earned trust and loyalty: Nix and Brick return for Rook, who previously helped them escape. Vernon Voss is connected to Nix’s former service. This implementation preserves the existing short dossier copy; it does not introduce romance, a love triangle, an unproven betrayal, new character origins or a definitive claim about Brick’s fate. The separate “Official Trailer” versus “Episode 1” packaging discrepancy remains a release-review decision.
 
@@ -60,7 +60,7 @@ The main footer links directly to the existing `/saints-press` destination. No u
 
 See [SAINTS-ANALYTICS.md](SAINTS-ANALYTICS.md) for event fields, the finite campaign dictionary, privacy rules, player semantics and collection limits.
 
-Character selection is emitted only on explicit interaction. `asset_download_clicked` identifies the requested front, back, wallpaper, print PDF or digital ZIP and its actual file format. It records a link activation, not a saved-file or sharing confirmation. Watch clicks, actual playback starts, seekable playhead progress and ended callbacks are distinct.
+Character selection is emitted on explicit tab interaction or a recognized character query selected through a cast link. Unknown character query values retain Nix; merely loading the default cast page is not a selection event. `asset_download_clicked` identifies the requested front, back, wallpaper, print PDF or digital ZIP and its actual file format. It records a link activation, not a saved-file or sharing confirmation. Watch clicks, actual playback starts, seekable playhead progress and ended callbacks are distinct.
 
 ## Verification and release gate
 
@@ -74,9 +74,9 @@ Run:
 - `git diff --check`
 - `npm run dev` for the local preview server on port 4317
 
-Missing final PDF or ZIP files are real failing release checks, not skipped successes. The broader `npm run test:site` suite also has 11 matching baseline failures: most expect a missing `index.html`; another expects older TV-page copy; the Tornado check depends on large assets excluded from the lightweight checkout. These do not establish a successful full-site regression run and must be reported separately.
+Missing final PDF or ZIP files are real failing release checks, not skipped successes. The full repository checkout has 5 passes and 10 matching baseline failures in `npm run test:site`: most expect a missing `index.html`; another expects older TV-page copy. This was compared against the untouched base commit. The earlier lightweight handoff recorded an additional missing-media failure. These do not establish a successful full-site regression run and must be reported separately.
 
-Source/DOM-mocked tests and source-derived layout proofs do not establish browser rendering. The available headless browser could not launch in the review environment. Before release, check desktop Chromium/Safari and iOS/Android for:
+Source/DOM-mocked tests do not establish browser rendering. Local browser checks now cover all four tabs, keyboard wrap, responsive widths and direct PNG/PDF/ZIP downloads; the previous hosted preview also delivered the Rook download. Cross-browser/device and extended acceptance remain separate. Before release, check desktop Chromium/Safari and iOS/Android for:
 
 - No horizontal overflow at 320, 390, 768 and 1440 CSS pixels, including 200% text zoom.
 - Touch targets, roving focus, status announcements, biography and format disclosures.

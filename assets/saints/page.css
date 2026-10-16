@@ -211,3 +211,22 @@ footer .footer-press:hover{color:var(--paper)}
 .characters .character-format-links a:hover,.characters .character-formats summary:hover{color:var(--acid)}
 .characters .dossier-copy .character-formats p{margin:12px 0 0;font-size:12px;color:var(--muted);max-width:62ch}
 @media(max-width:600px){.characters .character-format-links{grid-template-columns:1fr}.characters .character-formats{max-width:none}}
+
+/* A compact show format inside the established Saints visual system. */
+.show-facts{display:flex;flex-wrap:wrap;gap:14px 28px;margin:22px 0 0}
+.show-facts div{min-width:0}.show-facts dt{color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}.show-facts dd{margin:0;color:var(--paper);font-size:13px;line-height:1.5}
+#watch .episode-grid{grid-template-columns:repeat(2,minmax(0,360px));gap:24px;justify-content:start}
+#watch .episode-image{aspect-ratio:16/9}
+.cast-preview,.clips-section{padding-top:42px;padding-bottom:42px;position:relative}
+.cast-preview:before,.clips-section:before{content:'';position:absolute;top:0;left:var(--gutter);right:var(--gutter);height:1px;background:linear-gradient(90deg,transparent,rgba(214,185,141,.28) 14%,rgba(242,236,226,.18) 68%,transparent)}
+.cast-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.cast-card{display:block;min-width:0}.cast-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#1c1e20}
+.cast-card h3{font:400 clamp(22px,2.1vw,30px)/1.15 Georgia,'Times New Roman',serif;margin:16px 0 8px;letter-spacing:-.02em}.cast-card>span{display:inline-flex;align-items:center;gap:12px;min-height:32px;font-size:12px;color:var(--muted)}
+.cast-card:hover>span{color:var(--paper);text-decoration:underline;text-underline-offset:4px}
+.clip-placeholder{width:100%;max-width:360px;aspect-ratio:16/9;border:1px solid var(--line);border-radius:8px;background:#202224;display:grid;place-items:center;padding:24px;text-align:center;box-sizing:border-box}
+.clip-placeholder p{color:var(--muted);font-size:14px;margin:0}
+.cast-page .cast-back{padding-block:18px 0}.cast-page .cast-back .underlined{padding-top:8px}.cast-page h1{font:400 clamp(38px,5vw,68px)/1.05 Georgia,'Times New Roman',serif;letter-spacing:-.035em;color:var(--paper);margin:16px 0 0}
+#clips,#characters{scroll-margin-top:90px}
+@media(max-width:1000px){header nav{gap:0}header nav a{padding-inline:9px;font-size:12px}}
+@media(max-width:750px){.show-facts{gap:12px 22px;margin-top:20px}.show-facts dd{font-size:12px}.cast-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}.cast-card h3{font-size:23px;margin-top:12px}.cast-preview,.clips-section{padding-block:30px}.cast-preview .section-heading{align-items:flex-start}.cast-preview .underlined{padding-top:0}.cast-page .cast-back{padding-top:14px}#clips,#characters{scroll-margin-top:120px}.cast-page #characters{scroll-margin-top:80px}}
+@media(max-width:540px){#watch .episode-grid{grid-template-columns:minmax(0,360px);gap:28px}.show-facts div:first-child{flex-basis:100%}}

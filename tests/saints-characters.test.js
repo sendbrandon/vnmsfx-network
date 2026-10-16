@@ -7,8 +7,8 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const cards = require('../assets/saints/character-cards');
-const pageSource = read('assets/saints/page.js');
-const people = JSON.parse(pageSource.match(/const people=(.*);\nconst terms=/)[1]);
+const pageSource = read('assets/saints/cast.js');
+const people = JSON.parse(pageSource.match(/const people=(.*);\nconst trackSaints=/)[1]);
 const manifest = JSON.parse(read('assets/saints/collectibles/v4/manifest.json'));
 
 for(const [character,prefix] of Object.entries({nix:'01-nix',rook:'02-rook',brick:'03-brick',vernon:'04-vernon'})){
@@ -63,7 +63,7 @@ class Element {
   closest(selector){return selector==='.hero'&&this.hero?this:null;}
   animate(){this.animated=true;}
 }
-function pageRuntime({missingCatalog=false,reduced=true}={}){
+function pageRuntime({missingCatalog=false,reduced=true,search=''}={}){
   const selectors=['#download-character','#character-status','#character-card-note','#character-formats','#dossier','#portrait','.portrait','.dossier-copy','.character-more','.characters','#character-name','#character-role','#character-deck','#character-bio','#back-to-free','#plan-dialog','header','[data-watch-placement="character"]'];
   const nodes=Object.fromEntries(selectors.map(key=>[key,new Element(key)]));
   const tabs=['nix','rook','brick','vernon'].map(key=>{const el=new Element('tab-'+key);el.dataset.character=key;return el;});
@@ -74,7 +74,7 @@ function pageRuntime({missingCatalog=false,reduced=true}={}){
   const events=[];
   const document={querySelector:selector=>nodes[selector],querySelectorAll:selector=>selector==='[data-character]'?tabs:selector==='[data-video]'?[hero,episode]:selector==='[data-asset-kind]'?assetLinks:[],getElementById:id=>nodes['#'+id],createElement:()=>new Element(),createTextNode:text=>({textContent:text}),documentElement:new Element()};
   const window={SaintsCards:missingCatalog?undefined:cards,SaintsAnalytics:{track:(name,fields)=>events.push({name,...fields}),watchUrl:video=>'/saints-watch?video='+video+'&utm_source=instagram'}};
-  const context={window,document,location:{hostname:'localhost',search:'',href:''},matchMedia:()=>({matches:reduced}),fetch:()=>Promise.reject(Error('offline'))};
+  const context={window,document,location:{hostname:'localhost',search,href:''},matchMedia:()=>({matches:reduced}),URLSearchParams,fetch:()=>Promise.reject(Error('offline'))};
   vm.runInNewContext(pageSource,context);
   return {nodes,tabs,events,assetLinks,hero,episode,context};
 }
@@ -129,14 +129,14 @@ test('missing catalog hides potentially mismatched downloads while leaving brows
   assert.equal(r.nodes['[data-watch-placement="character"]'].hidden,false);
 });
 
-test('watch navigation uses sanitized attribution and remains independent of download state',async()=>{
-  const r=pageRuntime();await r.hero.emit('click');
-  assert.equal(r.context.location.href,'/saints-watch?video=episode&utm_source=instagram');
-  assert.ok(r.events.some(e=>e.name==='click_watch'&&e.placement==='hero'));
+test('cast watch navigation uses sanitized attribution and remains independent of download state',async()=>{
+  const r=pageRuntime();await r.nodes['[data-watch-placement="character"]'].emit('click');
+  assert.equal(r.nodes['[data-watch-placement="character"]'].href,'/saints-watch?video=episode&utm_source=instagram');
+  assert.ok(r.events.some(e=>e.name==='click_watch'&&e.placement==='character'));
 });
 
 test('default artwork downloads, press and below-player next step exist without JavaScript',()=>{
-  const html=read('saints-of-bad-luck.html'),watch=read('saints-watch.html');
+  const html=read('saints-cast.html'),watch=read('saints-watch.html');
   assert.equal((html.match(/id="characters"/g)||[]).length,1);
   assert.match(html,/id="dossier" role="tabpanel" aria-labelledby="tab-nix" tabindex="0"/);
   assert.match(html,/Free character artwork · No sign-up/);
@@ -157,4 +157,33 @@ test('new download and follow-up links can wrap at narrow widths and enlarged te
   assert.match(read('assets/saints/page.css'), /\.characters \.character-download\{[^}]*max-width:100%;white-space:normal/);
   assert.match(read('assets/saints/page.css'), /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(read('assets/saints/watch.css'), /\.watch-followup a\{[^}]*max-width:100%;[^}]*white-space:normal/);
+});
+
+
+test('landing separates name-only cast links from character descriptions and keeps real episode inventory',()=>{
+  const landing=read('saints-of-bad-luck.html'),cast=read('saints-cast.html');
+  assert.doesNotMatch(landing,/id="dossier"|id="character-bio"|id="download-character"/);
+  assert.match(landing,/<a href="\/saints-cast">Cast<\/a>/);
+  for(const key of ['nix','rook','brick','vernon'])assert.ok(landing.includes('/saints-cast?character='+key+'#characters'));
+  assert.equal((landing.match(/class="episode (?:featured|next) reveal"/g)||[]).length,2);
+  assert.match(landing,/<dt>Genre<\/dt><dd>Action · Sci-Fi · Dark Comedy<\/dd>/);
+  assert.match(landing,/<dt>Season<\/dt><dd>1<\/dd>/);
+  assert.match(landing,/<dt>Rating<\/dt><dd>Mature<\/dd>/);
+  const clips=landing.match(/<section class="section clips-section"[\s\S]*?<\/section>/)[0];
+  assert.match(clips,/Clips coming soon/);assert.doesNotMatch(clips,/<button|<video|<iframe|data-video/);
+  assert.match(cast,/<h1>Meet the cast\.<\/h1>/);
+  assert.ok(read('scripts/dev-saints.js').includes("'/saints-cast.html'"));
+});
+
+
+test('cast deep links select a matching dossier and reject unknown keys',()=>{
+  for(const key of ['nix','rook','brick','vernon']){
+    const r=pageRuntime({search:'?character='+key});
+    assert.equal(r.nodes['#character-name'].textContent,people[key].name);
+    assert.equal(r.assetLinks[0].dataset.assetCharacter,key);
+  }
+  const r=pageRuntime({search:'?character=constructor'});
+  assert.equal(r.tabs[0].getAttribute('aria-selected'),'true');
+  assert.equal(r.assetLinks[0].dataset.assetCharacter,'nix');
+  assert.equal(r.events.filter(e=>e.name==='character_select').length,0);
 });
