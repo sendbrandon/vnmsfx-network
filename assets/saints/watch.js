@@ -15,7 +15,7 @@
   // Fixed public clip catalog: never accept a media URL from the query string.
   const clips = Object.freeze({
     'depot-gate': { title: 'The Depot Gate', src: '/assets/saints/clips/depot-gate/the-depot-gate-web-v1.mp4', poster: '/assets/saints/clips/depot-gate/the-depot-gate-poster-v1.jpg' },
-    'come-home': { title: 'Road Fight · Come Home', src: '/assets/saints/clips/come-home/come-home-web-v1.mp4', poster: '/assets/saints/clips/come-home/come-home-poster-v2.jpg' }
+    'come-home': { title: 'Road Fight · Come Home', src: '/assets/saints/clips/come-home/come-home-web-v1.mp4', poster: '/assets/saints/clips/come-home/come-home-poster-v3.jpg' }
   });
   const requestedVideo = new URLSearchParams(location.search).get('video');
   const clip = Object.prototype.hasOwnProperty.call(clips, requestedVideo) ? clips[requestedVideo] : null;

@@ -20,13 +20,13 @@
     "processing": "FFmpeg libx264 slow CRF18, yuv420p, AAC stream copy, +faststart; no scaling, speed, crop, grade or editorial change; baked subtitles preserved"
   },
   "poster": {
-    "file": "come-home-poster-v2.jpg",
-    "sha256": "bc8105b4de959c39f9a0f2e9d1013847bde97e38bc732d7ce20a0b7e2a3cbe65",
-    "source_timestamp_seconds": 8.5,
+    "file": "come-home-poster-v3.jpg",
+    "sha256": "d7e2263bbaa2b31b5f0c89e727d1e7a109e4cc1a1a2a57b6c54dbe3d077f78cf",
+    "source_timestamp_seconds": 11.8,
     "width": 1920,
     "height": 836,
     "processing": "Exact source-frame extraction from original master via FFmpeg, high-quality JPEG; no scaling, sharpening, grading or generative alteration",
-    "selection_reason": "Clear Nix close-up replaces motion-blurred tackle frame."
+    "selection_reason": "Brandon selected option 4: Vernon and agent hero still."
   },
   "consumer": "/saints-watch?video=come-home; landing Clips shelf",
   "production_status": "review preview; production publication pending",
@@ -36,6 +36,15 @@
       "sha256": "e214b7657a26b74bf337d9030dc217011e16779ef367f94a8c24799859ef93a2",
       "source_timestamp_seconds": 20,
       "processing": "Exact source-frame extraction; no generative alteration"
+    },
+    {
+      "file": "come-home-poster-v2.jpg",
+      "sha256": "bc8105b4de959c39f9a0f2e9d1013847bde97e38bc732d7ce20a0b7e2a3cbe65",
+      "source_timestamp_seconds": 8.5,
+      "width": 1920,
+      "height": 836,
+      "processing": "Exact source-frame extraction from original master via FFmpeg, high-quality JPEG; no scaling, sharpening, grading or generative alteration",
+      "selection_reason": "Clear Nix close-up replaces motion-blurred tackle frame."
     }
   ]
 }
