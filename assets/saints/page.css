@@ -253,3 +253,14 @@ footer .footer-press:hover{color:var(--paper)}
 /* Clips share compact card dimensions and wrap without stretching the film frame. */
 .clip-grid{grid-template-columns:repeat(2,minmax(0,360px))}
 @media(max-width:750px){.clip-grid{grid-template-columns:minmax(0,360px)}}
+
+/* Keep character artwork beside its file instead of floating above a wide dossier. */
+.cast-page .dossier{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start;gap:clamp(28px,5vw,72px);max-width:1180px;margin-inline:auto}
+.cast-page .portrait{max-width:none;margin:0;aspect-ratio:2400/1792}
+.cast-page .dossier-copy{display:block;min-width:0;padding-top:18px}
+.cast-page .dossier-copy .large{min-height:0;max-width:34ch}
+.cast-page .character-more{margin-top:20px;align-self:auto}
+.cast-page .character-more summary{min-height:44px}
+.cast-page .dossier-copy .character-more #character-bio{font-size:16px;line-height:1.65;margin:0 0 18px;max-width:46ch}
+.cast-page .characters .character-actions{margin-top:20px;padding-top:20px;gap:10px 20px}
+@media(max-width:750px){.cast-page .dossier{grid-template-columns:minmax(0,1fr);gap:10px;max-width:540px}.cast-page .dossier-copy{padding-top:0}.cast-page .dossier h3{font-size:38px}.cast-page .dossier-copy .large{font-size:20px}}
