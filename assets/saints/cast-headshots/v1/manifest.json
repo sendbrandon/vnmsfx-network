@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "purpose": "Landing cast shelf, centered frontal profiles",
+  "selection": "Brandon selected these exact upscaled versions on October 16, 2026",
+  "files": [
+    {
+      "character": "nix",
+      "file": "nix-centered-upscaled-v1.png",
+      "source_filename": "ChatGPT Image Oct 16, 2026, 12_29_52 PM-wonder-3-5.png",
+      "sha256": "cbd091e8b2c1f3fddfafce8db821d2aacd92e45f5320764347b8ca9001d03044",
+      "bytes": 9638419,
+      "width": 2896,
+      "height": 2172,
+      "source_sheet": "CHAR_Nix_Brown-Tan-Outfit_Front-Back-Portrait_v01.png",
+      "state": "USER SELECTED FOR WEBSITE",
+      "library_id": "SOBL-STILL-0093",
+      "processing": "Exact user-supplied upscale bytes; bottom fade applied in CSS only"
+    },
+    {
+      "character": "rook",
+      "file": "rook-centered-upscaled-v1.png",
+      "source_filename": "ChatGPT Image Oct 16, 2026, 12_29_58 PM-wonder-3-5.png",
+      "sha256": "6c228a6a382f47d4c3b3e7e217103e55269ddc9d073867ed1b122b28999b3ac8",
+      "bytes": 9060751,
+      "width": 2896,
+      "height": 2172,
+      "source_sheet": "CHAR_Rook_NONE-Jacket_Red-Shorts_Front-Back-Portrait_v01.png",
+      "state": "USER SELECTED FOR WEBSITE",
+      "library_id": "SOBL-STILL-0095",
+      "processing": "Exact user-supplied upscale bytes; bottom fade applied in CSS only"
+    },
+    {
+      "character": "brick",
+      "file": "brick-centered-upscaled-v1.png",
+      "source_filename": "ChatGPT Image Oct 16, 2026, 12_29_55 PM-wonder-3-5.png",
+      "sha256": "4a32b1021d494e10ff1971ab1eaeb423e4b0fcc1d8736dce8dc7cae93f2feaf0",
+      "bytes": 10510907,
+      "width": 2896,
+      "height": 2172,
+      "source_sheet": "CHAR_Brick_Camouflage_Hood-Up_Front-Back-Portrait_v01.png",
+      "state": "USER SELECTED FOR WEBSITE",
+      "library_id": "SOBL-STILL-0097",
+      "processing": "Exact user-supplied upscale bytes; bottom fade applied in CSS only"
+    },
+    {
+      "character": "vernon",
+      "file": "vernon-centered-upscaled-v1.png",
+      "source_filename": "exec-39546c0a-c9ce-4466-930b-db0655e4570f-wonder-3-5.png",
+      "sha256": "62ab4de302a2880e628dbaf0e3a7846da70fcb7af387369a7781ae9a693c29eb",
+      "bytes": 9672036,
+      "width": 2896,
+      "height": 2172,
+      "source_sheet": "CHAR_Vernon-Voss_Gray-Coat_Front-Back-Portrait_v01.png",
+      "state": "USER SELECTED FOR WEBSITE",
+      "library_id": "SOBL-STILL-0099",
+      "processing": "Exact user-supplied upscale bytes; bottom fade applied in CSS only"
+    }
+  ]
+}

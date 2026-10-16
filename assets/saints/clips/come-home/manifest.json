@@ -1,0 +1,50 @@
+{
+  "id": "saints-clip-come-home",
+  "title": "Road Fight \u00b7 Come Home",
+  "category": "clip",
+  "source": {
+    "path": "/Users/brandonadams/Desktop/SOBL/FINAL CUTS/EPISODE 2/SECTION 2/SOBL-EP2-S2-ROAD-FIGHT-COME-HOME-SUBS-1920x836-film.mp4",
+    "sha256": "59e40da6fff8b8e55a50e20103115739e9833e116d950579a6899a63d9484131",
+    "bytes": 190207063,
+    "master_preserved": true
+  },
+  "delivery": {
+    "file": "come-home-web-v1.mp4",
+    "sha256": "a9ff811487032aca9dd21a2164814406de12466dba059f8e619734a8ad751184",
+    "bytes": 36502516,
+    "duration_seconds": 40.375,
+    "width": 1920,
+    "height": 836,
+    "frame_rate": "24/1",
+    "audio_stream_copy_verified": true,
+    "processing": "FFmpeg libx264 slow CRF18, yuv420p, AAC stream copy, +faststart; no scaling, speed, crop, grade or editorial change; baked subtitles preserved"
+  },
+  "poster": {
+    "file": "come-home-poster-v3.jpg",
+    "sha256": "d7e2263bbaa2b31b5f0c89e727d1e7a109e4cc1a1a2a57b6c54dbe3d077f78cf",
+    "source_timestamp_seconds": 11.8,
+    "width": 1920,
+    "height": 836,
+    "processing": "Exact source-frame extraction from original master via FFmpeg, high-quality JPEG; no scaling, sharpening, grading or generative alteration",
+    "selection_reason": "Brandon selected option 4: Vernon and agent hero still."
+  },
+  "consumer": "/saints-watch?video=come-home; landing Clips shelf",
+  "production_status": "review preview; production publication pending",
+  "poster_history": [
+    {
+      "file": "come-home-poster-v1.jpg",
+      "sha256": "e214b7657a26b74bf337d9030dc217011e16779ef367f94a8c24799859ef93a2",
+      "source_timestamp_seconds": 20,
+      "processing": "Exact source-frame extraction; no generative alteration"
+    },
+    {
+      "file": "come-home-poster-v2.jpg",
+      "sha256": "bc8105b4de959c39f9a0f2e9d1013847bde97e38bc732d7ce20a0b7e2a3cbe65",
+      "source_timestamp_seconds": 8.5,
+      "width": 1920,
+      "height": 836,
+      "processing": "Exact source-frame extraction from original master via FFmpeg, high-quality JPEG; no scaling, sharpening, grading or generative alteration",
+      "selection_reason": "Clear Nix close-up replaces motion-blurred tackle frame."
+    }
+  ]
+}

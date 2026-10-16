@@ -1,0 +1,47 @@
+{
+  "purpose": "User-supplied replacement portraits for landing Cast shelf and character detail pages",
+  "selection": "Brandon supplied these four replacements on October 16, 2026",
+  "files": [
+    {
+      "character": "nix",
+      "file": "nix-portrait-v2.png",
+      "source_path": "/Users/brandonadams/Downloads/create-one-photorealistic-character-portrait-for-a (3).png",
+      "sha256": "e5cee973cbc32ff8363d3bd8ae1f48dbfb4678815c7fdf1c981e279a999d987f",
+      "bytes": 5457431,
+      "width": 2400,
+      "height": 1792,
+      "processing": "Exact supplied PNG bytes; no regeneration, grading, sharpening, resizing or grain; existing bottom fade is CSS only"
+    },
+    {
+      "character": "rook",
+      "file": "rook-portrait-v2.png",
+      "source_path": "/Users/brandonadams/Downloads/create-one-photorealistic-character-portrait-for-a (2).png",
+      "sha256": "396da48d4ea44cd81c878d3e7a67eb376358e811ed6e4be714a107c300292e17",
+      "bytes": 5350442,
+      "width": 2400,
+      "height": 1792,
+      "processing": "Exact supplied PNG bytes; no regeneration, grading, sharpening, resizing or grain; existing bottom fade is CSS only"
+    },
+    {
+      "character": "vernon",
+      "file": "vernon-portrait-v2.png",
+      "source_path": "/Users/brandonadams/Downloads/create-one-photorealistic-character-portrait-for-a (1).png",
+      "sha256": "464ce9bf1b0c3de1f8609d549dc0b39eea18a923263e6864c354c908b1b3aa9f",
+      "bytes": 6014197,
+      "width": 2400,
+      "height": 1792,
+      "processing": "Exact supplied PNG bytes; no regeneration, grading, sharpening, resizing or grain; existing bottom fade is CSS only"
+    },
+    {
+      "character": "brick",
+      "file": "brick-portrait-v2.png",
+      "source_path": "/Users/brandonadams/Downloads/create-one-photorealistic-character-portrait-for-a.png",
+      "sha256": "d16988cba561a1495847e075b3c8970ee21c6d56c532e9721151aa7c6eacff82",
+      "bytes": 6435246,
+      "width": 2400,
+      "height": 1792,
+      "processing": "Exact supplied PNG bytes; no regeneration, grading, sharpening, resizing or grain; existing bottom fade is CSS only"
+    }
+  ],
+  "previous_versions": "cast-headshots/v1 and film-finish/v2 retained as history"
+}

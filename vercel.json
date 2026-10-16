@@ -16,6 +16,11 @@
   ],
   "redirects": [
     {
+      "source": "/saints-clips/depot-gate",
+      "destination": "/saints-watch?video=depot-gate",
+      "permanent": false
+    },
+    {
       "source": "/creative-sprint",
       "destination": "/#commercial-options",
       "permanent": false
