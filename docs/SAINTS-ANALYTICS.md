@@ -100,3 +100,5 @@ Real-browser QA was unavailable in this execution environment because browser/so
 4. API blocked/offline cases, Back/Forward and repeated navigation.
 5. DNT/GPC suppress events and UTM propagation, with normal interaction still working.
 6. If a collector is separately approved, inspect its outgoing payloads and actual receipts before claiming reporting is live. No such collector is included here.
+
+Clip cinema update (October 16): the fixed `video` enum also permits `depot-gate` and `come-home` for real native-player playback milestones. Existing privacy suppression and local-only event handling are unchanged; no arbitrary clip/source URL is accepted.

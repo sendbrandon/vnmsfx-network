@@ -170,8 +170,8 @@ test('landing separates name-only cast links from character descriptions and kee
   assert.match(landing,/<dt>Season<\/dt><dd>1<\/dd>/);
   assert.match(landing,/<dt>Rating<\/dt><dd>Mature<\/dd>/);
   const clips=landing.match(/<section class="section clips-section"[\s\S]*?<\/section>/)[0];
-  assert.match(clips,/href="\/saints-clips\/depot-gate"/);assert.match(clips,/>CLIP</);assert.doesNotMatch(clips,/<button|<video|<iframe|data-video/);
-  const clipPage=read('saints-clips/depot-gate.html');assert.match(clipPage,/<video[^>]*controls playsinline preload="metadata"/);assert.match(clipPage,/the-depot-gate-web-v1\.mp4/);assert.doesNotMatch(clipPage,/EPISODE 0|data-plan|purchase=|<script/);
+  assert.match(clips,/href="\/saints-watch\?video=depot-gate"/);assert.match(clips,/href="\/saints-watch\?video=come-home"/);assert.match(clips,/>CLIP</);assert.doesNotMatch(clips,/<button|<video|<iframe|data-video/);
+  const clipPage=read('saints-clips/depot-gate.html');assert.match(clipPage,/http-equiv="refresh"/);assert.match(clipPage,/saints-watch\?video=depot-gate/);assert.doesNotMatch(clipPage,/EPISODE 0|data-plan|purchase=|<script/);
   assert.match(cast,/<h1>Meet the cast\.<\/h1>/);
   assert.ok(read('scripts/dev-saints.js').includes("'/saints-cast.html'"));
 });

@@ -1,0 +1,30 @@
+{
+  "id": "saints-clip-come-home",
+  "title": "Road Fight \u00b7 Come Home",
+  "category": "clip",
+  "source": {
+    "path": "/Users/brandonadams/Desktop/SOBL/FINAL CUTS/EPISODE 2/SECTION 2/SOBL-EP2-S2-ROAD-FIGHT-COME-HOME-SUBS-1920x836-film.mp4",
+    "sha256": "59e40da6fff8b8e55a50e20103115739e9833e116d950579a6899a63d9484131",
+    "bytes": 190207063,
+    "master_preserved": true
+  },
+  "delivery": {
+    "file": "come-home-web-v1.mp4",
+    "sha256": "a9ff811487032aca9dd21a2164814406de12466dba059f8e619734a8ad751184",
+    "bytes": 36502516,
+    "duration_seconds": 40.375,
+    "width": 1920,
+    "height": 836,
+    "frame_rate": "24/1",
+    "audio_stream_copy_verified": true,
+    "processing": "FFmpeg libx264 slow CRF18, yuv420p, AAC stream copy, +faststart; no scaling, speed, crop, grade or editorial change; baked subtitles preserved"
+  },
+  "poster": {
+    "file": "come-home-poster-v1.jpg",
+    "sha256": "e214b7657a26b74bf337d9030dc217011e16779ef367f94a8c24799859ef93a2",
+    "source_timestamp_seconds": 20,
+    "processing": "Exact source-frame extraction; no generative alteration"
+  },
+  "consumer": "/saints-watch?video=come-home; landing Clips shelf",
+  "production_status": "review preview; production publication pending"
+}

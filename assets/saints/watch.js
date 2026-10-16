@@ -12,9 +12,21 @@
     characterLink.addEventListener('click', () => { characterLink.href = window.SaintsAnalytics.charactersUrl(); });
   }
 
-  const trailer = new URLSearchParams(location.search).get('video') === 'trailer';
-  const video = trailer ? 'trailer' : 'episode';
-  document.querySelector('#watch-title').textContent = trailer ? 'Saints of Bad Luck · Trailer' : 'Episode 1 · Get Her Back';
+  // Fixed public clip catalog: never accept a media URL from the query string.
+  const clips = Object.freeze({
+    'depot-gate': { title: 'The Depot Gate', src: '/assets/saints/clips/depot-gate/the-depot-gate-web-v1.mp4', poster: '/assets/saints/clips/depot-gate/the-depot-gate-poster-v1.jpg' },
+    'come-home': { title: 'Road Fight · Come Home', src: '/assets/saints/clips/come-home/come-home-web-v1.mp4', poster: '/assets/saints/clips/come-home/come-home-poster-v1.jpg' }
+  });
+  const requestedVideo = new URLSearchParams(location.search).get('video');
+  const clip = Object.prototype.hasOwnProperty.call(clips, requestedVideo) ? clips[requestedVideo] : null;
+  const trailer = requestedVideo === 'trailer';
+  const video = clip ? requestedVideo : trailer ? 'trailer' : 'episode';
+  document.querySelector('#watch-title').textContent = clip ? 'Clip · ' + clip.title : trailer ? 'Saints of Bad Luck · Trailer' : 'Episode 1 · Get Her Back';
+  if (clip) {
+    const back = document.querySelector('.watch-toolbar a');
+    if (back) { back.href = '/saints-of-bad-luck#clips'; back.textContent = '← Clips'; }
+    film.poster = clip.poster;
+  }
   let hideTimer;
   let progressTimer;
   let youtubePlayer;
@@ -64,7 +76,7 @@
       milestones.add('complete');
       track('video_complete');
     }
-    if (!trailer && nextEpisode.hidden) {
+    if (!trailer && !clip && nextEpisode.hidden) {
       nextEpisode.hidden = false;
       document.querySelector('#next-title').focus();
     }
@@ -212,6 +224,7 @@
 
   (async () => {
     try {
+      if (clip) { film.src = clip.src; return; }
       if (!trailer) {
         // A failed or invalid optional YouTube configuration must not block native playback.
         const config = await fetch('/assets/saints/press-video.json', { cache: 'no-store' })

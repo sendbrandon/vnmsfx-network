@@ -11,3 +11,11 @@ Keep the established Saints photographic hero, warm paper on charcoal palette, t
 ## Selected portrait revision
 
 Brandon selected four 2896×2172 Wonder upscales derived from the generated neutral-studio frontal headshots. The landing cast shelf uses those PNGs unchanged. A CSS alpha mask fades only the lower part into the page; existing cinematic dossier stills and collectible artwork stay unchanged. The Depot Gate thumbnail uses its native 1920:836 ratio to remove the former 16:9 container letterboxing without cropping the film.
+
+## October 16 — shared clip cinema
+
+Both Clips cards now open the existing Episode 1 viewing shell at `/saints-watch?video=depot-gate` and `/saints-watch?video=come-home`. The legacy Depot Gate route redirects to the shared cinema. Public clips use a fixed allowlisted local media catalog, without episode YouTube lookup, account/auth requests, or the Episode 2 purchase end card. Back returns to the Clips shelf. Existing playback/fullscreen/error behavior is reused.
+
+Brandon supplied the 40.375-second Road Fight · Come Home final cut with baked subtitles. Its source master is preserved; the 1920×836, 24 fps fast-start H.264 derivative preserves timing and copies AAC audio verbatim (stream hash verified). The 20-second source frame supplies its poster. This is a Clip, not a newly released episode; no pricing/release or canon changes.
+
+Portrait prompts v2 are a prompt-only handoff for Brandon's chosen image model, grounded in the actual hero and original character sheets. Four self-contained prompts specify expressive headshots, full lighting/camera/color treatment and no added grain or logo. No images are generated or swapped from this prompt handoff.

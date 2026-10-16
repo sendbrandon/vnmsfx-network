@@ -4,7 +4,7 @@
   if (window.SaintsAnalytics) return;
 
   const characters = ['nix', 'rook', 'brick', 'vernon'];
-  const videos = ['episode', 'trailer'];
+  const videos = ['episode', 'trailer', 'depot-gate', 'come-home'];
   const playback = { video: videos, player: ['youtube', 'native'] };
   const schemas = {
     view_landing: {},

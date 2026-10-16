@@ -469,3 +469,20 @@ test('download schema distinguishes selected artwork from whole-collection files
     {character:'rook',asset:'wallpaper',format:'svg'}
   ]) assert.equal(f.api.track('asset_download_clicked',fields),false);
 });
+
+for (const [slug, title, source] of [
+  ['depot-gate', 'The Depot Gate', '/assets/saints/clips/depot-gate/the-depot-gate-web-v1.mp4'],
+  ['come-home', 'Road Fight · Come Home', '/assets/saints/clips/come-home/come-home-web-v1.mp4']
+]) {
+  test('public clip ' + slug + ' uses the cinema player without episode auth, YouTube or purchase end card', async () => {
+    const f = await watchFixture({ url: 'https://vnmsfx.com/saints-watch?video=' + slug, config: { youtubeId: 'nHrWDMSD9Wg' } });
+    assert.equal(f.ids.film.src, source);
+    assert.equal(f.ids['watch-title'].textContent, 'Clip · ' + title);
+    assert.equal(f.requests.length, 0, 'public clip must not request episode playback or episode YouTube configuration');
+    assert.equal(f.attachments.length, 0);
+    nativePlay(f); nativeTime(f, 50); f.ids.film.emit('ended');
+    assert.equal(f.ids['next-episode'].hidden, true);
+    assert.equal(f.events.every(event => event.video === slug && event.player === 'native'), true);
+    assert.deepEqual(f.names(), ['video_start', 'video_25', 'video_50', 'video_complete']);
+  });
+}
