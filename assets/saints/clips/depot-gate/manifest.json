@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "saints-clip-depot-gate",
+  "title": "The Depot Gate",
+  "category": "clip",
+  "label": "Side Mission",
+  "source": {
+    "filename": "SOBL-SIDE-MISSION-DEPOT-GATE-FILM-1920x836.mp4",
+    "sha256": "ea051d74a907155c8629b6526a026b54b26922fe9932d3200bedc90fd536f9de",
+    "bytes": 119674974,
+    "authority": "Brandon supplied the final cut and explicitly requested upload as a website clip on October 16, 2026.",
+    "master_preserved": true
+  },
+  "delivery": {
+    "file": "the-depot-gate-web-v1.mp4",
+    "sha256": "712a153c4d0dbea5e17da991cb913b810ca707371ddbfb2a2525388f09bd92c3",
+    "bytes": 26673612,
+    "width": 1920,
+    "height": 836,
+    "frame_rate": "24/1",
+    "duration_seconds": 43.208333,
+    "video_codec": "h264",
+    "pixel_format": "yuv420p",
+    "color_primaries": "bt709",
+    "color_transfer": "bt709",
+    "color_space": "bt709",
+    "audio_codec": "aac",
+    "audio_sample_rate": "48000",
+    "audio_channels": 2,
+    "fast_start": true,
+    "processing": "ffmpeg libx264 preset slow, CRF 18, yuv420p, AAC stream copy, movflags +faststart; no scaling, speed or editorial change"
+  },
+  "poster": {
+    "file": "the-depot-gate-poster-v1.jpg",
+    "source_timestamp_seconds": 10,
+    "sha256": "cec6d5e8986e4a91d6c1eb79dbadf39be360dad96b1a327bbf7e250ab1003e5f",
+    "processing": "One extracted source frame, no generative alteration"
+  },
+  "consumer": "/saints-clips/depot-gate; landing Clips section",
+  "production_status": "review preview; production publication pending"
+}
