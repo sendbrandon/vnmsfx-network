@@ -182,3 +182,32 @@ mask-image:linear-gradient(to right,transparent,#000 2px,#000 calc(100% - 2px),t
 mask-composite:intersect;
 }
 @media(prefers-contrast:more){.portrait img,.episode-image img{-webkit-mask-image:none;mask-image:none}}
+
+/* The chosen character stays inside the existing film-strip dossier. */
+.characters .dossier-copy .large{min-height:3.1em}
+.characters .character-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.characters .character-download{min-width:0;max-width:100%;white-space:normal;min-height:48px;padding:12px 22px;border-radius:28px;border-color:#d8cab54d;font-weight:500;justify-content:center;gap:20px}
+.characters .character-download[hidden],.characters .character-card-note[hidden],.characters .character-formats[hidden]{display:none}
+.characters .character-watch{display:inline-flex;align-items:center;gap:10px;min-height:48px;font-size:14px;text-decoration:underline;text-decoration-color:#d8cab560;text-underline-offset:5px}
+.characters .character-watch:hover{color:var(--acid)}
+.characters .dossier-copy .character-card-note,.characters .dossier-copy .character-status{flex-basis:100%;margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.characters .character-status:empty{display:none}
+.characters .dossier:focus-visible{outline:2px solid var(--acid);outline-offset:8px;border-radius:10px}
+@media(max-width:750px){.characters .character-actions{margin-top:20px;gap:8px 18px}.characters .character-download{width:100%;justify-content:space-between;padding-inline:20px}.characters .character-watch{padding:4px 0}.characters .character-card-note{max-width:30ch}}
+@media(prefers-reduced-motion:reduce){.characters .character-download:hover{transform:none}}
+
+/* Press is a quiet, permanent destination in the existing footer. */
+footer .footer-press{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:12px;letter-spacing:0;text-decoration:underline;text-decoration-color:#d8cab54d;text-underline-offset:5px}
+footer .footer-press:hover{color:var(--paper)}
+
+/* Extra formats stay tucked into the same native dossier, without a second card grid. */
+.characters .character-formats{flex-basis:100%;max-width:720px;margin-top:2px}
+.characters .character-formats summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:44px;max-width:210px;list-style:none;cursor:pointer;font-size:13px;color:var(--muted)}
+.characters .character-formats summary::-webkit-details-marker{display:none}
+.characters .character-formats[open] summary span{transform:rotate(45deg)}
+.characters .character-format-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin:6px 0}
+.characters .character-format-links a{min-width:0;overflow-wrap:anywhere;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:48px;border-bottom:1px solid var(--line);font-size:13px}
+.characters .character-format-links a span{color:var(--muted);font-size:10px;letter-spacing:.06em}
+.characters .character-format-links a:hover,.characters .character-formats summary:hover{color:var(--acid)}
+.characters .dossier-copy .character-formats p{margin:12px 0 0;font-size:12px;color:var(--muted);max-width:62ch}
+@media(max-width:600px){.characters .character-format-links{grid-template-columns:1fr}.characters .character-formats{max-width:none}}

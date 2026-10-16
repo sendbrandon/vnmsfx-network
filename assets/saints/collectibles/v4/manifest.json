@@ -1,0 +1,143 @@
+{
+  "version": "v4",
+  "status": "Verified local export checkpoint. Campaign copy approved; website publication requires separate approval.",
+  "files": [
+    {
+      "path": "fronts/01-nix-front-v4.png",
+      "bytes": 2081992,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "51a20acef88afb246bbdfb02bc6055605456948ad1a8e8aa93b7703d09ee6ba9"
+    },
+    {
+      "path": "fronts/02-rook-front-v4.png",
+      "bytes": 2078786,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "5d94ade35930cab825a7f135d1f3b50067cc8eb710a45da9cb96b00df6f44b4e"
+    },
+    {
+      "path": "fronts/03-brick-front-v4.png",
+      "bytes": 2105071,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "8ae7cf9b908da26cf27475de364589540cf7a5084125507dd89e5637f78cc898"
+    },
+    {
+      "path": "fronts/04-vernon-front-v4.png",
+      "bytes": 2093398,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "3f290dde6327ee3ef98672cbdebc36387d1c6f3dcd46697a2a25f098cedaaec7"
+    },
+    {
+      "path": "backs/01-nix-back-v4.png",
+      "bytes": 944953,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "246007f8f93f31334dc41554e321ff44537ac79d8a28f407b48b1052848f295c"
+    },
+    {
+      "path": "backs/02-rook-back-v4.png",
+      "bytes": 973298,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "dfb2d7837de0f3f9334f36c2987c3aa42248fac2839f2bfdfeaf344070594d76"
+    },
+    {
+      "path": "backs/03-brick-back-v4.png",
+      "bytes": 970665,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "216a52a4eff1da96745d557e4d5abb0722bd1b6ca438953fb12c253c3f6c983b"
+    },
+    {
+      "path": "backs/04-vernon-back-v4.png",
+      "bytes": 991892,
+      "width": 1200,
+      "height": 1800,
+      "mimeType": "image/png",
+      "sha256": "a89ee0026178e548e2ac28d81f16eb97b928e44a7f3538a1a2fd065f8803158d"
+    },
+    {
+      "path": "wallpapers/01-nix-wallpaper-v4.png",
+      "bytes": 1802961,
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/png",
+      "sha256": "ea89bd37815e280e619162bf763e466c43d0c6c277521d17264cff922f307707"
+    },
+    {
+      "path": "wallpapers/02-rook-wallpaper-v4.png",
+      "bytes": 1830284,
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/png",
+      "sha256": "45662fe602a29a0b662972ee28a0721be45b6095a338e4452c6dd3464e37e75b"
+    },
+    {
+      "path": "wallpapers/03-brick-wallpaper-v4.png",
+      "bytes": 1849276,
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/png",
+      "sha256": "80b3c8c4ac52cb8ae35aa6d4b0be0d1fe20b33374a7822e8d7c2c987dc3bc1d0"
+    },
+    {
+      "path": "wallpapers/04-vernon-wallpaper-v4.png",
+      "bytes": 1840317,
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/png",
+      "sha256": "0531d481d65efc9ff5b964ee29f14bb4c71e184f535e0ef77f54a33a4c41281a"
+    },
+    {
+      "path": "print/saints-collectible-2x3-duplex-v4.pdf",
+      "bytes": 4457626,
+      "mimeType": "application/pdf",
+      "sha256": "f652844b0c228d4527539be2bc40d4720a9040dbd50b26dea2037a7e2bad81db"
+    },
+    {
+      "path": "saints-collectible-assets-v4.zip",
+      "bytes": 30390815,
+      "mimeType": "application/zip",
+      "sha256": "7a1cc228809de2a8194462fa156a5cba17b5f4a9aef7cc41361d82e5433100e5"
+    }
+  ],
+  "zipContents": {
+    "pngs": 12,
+    "outlinedSVGs": 12,
+    "originalSourcePNGs": 6,
+    "previewJPEGs": 3,
+    "includesPDF": false
+  },
+  "print": {
+    "trimInches": [
+      2,
+      3
+    ],
+    "bleedInches": 0.12,
+    "sheet": "US Letter",
+    "pages": 2,
+    "duplexFlip": "long edge",
+    "rasterExportPPI": 600,
+    "portraitEffectivePPI": 345,
+    "compression": "JPEG quality 96, no chroma subsampling"
+  },
+  "campaignCopy": {
+    "nix": "he used to take orders.\nnow he\u2019s the fucking problem.",
+    "rook": "she makes powerful men\nfeel powerless.",
+    "brick": "the gorilla has a conscience.\nthat complicates things.",
+    "vernon": "he has an army because\nhe can\u2019t handle an argument."
+  },
+  "exportedAtUTC": "2026-10-15T17:13:52.681317+00:00",
+  "checkpointId": "aee97395bdc88089",
+  "zip_contains_pdf": false
+}
