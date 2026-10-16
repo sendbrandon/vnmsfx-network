@@ -1,6 +1,6 @@
 # Website photographic finish — review v1, 2026-10-16
 
-Brandon requested a restrained match to the existing hero and The Depot Gate. Six native image edits replace only the landing-page display assets. Original selected upscales and shared episode stills remain intact. This is a finishing preview, not a canon or production-publish decision.
+Brandon requested a restrained match to the existing hero and The Depot Gate. Six native image edits supply the landing-page display assets. A follow-up consistency repair also reuses the four exact cast files on the character detail page. Original selected upscales and shared episode stills remain intact. This is a finishing preview, not a canon or production-publish decision.
 
 ## Ten small moves
 
@@ -21,4 +21,8 @@ Episode badges and arrow are separately softened with scoped charcoal CSS overla
 
 The asset manifest records the edit target, native output, color/texture references, complete instruction, dimensions and SHA-256 for each derivative. Native outputs are 1448×1086 for cast and 1900×828 for episode cards. These are newly generated finishing derivatives, not pixel-identical copies or retained source-resolution masters. Character identity, framing, wardrobe and scene relationships were visually reviewed. Native editing can reconstruct fine facial detail; originals are retained for comparison.
 
-The hero, Depot Gate film/poster, dedicated cast dossier stills, download masters, copy, pricing, eligibility and release flags are unchanged.
+The hero, Depot Gate film/poster, original dossier still masters, download masters, copy, pricing, eligibility and release flags are unchanged.
+
+## Character detail consistency repair
+
+The default HTML portrait and all four JavaScript selections use the same finished portrait URLs as the landing cards. The detail frame preserves the 4:3 composition and soft shoulder fade. “What drives them” becomes “Character file”, with punchy public-facing profiles grounded in the existing website facts. No new backstory, spoiler, or canonical record is introduced.

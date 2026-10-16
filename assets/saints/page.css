@@ -244,3 +244,8 @@ footer .footer-press:hover{color:var(--paper)}
 #watch .episode-image .pill{background:rgba(29,31,29,.9);color:#e2dfd5;border:1px solid rgba(219,213,197,.24);box-shadow:none}
 #watch .episode-image .play{background:rgba(29,31,29,.86);color:#e2dfd5;border:1px solid rgba(219,213,197,.28);box-shadow:none}
 @media(prefers-contrast:more){#watch .episode-image .pill,#watch .episode-image .play{background:#191b19;color:#f4f1e8;border-color:#e2dfd5}}
+
+/* Character details reuse the exact finished cast portrait, without a cinematic-still crop. */
+.cast-page .portrait{width:100%;max-width:640px;aspect-ratio:4/3;margin-inline:auto;background:transparent}
+.cast-page .portrait img,.cast-page .portrait.vernon img{display:block;object-fit:contain;object-position:50% 50%;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 70%,rgba(0,0,0,.96) 80%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 70%,rgba(0,0,0,.96) 80%,transparent 100%)}
+@media(prefers-contrast:more){.cast-page .portrait img{-webkit-mask-image:none;mask-image:none}}

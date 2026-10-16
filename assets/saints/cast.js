@@ -1,5 +1,5 @@
 const root='/assets/saints/';
-const people={"nix":{"name":"NIX","role":"THE ONE GOING BACK","deck":"He used to work for Vernon. Now he’s getting Rook back.","bio":"Nix’s past puts him on both sides of this fight. Rook has been taken, and walking away is not an option.","age":"Unrevealed"},"rook":{"name":"ROOK","role":"NOBODY’S PROPERTY","deck":"Vernon has her locked up. He still can’t shut her up.","bio":"Rook refuses to cooperate with the man holding her. Nix and Brick are coming for her. She is not making captivity easy for anyone.","age":"Unrevealed"},"brick":{"name":"BRICK","role":"THE ONE BESIDE YOU","deck":"Nix goes back for Rook. Brick goes with him.","bio":"A gorilla in camouflage, standing beside Nix when things turn ugly. His loyalty becomes a choice with real consequences.","age":"Unrevealed"},"vernon":{"name":"VERNON VOSS","role":"THE MAN BEHIND THE DOORS","deck":"An army of robots. An ego that bruises easily.","bio":"Vernon holds Rook, commands the guards, and expects obedience. Defy him and it becomes personal. Scuff his floor and it becomes a crisis.","age":"75"}};
+const people={"nix":{"name":"NIX","role":"THE ONE GOING BACK","deck":"He used to work for Vernon. Now he’s getting Rook back.","bio":"Vernon’s former employee. Rook’s would-be rescuer. His past puts him on both sides of the fight.","age":"Unrevealed"},"rook":{"name":"ROOK","role":"NOBODY’S PROPERTY","deck":"Vernon has her locked up. He still can’t shut her up.","bio":"A captive who refuses to cooperate. Vernon can lock the door. He cannot make her obedient.","age":"Unrevealed"},"brick":{"name":"BRICK","role":"THE ONE BESIDE YOU","deck":"Nix goes back for Rook. Brick goes with him.","bio":"A gorilla in camouflage. Nix goes after Rook; Brick stands beside him when it turns ugly.","age":"Unrevealed"},"vernon":{"name":"VERNON VOSS","role":"THE MAN BEHIND THE DOORS","deck":"An army of robots. An ego that bruises easily.","bio":"Commands the robots. Holds Rook captive. Expects obedience—and takes defiance personally.","age":"75"}};
 const trackSaints=(name,fields)=>window.SaintsAnalytics?.track(name,fields);
 const characterWatch=document.querySelector('[data-watch-placement="character"]');
 characterWatch.href=window.SaintsAnalytics?.watchUrl('episode')||characterWatch.href;
@@ -38,7 +38,7 @@ function selectPerson(b){
   document.querySelector('.character-more').open=false;
   tabs.forEach(t=>{t.setAttribute('aria-selected',String(t===b));t.tabIndex=t===b?0:-1});
   document.querySelector('#dossier').setAttribute('aria-labelledby',b.id);
-  document.querySelector('#portrait').src=root+'stills/'+(key==='nix'?'nix-episode02.png':key+'-hero.png');
+  document.querySelector('#portrait').src=root+'film-finish/v1/'+key+'-cast-film-v1.png';
   document.querySelector('#portrait').alt=p.name+' character portrait';
   document.querySelector('.portrait').classList.toggle('vernon',key==='vernon');
   for(const [id,val]of Object.entries({'character-name':p.name,'character-role':p.role,'character-deck':p.deck,'character-bio':p.bio}))document.getElementById(id).textContent=val;
