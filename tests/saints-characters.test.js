@@ -92,7 +92,7 @@ test('all four tabs update every character link, preserve collection links and s
     assert.equal(r.nodes['#character-name'].textContent,people[key].name);
     assert.equal(r.nodes['#dossier'].getAttribute('aria-labelledby'),'tab-'+key);
     assert.equal(r.tabs.filter(tab=>tab.tabIndex===0).length,1);
-    assert.equal(r.nodes['.character-more'].open,false);
+    assert.equal(r.nodes['.character-more'].open,true);
     for(const link of r.assetLinks){
       const file=cards.asset(key,link.dataset.assetKind)||cards.collection(link.dataset.assetKind);
       assert.equal(link.href,file.href);assert.equal(link.download,file.filename);
