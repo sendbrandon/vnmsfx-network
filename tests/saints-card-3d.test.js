@@ -30,8 +30,10 @@ test('front and back controls settle on a readable face with correct accessibili
  r.click('[data-card-front]');r.advance(2200);
  assert.equal(r.nodes['.crew-card-status'].textContent,'Nix · Front');assert.equal(r.pose().pitch,0);
 });
-test('idle rotates through 360 degrees and a grab stops it without jumping',()=>{
- const r=runtime();r.advance(17000);assert.ok(r.pose().yaw>360);
+test('idle sways symmetrically within 20 degrees, never reveals the back, and grabs without jumping',()=>{
+ const r=runtime();let low=0,high=0;
+ for(let i=0;i<1100;i++){r.advance(16);const y=r.pose().yaw;low=Math.min(low,y);high=Math.max(high,y);assert.ok(Math.abs(y)<=20);assert.equal(r.nodes['.crew-card-status'].textContent,'Nix · Front');}
+ assert.ok(low< -19.9&&high>19.9);
  const before=r.pose();r.nodes['.crew-card-stage'].events.pointerdown({button:0,pointerId:1,clientX:0,clientY:0,timeStamp:17000});
  r.advance(500);assert.deepEqual(r.pose(),before);
 });
@@ -45,7 +47,7 @@ test('drag supports both axes, flick momentum and a friction stop into a readabl
 });
 test('pause stops idle; reduced motion disables animation but preserves side controls',()=>{
  const r=runtime();r.advance(1500);r.click('[data-card-spin]');const before=r.pose();r.advance(3000);assert.deepEqual(r.pose(),before);
- r.host.events.focusin();r.host.events.pointerenter();r.click('[data-card-spin]');r.advance(1000);assert.ok(r.pose().yaw>before.yaw);
+ r.host.events.focusin();r.host.events.pointerenter();r.click('[data-card-spin]');r.advance(1000);assert.notEqual(r.pose().yaw,before.yaw);assert.ok(Math.abs(r.pose().yaw)<=20);
  const reduced=runtime(true);assert.equal(reduced.nodes['[data-card-spin]'].disabled,true);assert.equal(reduced.frames.size,0);
  reduced.click('[data-card-back]');assert.equal(reduced.nodes['.crew-card-status'].textContent,'Nix · Back');assert.equal(reduced.frames.size,0);
 });
@@ -55,4 +57,9 @@ test('keyboard tilt, pointer cancellation and hidden documents do not leave runa
  s.events.pointerdown({button:0,pointerId:2,clientX:0,clientY:0,timeStamp:2000});s.events.pointercancel({type:'pointercancel',pointerId:2,timeStamp:2020});r.advance(2000);assert.ok(Math.abs(r.pose().pitch)<.1);
  r.document.hidden=true;r.document.events.visibilitychange();assert.equal(r.frames.size,0);
  const pose=r.pose();r.advance(30000);assert.deepEqual(r.pose(),pose);
+});
+
+test('a manually revealed back stays available until front or resume is requested',()=>{
+ const r=runtime();r.click('[data-card-back]');r.advance(14000);assert.equal(r.nodes['.crew-card-status'].textContent,'Nix · Back');
+ r.click('[data-card-spin]');r.click('[data-card-spin]');r.advance(12000);assert.equal(r.nodes['.crew-card-status'].textContent,'Nix · Front');assert.ok(Math.abs(r.pose().yaw-360)<=20||Math.abs(r.pose().yaw)<=20);
 });
