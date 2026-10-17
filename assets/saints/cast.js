@@ -43,6 +43,7 @@ function selectPerson(b){
   document.querySelector('.portrait').classList.toggle('vernon',key==='vernon');
   for(const [id,val]of Object.entries({'character-name':p.name,'character-role':p.role,'character-deck':p.deck,'character-bio':p.bio}))document.getElementById(id).textContent=val;
   updateDownloadLinks();
+  window.SaintsCard3D?.select(key);
   characterStatus.textContent=displayName(key)+(cardsReady?' selected.':' selected. Reload to restore card downloads.');
   trackSaints('character_select',{character:key});
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof document.querySelector('.dossier-copy').animate==='function'){
