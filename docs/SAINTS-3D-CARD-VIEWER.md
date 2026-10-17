@@ -9,3 +9,12 @@ Front / Back controls, one-turn Spin, horizontal pointer dragging, and arrow/Hom
 The viewer is separate from the existing v4 downloadable PNG/PDF/ZIP files; those exports remain unchanged. This is a browser 3D presentation, not a downloadable Blender/GLB model.
 
 Validation: all 120 Saints tests and build pass. Browser verified front/back, full spin, Rook selection, pointer drag to reverse, and 390px layout with no horizontal overflow. New tests cover cross-character face pairing, accessibility visibility, reduced motion and keyboard/pointer cancellation.
+
+
+## Motion and material revision
+
+All ten requested card refinements are implemented in the review branch: two-axis dragging (unlimited yaw, vertical tilt limited to ±70°), automatic 360° idle rotation at 25°/second, release momentum with exponential friction, spring settling into front/back reading views, lift while grabbed, four edge surfaces, orientation-driven softbox sheen, matte portrait/satin type, a responsive ground shadow and a restrained 1.2px portrait/type parallax. These are browser CSS 3D and lighting cues, not a physically based WebGL renderer.
+
+Rotation pauses on hover/focus and when offscreen or the document is hidden. Pause/Resume is explicit; reduced-motion settings stop idle rotation and preserve nonanimated side controls. Pointer cancellation settles safely. No perpetual rotation when the component is out of view. Front/back selection holds a reading view before idle can return; keyboard focus keeps it still.
+
+Validation: 122 tests pass, including frame-time motion, both axes, inertia, 360° idle, pause/resume, hidden-document suspension and reduced motion. Browser verified idle rotation, diagonal drag/tilt and 390px sizing. Page-arrangement ideas are proposals only; no broader layout changes are part of this revision.
