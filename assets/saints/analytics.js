@@ -94,7 +94,7 @@
     try {
       if (!optedOut()) Object.entries(attribution()).forEach(([key, value]) => query.set(key, value));
     } catch (error) { /* The direct character anchor remains available. */ }
-    return '/saints-of-bad-luck' + (query.size ? '?' + query.toString() : '') + '#characters';
+    return '/saints-cast' + (query.size ? '?' + query.toString() : '') + '#characters';
   }
 
   window.SaintsAnalytics = Object.freeze({ track, watchUrl, charactersUrl });

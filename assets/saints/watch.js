@@ -27,6 +27,14 @@
     if (back) { back.href = '/saints-of-bad-luck#clips'; back.textContent = '← Clips'; }
     film.poster = clip.poster;
   }
+  if (clip || trailer) {
+    const title = document.querySelector('#watch-followup-title');
+    const copy = document.querySelector('#watch-followup-copy');
+    const primary = document.querySelector('#watch-primary');
+    if (title) title.textContent = 'Start at the beginning.';
+    if (copy) copy.textContent = 'Get Her Back · Episode 1 · 5:11 · Free. No account. No payment.';
+    if (primary) { primary.href = window.SaintsAnalytics?.watchUrl('episode') || '/saints-watch?video=episode'; primary.textContent = 'Watch Episode 1 — Free ↗'; }
+  }
   let hideTimer;
   let progressTimer;
   let youtubePlayer;
