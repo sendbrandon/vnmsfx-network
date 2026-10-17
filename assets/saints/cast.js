@@ -12,6 +12,27 @@ const assetLinks=[...document.querySelectorAll('[data-asset-kind]')];
 const downloadButton=document.querySelector('#download-character');
 const characterStatus=document.querySelector('#character-status');
 const displayName=key=>key==='vernon'?'Vernon':key.charAt(0).toUpperCase()+key.slice(1);
+
+const castOrder=['nix','rook','brick','vernon'];
+function updateStoryLinks(key){
+  const next=castOrder[(castOrder.indexOf(key)+1)%castOrder.length];
+  const link=document.querySelector('#next-character');
+  if(link){
+    link.href='/saints-cast?character='+next+'#characters';
+    document.querySelector('#next-character-name').textContent=displayName(next);
+    document.querySelector('#next-character-number').textContent=String(castOrder.indexOf(next)+1).padStart(2,'0')+' / 04';
+    document.querySelector('#next-character-image').src=root+'cast-headshots/v2/'+next+'-portrait-v2.png';
+  }
+  const scene=document.querySelector('#related-scene');
+  if(scene){
+    const episode=key==='brick';
+    scene.href='/saints-watch?video='+(episode?'episode':'come-home');
+    document.querySelector('#related-scene-image').src=root+(episode?'film-finish/v2/episode-01-film-v2.png':'clips/come-home/come-home-poster-v3.jpg');
+    document.querySelector('#related-scene-title').textContent=episode?'Get Her Back':'Road Fight · Come Home';
+    document.querySelector('#related-scene-meta').textContent=episode?'EPISODE 01 · 5:11':'CLIP · 0:40';
+  }
+}
+
 function updateDownloadLinks(){
   if(!cardsReady)return;
   assetLinks.forEach(link=>{
@@ -40,10 +61,11 @@ function selectPerson(b){
   document.querySelector('#dossier').setAttribute('aria-labelledby',b.id);
   document.querySelector('#portrait').src=root+'cast-headshots/v2/'+key+'-portrait-v2.png';
   document.querySelector('#portrait').alt=p.name+' character portrait';
-  document.querySelector('.portrait').classList.toggle('vernon',key==='vernon');
+  document.querySelector('.portrait')?.classList.toggle('vernon',key==='vernon');
   for(const [id,val]of Object.entries({'character-name':p.name,'character-role':p.role,'character-deck':p.deck,'character-bio':p.bio}))document.getElementById(id).textContent=val;
   updateDownloadLinks();
   window.SaintsCard3D?.select(key);
+  updateStoryLinks(key);
   characterStatus.textContent=displayName(key)+(cardsReady?' selected.':' selected. Reload to restore card downloads.');
   trackSaints('character_select',{character:key});
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof document.querySelector('.dossier-copy').animate==='function'){
@@ -68,3 +90,5 @@ if(cardsReady){
 const requestedCharacter=new URLSearchParams(location.search).get('character');
 const requestedTab=tabs.find(tab=>tab.dataset.character===requestedCharacter);
 if(requestedTab)selectPerson(requestedTab);
+
+updateStoryLinks(selectedCharacter);
