@@ -157,7 +157,7 @@ class Element {
 
 async function watchFixture(options = {}) {
   const ids = {};
-  for (const id of ['film', 'cinema', 'watch-message', 'next-episode', 'watch-title', 'next-title', 'fullscreen', 'replay']) ids[id] = new Element();
+  for (const id of ['film', 'cinema', 'watch-message', 'next-episode', 'watch-title', 'next-title', 'fullscreen', 'replay', 'watch-followup-title', 'watch-followup-copy', 'watch-primary']) ids[id] = new Element();
   ids['next-episode'].hidden = true;
   const body = new Element('body');
   const head = new Element('head');
@@ -451,9 +451,9 @@ test('all explicitly planned public outlet and creative slugs survive the bounde
 
 test('permanent watch-to-character link preserves only approved campaign enums', () => {
   const f = analyticsFixture({pathname:'/saints-watch',search:'?video=episode&utm_source=instagram&utm_campaign=saints_dec4&email=private@example.test'});
-  assert.equal(f.api.charactersUrl(), '/saints-of-bad-luck?utm_source=instagram&utm_campaign=saints_dec4#characters');
+  assert.equal(f.api.charactersUrl(), '/saints-cast?utm_source=instagram&utm_campaign=saints_dec4#characters');
   f.window.navigator.globalPrivacyControl = true;
-  assert.equal(f.api.charactersUrl(), '/saints-of-bad-luck#characters');
+  assert.equal(f.api.charactersUrl(), '/saints-cast#characters');
 });
 
 
@@ -486,3 +486,11 @@ for (const [slug, title, source] of [
     assert.deepEqual(f.names(), ['video_start', 'video_25', 'video_50', 'video_complete']);
   });
 }
+
+for (const video of ['trailer','depot-gate','come-home']) test(video+' follow-up leads cold viewers to Episode 1',async()=>{
+ const f=await watchFixture({url:'https://vnmsfx.com/saints-watch?video='+video});
+ assert.equal(f.ids['watch-followup-title'].textContent,'Start at the beginning.');
+ assert.match(f.ids['watch-primary'].href,/^\/saints-watch\?video=episode/);
+ assert.equal(f.ids['watch-primary'].textContent,'Watch Episode 1 — Free ↗');
+ assert.match(f.ids['watch-followup-copy'].textContent,/5:11/);
+});

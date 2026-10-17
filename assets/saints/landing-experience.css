@@ -1,0 +1,40 @@
+/* Approved cold-visitor journey. Original assets and commerce rules are retained. */
+.show-landing .hero-visual{position:relative;overflow:hidden}
+.show-landing .hero-title-cover{position:absolute;inset:0;background:linear-gradient(90deg,#242628 0%,#242628 33%,#242628ed 36%,#24262800 49%);pointer-events:none}
+.show-landing .hero-show-title{position:absolute;left:6%;top:12%;width:28%;height:auto;filter:none;pointer-events:none}
+.show-landing .hero-line{font-size:clamp(32px,3.5vw,54px);line-height:1.1;max-width:23ch;letter-spacing:-.04em}
+.show-landing .hero-line span{font-style:normal}
+.show-landing .hero-premise{max-width:51ch}
+.show-landing .hero-actions{min-width:280px}
+.show-landing #watch .episode-grid{display:block;max-width:1050px}
+.show-landing #watch .featured{width:100%;max-width:none}
+.show-landing #watch .episode-image{aspect-ratio:1920/836}
+.show-landing #watch .episode-copy h3{font-size:clamp(28px,3vw,40px)}
+.show-landing #watch .episode-copy p:not(.eyebrow){font-size:15px;max-width:52ch}
+.show-landing #watch .episode-copy .text-button{font-size:14px;white-space:normal;min-height:44px}
+.show-landing .cast-connection{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 8px;min-height:3em;max-width:25ch}
+.show-landing .club-invite{background:radial-gradient(ellipse at 80% 100%,#4e42352e,transparent 70%);padding-block:clamp(48px,6vw,84px)}
+.show-landing .club-invite h2{font:400 clamp(38px,4.5vw,64px)/1.08 Georgia,serif;letter-spacing:-.035em}
+.show-landing .club-invite .section-heading>div>p:not(.eyebrow){max-width:48ch;font-size:16px;line-height:1.7}
+.show-landing .club-invite-action{flex-shrink:0;max-width:100%}
+.show-landing .club-invite-action>p{font-size:12px;color:var(--muted);margin:12px 0 0;text-align:center}
+.show-landing .upcoming-episode{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px;align-items:center;max-width:900px;margin-bottom:38px}
+.show-landing .upcoming-episode .episode-copy{padding:0;display:block}
+.show-landing .upcoming-episode .episode-copy h3{font:400 30px/1.1 Georgia,serif}
+.show-landing .upcoming-episode .button{min-height:44px;padding:10px 16px;margin-top:10px;opacity:.65}
+.mobile-watch-bar{display:none}
+@media(max-width:750px){
+  .show-landing{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+  .show-landing .hero-line{font-size:clamp(30px,7.5vw,44px)}
+  .show-landing .hero-title-cover{background:linear-gradient(90deg,#242628 0%,#242628 33%,#242628ee 36%,#24262800 49%)}
+  .show-landing .hero-actions{min-width:0}
+  .show-landing #watch .episode-grid{display:block;overflow:visible;padding:0}
+  .show-landing #watch .episode-copy{display:block}
+  .show-landing .upcoming-episode{grid-template-columns:minmax(0,1fr);gap:18px;max-width:480px}
+  .show-landing .cast-connection{min-height:3em;font-size:12px}
+  .show-landing .club-invite-action{width:100%;margin-top:22px}
+  .show-landing .club-invite .button{margin-top:0;white-space:normal;text-align:center}
+  .mobile-watch-bar:not([hidden]){position:fixed;inset:auto 0 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#242628f5;backdrop-filter:blur(16px);box-shadow:0 -12px 35px #0002}
+  .mobile-watch-bar>span{font-size:13px;line-height:1.3}.mobile-watch-bar small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+  .mobile-watch-bar .button{font-size:13px;padding:12px 18px;min-height:44px;white-space:nowrap}
+}

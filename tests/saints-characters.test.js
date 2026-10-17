@@ -64,7 +64,7 @@ class Element {
   animate(){this.animated=true;}
 }
 function pageRuntime({missingCatalog=false,reduced=true,search=''}={}){
-  const selectors=['#download-character','#character-status','#character-card-note','#character-formats','#dossier','#portrait','.portrait','.dossier-copy','.character-more','.characters','#character-name','#character-role','#character-deck','#character-bio','#back-to-free','#plan-dialog','header','[data-watch-placement="character"]'];
+  const selectors=['#next-character','#next-character-name','#next-character-number','#next-character-image','#related-scene','#related-scene-image','#related-scene-title','#related-scene-meta','#download-character','#character-status','#character-card-note','#character-formats','#dossier','#portrait','.portrait','.dossier-copy','.character-more','.characters','#character-name','#character-role','#character-deck','#character-bio','#back-to-free','#plan-dialog','header','[data-watch-placement="character"]'];
   const nodes=Object.fromEntries(selectors.map(key=>[key,new Element(key)]));
   const tabs=['nix','rook','brick','vernon'].map(key=>{const el=new Element('tab-'+key);el.dataset.character=key;return el;});
   tabs[0].tabIndex=0;tabs[0].setAttribute('aria-selected','true');
@@ -147,7 +147,7 @@ test('default artwork downloads, press and below-player next step exist without 
   }
   assert.match(html,/<a class="footer-press" href="\/saints-press">Press /);
   assert.match(watch,/<\/main><section class="watch-followup" aria-labelledby="watch-followup-title">/);
-  assert.match(watch,/id="watch-characters" href="\/saints-of-bad-luck#characters"/);
+  assert.match(watch,/id="watch-characters" href="\/saints-cast"/);
   assert.doesNotMatch(watch.match(/<section class="watch-followup"[\s\S]*?<\/section>/)[0],/\shidden(?:[\s=>])|subscribe|sign.?up/i);
   assert.match(read('assets/saints/watch.css'),/#cinema:fullscreen\{height:100%;min-height:0\}/);
 });
@@ -160,12 +160,12 @@ test('new download and follow-up links can wrap at narrow widths and enlarged te
 });
 
 
-test('landing separates name-only cast links from character descriptions and keeps real episode inventory',()=>{
+test('landing introduces cast relationships while preserving real episode inventory',()=>{
   const landing=read('saints-of-bad-luck.html'),cast=read('saints-cast.html');
   assert.doesNotMatch(landing,/id="dossier"|id="character-bio"|id="download-character"/);
   assert.match(landing,/<a href="\/saints-cast">Cast<\/a>/);
   for(const key of ['nix','rook','brick','vernon'])assert.ok(landing.includes('/saints-cast?character='+key+'#characters'));
-  assert.equal((landing.match(/class="episode (?:featured|next) reveal"/g)||[]).length,2);
+  assert.equal((landing.match(/class="episode (?:featured reveal|next upcoming-episode)"/g)||[]).length,2);
   assert.match(landing,/<dt>Genre<\/dt><dd>Action · Sci-Fi · Dark Comedy<\/dd>/);
   assert.match(landing,/<dt>Season<\/dt><dd>1<\/dd>/);
   assert.match(landing,/<dt>Rating<\/dt><dd>Mature<\/dd>/);
@@ -187,4 +187,18 @@ test('cast deep links select a matching dossier and reject unknown keys',()=>{
   assert.equal(r.tabs[0].getAttribute('aria-selected'),'true');
   assert.equal(r.assetLinks[0].dataset.assetCharacter,'nix');
   assert.equal(r.events.filter(e=>e.name==='character_select').length,0);
+});
+
+
+test('portrait selection pairs each profile with an available scene and the next character',async()=>{
+  const r=pageRuntime();
+  const order=['nix','rook','brick','vernon'];
+  for(let i=0;i<4;i++){
+    await r.tabs[i].emit('click');
+    const next=order[(i+1)%4];
+    assert.equal(r.nodes['#next-character'].href,'/saints-cast?character='+next+'#characters');
+    assert.match(r.nodes['#next-character-image'].src,new RegExp(next+'-portrait-v2.png$'));
+    assert.equal(r.nodes['#related-scene'].href,'/saints-watch?video='+(order[i]==='brick'?'episode':'come-home'));
+    assert.equal(r.nodes['#related-scene-title'].textContent,order[i]==='brick'?'Get Her Back':'Road Fight · Come Home');
+  }
 });
