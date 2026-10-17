@@ -26,7 +26,7 @@
     if(!Object.hasOwn(names,character))return;
     stop();drag=null;key=character;angle=0;
     host.querySelector('.crew-card-photo').src='/assets/saints/cast-headshots/v2/'+key+'-portrait-v2.png';
-    host.querySelector('.crew-card-name').textContent=names[key];
+    host.querySelector('.crew-card-name').textContent=key==='vernon'?'Vernon':names[key];
     host.querySelector('.crew-card-number').textContent=ids[key]+' / 04';
     host.querySelector('.crew-card-quote').textContent=quotes[key];
     back.querySelector('img').src=window.SaintsCards.asset(key,'back').href;
