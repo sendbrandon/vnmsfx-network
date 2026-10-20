@@ -291,11 +291,11 @@ test('native autoplay rejection keeps a usable play prompt without a start event
 });
 
 test('YouTube uses the configured privacy-enhanced iframe and real API playback state', async () => {
-  const f = await watchFixture({ youtube: true, config: { youtubeId: 'nHrWDMSD9Wg' } });
+  const f = await watchFixture({ youtube: true, config: { youtubeId: 'SleGxvvVt7s' } });
   const frame = f.document.querySelector('#youtube-film');
   const source = new URL(frame.src);
   assert.equal(source.origin, 'https://www.youtube-nocookie.com');
-  assert.equal(source.pathname, '/embed/nHrWDMSD9Wg');
+  assert.equal(source.pathname, '/embed/SleGxvvVt7s');
   assert.equal(source.searchParams.get('enablejsapi'), '1');
   assert.equal(source.searchParams.get('origin'), 'https://vnmsfx.com');
   assert.equal(f.ids.film.hidden, true);
@@ -330,7 +330,7 @@ test('YouTube uses the configured privacy-enhanced iframe and real API playback 
 
 test('YouTube API can arrive late without replacing ordinary playback or previous callback', async () => {
   let previousCalls = 0;
-  const f = await watchFixture({ config: { youtubeId: 'nHrWDMSD9Wg' }, previousReady() { previousCalls++; } });
+  const f = await watchFixture({ config: { youtubeId: 'SleGxvvVt7s' }, previousReady() { previousCalls++; } });
   assert.equal(f.document.head.children.length, 1);
   assert.equal(f.document.head.children[0].src, 'https://www.youtube.com/iframe_api');
   assert.equal(f.player, undefined);
@@ -366,7 +366,7 @@ test('invalid YouTube IDs cannot inject a URL and native network errors stay vis
 });
 
 test('pagehide stops polling, pageshow resumes observed playback, repeat initialization is harmless', async () => {
-  const f = await watchFixture({ youtube: true, config: { youtubeId: 'nHrWDMSD9Wg' } });
+  const f = await watchFixture({ youtube: true, config: { youtubeId: 'SleGxvvVt7s' } });
   f.player.stateChange(1);
   f.window.emit('pagehide');
   assert.equal(f.timers.size, 0);
@@ -385,7 +385,7 @@ test('pagehide stops polling, pageshow resumes observed playback, repeat initial
 
 test('privacy signals and absent analytics never block video controls, endcard or replay', async () => {
   for (const options of [{ navigator: { globalPrivacyControl: true } }, { noAnalytics: true }]) {
-    const f = await watchFixture({ ...options, youtube: true, config: { youtubeId: 'nHrWDMSD9Wg' } });
+    const f = await watchFixture({ ...options, youtube: true, config: { youtubeId: 'SleGxvvVt7s' } });
     f.player.stateChange(1); f.player.position = 100; f.tick(); f.player.stateChange(0);
     assert.deepEqual(f.events, []);
     assert.equal(f.ids['next-episode'].hidden, false);
@@ -395,7 +395,7 @@ test('privacy signals and absent analytics never block video controls, endcard o
 });
 
 test('YouTube errors stop timers without reporting completion or hiding the usable frame', async () => {
-  const f = await watchFixture({ youtube: true, config: { youtubeId: 'nHrWDMSD9Wg' } });
+  const f = await watchFixture({ youtube: true, config: { youtubeId: 'SleGxvvVt7s' } });
   f.player.stateChange(1);
   f.player.config.events.onError({ data: 150 });
   assert.equal(f.timers.size, 0);
@@ -412,7 +412,7 @@ test('watch HTML loads local analytics before playback instrumentation', () => {
 
 
 test('the custom YouTube fullscreen button includes the endcard when container fullscreen is supported', async () => {
-  const f = await watchFixture({ youtube: true, config: { youtubeId: 'nHrWDMSD9Wg' } });
+  const f = await watchFixture({ youtube: true, config: { youtubeId: 'SleGxvvVt7s' } });
   let containerCalls = 0;
   let iframeCalls = 0;
   f.ids.cinema.requestFullscreen = async () => { containerCalls++; };
@@ -475,7 +475,7 @@ for (const [slug, title, source] of [
   ['come-home', 'Road Fight · Come Home', '/assets/saints/clips/come-home/come-home-web-v1.mp4']
 ]) {
   test('public clip ' + slug + ' uses the cinema player without episode auth, YouTube or purchase end card', async () => {
-    const f = await watchFixture({ url: 'https://vnmsfx.com/saints-watch?video=' + slug, config: { youtubeId: 'nHrWDMSD9Wg' } });
+    const f = await watchFixture({ url: 'https://vnmsfx.com/saints-watch?video=' + slug, config: { youtubeId: 'SleGxvvVt7s' } });
     assert.equal(f.ids.film.src, source);
     assert.equal(f.ids['watch-title'].textContent, 'Clip · ' + title);
     assert.equal(f.requests.length, 0, 'public clip must not request episode playback or episode YouTube configuration');
