@@ -56,6 +56,7 @@ function createHandler(env = process.env, providerFactory = createProviders) {
     try {
       const url = new URL(req.url, "https://vnmsfx.com"),
         action = url.searchParams.get("action") || "config";
+      if(action==='early-access')return require('./early-access').createHandler({env,readBody:rawBody})(req,res);
       const methods = {
         config: "GET",
         status: "GET",

@@ -4,3 +4,4 @@ node_modules/
 .env.*.local
 .vercel/
 assets/saints/episode-01-opening-2.mp4
+.env*

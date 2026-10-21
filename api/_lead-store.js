@@ -112,8 +112,8 @@ async function notionCreate(b, lead) {
     "Sells": text(lead.channelLabel),
     "Status": { select: { name: REPLY_TASK.status } },
     "Owner": text(REPLY_TASK.owner),
-    "Next Action": text(REPLY_TASK.nextAction),
-    "Reply Due": { date: { start: lead.replyDueIso } },
+    "Next Action": text(lead.nextAction || REPLY_TASK.nextAction),
+    "Reply Due": { date: lead.replyDueIso ? { start: lead.replyDueIso } : null },
     // Named a hint, not a recommendation: a questionnaire cannot rank
     // processes, and the column heading should not imply that it can.
     "Routing Hint (unverified)": text(lead.process),
@@ -175,7 +175,7 @@ async function airCreate(b, lead) {
   const fields = {
     "Submission ID": lead.submissionId, "First Name": lead.firstName, "Email": lead.email,
     "Sells": lead.channelLabel, "Status": REPLY_TASK.status, "Owner": REPLY_TASK.owner,
-    "Next Action": REPLY_TASK.nextAction, "Reply Due": lead.replyDueIso,
+    "Next Action": lead.nextAction || REPLY_TASK.nextAction, "Reply Due": lead.replyDueIso,
     "Routing Hint (unverified)": lead.process, "Score": lead.points, "Answered": lead.answered,
     "Finance Flagged": !!lead.financeTouched, "Areas Noted": lead.notedText,
     "Answers": lead.transcriptText, "Source": lead.source, "Campaign": lead.campaign,
