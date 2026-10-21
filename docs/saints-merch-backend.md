@@ -62,3 +62,10 @@ MERCH_STRIPE_SECRET_KEY/WEBHOOK_SECRET test credentials, isolated test Supabase 
 - https://help.apliiq.com/portal/en/kb/articles/how-to-test-orders-with-apliiq-api
 
 Deployment adjustment: Vercel Hobby caps12 functions. Public `/api/saints-merch` rewrites to existing `/api/saints?merch=1`; explicit namespace delegates before film handling to isolated `server/merch/http.js`. Existing film config/actions retain their path. No new function slot or paid-plan upgrade. Route delegation has a regression test.
+
+## Apliiq account setup receipt — 2026-10-21
+Signed-in account now has a custom store named Saints of Bad Luck — VNMSFX. Supplier auto-processing was switched OFF and ask-before-swapping saved; both persisted after settings reload. No card, paid label subscription or supplier order was added. The launch checklist warns that an added card is charged when supplier orders are received.
+
+The credential panel explicitly says API requires Apliiq VIP subscription; app key/shared secret remain masked on the free account. The plan dialog quotes $29.99 per month or $323.89 per year. The official VIP page says purchases are nonrefundable and cancellation is available at any time. Do not confuse free store registration with free API access. Brandon approved moving existing supplier credentials into encrypted branch-preview Vercel variables, but that permission does not authorize a subscription purchase. No supplier credentials were obtained or uploaded, and the Vercel environment remains unchanged. Sample approval can precede the recurring API plan.
+
+Evidence: https://www.apliiq.com/verified/stores (authenticated credential panel), https://www.apliiq.com/verified/settings (saved processing settings), https://www.apliiq.com/print-on-demand/join-apliiq-very-important-partner (price/terms). Account screenshots are kept locally outside Git and contain no unmasked keys.
