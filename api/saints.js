@@ -11,6 +11,8 @@ async function rawBody(req){
  const chunks=[];let size=0;for await(const c of req){const b=Buffer.from(c);size+=b.length;if(size>262144)throw new AccessError(413,'Request too large.');chunks.push(b);}return Buffer.concat(chunks);
 }
 function createHandler(env=process.env,providerFactory=createProviders){return async(req,res)=>{
+ // Reuse this function's deployment slot; merch has its own config/providers.
+ if(new URL(req.url,'https://vnmsfx.com').searchParams.get('merch')==='1')return require('../server/merch/http').createHandler(env)(req,res);
  res.setHeader('Cache-Control','private, no-store');res.setHeader('Vary','Authorization');res.setHeader('X-Content-Type-Options','nosniff');const requestId=crypto.randomUUID();res.setHeader('X-Request-Id',requestId);
  try{
   const action=new URL(req.url,'https://vnmsfx.com').searchParams.get('action')||'config';

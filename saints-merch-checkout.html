@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Saints — checkout test</title>
+    <style>
+      body {
+        margin: 0;
+        background: #171713;
+        color: #e9e3d5;
+        font:
+          16px/1.6 Helvetica,
+          Arial,
+          sans-serif;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+      main {
+        padding: 35px;
+        max-width: 580px;
+      }
+      small {
+        letter-spacing: 0.1em;
+      }
+      h1 {
+        font-size: 42px;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+      }
+      a {
+        color: inherit;
+      }
+      p {
+        color: #bbb7aa;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <small>SAINTS OF BAD LUCK / PRIVATE SETUP</small>
+      <h1 id="heading">Test checkout.</h1>
+      <p id="status" role="status">
+        Checking the test payment. Production is disabled; no hoodie will be
+        made or shipped.
+      </p>
+      <p><a href="/saints-of-bad-luck">Return to Saints of Bad Luck</a></p>
+    </main>
+    <script>
+      const params = new URLSearchParams(location.search),
+        id = params.get("session_id");
+      if (params.has("cancelled")) {
+        document.querySelector("#heading").textContent =
+          "Test checkout cancelled.";
+        document.querySelector("#status").textContent =
+          "No order has been sent to production. The reservation will be released when Stripe confirms the session has expired.";
+      } else if (/^cs_test_[a-zA-Z0-9_]+$/.test(id || "")) {
+        fetch(
+          "/api/saints-merch?action=status&session_id=" +
+            encodeURIComponent(id),
+        )
+          .then((r) => {
+            if (!r.ok) throw new Error();
+            return r.json();
+          })
+          .then((x) => {
+            document.querySelector("#status").textContent =
+              x.status === "paid_hold"
+                ? "Test payment recorded. The order is held for setup; no real charge, production or shipment was created."
+                : "Payment confirmation is pending. Production remains disabled. Please refresh shortly.";
+          })
+          .catch(() => {
+            document.querySelector("#status").textContent =
+              "Test confirmation is temporarily unavailable. Production remains disabled.";
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "film-poster.jpg": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/film-poster.jpg",
+    "sha256": "c20fba39d402b11f8ef5f83fc5fc13f5e909ebeca1b75790e95f7b42e7713eb6",
+    "bytes": 80224
+  },
+  "helvetica-neue-medium.ttf": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/helvetica-neue-medium.ttf",
+    "sha256": "775b0d9851d1fb351fee4ab8f56ae5062e9697855b7dd8aa182697e36ee37e57",
+    "bytes": 306344
+  },
+  "hoodie-film.mp4": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/hoodie-film.mp4",
+    "sha256": "3815b6ae21954419d4b66314a3694e83dda87e37a838f64143172ecc2b45bfb7",
+    "bytes": 43325956
+  },
+  "lemon-regular.otf": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/lemon-regular.otf",
+    "sha256": "76b3a6b2bfb0631bf363c3ec5bfbdaf43caca453076f207408ebfad5ac4214a7",
+    "bytes": 53544
+  },
+  "nix-back.webp": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/nix-back.webp",
+    "sha256": "97e433c04d1a531b7549d77eea4d05d264b0fe45f1c0a48569318c339e83034e",
+    "bytes": 120950
+  },
+  "nix-detail.webp": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/nix-detail.webp",
+    "sha256": "efd8467162055835f431299f273fb789326a4c9047f68efa7a09384c3f3daecf",
+    "bytes": 80460
+  },
+  "nix-front.webp": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/nix-front.webp",
+    "sha256": "a4254d29cc49a23cab86c976f4b1ec1145c2ac6ac3851eb6881f2ea814927f13",
+    "bytes": 108946
+  },
+  "release-mark.png": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/release-mark.png",
+    "sha256": "f4f67e6ff4462b39e2873e39ada34bf35a761d3caad511074221d40bb33ce760",
+    "bytes": 154423
+  },
+  "rook-back.webp": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/rook-back.webp",
+    "sha256": "fd559f766464ae853796d2ce5122dfd8466dba893db3f1a9566f52ecbd1a411e",
+    "bytes": 146520
+  },
+  "rook-detail.webp": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/rook-detail.webp",
+    "sha256": "1af416ff61ec16752073c3023daff5e0a26608368138053f6ae024e3c76d6e3b",
+    "bytes": 100890
+  },
+  "rook-front.webp": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/rook-front.webp",
+    "sha256": "a4254d29cc49a23cab86c976f4b1ec1145c2ac6ac3851eb6881f2ea814927f13",
+    "bytes": 108946
+  },
+  "saints-logo.png": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/saints-logo.png",
+    "sha256": "b264f6ff1e3c25ab34444dee7a5cfbe3f24fb3ce26667bb620217c2d67cbf647",
+    "bytes": 1456466
+  },
+  "vnmsfx-originals.png": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/vnmsfx-originals.png",
+    "sha256": "46b276855db13946ebfb262eefe47ad63432248f90eec95adfea857570e85396",
+    "bytes": 387245
+  }
+}
