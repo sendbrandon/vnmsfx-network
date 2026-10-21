@@ -6,10 +6,10 @@ const {
   SIZES,
   UNIT_AMOUNT,
   assertTestKey,
-} = require("../server/merch/catalog");
-const { createProviders } = require("../server/merch/providers");
-const { createService, UUID } = require("../server/merch/service");
-const { buildPayload, verifyTracking } = require("../server/merch/apliiq");
+} = require("./catalog");
+const { createProviders } = require("./providers");
+const { createService, UUID } = require("./service");
+const { buildPayload, verifyTracking } = require("./apliiq");
 async function rawBody(req) {
   // Do not touch Vercel's lazy parsed body getter before reading the raw stream.
   if (typeof req.on === "function")
@@ -76,28 +76,26 @@ function createHandler(env = process.env, providerFactory = createProviders) {
           assertTestKey(env.MERCH_STRIPE_SECRET_KEY);
           testKey = true;
         } catch {}
-        return res
-          .status(200)
-          .json({
-            version: 1,
-            testMode: true,
-            liveCheckoutEnabled: false,
-            checkoutReady:
-              env.MERCH_CHECKOUT_ENABLED === "true" &&
-              testKey &&
-              !!(
-                env.SUPABASE_URL &&
-                env.SUPABASE_SERVICE_ROLE_KEY &&
-                env.MERCH_SITE_ORIGIN
-              ),
-            productionEnabled: false,
-            market: "US",
-            currency: "usd",
-            unitAmount: UNIT_AMOUNT,
-            editionCapPerCharacter: 100,
-            products: PRODUCTS,
-            sizes: SIZES,
-          });
+        return res.status(200).json({
+          version: 1,
+          testMode: true,
+          liveCheckoutEnabled: false,
+          checkoutReady:
+            env.MERCH_CHECKOUT_ENABLED === "true" &&
+            testKey &&
+            !!(
+              env.SUPABASE_URL &&
+              env.SUPABASE_SERVICE_ROLE_KEY &&
+              env.MERCH_SITE_ORIGIN
+            ),
+          productionEnabled: false,
+          market: "US",
+          currency: "usd",
+          unitAmount: UNIT_AMOUNT,
+          editionCapPerCharacter: 100,
+          products: PRODUCTS,
+          sizes: SIZES,
+        });
       }
       if (["reconcile", "dispatch-preview"].includes(action))
         operator(req, env);
@@ -199,13 +197,11 @@ function createHandler(env = process.env, providerFactory = createProviders) {
         const order = await p.db.get(body.orderId);
         if (!order || order.status !== "paid_hold")
           throw new MerchError(409, "No held paid order found.");
-        return res
-          .status(200)
-          .json({
-            dryRun: true,
-            productionEnabled: false,
-            payload: buildPayload(order, env),
-          });
+        return res.status(200).json({
+          dryRun: true,
+          productionEnabled: false,
+          payload: buildPayload(order, env),
+        });
       }
     } catch (error) {
       const status = error instanceof MerchError ? error.status : 503;
@@ -217,15 +213,13 @@ function createHandler(env = process.env, providerFactory = createProviders) {
           errorClass: error.name,
         }),
       );
-      return res
-        .status(status)
-        .json({
-          error:
-            status === 503
-              ? "Merch checkout is not ready yet. Please try again later."
-              : error.message,
-          requestId,
-        });
+      return res.status(status).json({
+        error:
+          status === 503
+            ? "Merch checkout is not ready yet. Please try again later."
+            : error.message,
+        requestId,
+      });
     }
   };
 }

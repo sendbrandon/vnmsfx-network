@@ -19,7 +19,7 @@ Protected dispatch preview → exact Apliiq payload from saved order/SKU map. Ac
 +server/merch/service.js: checkout; Stripe event reconciliation; dispatch preview.
 +server/merch/providers.js: Stripe test client + Supabase RPC adapter.
 +server/merch/apliiq.js: payload/signature adapter, strict production guards, response ambiguity handling.
-+api/saints-merch.js: methods/origin/raw body/signatures/operator auth; sanitized errors.
++server/merch/http.js: methods/origin/raw body/signatures/operator auth; sanitized errors.
 +docs/saints-merch-schema.sql: test edition ledger, orders, events, reservation/payment/release RPCs; no changes to film tables.
 +tests/saints-merch*.test.js: real Postgres semantics via PGlite, route mocks, provider transport, catalog failures.
 +scripts/check-merch-readiness.js: names/flags only; never values; explicit missing launch prerequisites.
@@ -45,7 +45,7 @@ Frontend seam: retain preview bag; only exchange canonical id/size/qty and rando
 MERCH_STRIPE_SECRET_KEY/WEBHOOK_SECRET test credentials, isolated test Supabase migration, saved Apliiq account/SKUs and signing confirmation, finished flat production masters, exact per-size proof, decorated samples and delivered quote. Existing production Supabase/film Stripe credentials are not copied into preview. No real card/order tests until priced and approved.
 
 ## Verification receipt
-2026-10-21: `npm run test:merch` passes23 tests; `npm test` passes152 tests; `npm run build` passes. Merch SQL executed in actual embedded Postgres (PGlite), including cap/rollback/idempotency/privilege checks. Concurrent Promise requests are serialized by the embedded engine; production multi-connection lock contention has not been exercised. Payment session creation/retrieval is mocked; Stripe webhook signature test uses the real installed SDK. Apliiq requests use mocked transport only. No real Stripe charge, supplier POST, email or production database migration occurred. Vercel preview configuration/HTTP checks are recorded in the task handoff, not asserted here before deployment.
+2026-10-21: `npm run test:merch` passes24 tests; `npm test` passes153 tests; `npm run build` passes. Merch SQL executed in actual embedded Postgres (PGlite), including cap/rollback/idempotency/privilege checks. Concurrent Promise requests are serialized by the embedded engine; production multi-connection lock contention has not been exercised. Payment session creation/retrieval is mocked; Stripe webhook signature test uses the real installed SDK. Apliiq requests use mocked transport only. No real Stripe charge, supplier POST, email or production database migration occurred. Vercel preview configuration/HTTP checks are recorded in the task handoff, not asserted here before deployment.
 
 ## Operator next steps
 1. Provision an isolated Supabase test project and apply the additive SQL. Do not point test reservations at the production film database by accident.
@@ -60,3 +60,5 @@ MERCH_STRIPE_SECRET_KEY/WEBHOOK_SECRET test credentials, isolated test Supabase 
 - https://help.apliiq.com/portal/en/kb/articles/create-order
 - https://help.apliiq.com/portal/en/kb/articles/fulfillment-url
 - https://help.apliiq.com/portal/en/kb/articles/how-to-test-orders-with-apliiq-api
+
+Deployment adjustment: Vercel Hobby caps12 functions. Public `/api/saints-merch` rewrites to existing `/api/saints?merch=1`; explicit namespace delegates before film handling to isolated `server/merch/http.js`. Existing film config/actions retain their path. No new function slot or paid-plan upgrade. Route delegation has a regression test.

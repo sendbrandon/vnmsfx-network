@@ -3,7 +3,7 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { Readable } = require("node:stream");
 const Stripe = require("stripe");
-const { createHandler, rawBody } = require("../api/saints-merch");
+const { createHandler, rawBody } = require("../server/merch/http");
 function res() {
   return {
     headers: {},
@@ -187,4 +187,18 @@ test("signed tracking is accepted only for submitted orders; partial is not call
     assert.equal(r.statusCode, 200);
     assert.equal(result, complete);
   }
+});
+
+test("existing function routes explicit merch namespace without entering film providers", async () => {
+  const film = require("../api/saints").createHandler({}, () =>
+    assert.fail("film provider touched"),
+  );
+  const r = res();
+  await film(
+    { url: "/api/saints?merch=1&action=config", method: "GET", headers: {} },
+    r,
+  );
+  assert.equal(r.statusCode, 200);
+  assert.equal(r.body.productionEnabled, false);
+  assert.equal(r.body.version, 1);
 });
