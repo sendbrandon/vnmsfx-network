@@ -11,7 +11,9 @@
     "build": "node scripts/build-saints.js",
     "dev": "node scripts/dev-saints.js",
     "test": "node --test tests/saints*.test.js",
-    "test:site": "node --test site-content.test.js"
+    "test:site": "node --test site-content.test.js",
+    "test:merch": "node --test tests/saints-merch*.test.js",
+    "merch:check": "node scripts/check-merch-readiness.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "stripe": "^23.0.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.11",
     "esbuild": "^0.28.2"
   },
   "private": true
