@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#171715" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Saints of Bad Luck — The Release Edition</title>
     <meta
       name="description"
@@ -13,166 +13,45 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/hoodies/style.css" />
+    <link rel="stylesheet" href="/assets/hoodies/home.css" />
   </head>
-  <body>
+  <body class="shop-home">
     <a class="skip-link" href="#collection">Skip to the collection</a>
-    <div class="preview">
-      THE RELEASE EDITION <span>100 OF EACH · EARLY ACCESS</span>
-    </div>
-    <header>
-      <a
-        class="brand"
-        href="/saints-of-bad-luck"
-        aria-label="Saints of Bad Luck home"
-        ><img
-          src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/saints-logo.png"
-          alt="Saints of Bad Luck"
-          width="130"
-          height="60"
-      /></a>
-      <nav aria-label="Main navigation">
-        <a href="#collection">The hoodies</a><a href="#edition">The edition</a
-        ><button class="text-link" id="open-bag">Early access ↗</button>
-      </nav>
+    <div class="home-release-note">THE RELEASE EDITION · 100 NIX / 100 ROOK</div>
+    <header class="home-header">
+      <a class="home-nav-left" href="#collection">The hoodies</a>
+      <a class="brand" href="/saints-of-bad-luck" aria-label="Saints of Bad Luck home"><img src="https://vnmsfx.com/assets/saints/press-sobl-title.png" alt="Saints of Bad Luck" width="130" height="60"></a>
+      <nav aria-label="Main navigation"><a href="/saints-of-bad-luck">The film ↗</a><button class="text-link" id="open-bag">Early access ↗</button></nav>
     </header>
     <main id="store">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="film-stage">
-          <video
-            id="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            poster="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-poster.jpg"
-            aria-label="Saints of Bad Luck hoodie preview, muted"
-          >
-            <source
-              src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-loop.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div class="hero-shade"></div>
-          <div class="hero-copy">
-            <p class="eyebrow">SAINTS OF BAD LUCK / 001</p>
-            <h1 id="hero-title">
-              <span>Bad luck.</span><em>Good company.</em>
-            </h1>
-            <p class="hero-intro">Nix. Rook. Two ways to make an entrance.</p>
-            <a class="line-link" href="#collection"
-              >Find your hoodie <span>↗</span></a
-            >
-          </div>
-          <div class="film-bottom">
-            <span class="shot-caption" id="shot-caption"
-              >ROOK / THE RELEASE EDITION</span
-            ><button id="film-full" class="line-link">
-              Watch Preview, Full Film Here ↗
-            </button>
-          </div>
-        </div>
-        <div class="hero-footnote">
-          <span>BLACK / BONE / ALL ATTITUDE</span
-          ><span>SCROLL TO MEET YOUR BAD INFLUENCE ↓</span>
-        </div>
+      <section class="home-introduction" aria-labelledby="hero-title">
+        <p class="eyebrow">Saints of Bad Luck / The release edition</p>
+        <h1 id="hero-title">Wear your bad influence.</h1>
+        <p>Nix. Rook. 100 hoodies each.</p>
       </section>
-      <section class="collection" id="collection">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">01 / THE COLLECTION</p>
-            <h2>Pick your<br /><em>bad influence.</em></h2>
-          </div>
-          <p>
-            Two characters. 100 hoodies each.<br />Black hoodies. Bone ink. All
-            attitude.
-          </p>
+      <section class="hero" aria-label="The release film">
+        <div class="film-stage">
+          <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-poster.jpg" aria-label="Saints of Bad Luck hoodie preview, muted"><source src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-loop.mp4" type="video/mp4"></video>
         </div>
+        <div class="film-bottom"><span class="shot-caption" id="shot-caption">ROOK / THE RELEASE EDITION</span><button id="film-full" class="line-link">Watch Preview, Full Film Here ↗</button></div>
+      </section>
+      <section class="collection" id="collection" aria-labelledby="collection-title">
+        <div class="section-heading"><h2 id="collection-title">The hoodies</h2><p>$150 USD each · S–3XL · US launch</p></div>
         <div class="products" id="products"></div>
       </section>
-      <section class="edition" id="edition">
-        <div class="edition-art">
-          <span class="eyebrow">A MARK FOR THE MOMENT</span
-          ><img
-            src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/release-mark.png"
-            alt="The special Saints of Bad Luck release-edition logo"
-            loading="lazy"
-            width="900"
-            height="600"
-          /><span class="edition-annotation"
-            >THE RELEASE-EDITION MARK <span>001 / 2026</span></span
-          >
-        </div>
-        <div class="edition-copy">
-          <p class="eyebrow">02 / MADE FOR THIS MOMENT</p>
-          <h2>The movie.<br />The <em>mark.</em><br />The moment.</h2>
-          <p>
-            100 Nix hoodies. 100 Rook hoodies. The limited edition celebrates
-            the <em>Saints of Bad Luck</em> movie release on December 4, 2026,
-            with the specially designed Saints logo up front and Nix or Rook on
-            the back.
-          </p>
-          <p class="quiet">
-            The collection will go on sale ahead of the movie release. Sales
-            open as soon as checkout and fulfillment are ready.
-          </p>
-          <a href="#collection" class="line-link">Meet your bad influence ↑</a>
-        </div>
+      <section class="home-release-section" id="edition" aria-label="Release information">
+        <details class="home-release-details"><summary>The release <span class="home-plus" aria-hidden="true"></span></summary><div class="home-release-body">
+          <img class="home-release-mark" src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/release-mark.png" alt="The special Saints of Bad Luck release-edition logo" width="900" height="600" loading="lazy">
+          <div><p class="eyebrow">A mark for this release</p><p>100 Nix hoodies. 100 Rook hoodies. A special Saints logo up front, with your bad influence on the back.</p><dl class="piece-metadata"><div><dt>Edition</dt><dd>100 of each</dd></div><div><dt>Movie release</dt><dd><time datetime="2026-12-04">Dec 04, 2026</time></dd></div><div><dt>Availability</dt><dd>Sales open soon</dd></div></dl><a class="line-link" href="/saints-of-bad-luck">Enter their world ↗</a></div>
+        </div></details>
       </section>
       <section class="closing" id="early-list" aria-labelledby="closing-title">
-        <div class="closing-heading">
-          <p class="eyebrow">03 / FIRST IN LINE FOR BAD COMPANY</p>
-          <h2 id="closing-title">Keep <em>bad company.</em></h2>
-          <p>Get the first word when hoodie orders open.</p>
-        </div>
-        <div class="signup-layout">
-          <div>
-            <div
-              class="character-choice"
-              role="group"
-              aria-label="Choose your character"
-            >
-              <button type="button" data-character="nix" aria-pressed="true">
-                <span class="eyebrow">01 / THE SIDE-EYE</span
-                ><strong>Nix<span>↗</span></strong></button
-              ><button type="button" data-character="rook" aria-pressed="false">
-                <span class="eyebrow">02 / THE STARE</span
-                ><strong><em>Rook</em><span>↗</span></strong>
-              </button>
-            </div>
-            <div class="edition-facts">
-              <span>100 NIX.<br />100 ROOK.</span>
-              <p>
-                $150 USD EACH<br />MOVIE OUT DECEMBER 4, 2026<br />US LAUNCH
-              </p>
-            </div>
-          </div>
-          <div class="signup-panel" id="inline-signup"></div>
-        </div>
-        <div class="after-signup">
-          <p>Some people bring the luck.<br />These two bring the problem.</p>
-          <a class="line-link" href="/saints-cast">Meet the characters ↗</a>
-        </div>
+        <div class="closing-heading"><p class="eyebrow">The release edition</p><h2 id="closing-title">Early access.</h2><p>Choose your bad influence. We’ll email you when sales open.</p></div>
+        <div class="signup-layout"><div><div class="character-choice" role="group" aria-label="Choose your character"><button type="button" data-character="nix" aria-pressed="true"><span class="eyebrow">The side-eye</span><strong>Nix <span>↗</span></strong></button><button type="button" data-character="rook" aria-pressed="false"><span class="eyebrow">The stare</span><strong>Rook <span>↗</span></strong></button></div><div class="edition-facts"><span>100 Nix.<br>100 Rook.</span><p>$150 USD EACH<br>S–3XL · US LAUNCH<br>SALES OPEN SOON</p></div></div><div class="signup-panel" id="inline-signup"></div></div>
+        <div class="after-signup"><p>Same bad company. Off screen.</p><a class="line-link" href="/saints-cast">Meet Nix &amp; Rook ↗</a></div>
       </section>
     </main>
-    <footer>
-      <div class="footer-wordmark" aria-hidden="true">BAD COMPANY</div>
-      <div class="footer-bottom">
-        <a href="/saints-of-bad-luck"
-          ><img
-            src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/saints-logo.png"
-            alt="Saints of Bad Luck"
-            width="130"
-            height="60"
-            loading="lazy" /></a
-        ><span>© 2026 SAINTS OF BAD LUCK<br />THE RELEASE EDITION</span>
-        <div>
-          <a href="/privacy">Privacy</a
-          ><a href="/saints-of-bad-luck">The movie ↗</a
-          ><a href="#collection">Back to the hoodies ↑</a>
-        </div>
-      </div>
-    </footer>
+    <footer class="home-footer"><p class="eyebrow">Created by Brandon Adams</p><a class="home-studio" href="/" aria-label="VNMSFX Originals"><img src="https://vnmsfx.com/assets/saints/vnmsfx-originals-wordmark.png" alt="VNMSFX Originals" width="180" height="88" loading="lazy"></a><div class="home-footer-links"><a href="/saints-of-bad-luck">The movie ↗</a><a href="/privacy">Privacy</a><a href="#collection">The hoodies ↑</a></div><p class="home-copyright">© 2026 VNMSFX · Saints of Bad Luck</p></footer>
     <dialog id="zoom" aria-labelledby="zoom-title">
       <div class="dialog-head">
         <h2 id="zoom-title">Product detail</h2>

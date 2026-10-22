@@ -7,12 +7,16 @@
     {
       id: "nix",
       name: "Nix",
+      story: "He used to work for Vernon.",
+      still: "episode-02-film-v2.png",
       description:
         "Nix’s side-eye says what you were thinking. His oversized back portrait and the special Saints release logo up front make it official: “Who the fuck is we?”",
     },
     {
       id: "rook",
       name: "Rook",
+      story: "The one they’re getting back.",
+      still: "episode-01-film-v2.png",
       description:
         "Rook doesn’t need a speech. Her portrait takes the back, with the special Saints release logo up front and the full mark below her stare.",
     },
@@ -39,15 +43,18 @@
   $("#products").innerHTML = catalog
     .map(
       (p, i) => `
-    <article class="product" data-product="${p.id}" data-view="back" data-size="S">
+    <article class="product" data-product="${p.id}" data-view="back" data-size="S" data-size-chosen="false">
       <div class="product-index eyebrow"><span>0${i + 1} / ${p.id.toUpperCase()}</span><span>100 EDITIONS</span></div>
       <div class="image-area"><img class="product-image" src="${source(p.id, "back")}" alt="${p.name} black hoodie, back view" width="900" height="1000" loading="lazy"><div class="detail-lens" aria-hidden="true"></div><button class="zoom-trigger" aria-label="Enlarge ${p.name} hoodie image">Inspect detail <span>+</span></button></div>
       <div class="views" role="group" aria-label="${p.name} product views">${views.map(([v, n]) => `<button data-view="${v}" aria-pressed="${v === "back"}">${n}</button>`).join("")}<span class="image-caption">MOVE CLOSER</span></div>
-      <div class="product-heading"><h3>${p.id === "rook" ? "<em>Rook</em>" : "Nix"}<small>THE RELEASE EDITION</small></h3><span class="price">$150 <small>USD</small></span></div>
-      <button class="piece-link line-link" data-open-piece="${p.id}">View ${p.name} hoodie <span>↗</span></button><p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div>
-      <div class="size-label"><span>YOUR SIZE</span><span>S–3XL</span></div><div class="sizes" role="group" aria-label="${p.name} size">${sizes.map((s) => `<button aria-pressed="${s === "S"}" data-size="${s}">${s}</button>`).join("")}</div>
-      <button class="button dark add-bag">Get early access <span>↗</span></button>
-      <div class="details"><details><summary>The release edition</summary><p>Limited to 100 Nix hoodies and 100 Rook hoodies, across all sizes. Special Saints of Bad Luck logo treatment on the front, oversized character artwork on the back. The collection will go on sale ahead of the December 4, 2026 movie release, as soon as checkout and fulfillment are ready.</p></details><details><summary>Size & fit</summary><p>Available sizes: S, M, L, XL, 2XL and 3XL. The production blank, fabric and exact garment measurements will be confirmed before sale. These images are design mockups.</p></details><details><summary>Delivery & returns</summary><p>Orders are not open yet. Shipping rates, production timing and the returns policy will be added with the fulfillment service before checkout opens.</p></details></div>
+      <div class="product-heading"><h3>${p.name} <em>hoodie</em></h3><span class="price">$150 <small>USD</small></span></div>
+      <button class="piece-link line-link" data-open-piece="${p.id}">View piece <span>↗</span></button><details class="home-information home-disclosure"><summary>Information <span class="home-plus" aria-hidden="true"></span></summary><div class="home-information-body"><p class="home-story">${p.story}</p><p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div>
+      <dl class="piece-metadata"><div><dt>Character</dt><dd>${p.name}</dd></div><div><dt>Edition</dt><dd>100 pieces</dd></div><div><dt>Movie release</dt><dd>Dec 04, 2026</dd></div></dl>
+      <a class="home-film-frame" href="/saints-cast?character=${p.id}#characters"><img src="https://vnmsfx.com/assets/saints/film-finish/v2/${p.still}" alt="${p.name} in Saints of Bad Luck" width="1984" height="864" loading="lazy"><span>From the film / ${p.name} ↗</span></a>
+      <div class="details"><details><summary>The release edition</summary><p>Limited to 100 Nix hoodies and 100 Rook hoodies, across all sizes. Special Saints of Bad Luck logo treatment on the front, oversized character artwork on the back. The collection will go on sale ahead of the December 4, 2026 movie release, as soon as checkout and fulfillment are ready.</p></details><details><summary>Size & fit</summary><p>Available sizes: S, M, L, XL, 2XL and 3XL. The production blank, fabric and exact garment measurements will be confirmed before sale. These images are design mockups.</p></details><details><summary>Delivery & returns</summary><p>Orders are not open yet. Shipping rates, production timing and the returns policy will be added with the fulfillment service before checkout opens.</p></details></div><a class="home-character-link line-link" href="/saints-cast?character=${p.id}#characters">Meet ${p.name} ↗</a></div></details>
+      <details class="home-size-picker home-disclosure"><summary>Choose your size <span class="home-plus" aria-hidden="true"></span></summary><div class="sizes" role="group" aria-label="${p.name} size">${sizes.map((s) => `<button aria-pressed="false" data-size="${s}">${s}</button>`).join("")}</div>
+      <button class="button dark add-bag" disabled>Get early access <span>↗</span></button><p class="home-access-note">Sales open soon. No payment today.</p></details>
+
     </article>`,
     )
     .join("");
@@ -113,6 +120,8 @@
     card.querySelectorAll("[data-size]").forEach((button) =>
       button.addEventListener("click", () => {
         card.dataset.size = button.dataset.size;
+        card.dataset.sizeChosen = "true";
+        card.querySelector(".add-bag").disabled = false;
         card
           .querySelectorAll("[data-size]")
           .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
@@ -219,25 +228,5 @@
         ? "NIX / THE RELEASE EDITION"
         : "ROOK / THE RELEASE EDITION";
   });
-  let pending = false;
-  function scrollFrame() {
-    pending = false;
-    const r = $(".hero").getBoundingClientRect();
-    const p = reduced.matches
-      ? 0
-      : Math.min(1, Math.max(0, -r.top / (r.height * 0.8)));
-    $(".hero").style.setProperty("--hero-progress", p.toFixed(3));
-  }
-  addEventListener(
-    "scroll",
-    () => {
-      if (!pending) {
-        pending = true;
-        requestAnimationFrame(scrollFrame);
-      }
-    },
-    { passive: true },
-  );
-  scrollFrame();
   document.documentElement.classList.add("motion-ready");
 })();
