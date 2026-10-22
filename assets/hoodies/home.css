@@ -26,8 +26,7 @@
 .shop-home .product-index { font-size:9px; letter-spacing:.04em; text-align:left; }
 .shop-home .image-area { background:#fff; }
 .shop-home .image-area .product-image { transform:none; }
-.shop-home .zoom-trigger { inset:auto 10px 8px auto; width:auto; gap:18px; padding:8px; border:0; font-size:10px; background:#ffffffdf; }
-.shop-home .zoom-trigger span { font-size:16px; }
+.shop-home .zoom-trigger { inset:0; width:100%; height:100%; padding:0; border:0; background:transparent; cursor:zoom-in; z-index:1; }
 .shop-home #products .views { justify-content:center; gap:24px; min-height:54px; border:0; }
 .shop-home #products .views button { font-size:10px; padding:12px 2px; color:var(--muted); }
 .shop-home #products .views button:after { display:none; }
@@ -147,7 +146,7 @@ details[open] > summary > .home-plus:after { display:none; }
 }
 
 /* Match the product dialog controls; switching images adds no opacity effect. */
-.shop-home .home-gallery-arrow { z-index:2; }
+.shop-home .home-gallery-arrow { z-index:3; background:transparent; border-radius:0; }
 .shop-home .home-gallery-arrow.previous { left:4px; }
 .shop-home .home-gallery-arrow.next { right:4px; }
 .shop-home .home-gallery-arrow:focus-visible { outline:1px solid currentColor; outline-offset:2px; }
