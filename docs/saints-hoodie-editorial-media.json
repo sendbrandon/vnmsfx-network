@@ -8,5 +8,20 @@
     "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-poster.jpg",
     "sha256": "7b871cd4ce415948e750f49a2735d1c5b550584ca6cfbc9483626e2006938a80",
     "bytes": 134487
+  },
+  "neuemontreal-regular.otf": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/neuemontreal-regular.otf",
+    "sha256": "94bbc90559398826cc2e1bf35b01312589512727cf1b2dc2a59eaa3fc51542ad",
+    "bytes": 40516
+  },
+  "neuemontreal-medium.otf": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/neuemontreal-medium.otf",
+    "sha256": "3d28dde2df23f991cc048d1c3d789e1b6e59ea52b7e1ae13f1be62247823dc0f",
+    "bytes": 41940
+  },
+  "editorial-italic.otf": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/editorial-italic.otf",
+    "sha256": "afe988315ea5b47315c03d3f98f22d8af8ab760ab65890aa743b41063a1ebb2d",
+    "bytes": 59116
   }
 }

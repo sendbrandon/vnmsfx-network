@@ -1,20 +1,20 @@
 @font-face {
   font-family: Neue Montreal;
-  src: url("/assets/hoodies/fonts/neuemontreal-regular.otf") format("opentype");
+  src: url("https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/neuemontreal-regular.otf") format("opentype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: Neue Montreal;
-  src: url("/assets/hoodies/fonts/neuemontreal-medium.otf") format("opentype");
+  src: url("https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/neuemontreal-medium.otf") format("opentype");
   font-style: normal;
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
   font-family: Editorial New;
-  src: url("/assets/hoodies/fonts/editorial-italic.otf") format("opentype");
+  src: url("https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/editorial-italic.otf") format("opentype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;

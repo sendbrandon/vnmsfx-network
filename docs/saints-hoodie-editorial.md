@@ -2,9 +2,9 @@
 
 The frontend pairs Neue Montreal Regular/Medium with Editorial New Italic, contracts the hero film frame on native scroll, staggers Nix/Rook product images, and adds controlled image inspection plus an inline character/size signup. Approved garment imagery, two-sentence product descriptions, $150 price, 100-per-character edition cap and the December4 movie date remain unchanged. Paid checkout and manufacturing remain disabled.
 
-## Release gate
+## Fonts and media
 
-This draft intentionally excludes font binaries from the public repository. The supplied local font packs have trial/personal-use README labels, despite the owner's stated purchased web licenses. Before production publication, resolve whether those licenses cover these exact files or supply the licensed web downloads; upload authorized binaries to the existing media store, then replace all three local font URLs in `assets/hoodies/style.css`. A deployment without those files uses fallback type and is not the approved typography preview.
+The owner confirmed on October21,2026 that the purchased web licenses cover these exact supplied font files. Neue Montreal Regular/Medium and PP Editorial New Italic are hosted in the existing media store; font binaries remain outside this public repository. URLs, byte counts and SHA256 hashes are recorded in `saints-hoodie-editorial-media.json`. Each CSS face declares its actual weight/style with `font-display: swap`.
 
 The hero derivative has no audio and uses a deliberate Nix-back → Rook-back cut. The full approved master remains available in the explicit preview dialog. Public media provenance is recorded in `saints-hoodie-editorial-media.json`.
 
