@@ -3,7 +3,7 @@
   const cards = [...document.querySelectorAll(".product")];
   const sizes = ["S", "M", "L", "XL", "2XL", "3XL"];
   const views = [["back", "Back"], ["front", "Front"], ["detail", "Portrait"]];
-  const base = "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/";
+  const base = "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/";
   const dialog = document.createElement("dialog");
   dialog.id = "piece";
   dialog.setAttribute("aria-labelledby", "piece-name");

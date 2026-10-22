@@ -45,3 +45,6 @@ VNMSFX footer mark reduced156→80px wide, preserving white background and top S
 
 ### Font identity verification, corrected
 Read actual live Yeezy @font-face rules in browser: YZY Plex Mono400 points to `/fonts/ibm/IBMPlexMono-Regular.ttf`;500 to `/fonts/ibm/IBMPlexMono-Medium.ttf`. This is stronger evidence than the family alias alone; it identifies IBM files, not evidence of a custom modified design. Live INFORMATION is uppercase16px500. Changed our disclosure labels to uppercase with normal letter spacing/24px line height and price500; same IBM face remains. Browser reports requested face available with no font errors. Prior statement implying custom face is superseded by this inspection.
+
+## Studio image selection — approved October22
+Brandon approved six deterministic finished images (“replace them they look good”). All six uploaded to the existing public Blob store under versioned v3-studio-20261022; readback verified byte-for-byte. Collection images, hover previews/lens, shared zoom and dedicated product gallery all use the new base. Original v1 assets remain intact. Upload receipt includes hashes in saints-hoodie-studio-media.json. No print regeneration or character changes. This updates the review branch; no production promotion in this step.
