@@ -20,7 +20,7 @@
   font-display: swap;
 }
 :root {
-  --paper: #f2f0e9;
+  --paper: #ffffff;
   --ink: #171715;
   --muted: #66645f;
   --line: #cbc8bf;
@@ -539,7 +539,7 @@ summary::-webkit-details-marker {
 summary:after {
   content: "+";
 }
-details[open] summary:after {
+details[open] > summary:after {
   content: "−";
 }
 .details p {
@@ -1307,7 +1307,7 @@ html.piece-open, html.piece-open body { overflow: hidden; }
 }
 #piece::backdrop { background: #fff; backdrop-filter: none; }
 .piece-nav {
-  position: sticky; top: 0; z-index: 2; background: #fffffff2;
+  position: sticky; top: 0; z-index: 2; background: #fff;
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   padding: 21px 36px; font-size: 12px; border-bottom: 1px solid #ededeb;
 }
@@ -1337,7 +1337,19 @@ html.piece-open, html.piece-open body { overflow: hidden; }
 .piece-price span { font-size: 10px; margin-left: 5px; }
 .piece-description { font-size: 15px; line-height: 1.6; color: #575752; }
 .piece-color { margin-top: 22px; font-size: 9px; }
-.piece-size-label { margin-top: 32px; display: flex; justify-content: space-between; font-size: 11px; }
+.piece-disclosure { border-bottom: 1px solid #d9d9d4; text-align: left; }
+.piece-disclosure > summary { display: flex; align-items: center; justify-content: space-between; min-height: 58px; cursor: pointer; list-style: none; font-size: 13px; }
+.piece-disclosure > summary::-webkit-details-marker { display: none; }
+.piece-disclosure > summary:after { display: none; }
+.piece-disclosure-icon { position: relative; flex: 0 0 14px; width: 14px; height: 14px; }
+.piece-disclosure-icon:before, .piece-disclosure-icon:after { content: ""; position: absolute; background: currentColor; }
+.piece-disclosure-icon:before { width: 12px; height: 1px; left: 1px; top: 6px; }
+.piece-disclosure-icon:after { width: 1px; height: 12px; left: 6px; top: 1px; }
+.piece-disclosure[open] > summary .piece-disclosure-icon:after { display: none; }
+.piece-information-body { padding: 4px 0 24px; }
+.piece-information-body .piece-details { margin-top: 24px; }
+.piece-size-picker .piece-access-note { text-align: center; }
+.piece-signup:disabled { cursor: not-allowed; }
 .piece-sizes { display: flex; justify-content: space-between; border-top: 1px solid #d9d9d4; border-bottom: 1px solid #d9d9d4; margin: 10px 0 20px; }
 .piece-sizes button { flex: 1; min-height: 52px; font-size: 12px; }
 .piece-sizes button[aria-pressed=true] { background: var(--ink); color: #fff; }

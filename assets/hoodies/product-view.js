@@ -20,25 +20,35 @@
         <p class="eyebrow">Saints of Bad Luck / The release edition</p>
         <h2 id="piece-name"></h2>
         <p class="piece-price">$150 <span>USD</span></p>
-        <p class="piece-description"></p>
-        <p class="piece-color eyebrow">Black / bone · 100 of this character</p>
-        <div class="piece-size-label"><span>Choose your size</span><span>S–3XL</span></div>
-        <div class="piece-sizes" role="group" aria-label="Hoodie size">${sizes.map(size => `<button data-piece-size="${size}">${size}</button>`).join("")}</div>
-        <button class="button dark piece-signup">Get early access <span>↗</span></button>
-        <p class="piece-access-note">Sales open after sample approval. Signup does not reserve a hoodie.</p>
-        <div class="piece-details details"></div>
+        <details class="piece-information piece-disclosure">
+          <summary>Information <span class="piece-disclosure-icon" aria-hidden="true"></span></summary>
+          <div class="piece-information-body">
+            <p class="piece-description"></p>
+            <p class="piece-color eyebrow">Black / bone · 100 of this character</p>
+            <div class="piece-details details"></div>
+          </div>
+        </details>
+        <details class="piece-size-picker piece-disclosure">
+          <summary>Choose your size <span class="piece-disclosure-icon" aria-hidden="true"></span></summary>
+          <div class="piece-sizes" role="group" aria-label="Hoodie size">${sizes.map(size => `<button data-piece-size="${size}" aria-pressed="false">${size}</button>`).join("")}</div>
+          <button class="button dark piece-signup" disabled>Get early access <span>↗</span></button>
+          <p class="piece-access-note">Sales open soon. Sign up to reserve your hoodie. No payment today.</p>
+        </details>
         <a class="piece-film line-link" href="/saints-of-bad-luck">Meet your bad influences <span>↗</span></a>
       </div>
       <p class="piece-colophon eyebrow">VNMSFX Originals · Wear the bad influence.</p>
     </div>`;
   document.body.append(dialog);
   const $ = selector => dialog.querySelector(selector);
-  let product = "nix", index = 0;
+  let product = "nix", index = 0, chosenSize = null;
   const originalTitle = document.title;
   const getCard = () => cards.find(card => card.dataset.product === product);
   function syncSize(selection) {
+    if (selection.product !== product) return;
+    if (chosenSize) chosenSize = selection.size;
+    $(".piece-signup").disabled = !chosenSize;
     dialog.querySelectorAll("[data-piece-size]").forEach(button => {
-      button.setAttribute("aria-pressed", String(button.dataset.pieceSize === selection.size));
+      button.setAttribute("aria-pressed", String(button.dataset.pieceSize === chosenSize));
     });
   }
   function view(next) {
@@ -51,6 +61,9 @@
   }
   function select(id) {
     product = id;
+    chosenSize = null;
+    $(".piece-information").open = false;
+    $(".piece-size-picker").open = false;
     const card = getCard();
     const name = id === "nix" ? "Nix" : "Rook";
     $("#piece-name").innerHTML = `${name} <em>hoodie</em>`;
@@ -88,6 +101,7 @@
   dialog.querySelectorAll("[data-piece-view]").forEach(button => button.onclick = () => view(views.findIndex(([v]) => v === button.dataset.pieceView)));
   dialog.querySelectorAll("[data-piece-size]").forEach(button => button.onclick = () => {
     const size = button.dataset.pieceSize;
+    chosenSize = size;
     const card = getCard();
     card.querySelector(`[data-size="${size}"]`).click();
   });
@@ -95,7 +109,11 @@
   $(".previous").onclick = () => view(index - 1);
   $(".next").onclick = () => view(index + 1);
   $(".piece-inspect").onclick = () => window.dispatchEvent(new CustomEvent("sobl:inspect", { detail: { product, view: views[index][0] } }));
-  $(".piece-signup").onclick = () => window.dispatchEvent(new CustomEvent("sobl:early-access"));
+  $(".piece-signup").onclick = () => {
+    if (!sizes.includes(chosenSize)) return;
+    window.SOBLShop.select(product, chosenSize);
+    window.dispatchEvent(new CustomEvent("sobl:early-access"));
+  };
   dialog.addEventListener("keydown", event => {
     if (document.querySelector("#early-access[open], #zoom[open]")) return;
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
