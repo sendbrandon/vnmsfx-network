@@ -48,3 +48,20 @@ Read actual live Yeezy @font-face rules in browser: YZY Plex Mono400 points to `
 
 ## Studio image selection — approved October22
 Brandon approved six deterministic finished images (“replace them they look good”). All six uploaded to the existing public Blob store under versioned v3-studio-20261022; readback verified byte-for-byte. Collection images, hover previews/lens, shared zoom and dedicated product gallery all use the new base. Original v1 assets remain intact. Upload receipt includes hashes in saints-hoodie-studio-media.json. No print regeneration or character changes. This updates the review branch; no production promotion in this step.
+
+## Film connection pass — October22, ten moves authorized
+Expertise-engine TRANSLATE + scoped repair: preserve white background, IBM Plex Mono, approved v3 garments, centered gallery, price, explicit size gate and signup behavior. Film source constraints: use exact existing title/film frames and already public character lines; no invented canon or changed release promise.
+1. Header now uses movie press-sobl-title.png, inspected original transparent source; black-on-white, existing100px footprint.
+2. Shared introduction: Wear your bad influence.
+3. Character bridge inside Information: Rook “The one they’re getting back.” / Nix “He used to work for Vernon.” Original product descriptions retained.
+4. Product ink scoped to film charcoal #242628, white remains #fff.
+5. Aligned CHARACTER / EDITION / MOVIE RELEASE metadata, truthful100pieces and Dec04,2026.
+6. Existing Editorial italic hoodie title retained; no new decorative type moments.
+7. Small existing film still inside closed-by-default Information. Rook episode-01-film-v2.png and Nix episode-02-film-v2.png inspected actual local Git media; latter shows Nix talking to Rook, not Vernon. Original color/crop/identity retained; no regeneration.
+8. Meet Nix/Meet Rook links and still links target corresponding saints-cast?character=...#characters.
+9. Small CREATED BY BRANDON ADAMS credit above existing80px studio signature.
+10. Shared thin dividers, consistent diagonal SVG arrows, restrained180ms color/underline/disclosure response; reduced motion removes animations/transitions.
+Reference receipt reused: previously inspected Flim0002-this-is-love-hero-2024-00-00-27.png (00:27), plain utility text plus one expressive gesture; borrow hierarchy, exclude overlapping oversized letters/yellow/artwork interference. No motion inferred from this still. Primary authority is the observed live Saints movie page and user-approved product view; motion180ms is a proposed implementation choice, not a measured claim about the reference.
+Process: inspect real film assets → patch only ten approved surfaces → verify both characters/still/deep link, mobile width, image zoom and size-to-signup gate. Fail on white-background change, altered approved garment pixels, extra above-product imagery, missing still, stale character mapping, signup bypass or overflow.
+
+Film-connection verification: all163 tests pass; build passes; diff whitespace check passes. Real browser checked Rook/Nix metadata/still/deep-link mapping, pure-white computed background, logo and still loading, explicit-size-disabled state and Nix/S handoff to unchanged signup.390px mobile contentWidth equals clientWidth390; viewport override reset. Existing public logo, both stills and both character-page endpoints return200. No form submitted, payment/manufacturing or production promotion. Relevant QA picture/type checks pass: existing media only, no overlaid type on faces, original artwork untouched, readable metadata/no overflow. Screenshot dimension WARN is expected for715×752 current browser window, not film export; temporal-grain checks N/A. Reduced-motion CSS removes new disclosure response; emulation not run.

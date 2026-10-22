@@ -1390,3 +1390,31 @@ html.piece-open, html.piece-open body { overflow: hidden; }
 #piece, #early-access { font-family: "IBM Plex Mono", monospace; }
 .piece-disclosure > summary { font-size: 16px; font-weight: 500; line-height: 24px; letter-spacing: normal; text-transform: uppercase; }
 .piece-price { font-weight: 500; }
+
+/* Small connections to the film page; the product surface stays white. */
+#piece { --ink: #242628; --muted: #626461; --line: #2426281b; }
+#piece .piece-introduction { font-size: 9px; letter-spacing: .09em; }
+.piece-story-line { font-size: 15px; font-weight: 500; line-height: 1.6; color: var(--ink); }
+.piece-story-line + .piece-description { margin-top: 14px; }
+.piece-metadata { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 12px; margin: 18px 0 24px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.piece-metadata dt { font-size: 9px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.piece-metadata dd { margin: 6px 0 0; font-size: 11px; line-height: 1.5; }
+.piece-film-frame { margin: 0 0 22px; }
+.piece-film-frame img { width: 100%; height: auto; aspect-ratio: 2.296; object-fit: contain; }
+.piece-film-frame figcaption { display: flex; justify-content: space-between; padding-top: 8px; font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.piece-still-link { display: block; }
+.piece-credit { margin-bottom: 16px; font-size: 8px; letter-spacing: .09em; color: var(--muted); }
+.piece-link-arrow { display: inline-block; flex: 0 0 12px; width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; vertical-align: middle; }
+.piece-inspect { display: flex; align-items: center; gap: 12px; }
+#piece .piece-disclosure, #piece .piece-sizes, #piece .piece-details details, #piece .piece-nav { border-color: var(--line); }
+#piece button, #piece a, #piece summary { transition: color .18s ease, background-color .18s ease; }
+#piece .line-link:after { transition: transform .18s ease; }
+#piece .piece-sizes button:hover:not([aria-pressed=true]) { background: #f5f3ee; }
+#piece .piece-signup:hover:enabled { background: #3a3d40; }
+#piece .piece-film:hover, #piece .piece-still-link:hover figcaption { color: #626461; }
+#piece details[open] > .piece-information-body, #piece details[open] > .piece-sizes { animation: piece-disclosure-in .18s ease both; }
+@keyframes piece-disclosure-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  #piece details[open] > .piece-information-body, #piece details[open] > .piece-sizes { animation: none; }
+  #piece button, #piece a, #piece summary, #piece .line-link:after { transition: none; }
+}
