@@ -1,7 +1,7 @@
 "use strict";
 (() => {
   const base =
-    "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/";
+    "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/";
   const sizes = ["S", "M", "L", "XL", "2XL", "3XL"];
   const catalog = [
     {
