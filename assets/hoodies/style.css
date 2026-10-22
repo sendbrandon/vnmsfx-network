@@ -1377,7 +1377,7 @@ html.piece-open, html.piece-open body { overflow: hidden; }
 /* Official marks stay dark on the pure white product surface. */
 .piece-brand img { width: 100px; height: 46px; object-fit: contain; filter: brightness(0); }
 .piece-colophon a { display: inline-block; }
-.piece-colophon img { width: 156px; height: 78px; object-fit: contain; filter: brightness(0); }
+.piece-colophon img { width: 80px; height: 40px; object-fit: contain; filter: brightness(0); }
 @media (max-width: 600px) {
   .piece-nav { grid-template-columns: 1fr auto 1fr; gap: 8px; padding: 10px 16px; }
   .piece-nav > .piece-brand { display: block; }
@@ -1385,3 +1385,8 @@ html.piece-open, html.piece-open body { overflow: hidden; }
   .piece-back span { margin-left: 3px; }
   .piece-switch { gap: 12px; }
 }
+
+/* IBM Plex Mono gives the product controls their utilitarian rhythm. */
+#piece, #early-access { font-family: "IBM Plex Mono", monospace; }
+.piece-disclosure > summary { font-size: 16px; font-weight: 500; line-height: 24px; letter-spacing: normal; text-transform: uppercase; }
+.piece-price { font-weight: 500; }

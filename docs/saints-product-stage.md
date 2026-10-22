@@ -37,3 +37,11 @@ Reference reuse: same inspected Yeezy HD-03 structure and Flim typography receip
 
 ## Branding follow-up
 Added existing official Saints mark to product navigation and existing VNMSFX Originals mark to footer, rendered dark with CSS brightness(0) on opaque white; source images unchanged. Verified both loaded in browser and body/product computed background rgb(255,255,255). No typeface change. Yeezy live Information control inspected: computed family `"YZY Plex Mono", "IBM Plex Mono Fallback", monospace`, 16px, weight500; do not claim a public license or that IBM Plex is identical to its custom face.
+
+## IBM Plex Mono selection
+Brandon explicitly selected IBM Plex Mono. TRANSLATE: use real IBM Plex Mono400/500 in the dedicated product view and matching signup modal; keep Editorial italic accents and garment artwork untouched. Load the official Google Fonts stylesheet with swap, preconnect font hosts, use a monospace fallback. Information/size labels16px500 match the inspected reference controls. Reuse previously inspected Flim small plain utility/expressive accent hierarchy; no new composition or motion decision. Failure checks: fallback-only rendering, wrapped/clipped labels, horizontal mobile overflow, changed garment pixels. Success: downloaded IBM face used in labels and choices with unchanged behavior, pure white and official marks.
+
+VNMSFX footer mark reduced156→80px wide, preserving white background and top Saints mark. Image realism discussion only: no mockup regeneration or finishing applied; actual exact-blank photography and approved-art compositing remain proposals.
+
+### Font identity verification, corrected
+Read actual live Yeezy @font-face rules in browser: YZY Plex Mono400 points to `/fonts/ibm/IBMPlexMono-Regular.ttf`;500 to `/fonts/ibm/IBMPlexMono-Medium.ttf`. This is stronger evidence than the family alias alone; it identifies IBM files, not evidence of a custom modified design. Live INFORMATION is uppercase16px500. Changed our disclosure labels to uppercase with normal letter spacing/24px line height and price500; same IBM face remains. Browser reports requested face available with no font errors. Prior statement implying custom face is superseded by this inspection.
