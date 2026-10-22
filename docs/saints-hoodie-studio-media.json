@@ -1,0 +1,38 @@
+[
+  {
+    "name": "nix-back",
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/nix-back.webp",
+    "bytes": 253278,
+    "sha256": "acd0dc6319913708879560f34896eb64a4d5a5ad7d06968c16331e059e0e18c9"
+  },
+  {
+    "name": "nix-front",
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/nix-front.webp",
+    "bytes": 208914,
+    "sha256": "b9d7294874e8908c478df096cd52419a9fb95a100806ce7cb108f2c9e21758bd"
+  },
+  {
+    "name": "nix-detail",
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/nix-detail.webp",
+    "bytes": 171436,
+    "sha256": "b41cf15b15f1994e7a72d334e1b5c4307c801d475c7d77737712833dd7692291"
+  },
+  {
+    "name": "rook-back",
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/rook-back.webp",
+    "bytes": 334956,
+    "sha256": "6dacba9f79443b270275e0b01595b8fa2e01cffb3c168a0af8ec2cd33aa33ae5"
+  },
+  {
+    "name": "rook-front",
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/rook-front.webp",
+    "bytes": 208914,
+    "sha256": "b9d7294874e8908c478df096cd52419a9fb95a100806ce7cb108f2c9e21758bd"
+  },
+  {
+    "name": "rook-detail",
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/rook-detail.webp",
+    "bytes": 234128,
+    "sha256": "70150d937bac045941ccf1b2d8f0580ba966269540221070d287e3748e17650c"
+  }
+]

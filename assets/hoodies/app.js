@@ -1,7 +1,7 @@
 "use strict";
 (() => {
   const base =
-    "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/";
+    "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v3-studio-20261022/";
   const sizes = ["S", "M", "L", "XL", "2XL", "3XL"];
   const catalog = [
     {
@@ -44,7 +44,7 @@
       <div class="image-area"><img class="product-image" src="${source(p.id, "back")}" alt="${p.name} black hoodie, back view" width="900" height="1000" loading="lazy"><div class="detail-lens" aria-hidden="true"></div><button class="zoom-trigger" aria-label="Enlarge ${p.name} hoodie image">Inspect detail <span>+</span></button></div>
       <div class="views" role="group" aria-label="${p.name} product views">${views.map(([v, n]) => `<button data-view="${v}" aria-pressed="${v === "back"}">${n}</button>`).join("")}<span class="image-caption">MOVE CLOSER</span></div>
       <div class="product-heading"><h3>${p.id === "rook" ? "<em>Rook</em>" : "Nix"}<small>THE RELEASE EDITION</small></h3><span class="price">$150 <small>USD</small></span></div>
-      <p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div>
+      <button class="piece-link line-link" data-open-piece="${p.id}">View ${p.name} hoodie <span>↗</span></button><p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div>
       <div class="size-label"><span>YOUR SIZE</span><span>S–3XL</span></div><div class="sizes" role="group" aria-label="${p.name} size">${sizes.map((s) => `<button aria-pressed="${s === "S"}" data-size="${s}">${s}</button>`).join("")}</div>
       <button class="button dark add-bag">Get early access <span>↗</span></button>
       <div class="details"><details><summary>The release edition</summary><p>Limited to 100 Nix hoodies and 100 Rook hoodies, across all sizes. Special Saints of Bad Luck logo treatment on the front, oversized character artwork on the back. The collection will go on sale ahead of the December 4, 2026 movie release, as soon as checkout and fulfillment are ready.</p></details><details><summary>Size & fit</summary><p>Available sizes: S, M, L, XL, 2XL and 3XL. The production blank, fabric and exact garment measurements will be confirmed before sale. These images are design mockups.</p></details><details><summary>Delivery & returns</summary><p>Orders are not open yet. Shipping rates, production timing and the returns policy will be added with the fulfillment service before checkout opens.</p></details></div>
@@ -153,6 +153,10 @@
     gallery(card.dataset.view);
     $("#zoom").showModal();
   }
+  window.addEventListener("sobl:inspect", (e) => {
+    if (catalog.some((p) => p.id === e.detail?.product) && views.some(([v]) => v === e.detail?.view))
+      openZoom({ dataset: { product: e.detail.product, view: e.detail.view } });
+  });
   $("#zoom-views").addEventListener("click", (e) => {
     const b = e.target.closest("[data-gallery]");
     if (b) gallery(b.dataset.gallery);
