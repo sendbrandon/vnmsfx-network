@@ -137,6 +137,7 @@
     dialog.showModal();
     dialog.querySelector("[name=email]").focus();
   }
+  window.addEventListener("sobl:early-access", () => open());
   document.querySelector("#open-bag").onclick = () => open();
   document.querySelectorAll(".add-bag").forEach(
     (b) =>
