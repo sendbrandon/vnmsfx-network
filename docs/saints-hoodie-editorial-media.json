@@ -1,0 +1,12 @@
+{
+  "hero-loop.mp4": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-loop.mp4",
+    "sha256": "3e7672dcbc6626e2621f3433a31190f4f58621accc3d1e65a64f0194722b7a63",
+    "bytes": 16292616
+  },
+  "hero-poster.jpg": {
+    "url": "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v2/hero-poster.jpg",
+    "sha256": "7b871cd4ce415948e750f49a2735d1c5b550584ca6cfbc9483626e2006938a80",
+    "bytes": 134487
+  }
+}

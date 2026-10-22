@@ -1,16 +1,239 @@
-'use strict';
-const catalog=[{id:'nix',name:'Nix',description:'Nix’s side-eye says what you were thinking. His oversized back portrait and the special Saints release logo up front make it official: “Who the fuck is we?”'},{id:'rook',name:'Rook',description:'Rook doesn’t need a speech. Her portrait takes the back, with the special Saints release logo up front and the full mark below her stare.'}];
-const sizes=['S','M','L','XL','2XL','3XL'];const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n/100);const $=s=>document.querySelector(s);let cart=[];try{const saved=JSON.parse(localStorage.getItem('sobl-stage-bag')||'[]');if(Array.isArray(saved))cart=saved.filter(x=>catalog.some(p=>p.id===x.id)&&sizes.includes(x.size)&&Number.isInteger(x.qty)&&x.qty>0&&x.qty<=10)}catch{}
-$('#products').innerHTML=catalog.map(p=>`<article class="product" data-product="${p.id}"><div class="image-area"><img class="product-image" src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/${p.id}-back.webp" alt="${p.name} black hoodie, back view" width="900" height="1000" loading="lazy"><button class="zoom-trigger" aria-label="Enlarge ${p.name} hoodie image">Inspect detail +</button></div><div class="views" aria-label="${p.name} product views">${['Back','Front','Detail'].map(v=>`<button data-view="${v.toLowerCase()}" aria-pressed="${v==='Back'}">${v}</button>`).join('')}<span class="image-caption">HOVER TO ZOOM</span></div><div class="product-heading"><h3>${p.name.toUpperCase()} HOODIE</h3><span class="price">$150 <small>USD</small></span></div><p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div><div class="size-label"><span>SELECT SIZE</span><span>S–3XL</span></div><div class="sizes" role="group" aria-label="${p.name} size">${sizes.map(s=>`<button aria-pressed="false" data-size="${s}">${s}</button>`).join('')}</div><p class="size-error" role="status"></p><button class="button dark add-bag">Add to bag — $150 <span>+</span></button><div class="details"><details><summary>The release edition</summary><p>Limited to 100 Nix hoodies and 100 Rook hoodies, across all sizes. Special Saints of Bad Luck logo treatment on the front, oversized character artwork on the back. The collection will go on sale ahead of the December 4, 2026 movie release, as soon as checkout and fulfillment are ready.</p></details><details><summary>Size & fit</summary><p>Available sizes: S, M, L, XL, 2XL and 3XL. The production blank, fabric and exact garment measurements will be confirmed before sale. These images are design mockups.</p></details><details><summary>Delivery & returns</summary><p>Orders are not open yet. Shipping rates, production timing and the returns policy will be added with the fulfillment service before checkout opens.</p></details></div></article>`).join('');
-function announce(t){$('#announcer').textContent=t}function save(){try{localStorage.setItem('sobl-stage-bag',JSON.stringify(cart))}catch{}renderCart()}
-function renderCart(){const count=cart.reduce((s,x)=>s+x.qty,0),total=count*15000;$('#bag-count').textContent=count;$('#drawer-count').textContent=count;$('#bag-total').textContent=money(total);$('#bag-bottom').hidden=!count;$('#bag-items').innerHTML=count?cart.map((x,i)=>{const p=catalog.find(p=>p.id===x.id);return `<div class="bag-row"><img src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/${p.id}-back.webp" alt="${p.name} hoodie"><div><h3>${p.name.toUpperCase()} HOODIE</h3><p>Black / Bone · ${x.size}</p><div class="row-line"><div class="qty"><button data-qty="${i}" data-delta="-1" aria-label="Decrease ${p.name} size ${x.size} quantity">−</button><span>${x.qty}</span><button data-qty="${i}" data-delta="1" aria-label="Increase ${p.name} size ${x.size} quantity" ${x.qty===10?'disabled':''}>+</button></div><strong>${money(x.qty*15000)}</strong></div><button class="remove" data-remove="${i}">Remove ${p.name} · ${x.size}</button></div></div>`}).join(''):'<div class="empty-bag"><p>No bad company. Yet.</p><button class="text-link" data-close="bag">Find your hoodie →</button></div>';$('#checkout-items').innerHTML=cart.map(x=>{const p=catalog.find(p=>p.id===x.id);return `<div class="checkout-item"><img src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/${p.id}-back.webp" alt="${p.name} hoodie"><span>${p.name} hoodie<small>Black / Bone · ${x.size} · Qty ${x.qty}</small></span><strong>${money(x.qty*15000)}</strong></div>`}).join('');$('#checkout-total').textContent=money(total);$('#review-order').disabled=!count}
-let zoomScale=1;function scaleZoom(){ $('#zoom-image').style.width=`${zoomScale*100}%` }function openZoom(card){const p=catalog.find(p=>p.id===card.dataset.product),im=card.querySelector('.product-image');$('#zoom-image').src=im.src;$('#zoom-image').alt=im.alt;$('#zoom-title').textContent=`${p.name.toUpperCase()} / ${card.dataset.view||'back'}`;zoomScale=1;scaleZoom();$('#zoom').showModal();$('#zoom-scroll').scrollTo(0,0)}
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.close){$('#'+b.dataset.close).close();return}const card=b.closest('.product');if(b.dataset.view){card.dataset.view=b.dataset.view;const im=card.querySelector('.product-image');im.src=`https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/${card.dataset.product}-${b.dataset.view}.webp`;im.alt=`${card.dataset.product==='nix'?'Nix':'Rook'} black hoodie, ${b.dataset.view} view`;card.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',x===b));return}if(b.dataset.size){card.dataset.size=b.dataset.size;card.querySelectorAll('[data-size]').forEach(x=>x.setAttribute('aria-pressed',x===b));card.querySelector('.size-error').textContent='';return}if(b.classList.contains('add-bag')){if(!card.dataset.size){card.querySelector('.size-error').textContent='Choose your size first.';card.querySelector('[data-size]').focus();return}const found=cart.find(x=>x.id===card.dataset.product&&x.size===card.dataset.size);if(found&&found.qty>=10){card.querySelector('.size-error').textContent='Preview bag limit: 10 per size.';return}if(found)found.qty++;else cart.push({id:card.dataset.product,size:card.dataset.size,qty:1});save();announce('Hoodie added to bag');$('#bag').showModal();return}if(b.classList.contains('zoom-trigger')){openZoom(card);return}if(b.dataset.qty!==undefined){const i=Number(b.dataset.qty),n=cart[i].qty+Number(b.dataset.delta);if(n<=0)cart.splice(i,1);else cart[i].qty=Math.min(n,10);save();const next=$(`[data-qty="${Math.min(i,cart.length-1)}"][data-delta="${b.dataset.delta}"]`);(next&&!next.disabled?next:$('#bag [data-close]')).focus();announce('Bag updated');return}if(b.dataset.remove!==undefined){const i=Number(b.dataset.remove);cart.splice(i,1);save();const next=$(`[data-remove="${Math.min(i,cart.length-1)}"]`);(next||$('#bag [data-close]')).focus();announce('Item removed from bag')}});
-$('#open-bag').onclick=()=>$('#bag').showModal();$('#go-checkout').onclick=()=>{if(!cart.length)return;$('#bag').close();$('#store').hidden=true;$('#checkout').hidden=false;$('#review-message').textContent='';window.scrollTo(0,0);$('#back-store').focus()};function showStore(){ $('#checkout').hidden=true;$('#store').hidden=false }$('#back-store').onclick=()=>{showStore();$('#collection').scrollIntoView()};document.querySelectorAll('header a').forEach(a=>a.addEventListener('click',showStore));$('#review-order').onclick=()=>{$('#review-message').textContent='Preview reviewed. Your bag is saved on this device; no order has been placed and no payment has been taken.'};$('#zoom-in').onclick=()=>{zoomScale=Math.min(2,zoomScale+.25);scaleZoom()};$('#zoom-out').onclick=()=>{zoomScale=Math.max(1,zoomScale-.25);scaleZoom()};document.querySelectorAll('.image-area').forEach(a=>a.addEventListener('pointermove',e=>{const r=a.getBoundingClientRect();a.querySelector('img').style.transformOrigin=`${(e.clientX-r.left)/r.width*100}% ${(e.clientY-r.top)/r.height*100}%`}));document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}}));renderCart();
-// Muted inline autoplay; reduced-motion visitors choose playback explicitly.
-const heroVideo=$('#hero-video'),fullVideo=$('#full-video'),fullFilm=$('#full-film');
-let resumeHero=false;$('#film-full').onclick=()=>{resumeHero=!heroVideo.paused;heroVideo.pause();fullFilm.showModal();fullVideo.currentTime=0;fullVideo.play().catch(()=>{})};fullFilm.addEventListener('close',()=>{fullVideo.pause();if(resumeHero)heroVideo.play().catch(()=>{})});
-const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');if(reducedMotion.matches){heroVideo.autoplay=false;heroVideo.pause()}else{heroVideo.muted=true;heroVideo.play().catch(()=>{})}
-
-// Connect the approved bag only when the backend explicitly enables TEST checkout.
-(async()=>{if(!window.SaintsMerch)return;const client=window.SaintsMerch.createMerchClient();let config;try{config=await client.configuration()}catch{return}if(!config.checkoutReady||!config.testMode)return;const button=$('#go-checkout');button.textContent='Stripe test checkout ↗';button.onclick=async()=>{button.disabled=true;try{const destination=await client.checkout(cart);window.location.assign(destination)}catch(error){announce(error.message);$('#bag .stage-note').textContent=error.message}finally{button.disabled=false}}})();
+"use strict";
+(() => {
+  const base =
+    "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/";
+  const sizes = ["S", "M", "L", "XL", "2XL", "3XL"];
+  const catalog = [
+    {
+      id: "nix",
+      name: "Nix",
+      description:
+        "Nix’s side-eye says what you were thinking. His oversized back portrait and the special Saints release logo up front make it official: “Who the fuck is we?”",
+    },
+    {
+      id: "rook",
+      name: "Rook",
+      description:
+        "Rook doesn’t need a speech. Her portrait takes the back, with the special Saints release logo up front and the full mark below her stare.",
+    },
+  ];
+  const $ = (s) => document.querySelector(s);
+  const source = (id, view) => `${base}${id}-${view}.webp`;
+  const views = [
+    ["back", "Back"],
+    ["front", "Front"],
+    ["detail", "Portrait"],
+  ];
+  let selection = { product: "nix", size: "S" };
+  window.SOBLShop = {
+    selection: () => ({ ...selection }),
+    select(product, size) {
+      if (!catalog.some((p) => p.id === product) || !sizes.includes(size))
+        return;
+      selection = { product, size };
+      window.dispatchEvent(
+        new CustomEvent("sobl:selection", { detail: { ...selection } }),
+      );
+    },
+  };
+  $("#products").innerHTML = catalog
+    .map(
+      (p, i) => `
+    <article class="product" data-product="${p.id}" data-view="back" data-size="S">
+      <div class="product-index eyebrow"><span>0${i + 1} / ${p.id.toUpperCase()}</span><span>100 EDITIONS</span></div>
+      <div class="image-area"><img class="product-image" src="${source(p.id, "back")}" alt="${p.name} black hoodie, back view" width="900" height="1000" loading="lazy"><div class="detail-lens" aria-hidden="true"></div><button class="zoom-trigger" aria-label="Enlarge ${p.name} hoodie image">Inspect detail <span>+</span></button></div>
+      <div class="views" role="group" aria-label="${p.name} product views">${views.map(([v, n]) => `<button data-view="${v}" aria-pressed="${v === "back"}">${n}</button>`).join("")}<span class="image-caption">MOVE CLOSER</span></div>
+      <div class="product-heading"><h3>${p.id === "rook" ? "<em>Rook</em>" : "Nix"}<small>THE RELEASE EDITION</small></h3><span class="price">$150 <small>USD</small></span></div>
+      <p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div>
+      <div class="size-label"><span>YOUR SIZE</span><span>S–3XL</span></div><div class="sizes" role="group" aria-label="${p.name} size">${sizes.map((s) => `<button aria-pressed="${s === "S"}" data-size="${s}">${s}</button>`).join("")}</div>
+      <button class="button dark add-bag">Get early access <span>↗</span></button>
+      <div class="details"><details><summary>The release edition</summary><p>Limited to 100 Nix hoodies and 100 Rook hoodies, across all sizes. Special Saints of Bad Luck logo treatment on the front, oversized character artwork on the back. The collection will go on sale ahead of the December 4, 2026 movie release, as soon as checkout and fulfillment are ready.</p></details><details><summary>Size & fit</summary><p>Available sizes: S, M, L, XL, 2XL and 3XL. The production blank, fabric and exact garment measurements will be confirmed before sale. These images are design mockups.</p></details><details><summary>Delivery & returns</summary><p>Orders are not open yet. Shipping rates, production timing and the returns policy will be added with the fulfillment service before checkout opens.</p></details></div>
+    </article>`,
+    )
+    .join("");
+  const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
+  document.querySelectorAll(".product").forEach((card) => {
+    const image = card.querySelector(".product-image");
+    const area = card.querySelector(".image-area");
+    const lens = card.querySelector(".detail-lens");
+    let revision = 0;
+    async function show(view) {
+      const ticket = ++revision;
+      const next = new Image();
+      next.src = source(card.dataset.product, view);
+      try {
+        await next.decode();
+      } catch {
+        return;
+      }
+      if (ticket !== revision) return;
+      image.src = next.src;
+      image.alt = `${card.dataset.product === "nix" ? "Nix" : "Rook"} black hoodie, ${view} view`;
+      lens.style.backgroundImage = `url("${next.src}")`;
+      image.animate?.([{ opacity: 0.35 }, { opacity: 1 }], {
+        duration: matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? 0
+          : 220,
+      });
+    }
+    card.querySelectorAll("[data-view]").forEach((button) => {
+      button.addEventListener("click", () => {
+        card.dataset.view = button.dataset.view;
+        card
+          .querySelectorAll("[data-view]")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+        show(button.dataset.view);
+      });
+      button.addEventListener("pointerenter", () => {
+        if (finePointer.matches) show(button.dataset.view);
+      });
+      button.addEventListener("pointerleave", () => show(card.dataset.view));
+    });
+    area.addEventListener("pointermove", (e) => {
+      if (!finePointer.matches || e.target.closest("button")) {
+        lens.classList.remove("visible");
+        return;
+      }
+      const r = area.getBoundingClientRect(),
+        x = e.clientX - r.left,
+        y = e.clientY - r.top;
+      const width = Math.min(160, r.width * 0.4),
+        zoom = 1.9;
+      lens.style.width = lens.style.height = `${width}px`;
+      lens.style.left = `${Math.min(r.width - width, Math.max(0, x - width / 2))}px`;
+      lens.style.top = `${Math.min(r.height - width, Math.max(0, y - width / 2))}px`;
+      lens.style.backgroundImage = `url("${image.src}")`;
+      lens.style.backgroundSize = `${r.width * zoom}px ${r.height * zoom}px`;
+      lens.style.backgroundPosition = `${width / 2 - x * zoom}px ${width / 2 - y * zoom}px`;
+      lens.classList.add("visible");
+    });
+    area.addEventListener("pointerleave", () =>
+      lens.classList.remove("visible"),
+    );
+    card.querySelectorAll("[data-size]").forEach((button) =>
+      button.addEventListener("click", () => {
+        card.dataset.size = button.dataset.size;
+        card
+          .querySelectorAll("[data-size]")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+        window.SOBLShop.select(card.dataset.product, button.dataset.size);
+      }),
+    );
+    card
+      .querySelector(".zoom-trigger")
+      .addEventListener("click", () => openZoom(card));
+  });
+  let zoomScale = 1,
+    galleryProduct = "nix",
+    galleryView = "back";
+  const scaleZoom = () => {
+    $("#zoom-image").style.width = `${zoomScale * 100}%`;
+  };
+  function gallery(view) {
+    galleryView = view;
+    $("#zoom-image").src = source(galleryProduct, view);
+    $("#zoom-image").alt =
+      `${galleryProduct === "nix" ? "Nix" : "Rook"} hoodie, ${view} view`;
+    $("#zoom-title").textContent =
+      `${galleryProduct.toUpperCase()} / ${view.toUpperCase()}`;
+    $("#zoom-views")
+      .querySelectorAll("button")
+      .forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.gallery === view)),
+      );
+    zoomScale = 1;
+    scaleZoom();
+    $("#zoom-scroll").scrollTo(0, 0);
+  }
+  function openZoom(card) {
+    galleryProduct = card.dataset.product;
+    $("#zoom-views").innerHTML = views
+      .map(([v, n]) => `<button data-gallery="${v}">${n}</button>`)
+      .join("");
+    gallery(card.dataset.view);
+    $("#zoom").showModal();
+  }
+  $("#zoom-views").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-gallery]");
+    if (b) gallery(b.dataset.gallery);
+  });
+  $("#zoom-in").onclick = () => {
+    zoomScale = Math.min(2, zoomScale + 0.25);
+    scaleZoom();
+  };
+  $("#zoom-out").onclick = () => {
+    zoomScale = Math.max(1, zoomScale - 0.25);
+    scaleZoom();
+  };
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-close]");
+    if (b) $("#" + b.dataset.close).close();
+  });
+  document.querySelectorAll("dialog").forEach((d) =>
+    d.addEventListener("click", (e) => {
+      if (e.target !== d) return;
+      const r = d.getBoundingClientRect();
+      if (
+        e.clientX < r.left ||
+        e.clientX > r.right ||
+        e.clientY < r.top ||
+        e.clientY > r.bottom
+      )
+        d.close();
+    }),
+  );
+  const hero = $("#hero-video"),
+    full = $("#full-video"),
+    dialog = $("#full-film");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  function motionPreference() {
+    if (reduced.matches) {
+      hero.autoplay = false;
+      hero.pause();
+    } else {
+      hero.muted = true;
+      hero.play().catch(() => {});
+    }
+  }
+  motionPreference();
+  reduced.addEventListener("change", motionPreference);
+  let resume = false;
+  $("#film-full").onclick = () => {
+    resume = !hero.paused;
+    hero.pause();
+    dialog.showModal();
+    full.currentTime = 0;
+    full.play().catch(() => {});
+  };
+  dialog.addEventListener("close", () => {
+    full.pause();
+    if (resume && !reduced.matches) hero.play().catch(() => {});
+  });
+  hero.addEventListener("timeupdate", () => {
+    $("#shot-caption").textContent =
+      hero.currentTime > 6.5
+        ? "NIX / THE RELEASE EDITION"
+        : "ROOK / THE RELEASE EDITION";
+  });
+  let pending = false;
+  function scrollFrame() {
+    pending = false;
+    const r = $(".hero").getBoundingClientRect();
+    const p = reduced.matches
+      ? 0
+      : Math.min(1, Math.max(0, -r.top / (r.height * 0.8)));
+    $(".hero").style.setProperty("--hero-progress", p.toFixed(3));
+  }
+  addEventListener(
+    "scroll",
+    () => {
+      if (!pending) {
+        pending = true;
+        requestAnimationFrame(scrollFrame);
+      }
+    },
+    { passive: true },
+  );
+  scrollFrame();
+  document.documentElement.classList.add("motion-ready");
+})();
