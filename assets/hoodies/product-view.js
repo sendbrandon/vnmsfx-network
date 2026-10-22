@@ -8,7 +8,7 @@
   dialog.id = "piece";
   dialog.setAttribute("aria-labelledby", "piece-name");
   dialog.innerHTML = `
-    <div class="piece-nav"><button class="piece-back" aria-label="Back to collection">← <span>The collection</span></button><a href="/saints-of-bad-luck">Saints of Bad Luck</a><div class="piece-switch" role="group" aria-label="Choose character"><button data-piece="nix">Nix</button><button data-piece="rook">Rook</button></div></div>
+    <div class="piece-nav"><button class="piece-back" aria-label="Back to collection">← <span>The collection</span></button><a class="piece-brand" href="/saints-of-bad-luck" aria-label="Saints of Bad Luck"><img src="https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v1/saints-logo.png" alt="Saints of Bad Luck" width="130" height="60"></a><div class="piece-switch" role="group" aria-label="Choose character"><button data-piece="nix">Nix</button><button data-piece="rook">Rook</button></div></div>
     <div class="piece-content">
       <div class="piece-stage" aria-label="Product gallery" aria-roledescription="carousel">
         <div class="piece-track">${views.map(([view]) => `<div class="piece-slide"><img data-piece-image="${view}" alt="" width="900" height="1000"></div>`).join("")}</div>
@@ -36,7 +36,7 @@
         </details>
         <a class="piece-film line-link" href="/saints-of-bad-luck">Meet your bad influences <span>↗</span></a>
       </div>
-      <p class="piece-colophon eyebrow">VNMSFX Originals · Wear the bad influence.</p>
+      <div class="piece-colophon"><a href="/" aria-label="VNMSFX Originals"><img src="https://vnmsfx.com/assets/saints/vnmsfx-originals-wordmark.png" alt="VNMSFX Originals" width="180" height="88" loading="lazy"></a></div>
     </div>`;
   document.body.append(dialog);
   const $ = selector => dialog.querySelector(selector);

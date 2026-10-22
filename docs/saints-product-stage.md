@@ -34,3 +34,6 @@ Change: native Information disclosure wraps original description/details. Choose
 Copy: “Sales open soon. Sign up to reserve your hoodie. No payment today.” Signup receipt and future intake record text agree. Existing historical records unchanged.
 Verification: 163 tests pass, build passes. Browser verified unselected/disabled state, Rook/M handoff to unchanged form, Information content and new copy. Reservation allocation is not enforced by this existing Notion intake; must add capacity handling before publishing reservation guarantees.
 Reference reuse: same inspected Yeezy HD-03 structure and Flim typography receipt above; no font/art/motion changes in this patch.
+
+## Branding follow-up
+Added existing official Saints mark to product navigation and existing VNMSFX Originals mark to footer, rendered dark with CSS brightness(0) on opaque white; source images unchanged. Verified both loaded in browser and body/product computed background rgb(255,255,255). No typeface change. Yeezy live Information control inspected: computed family `"YZY Plex Mono", "IBM Plex Mono Fallback", monospace`, 16px, weight500; do not claim a public license or that IBM Plex is identical to its custom face.
