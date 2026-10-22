@@ -1296,3 +1296,68 @@ dialog::backdrop {
     display: none;
   }
 }
+
+/* A dedicated garment stage; the editorial collection stays behind it. */
+.piece-link { margin: 10px 0 16px; border-bottom: 1px solid var(--line); width: 100%; }
+html.piece-open, html.piece-open body { overflow: hidden; }
+#piece {
+  inset: 0; margin: 0; border: 0; padding: 0;
+  width: 100%; max-width: none; height: 100%; max-height: none;
+  background: #fff; color: var(--ink); overflow-y: auto; overscroll-behavior: contain;
+}
+#piece::backdrop { background: #fff; backdrop-filter: none; }
+.piece-nav {
+  position: sticky; top: 0; z-index: 2; background: #fffffff2;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 21px 36px; font-size: 12px; border-bottom: 1px solid #ededeb;
+}
+.piece-back { justify-self: start; padding: 8px 0; }
+.piece-back span { margin-left: 10px; }
+.piece-nav > a { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.piece-switch { justify-self: end; display: flex; gap: 20px; }
+.piece-switch button { padding: 8px 0; color: #777; }
+.piece-switch button[aria-pressed=true] { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
+.piece-stage { position: relative; width: min(1100px,100%); height: clamp(300px, 52svh, 550px); margin: 16px auto 0; overflow: hidden; touch-action: pan-y; }
+.piece-track { display: flex; height: 100%; transition: transform .55s cubic-bezier(.22,.75,.22,1); }
+.piece-slide { flex: 0 0 100%; min-width: 0; height: 100%; display: flex; align-items: center; justify-content: center; }
+.piece-slide img { width: 100%; height: 100%; object-fit: contain; }
+.piece-arrow { position: absolute; top: calc(50% - 24px); width: 48px; height: 48px; font-size: 24px; background: #ffffffc9; border-radius: 50%; }
+.piece-arrow.previous { left: 8%; }
+.piece-arrow.next { right: 8%; }
+.piece-inspect { position: absolute; bottom: 8px; right: 7%; font-size: 11px; padding: 10px; background: #ffffffdf; }
+.piece-inspect span { margin-left: 12px; }
+.piece-view-controls { display: flex; justify-content: center; gap: 24px; padding: 10px 0 26px; }
+.piece-view-controls button { position: relative; padding: 12px 2px; font-size: 10px; color: #777; }
+.piece-view-controls button:before { content: ''; position: absolute; top: 0; left: calc(50% - 2px); width: 4px; height: 4px; background: #ccc; border-radius: 50%; }
+.piece-view-controls button[aria-pressed=true] { color: var(--ink); }
+.piece-view-controls button[aria-pressed=true]:before { background: var(--ink); }
+.piece-info { width: min(480px,calc(100% - 48px)); margin: 0 auto; text-align: center; }
+#piece-name { font-size: clamp(40px,4vw,60px); line-height: 1.15; letter-spacing: -.045em; margin: 12px 0 4px; }
+.piece-price { font-size: 18px; margin: 0 0 24px; }
+.piece-price span { font-size: 10px; margin-left: 5px; }
+.piece-description { font-size: 15px; line-height: 1.6; color: #575752; }
+.piece-color { margin-top: 22px; font-size: 9px; }
+.piece-size-label { margin-top: 32px; display: flex; justify-content: space-between; font-size: 11px; }
+.piece-sizes { display: flex; justify-content: space-between; border-top: 1px solid #d9d9d4; border-bottom: 1px solid #d9d9d4; margin: 10px 0 20px; }
+.piece-sizes button { flex: 1; min-height: 52px; font-size: 12px; }
+.piece-sizes button[aria-pressed=true] { background: var(--ink); color: #fff; }
+.piece-signup { width: 100%; }
+.piece-access-note { font-size: 11px; color: #777; margin: 12px auto 32px; max-width: 330px; }
+.piece-details { text-align: left; }
+.piece-details summary { font-size: 13px; }
+.piece-details p { font-size: 13px; }
+.piece-film { margin-top: 22px; font-size: 12px; }
+.piece-colophon { text-align: center; color: #777; padding: 64px 24px 32px; font-size: 9px; }
+@media (max-width: 600px) {
+  .piece-nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+  .piece-nav > a { display: none; }
+  .piece-back { font-size: 11px; }
+  .piece-stage { margin-top: 12px; height: 44svh; min-height: 290px; }
+  .piece-arrow.previous { left: 4px; }
+  .piece-arrow.next { right: 4px; }
+  .piece-inspect { right: 12px; bottom: 0; }
+  .piece-view-controls { padding-bottom: 20px; }
+  #piece-name { margin-top: 10px; }
+  .piece-price { margin-bottom: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .piece-track { transition: none; } }
