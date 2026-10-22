@@ -9,7 +9,7 @@ Give each hoodie a dedicated white product stage, reached from the collection. C
 - Materials/instruments: existing WebP mockups, hosted licensed fonts, semantic HTML, native dialog, CSS transform gallery. Do not regenerate, recolor, crop garment prints or invent production specifications.
 - Process: inspect reference → lock unchanged assets and signup contract → build view → verify gallery/size/signup handoff → desktop/mobile review. Publishing is separate from this local review.
 - Medium limits: object-fit contain preserves whole garment; white stage avoids rectangular image borders. One transform track gives spatial continuity; reduced-motion removes sliding. Constrain controls to viewport and let details scroll.
-- Current commerce: early access only, 100 of each across all sizes, planned $150 USD, December 4 movie release. No payment, reservation or shipping guarantee.
+- Current commerce: early access only, 100 of each across all sizes, planned $150 USD, December 4 movie release. No payment or shipping guarantee. Reservation copy was subsequently authorized by Brandon; the existing intake records reservation signups but does not yet enforce the 100-per-character allocation.
 - Defects to reject: image stretching, clipped artwork, layout jump, focus escaping modal, size resetting during signup, background scroll, stale character selection, unverified fit claims.
 
 ## Compact implementation contract
@@ -26,3 +26,11 @@ Success: user can open either hoodie, inspect all three images, choose S–3XL a
 - Rook/M and Nix/3XL handed to existing early-access form correctly. No form submitted and no records created. Escape restored collection/title/URL. View buttons reopened detail. S remains first/default on fresh page.
 - Reduced-motion rule disables gallery transition; not separately simulated in browser.
 - Screenshot gate PASS (1280×720); temporal grain SKIP because website screenshot. Manual relevant checklist: approved existing mockup pixels unchanged; no type across faces/artwork; website fonts distinct from Lemon on garments; price/release/ascending sizes correct; no invented stock-sales, fit or delivery claims. Video/audio/post packaging checks N/A.
+
+## October 21 follow-up — scoped interaction repair
+Rejected: exposed description, always-open size row, automatic S selection in the dedicated view, off-white page, uneven plus glyphs, and sample-approval/no-reservation copy.
+Locked: existing garment assets, gallery, price, fonts, hero, original early-access form structure and consent.
+Change: native Information disclosure wraps original description/details. Choose your size disclosure starts unselected, S first; CTA remains disabled until explicit selection and guarded again in its handler. Character changes clear the explicit choice. Pure white paper/header; one consistent CSS-line icon per row, plus becomes minus on open. Removed inherited duplicate summary glyph; scoped open-state selector to direct summary only.
+Copy: “Sales open soon. Sign up to reserve your hoodie. No payment today.” Signup receipt and future intake record text agree. Existing historical records unchanged.
+Verification: 163 tests pass, build passes. Browser verified unselected/disabled state, Rook/M handoff to unchanged form, Information content and new copy. Reservation allocation is not enforced by this existing Notion intake; must add capacity handling before publishing reservation guarantees.
+Reference reuse: same inspected Yeezy HD-03 structure and Flim typography receipt above; no font/art/motion changes in this patch.
