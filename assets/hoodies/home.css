@@ -145,3 +145,9 @@ details[open] > summary > .home-plus:after { display:none; }
 @media(prefers-reduced-motion:reduce) {
   .home-information[open] > .home-information-body,.home-size-picker[open] > .sizes,.home-release-details[open] > .home-release-body { animation:none; }
 }
+
+/* Match the product dialog controls; switching images adds no opacity effect. */
+.shop-home .home-gallery-arrow { z-index:2; }
+.shop-home .home-gallery-arrow.previous { left:4px; }
+.shop-home .home-gallery-arrow.next { right:4px; }
+.shop-home .home-gallery-arrow:focus-visible { outline:1px solid currentColor; outline-offset:2px; }
