@@ -41,3 +41,8 @@
 
 /* Hoodie early access uses the approved product images and existing page typography. */
 .header-actions{display:flex;align-items:center;gap:10px}.shop-mobile-link{display:none}.hoodie-shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:28px;max-width:1000px}.hoodie-shop-card img{display:block;width:100%;height:auto;aspect-ratio:9/10;object-fit:contain;background:#fff;border-radius:6px}.hoodie-shop-card>div{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:15px}.hoodie-shop-card h3{font-size:22px;margin:0}.hoodie-shop-card span,.hoodie-shop-card p{font-size:12px;color:var(--muted)}@media(max-width:750px){.shop-mobile-link{display:inline-flex}.header-actions{gap:7px}.header-actions .small-cta{padding:9px 12px}.hoodie-shop-grid{gap:14px}.hoodie-shop-card>div{display:block}.hoodie-shop-card h3{font-size:18px}.hoodie-shop-card p{font-size:11px}}
+
+/* Permanent ownership and help links, without changing the film layout. */
+footer .saints-trust-links{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;max-width:550px;font-size:11px;line-height:1.8}
+footer .saints-trust-links a,footer p a{color:inherit;text-underline-offset:4px}
+@media(max-width:750px){footer .saints-trust-links{width:100%;justify-content:center}}

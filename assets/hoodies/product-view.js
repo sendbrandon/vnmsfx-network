@@ -23,7 +23,7 @@
       </div>
       <div class="piece-view-controls" role="group" aria-label="Product views">${views.map(([view, label]) => `<button data-piece-view="${view}">${label}</button>`).join("")}</div>
       <div class="piece-info">
-        <p class="eyebrow piece-introduction">Wear your bad influence</p>
+        <p class="eyebrow piece-introduction">Official Saints of Bad Luck collection</p>
         <h2 id="piece-name"></h2>
         <p class="piece-price">$150 <span>USD</span></p>
         <details class="piece-information piece-disclosure">
@@ -45,11 +45,11 @@
           <summary>Choose your size <span class="piece-disclosure-icon" aria-hidden="true"></span></summary>
           <div class="piece-sizes" role="group" aria-label="Hoodie size">${sizes.map(size => `<button data-piece-size="${size}" aria-pressed="false">${size}</button>`).join("")}</div>
           <button class="button dark piece-signup" disabled>Get early access ${arrow}</button>
-          <p class="piece-access-note">Sales open soon. Sign up to reserve your hoodie. No payment today.</p>
+          <p class="piece-access-note">Sales open soon. Reserve your character and size preference. No payment today.</p><p class="piece-support"><a href="/saints-about#reservations">How reservations work</a> · <a href="mailto:brandon@vnmsfx.com?subject=Saints%20hoodie%20question">Ask Brandon</a></p>
         </details>
         <a class="piece-film line-link" href="/saints-of-bad-luck">Meet your bad influences ${arrow}</a>
       </div>
-      <div class="piece-colophon"><p class="piece-credit eyebrow">Created by Brandon Adams</p><a href="/" aria-label="VNMSFX Originals"><img src="https://vnmsfx.com/assets/saints/vnmsfx-originals-wordmark.png" alt="VNMSFX Originals" width="180" height="88" loading="lazy"></a></div>
+      <div class="piece-colophon"><p class="piece-credit eyebrow">Created by <a href="/saints-about#creator">Brandon Adams</a></p><a href="/saints-about" aria-label="VNMSFX Originals"><img src="https://vnmsfx.com/assets/saints/vnmsfx-originals-wordmark.png" alt="VNMSFX Originals" width="180" height="88" loading="lazy"></a><nav class="piece-trust-links" aria-label="Shop information"><a href="/saints-about#contact">Contact</a><a href="/privacy#hoodie-early-access">Privacy</a><a href="/saints-about#terms">Terms</a><a href="/saints-about#delivery">Shipping &amp; returns</a><a href="https://x.com/vnmsfx" target="_blank" rel="noopener noreferrer">X ↗</a></nav></div>
     </div>`;
   document.body.append(dialog);
   const $ = selector => dialog.querySelector(selector);

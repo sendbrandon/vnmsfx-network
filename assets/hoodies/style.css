@@ -1418,3 +1418,8 @@ html.piece-open, html.piece-open body { overflow: hidden; }
   #piece details[open] > .piece-information-body, #piece details[open] > .piece-sizes { animation: none; }
   #piece button, #piece a, #piece summary, #piece .line-link:after { transition: none; }
 }
+
+.piece-support{font-size:10px;line-height:1.8;margin:12px 0;color:#626262}
+.piece-support a,.piece-credit a{color:inherit;text-underline-offset:4px}
+.piece-trust-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin:20px auto 0;max-width:540px;line-height:1.8}
+.piece-trust-links a{color:inherit;text-underline-offset:4px;padding:6px 0}
