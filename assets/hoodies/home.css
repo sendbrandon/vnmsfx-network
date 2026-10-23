@@ -150,3 +150,8 @@ details[open] > summary > .home-plus:after { display:none; }
 .shop-home .home-gallery-arrow.previous { left:4px; }
 .shop-home .home-gallery-arrow.next { right:4px; }
 .shop-home .home-gallery-arrow:focus-visible { outline:1px solid currentColor; outline-offset:2px; }
+
+/* Quiet ownership and customer-help cues within the approved white storefront. */
+.shop-home .home-introduction .home-ownership{font-size:10px;margin-top:16px;line-height:1.8;color:#626262}
+.home-ownership a,.home-footer .eyebrow a{color:inherit;text-underline-offset:4px}
+.home-footer-links{flex-wrap:wrap;justify-content:center;line-height:1.8}
