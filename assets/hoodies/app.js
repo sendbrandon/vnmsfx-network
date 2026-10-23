@@ -23,6 +23,8 @@
   ];
   const $ = (s) => document.querySelector(s);
   const source = (id, view) => `${base}${id}-${view}.webp`;
+  const collectionBase = "https://exil5t8gmkmhqw70.public.blob.vercel-storage.com/hoodies/v4-home-charcoal-20261023/";
+  const collectionSource = (id, view) => `${collectionBase}${view === "front" ? "nix" : id}-${view}.webp`;
   const views = [
     ["back", "Back"],
     ["front", "Front"],
@@ -45,7 +47,7 @@
       (p, i) => `
     <article class="product" data-product="${p.id}" data-view="back" data-size="S" data-size-chosen="false">
       <div class="product-index eyebrow"><span>0${i + 1} / ${p.id.toUpperCase()}</span><span>100 EDITIONS</span></div>
-      <div class="image-area"><img class="product-image" src="${source(p.id, "back")}" alt="${p.name} black hoodie, back view" width="900" height="1000" loading="lazy"><div class="detail-lens" aria-hidden="true"></div><button class="piece-arrow home-gallery-arrow previous" aria-label="Previous ${p.name} image">←</button><button class="piece-arrow home-gallery-arrow next" aria-label="Next ${p.name} image">→</button><button class="zoom-trigger" aria-label="Enlarge ${p.name} hoodie image"></button></div>
+      <div class="image-area"><img class="product-image" src="${collectionSource(p.id, "back")}" alt="${p.name} black hoodie, back view" width="900" height="1000" loading="lazy"><div class="detail-lens" aria-hidden="true"></div><button class="piece-arrow home-gallery-arrow previous" aria-label="Previous ${p.name} image">←</button><button class="piece-arrow home-gallery-arrow next" aria-label="Next ${p.name} image">→</button><button class="zoom-trigger" aria-label="Enlarge ${p.name} hoodie image"></button></div>
       <div class="views" role="group" aria-label="${p.name} product views">${views.map(([v, n]) => `<button data-view="${v}" aria-pressed="${v === "back"}">${n}</button>`).join("")}<span class="image-caption">MOVE CLOSER</span></div>
       <div class="product-heading"><h3>${p.name} <em>hoodie</em></h3><span class="price">$150 <small>USD</small></span></div>
       <button class="piece-link line-link" data-open-piece="${p.id}">View piece <span>↗</span></button><details class="home-information home-disclosure"><summary>Information <span class="home-plus" aria-hidden="true"></span></summary><div class="home-information-body"><p class="home-story">${p.story}</p><p class="description">${p.description}</p><div class="color-row"><span class="swatch"></span> BLACK / BONE · LIMITED RELEASE EDITION</div>
@@ -67,7 +69,7 @@
     async function show(view) {
       const ticket = ++revision;
       const next = new Image();
-      next.src = source(card.dataset.product, view);
+      next.src = collectionSource(card.dataset.product, view);
       try {
         await next.decode();
       } catch {
