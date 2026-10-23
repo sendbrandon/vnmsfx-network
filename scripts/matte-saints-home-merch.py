@@ -7,9 +7,13 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 source,output=map(Path,sys.argv[1:]);output.mkdir(parents=True,exist_ok=True)
+approved={r['name']:r['sha256'] for r in json.loads((Path(__file__).resolve().parents[1]/'docs/saints-hoodie-studio-media.json').read_text())}
 records=[]
 for name in ('nix-back','rook-back','nix-front'):
-    path=source/(name+'.webp'); original=Image.open(path).convert('RGB'); rgb=np.array(original)
+    path=source/(name+'.webp')
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==approved[name], 'Source must match approved studio asset'
+    original=Image.open(path).convert('RGB'); assert original.size==(900,1000)
+    rgb=np.array(original)
     # Only the border-connected light field is background: enclosed bone ink is never keyed.
     light=(np.min(rgb,axis=2)>200).astype('uint8')*255
     flood=Image.fromarray(light).copy(); ImageDraw.floodfill(flood,(0,0),128,thresh=0)
