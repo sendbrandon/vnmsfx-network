@@ -1,0 +1,74 @@
+/* The film and its collection share charcoal, bone, serif headings and quiet controls.
+   White product/inspection stages remain an explicitly approved utility surface. */
+.shop-home {
+  --paper:#242628; --ink:#e8e1d5; --muted:#c0bcb4; --line:#d8cab52b; --plum:#e8e1d5;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  background:#242628; color:var(--ink); color-scheme:dark;
+  font-family:var(--sans); letter-spacing:-.012em;
+}
+.shop-home .home-release-note { color:var(--muted); background:#242628; font-size:10px; }
+.shop-home > .home-header { background:#242628ed; color:var(--ink); border-bottom:0; padding-inline:clamp(24px,6vw,110px); }
+.shop-home .home-header .brand img { filter:none; }
+.shop-home .home-header nav,.shop-home .home-nav-left { font-family:var(--sans); font-size:12px; }
+.shop-home .home-header #open-bag { color:#242628; background:var(--ink); border-radius:24px; padding:10px 18px; }
+
+.shop-home .home-introduction { text-align:center; padding:40px 24px 28px; }
+.shop-home .home-introduction > .eyebrow { font-size:10px; color:var(--muted); letter-spacing:.08em; }
+.shop-home .home-introduction h1 { font:400 clamp(42px,5.2vw,76px)/1.06 var(--serif); letter-spacing:-.045em; margin:24px 0; max-width:20ch; margin-inline:auto; text-wrap:balance; }
+.shop-home .home-introduction > p:not(.eyebrow):not(.home-ownership) { font-size:17px; color:var(--muted); }
+.shop-home .home-introduction .home-ownership { margin-top:26px; font-size:12px; color:var(--muted); }
+.shop-home .hero { background:transparent; padding:0 24px 48px; }
+.shop-home .film-stage { width:clamp(202.5px,30.375svh,303.75px); background:transparent; }
+.shop-home .film-bottom { display:flex; margin:18px auto 0; color:var(--ink); max-width:720px; }
+.shop-home .shot-caption { display:block; font-size:10px; color:var(--muted); margin-bottom:8px; }
+.shop-home .film-bottom .line-link { font-size:12px; }
+.shop-home .collection { max-width:1330px; padding:56px clamp(24px,6vw,80px) 80px; }
+.shop-home .section-heading { align-items:end; margin-bottom:32px; }
+.shop-home .section-heading h2 { font:400 clamp(34px,4vw,54px)/1.08 var(--serif); text-transform:none; letter-spacing:-.045em; border-left:1px solid #d6b98d66; padding-left:17px; }
+.shop-home .section-heading > p { font-size:12px; }
+.shop-home .products { gap:clamp(32px,6vw,80px); }
+.shop-home .product-index { color:var(--muted); }
+.shop-home .image-area { background:radial-gradient(ellipse at 50% 48%,#303234, #2a2c2e 38%,transparent 70%); }
+.shop-home .detail-lens { background-color:#2b2d2f; border-color:#d8cab54d; }
+.shop-home .product-heading h3 { font:400 clamp(32px,3.6vw,48px)/1.1 var(--serif); letter-spacing:-.035em; }
+.shop-home .product-heading h3 em { font-family:inherit; }
+.shop-home .price { font:500 16px var(--sans); }
+.shop-home .product-index,.shop-home #products .views,.shop-home .home-disclosure > summary,.shop-home .home-release-details > summary { font-family:"IBM Plex Mono",monospace; }
+.shop-home .home-disclosure > summary,.shop-home .home-release-details > summary { font-size:12px; font-weight:400; letter-spacing:.025em; }
+.shop-home .product .sizes button:hover:not([aria-pressed=true]) { background:#ffffff0b; }
+.shop-home .button:hover:enabled { background:#e2d3bb; color:#242628; }
+.shop-home .home-release-mark,.shop-home .home-studio img { filter:none; }
+.shop-home .home-release-section { padding-top:8px; }
+.shop-home .closing { padding-top:72px; padding-bottom:24px; }
+.shop-home .closing-heading h2 { font:400 clamp(36px,4.6vw,62px)/1.08 var(--serif); letter-spacing:-.035em; }
+.shop-home .closing-heading > p:last-child { font-size:15px; }
+.shop-home .character-choice strong { font:400 34px/1.15 var(--serif); }
+.shop-home .character-choice button { opacity:.75; }
+.shop-home .character-choice button[aria-pressed=true] { opacity:1; border-bottom-color:#d6b98d; }
+.shop-home .signup-form select option { background:#242628; color:#e8e1d5; }
+.shop-home .signup-form input::placeholder { color:#a5a39e; }
+.shop-home .signup-form input[type=email] { color:var(--ink); }
+.shop-home > .home-footer { background:#242628; border-top:1px solid var(--line); margin-top:60px; }
+.shop-home :is(button,a,summary,input,select):focus-visible { outline-color:#d6b98d; }
+.shop-home #early-access { --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; font-family:var(--sans); }
+.shop-home #early-access .dialog-head h2 { font-family:var(--serif); font-weight:400; }
+/* Keep the original garment stages white, including their ink, controls and marks. */
+.shop-home :is(#piece,#zoom) { --paper:#fff; --ink:#242628; --muted:#626461; --line:#2426281b; --plum:#242628; --sans:"IBM Plex Mono",monospace; --serif:"Editorial New",Georgia,serif; color-scheme:light; color:var(--ink); background:#fff; }
+.shop-home #piece .piece-signup:hover:enabled { background:#3a3d40; color:#fff; }
+@media(max-width:800px) {
+  .shop-home .home-introduction h1 { font-size:44px; }
+  .shop-home .home-header #open-bag { font-size:10px; padding:9px 12px; }
+}
+@media(max-width:600px) {
+  .shop-home .home-introduction h1 { font-size:clamp(32px,9vw,44px); max-width:16ch; margin:18px auto; }
+  .shop-home .home-introduction .home-ownership { margin-top:16px; }
+  .shop-home .film-stage { width:min(100%,300px); }
+  .shop-home .film-bottom { display:block; text-align:center; max-width:300px; margin-inline:auto; }
+  .shop-home .film-bottom .line-link { font-size:11px; }
+  .shop-home .section-heading { text-align:left; }
+  .shop-home .section-heading h2 { font-size:38px; }
+  .shop-home .section-heading > p { margin-top:14px; padding-left:18px; }
+  .shop-home .collection { padding-top:32px; }
+  .shop-home .product-heading h3 { font-size:38px; }
+}

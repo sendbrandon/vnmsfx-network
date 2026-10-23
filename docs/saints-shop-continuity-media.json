@@ -1,0 +1,52 @@
+[
+  {
+    "name": "nix-back",
+    "source_sha256": "acd0dc6319913708879560f34896eb64a4d5a5ad7d06968c16331e059e0e18c9",
+    "sha256": "fc05379f8dd65a0b81a86a593f4b3cee0516291976b9eaa10ed5510456414d98",
+    "width": 900,
+    "height": 1000,
+    "bytes": 255644,
+    "protected_print_changed_pixels": 0,
+    "method": "Border-connected exterior matte; narrow edge white-unmatting; lossless RGBA; no generation/resize/grade"
+  },
+  {
+    "name": "rook-back",
+    "source_sha256": "6dacba9f79443b270275e0b01595b8fa2e01cffb3c168a0af8ec2cd33aa33ae5",
+    "sha256": "04324dc4aa1b8c5c43c536048336f3338e2864a6a383fc5742c835ce8b4ef154",
+    "width": 900,
+    "height": 1000,
+    "bytes": 336534,
+    "protected_print_changed_pixels": 0,
+    "method": "Border-connected exterior matte; narrow edge white-unmatting; lossless RGBA; no generation/resize/grade"
+  },
+  {
+    "name": "nix-front",
+    "source_sha256": "b9d7294874e8908c478df096cd52419a9fb95a100806ce7cb108f2c9e21758bd",
+    "sha256": "cbe437d6ac01d6e0218f758cd87c796532068e4ce8a8cda971563352a5e36eb4",
+    "width": 900,
+    "height": 1000,
+    "bytes": 210002,
+    "protected_print_changed_pixels": 0,
+    "method": "Border-connected exterior matte; narrow edge white-unmatting; lossless RGBA; no generation/resize/grade"
+  },
+  {
+    "name": "nix-detail",
+    "source_sha256": "b41cf15b15f1994e7a72d334e1b5c4307c801d475c7d77737712833dd7692291",
+    "sha256": "25d732a06b68a2a7c8dbf9af67427a299d068b25251ca089ff5dd16624c64bc4",
+    "width": 500,
+    "height": 600,
+    "bytes": 171736,
+    "protected_print_changed_pixels": 0,
+    "method": "Border-connected exterior matte; narrow edge white-unmatting; lossless RGBA; no generation/resize/grade"
+  },
+  {
+    "name": "rook-detail",
+    "source_sha256": "70150d937bac045941ccf1b2d8f0580ba966269540221070d287e3748e17650c",
+    "sha256": "2c0b6039cf90781e56ad52ba00aac9c8a83c0212ca28b6b227be612aaa3569e6",
+    "width": 500,
+    "height": 600,
+    "bytes": 232836,
+    "protected_print_changed_pixels": 0,
+    "method": "Border-connected exterior matte; narrow edge white-unmatting; lossless RGBA; no generation/resize/grade"
+  }
+]
