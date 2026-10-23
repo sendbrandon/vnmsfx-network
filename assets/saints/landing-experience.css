@@ -46,3 +46,22 @@
 footer .saints-trust-links{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;max-width:550px;font-size:11px;line-height:1.8}
 footer .saints-trust-links a,footer p a{color:inherit;text-underline-offset:4px}
 @media(max-width:750px){footer .saints-trust-links{width:100%;justify-content:center}}
+
+/* Film-home merch: approved garments on the page, not white product tiles. */
+.hoodie-shop-grid{max-width:1100px;gap:clamp(24px,5vw,80px);margin:12px 0 36px}
+.hoodie-shop-card{min-width:0}
+.hoodie-stage{display:block;position:relative;aspect-ratio:9/10;isolation:isolate;background:radial-gradient(ellipse at 50% 48%,#303234 0%,#2a2c2e 38%,transparent 70%)}
+.hoodie-shop-card .hoodie-stage img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;background:transparent;border-radius:0;transition:opacity .16s ease;transform-origin:50% 90%}
+.hoodie-shop-card[data-character="nix"] .hoodie-back{transform:scale(1.025)}
+.hoodie-front{opacity:0;pointer-events:none}
+.hoodie-shop-card[data-view="front"] .hoodie-front{opacity:1}
+.hoodie-shop-card[data-view="front"] .hoodie-back{opacity:0}
+.hoodie-shop-card .hoodie-view-switch{display:flex;gap:20px;justify-content:center;margin:0 0 20px;align-items:center}
+.hoodie-view-switch button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;padding:10px 0;cursor:pointer;text-underline-offset:5px}
+.hoodie-view-switch button[aria-pressed="true"]{color:var(--paper);text-decoration:underline}
+.hoodie-view-switch button:focus-visible,.hoodie-stage:focus-visible{outline:1px solid var(--paper);outline-offset:5px}
+.hoodie-product-heading h3 a{color:inherit;text-decoration:none}
+.hoodie-shop-card .hoodie-product-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0}
+.hoodie-shop-card p{margin-top:8px}
+@media(max-width:750px){.hoodie-shop-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto;gap:40px}.hoodie-shop-card .hoodie-product-heading{display:flex}.hoodie-shop-card h3{font-size:22px}.hoodie-shop-card .hoodie-view-switch{margin-bottom:12px}}
+@media(prefers-reduced-motion:reduce){.hoodie-shop-card .hoodie-stage img{transition:none}}
