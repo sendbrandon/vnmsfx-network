@@ -15,7 +15,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="drop-header"><a class="brand" href="/tv" aria-label="VNMSFX TV"><img src="/assets/logo.svg" width="115" height="28" alt="VNMSFX"></a><nav><a href="/tv">VNMSFX TV</a><a class="nav-pass" href="/drops/the-recipient#pass">Season Pass <span aria-hidden="true">↗</span></a></nav></header>
+<header class="drop-header"><a class="brand" href="/" aria-label="VNMSFX TV"><img src="/assets/logo.svg" width="115" height="28" alt="VNMSFX"></a><nav><a href="/">VNMSFX TV</a><a class="nav-pass" href="/drops/the-recipient#pass">Season Pass <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">
 <section class="index-hero"><p class="eyebrow">FREE VNMSFX SEASON PASS</p><h1>NEW ADS.<br><em>HOW THEY’RE MADE.</em></h1><p>Watch the latest VNMSFX ads. Join free for new releases 24 hours early and the ideas behind them.</p><a class="button-acid" href="/drops/the-recipient#pass">Get free early access ↗</a></section>
 <section class="index-grid" aria-label="Drops">
@@ -23,7 +23,7 @@
   <a class="index-item" href="/drops/youre-up"><img src="/tv/spots/fries.jpg" width="540" height="960" alt="You’re Up. — frozen fries get a classified extraction"><span class="tag is-live">OUT NOW</span><h3>You’re Up<span class="acid">.</span></h3><span class="sub">Drop 01 · frozen fries, classified extraction</span></a>
 </section>
 </main>
-<footer class="drop-footer"><span>© 2026 BRANDON ADAMS / NEW YORK</span><div><a href="/tv">VNMSFX TV</a><a href="/privacy">Privacy</a></div></footer>
+<footer class="drop-footer"><span>© 2026 BRANDON ADAMS / NEW YORK</span><div><a href="/">VNMSFX TV</a><a href="/privacy">Privacy</a></div></footer>
 <dialog id="film-dialog" aria-labelledby="film-dialog-title"><div class="player-header"><p id="film-dialog-title"></p><button type="button" id="close-player" aria-label="Close spot">CLOSE ×</button></div><video id="film-player" controls playsinline preload="none"></video></dialog>
 <script>(function(){var d=document.getElementById('film-dialog'),p=document.getElementById('film-player');document.querySelectorAll('a[data-film]').forEach(function(a){a.addEventListener('click',function(e){if(!d.showModal)return;e.preventDefault();document.getElementById('film-dialog-title').textContent=a.dataset.title||'';p.poster=a.dataset.poster||'';p.src=a.href;d.showModal();p.play().catch(function(){});});});var close=function(){if(d.open)d.close();};d.addEventListener('close',function(){p.pause();p.removeAttribute('src');p.load();});document.getElementById('close-player').addEventListener('click',close);d.addEventListener('click',function(e){if(e.target===d)close();});})();</script>
 <script>document.querySelectorAll('[data-drop-tag]').forEach(function(t){if(Date.now()>=Date.parse(t.dataset.release)){t.textContent='OUT NOW';t.classList.add('is-live');}});</script>
