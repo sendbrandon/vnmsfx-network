@@ -37,3 +37,10 @@ body:has(#player[open]){overflow:hidden}
 .library #account-unavailable{max-width:520px;border-top:1px solid var(--line);padding-top:28px;margin:30px 0}
 .library #account-unavailable p{font-size:15px;line-height:1.65;color:var(--muted)}
 .library #account-unavailable .button{border-radius:28px;min-height:48px;white-space:normal;text-align:center;justify-content:center}
+
+/* Purchase entry keeps the chosen plan visible through email verification. */
+#purchase-summary{max-width:620px;border-block:1px solid var(--line);padding:24px 0;margin:26px 0}
+#purchase-summary h2{font-size:clamp(25px,3vw,34px);margin:0 0 10px}
+#selected-price{font-size:24px;font-weight:600;margin:8px 0 12px}
+#selected-terms,#selected-availability{font-size:14px;line-height:1.6;color:var(--muted);max-width:54ch;margin:8px 0}
+#continue-checkout{margin:16px 0 24px;border-radius:28px;white-space:normal;text-align:center}
