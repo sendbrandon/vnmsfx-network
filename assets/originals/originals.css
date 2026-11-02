@@ -29,7 +29,7 @@ em{font-style:italic}
 h1,h2,.big,.signup-head,.tier-line,.endcard-head,.flagship-line,.ep-title,.drop-ep{font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
 
 /* Footage and stills sit above the page grain, so the grain never touches the picture. */
-.drop-media,.quest-art,.flagship-art{z-index:16}
+.drop-media,.quest-art,.flagship-art,.cast-track{z-index:16}
 
 /* Header */
 .bar{position:sticky;top:0;z-index:20;height:76px;padding:0 var(--gut);display:flex;align-items:center;justify-content:space-between;gap:24px;background:#121110e8;backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .3s}
@@ -63,9 +63,8 @@ h1,h2,.big,.signup-head,.tier-line,.endcard-head,.flagship-line,.ep-title,.drop-
 .drop-media{position:relative;aspect-ratio:2.39;max-height:54vh;width:100%;overflow:hidden;background:#000}
 .drop-loop{width:100%;height:100%;object-fit:cover;display:block}
 .drop-shade{position:absolute;inset:0;background:linear-gradient(180deg,#12111000 74%,#121110 100%)}
-.drop-play{position:absolute;left:var(--gut);bottom:clamp(16px,3vw,36px);display:inline-flex;align-items:center;gap:14px;padding:10px 20px 10px 10px;border-radius:999px;border:1px solid #ffffff55;background:#12111099;backdrop-filter:blur(10px);color:var(--paper);font-size:14px;transition:background .3s,color .3s}
+.drop-play{position:absolute;left:var(--gut);bottom:clamp(16px,3vw,36px);display:inline-flex;align-items:center;gap:14px;padding:11px 18px;border-radius:999px;border:1px solid #ffffff55;background:#12111099;backdrop-filter:blur(10px);color:var(--paper);font-size:14px;transition:background .3s,color .3s}
 .drop-play:hover{background:var(--paper);color:var(--ink)}
-.play-dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--paper);color:var(--ink);font-size:12px;padding-left:2px}
 .drop-copy{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,7vw,140px);align-items:end;padding:clamp(28px,3vw,48px) var(--gut) clamp(64px,8vw,128px)}
 .drop-title .eyebrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 h1{margin:10px 0 0;font-size:clamp(44px,5.2vw,92px);line-height:.95}
@@ -86,32 +85,46 @@ h1{margin:10px 0 0;font-size:clamp(44px,5.2vw,92px);line-height:.95}
 .side-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:clamp(32px,4vw,56px)}
 h2{margin:0;font-size:clamp(44px,5.6vw,92px);line-height:1}
 .show-h{margin-bottom:clamp(32px,4vw,56px)}
-.filters{display:flex;gap:6px}
-.filters button{padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);font:10px var(--mono);letter-spacing:1.3px;text-transform:uppercase}
-.filters button[aria-pressed=true]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.filters .satire[aria-pressed=true]{background:var(--satire);border-color:var(--satire)}
-.filters .horror[aria-pressed=true]{background:var(--horror);border-color:var(--horror);color:#fff}
 
 /* Quest cards */
-.quest-grid{display:grid;grid-template-columns:1.75fr 1fr;gap:clamp(20px,3vw,48px);align-items:start}
+.quest-grid{display:grid;grid-template-columns:1fr;gap:clamp(20px,3vw,48px);align-items:start}
 .quest[hidden]{display:none}
 .quest-art{position:relative;display:block;width:100%;padding:0;border:0;border-radius:12px;overflow:hidden;aspect-ratio:2.29;background:#1b1a18}
 .quest-art img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .quest-art:hover img{transform:scale(1.035)}
 .quest-art .tag{position:absolute;left:16px;top:16px}
 .runtime{position:absolute;right:16px;top:16px;font:10px var(--mono);color:var(--paper);background:#121110b0;padding:5px 8px;border-radius:3px}
-.play{position:absolute;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:16px;padding-left:3px;color:var(--paper);background:#12111099;border:1px solid #ffffff90;transition:background .3s,color .3s}
-.quest-art:hover .play{background:var(--paper);color:var(--ink)}
-.quest-copy{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:22px 0 0}
+.quest-art:hover .quest-copy{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:22px 0 0}
 .quest h3{margin:6px 0 2px;font:500 22px/1.2 var(--body);letter-spacing:-.01em}
 .ep-title{margin:0;font-size:22px;color:var(--muted)}
 .text-link{flex:none;padding:6px 0;border:0;border-bottom:1px solid var(--paper);background:none;color:var(--paper);font-size:13px}
 .text-link:hover{color:#fff}
-.slot .text-link{border-color:var(--horror)}
-.slot-art{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 120%,#3a120d 0%,#1b1110 45%,#0e0d0c 80%);border:1px solid #d9412f30}
-.slot-word{font:200 clamp(30px,3.4vw,56px) var(--serif);color:#ece8df38;letter-spacing:-.02em}
-.empty{color:var(--muted);font-size:14px}
-.empty a{color:var(--paper);border-bottom:1px solid var(--paper)}
+
+/* Cast: a sideways row of stand-up cards. On desktop the section pins and the row
+   pans as the page scrolls (html.mo + .pinned, set by originals.js); elsewhere it swipes. */
+.cast{position:relative}
+.cast-pin{padding:clamp(64px,8vw,120px) 0 clamp(40px,5vw,72px);overflow:hidden}
+.cast-head{box-sizing:border-box;width:100%;padding:0 var(--gut);max-width:1800px;margin:0 auto}
+.cast-head h2{margin:0}
+.cast-lede{margin:16px 0 0;max-width:44ch;color:var(--muted);font-size:16px}
+.cast-track{display:flex;gap:clamp(20px,2.6vw,44px);padding:clamp(40px,5vw,72px) var(--gut) 8px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);scrollbar-width:none;outline-offset:-4px}
+.cast-track::-webkit-scrollbar{display:none}
+.cast-card{flex:0 0 clamp(250px,25vw,380px);margin:0;scroll-snap-align:start}
+.cast.pinned .cast-card{flex-basis:clamp(220px,min(25vw,calc((100vh - 400px) * .8)),380px)}
+.cast-art{position:relative;aspect-ratio:4/5;border-radius:14px;background:radial-gradient(ellipse at 50% 28%,#2c2a27,#171615 72%);box-shadow:0 26px 44px -22px #000d;transform:rotate(var(--tilt,0deg));transform-origin:50% 100%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.cast-card:nth-child(5n+1){--tilt:-1.6deg}.cast-card:nth-child(5n+2){--tilt:1.1deg}.cast-card:nth-child(5n+3){--tilt:-.7deg}.cast-card:nth-child(5n+4){--tilt:1.5deg}.cast-card:nth-child(5n+5){--tilt:-1.1deg}
+.cast-card:hover .cast-art{transform:rotate(0deg) translateY(-8px)}
+.cast-art:not(.cutout){overflow:hidden}
+.cast-art img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.cast-art.cutout img{position:absolute;left:0;right:0;bottom:0;height:106%;object-fit:contain;object-position:50% 100%;border-radius:0 0 14px 14px;filter:drop-shadow(0 16px 18px #0008)}
+.cast-card:hover .cast-art img{transform:scale(1.03)}
+.cast-card figcaption{padding:22px 2px 0;max-width:32ch}
+.cast-role{margin:0;font:10px/1.5 var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--muted)}
+.cast-card h3{margin:6px 0 0;font:400 clamp(26px,2.2vw,34px)/1.05 var(--serif);letter-spacing:-.02em}
+.cast-line{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--muted)}
+.cast.pinned .cast-pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:84px 0 28px}
+.cast.pinned .cast-track{padding-top:clamp(28px,4vh,56px)}
+.cast.pinned .cast-track{overflow:visible;scroll-snap-type:none;transform:translate3d(var(--cx,0px),0,0);will-change:transform}
 
 /* Main show */
 .flagship{display:block;border-radius:14px;overflow:hidden;background:var(--bg-2)}
@@ -200,11 +213,6 @@ legend{margin-bottom:10px}
 .preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
 .preview.on{opacity:1}
 .mo .magnet{transition:transform .5s cubic-bezier(.2,.7,.2,1),background .3s,color .3s}
-.slot-art:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,#d9412f40,transparent 60%);opacity:.35;animation:breathe 7s ease-in-out infinite}
-.slot-art{position:relative}
-@keyframes breathe{50%{opacity:1}}
-.mo .quest{transition:opacity .45s,transform .45s cubic-bezier(.2,.7,.2,1)}
-.mo .quest.out{opacity:0;transform:scale(.97)}
 
 @media(max-width:900px){
   .bar{height:64px}.mark img{height:46px}.bar nav{display:none}

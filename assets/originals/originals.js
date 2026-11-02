@@ -3,7 +3,7 @@
   // One place for episode files. mux = public Mux playback ID (adaptive HLS from the v37 master).
   // src = local CRF 18 copy, played only if Mux can't be reached.
   const EPISODES = {
-    'tron-ep01': {mux: 'kk01Sicqhl9p5G9YNu01e5hjb3W01etT9yV02Ue7mNIsG3s', src: '/assets/originals/tron/ep01/episode-mobile.mp4', poster: '/assets/originals/tron/ep01/poster.jpg', title: 'TRON Mountain Town · High Noon Standup · Ep. 01 “Assembled in America”'}
+    'tron-ep01': {mux: 'kk01Sicqhl9p5G9YNu01e5hjb3W01etT9yV02Ue7mNIsG3s', src: '/assets/originals/tron/ep01/episode-mobile.mp4', poster: '/assets/originals/tron/ep01/poster.jpg', title: 'TRON Mountain Town · Assembled in America'}
   };
   // HLS.js (vendored, ~380 KB) loads only when someone presses play. Like the Saints player,
   // prefer it over native HLS, which Chrome reports but fails on; Safari falls back to native.
@@ -55,23 +55,6 @@
   player.querySelector('[data-close]').addEventListener('click', close);
   player.addEventListener('click', e => { if (e.target === player) close(); });
   player.addEventListener('close', () => video.pause());
-
-  const quests = [...document.querySelectorAll('.quest')];
-  const empty = document.querySelector('.empty');
-  document.querySelectorAll('[data-filter]').forEach(btn => btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-    const f = btn.dataset.filter;
-    const keep = q => f === 'all' || q.dataset.genre === f;
-    const apply = () => {
-      let shown = 0;
-      quests.forEach(q => { q.hidden = !keep(q); if (!q.hidden) { shown++; q.classList.add('out'); requestAnimationFrame(() => requestAnimationFrame(() => q.classList.remove('out'))); } });
-      empty.hidden = shown > 0;
-    };
-    // Cards fade out before the grid reflows, then the survivors fade back in.
-    if (!motion) return apply();
-    quests.forEach(q => { if (!keep(q)) q.classList.add('out'); });
-    setTimeout(apply, 280);
-  }));
 
   // Mobile dock appears once the hero ask is off screen, and hides at the tiers.
   const dock = document.querySelector('.dock');
@@ -136,7 +119,7 @@
 
   // Reveals: blocks below the fold rise in once, staggered within their section.
   // The hero is never animated: the first screen and its ask are there on first paint.
-  const rise = ['.manifesto .lede', '.section-label', '.side-head', '.show-h', '.quest-copy', '.flagship-copy', '.join-head', '.tier', '.join .center'];
+  const rise = ['.manifesto .lede', '.section-label', '.side-head', '.show-h', '.quest-copy', '.cast-head', '.flagship-copy', '.join-head', '.tier', '.join .center'];
   const groups = new Map();
   document.querySelectorAll(rise.join(',')).forEach(el => {
     const sec = el.closest('section') || document.body;
@@ -184,6 +167,24 @@
       words.forEach((w, i) => w.style.setProperty('--o', Math.min(1, Math.max(0.16, p * words.length - i + 0.16)).toFixed(2)));
     }
   };
+  // Cast: on desktop the section pins and the row pans 1:1 with the page scroll.
+  const cast = document.getElementById('cast');
+  const track = cast?.querySelector('.cast-track');
+  const pinMedia = matchMedia('(min-width: 901px)');
+  let castOver = 0;
+  const castLayout = () => {
+    cast.classList.remove('pinned'); cast.style.height = ''; track.style.removeProperty('--cx');
+    castOver = pinMedia.matches ? track.scrollWidth - track.clientWidth : 0;
+    if (castOver > 0) { cast.classList.add('pinned'); cast.style.height = (innerHeight + castOver) + 'px'; }
+  };
+  const castFrame = () => {
+    if (!castOver) return;
+    const top = cast.getBoundingClientRect().top;
+    const p = Math.min(1, Math.max(0, -top / castOver));
+    track.style.setProperty('--cx', (-p * castOver).toFixed(1) + 'px');
+  };
+  if (cast) { castLayout(); addEventListener('resize', () => { castLayout(); castFrame(); }); addEventListener('load', () => { castLayout(); castFrame(); }); addEventListener('scroll', castFrame, {passive: true}); }
+
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, {passive: true});
   addEventListener('resize', frame);
   frame();
